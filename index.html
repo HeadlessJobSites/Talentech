@@ -1,3 +1,44 @@
 <html>
-Hello worldz!
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ledige stillinger</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .job-listing {
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center my-4">Ledige stillinger</h1>
+        <div id="jobList" class="list-group"></div>
+    </div>
+
+    <!-- Bootstrap and jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            fetch('https://site201.reachmee.com/api/public/v1/feed/5?lang=SE&customer=demopatrik&format=json&feed_key=hwati8e5l0')
+                .then(response => response.json())
+                .then(data => {
+                    const jobs = data.jobs;
+                    const jobList = document.getElementById('jobList');
+                    jobs.forEach(job => {
+                        const jobElement = document.createElement('a');
+                        jobElement.classList.add('list-group-item', 'list-group-item-action', 'job-listing');
+                        jobElement.href = job.url; // Assuming 'url' is the key for the job link
+                        jobElement.target = '_blank';
+                        jobElement.innerText = `${job.title} - ${job.location}`;
+                        jobList.appendChild(jobElement);
+                    });
+                })
+                .catch(error => console.error('Fant ingen jobber:', error));
+        });
+    </script>
+</body>
 </html>

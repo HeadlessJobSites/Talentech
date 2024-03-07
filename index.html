@@ -1,8 +1,10 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ledige stillinger</title>
+    <title>Job Portal</title>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
@@ -11,9 +13,10 @@
         }
     </style>
 </head>
+
 <body>
     <div class="container">
-        <h1 class="text-center my-4">Ledige stillinger.</h1>
+        <h1 class="text-center my-4">Available Jobs</h1>
         <div id="jobList" class="list-group"></div>
     </div>
 
@@ -23,7 +26,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script>
         $(document).ready(function () {
-            fetch('https://cors-anywhere.herokuapp.com/https://site201.reachmee.com/api/public/v1/feed/5?lang=SE&customer=demopatrik&format=json&feed_key=hwati8e5l0')
+            fetch('https://site201.reachmee.com/api/public/v1/feed/5?lang=SE&customer=demopatrik&format=json&feed_key=hwati8e5l0')
                 .then(response => response.json())
                 .then(data => {
                     const jobs = data.jobs;
@@ -31,14 +34,15 @@
                     jobs.forEach(job => {
                         const jobElement = document.createElement('a');
                         jobElement.classList.add('list-group-item', 'list-group-item-action', 'job-listing');
-                        jobElement.href = job.url; // Assuming 'url' is the key for the job link
+                        jobElement.href = url; // Assuming 'url' is the key for the job link
                         jobElement.target = '_blank';
-                        jobElement.innerText = `${title} - ${job.location}`;
+                        jobElement.innerText = `${job.title} - ${job.location}`;
                         jobList.appendChild(jobElement);
                     });
                 })
-                .catch(error => console.error('Fant ingen jobber:', error));
+                .catch(error => console.error('Error fetching jobs:', error));
         });
     </script>
 </body>
+
 </html>

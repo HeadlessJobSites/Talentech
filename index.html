@@ -33,7 +33,7 @@
                         jobElement.classList.add('list-group-item', 'list-group-item-action', 'job-listing');
                         jobElement.href = job.url; // Assuming 'url' is the key for the job link
                         jobElement.target = '_blank';
-                        jobElement.innerText = `${job.title} - ${job.location}`;
+                        jobElement.innerText = `${title} - ${job.location}`;
                         jobList.appendChild(jobElement);
                     });
                 })

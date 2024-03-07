@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Job Portal</title>
+    <title>Stillingsliste</title>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
@@ -16,7 +16,7 @@
 
 <body>
     <div class="container">
-        <h1 class="text-center my-4">Available Jobs</h1>
+        <h1 class="text-center my-4">Ledige stillinger</h1>
         <div id="jobList" class="list-group"></div>
     </div>
 
@@ -36,7 +36,7 @@
                         jobElement.classList.add('list-group-item', 'list-group-item-action', 'job-listing');
                         jobElement.href = url; // Assuming 'url' is the key for the job link
                         jobElement.target = '_blank';
-                        jobElement.innerText = `${title}`;
+                        jobElement.innerText = `${title} - ${location}`;
                         jobList.appendChild(jobElement);
                     });
                 })

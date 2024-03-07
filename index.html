@@ -13,7 +13,7 @@
 </head>
 <body>
     <div class="container">
-        <h1 class="text-center my-4">Ledige stillinger</h1>
+        <h1 class="text-center my-4">Ledige stillinger.</h1>
         <div id="jobList" class="list-group"></div>
     </div>
 
@@ -23,7 +23,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script>
         $(document).ready(function () {
-            fetch('https://site201.reachmee.com/api/public/v1/feed/5?lang=SE&customer=demopatrik&format=json&feed_key=hwati8e5l0')
+            fetch('https://cors-anywhere.herokuapp.com/https://site201.reachmee.com/api/public/v1/feed/5?lang=SE&customer=demopatrik&format=json&feed_key=hwati8e5l0')
                 .then(response => response.json())
                 .then(data => {
                     const jobs = data.jobs;

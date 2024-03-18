@@ -17,19 +17,24 @@
         }
         .job-header {
             font-weight: bold;
+            background-color: #f8f9fa;
+            border-bottom: 2px solid #e9ecef;
+        }
+        .job-item {
+            word-wrap: break-word; /* Ensures content fits within the columns on smaller screens */
         }
     </style>
 </head>
 
 <body>
     <div class="container">
-        <h1 class="text-center my-4">Ledige stillinger0</h1>
+        <h1 class="text-center my-4">Ledige stillinger</h1>
         <div class="row job-header">
-            <div class="col-md-3">Title</div>
-            <div class="col-md-2">Country</div>
-            <div class="col-md-3">Publishing Date</div>
-            <div class="col-md-3">Expiration Date</div>
-            <div class="col-md-1">Details</div>
+            <div class="col-6 col-md-3">Title</div>
+            <div class="col-6 col-md-2">Country</div>
+            <div class="col-12 col-md-3">Publishing Date</div>
+            <div class="col-12 col-md-3">Expiration Date</div>
+            <div class="col-12 col-md-1">Details</div>
         </div>
         <div id="jobList" class="list-group"></div>
     </div>
@@ -50,23 +55,23 @@
                         jobRow.classList.add('row', 'job-listing');
 
                         const titleCol = document.createElement('div');
-                        titleCol.classList.add('col-md-3', 'job-item');
+                        titleCol.classList.add('col-6', 'col-md-3', 'job-item');
                         titleCol.innerHTML = job.title;
 
                         const countryCol = document.createElement('div');
-                        countryCol.classList.add('col-md-2', 'job-item');
+                        countryCol.classList.add('col-6', 'col-md-2', 'job-item');
                         countryCol.innerHTML = job.country;
 
                         const pubDateCol = document.createElement('div');
-                        pubDateCol.classList.add('col-md-3', 'job-item');
+                        pubDateCol.classList.add('col-12', 'col-md-3', 'job-item');
                         pubDateCol.innerHTML = job.publishing_date;
 
                         const expDateCol = document.createElement('div');
-                        expDateCol.classList.add('col-md-3', 'job-item');
+                        expDateCol.classList.add('col-12', 'col-md-3', 'job-item');
                         expDateCol.innerHTML = job.expiration_date;
 
                         const detailsCol = document.createElement('div');
-                        detailsCol.classList.add('col-md-1', 'job-item');
+                        detailsCol.classList.add('col-12', 'col-md-1', 'job-item');
                         const detailsLink = document.createElement('a');
                         detailsLink.href = job.link;
                         detailsLink.target = '_blank';

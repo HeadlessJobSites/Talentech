@@ -9,14 +9,28 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
         .job-listing {
-            margin: 20px 0;
+            margin-bottom: 20px;
+        }
+        .job-header, .job-item {
+            padding: 10px;
+            text-align: center;
+        }
+        .job-header {
+            font-weight: bold;
         }
     </style>
 </head>
 
 <body>
     <div class="container">
-        <h1 class="text-center my-4">Ledige stillinger</h1>
+        <h1 class="text-center my-4">Ledige stillinger0</h1>
+        <div class="row job-header">
+            <div class="col-md-3">Title</div>
+            <div class="col-md-2">Country</div>
+            <div class="col-md-3">Publishing Date</div>
+            <div class="col-md-3">Expiration Date</div>
+            <div class="col-md-1">Details</div>
+        </div>
         <div id="jobList" class="list-group"></div>
     </div>
 
@@ -32,15 +46,43 @@
                     const jobs = data; // Adjust according to the actual structure of your data
                     const jobList = document.getElementById('jobList');
                     jobs.forEach(job => {
-                        const jobElement = document.createElement('a');
-                        jobElement.classList.add('list-group-item', 'list-group-item-action', 'job-listing');
-                        jobElement.href = job.link; // Adjust according to the actual attribute name for the job link
-                        jobElement.target = '_blank';
-                        jobElement.innerHTML = `${job.title} - ${job.country} <br> Publish Date: ${job.publishing_date}, Expiration Date: ${job.expiration_date}`;
-                        jobList.appendChild(jobElement);
+                        const jobRow = document.createElement('div');
+                        jobRow.classList.add('row', 'job-listing');
+
+                        const titleCol = document.createElement('div');
+                        titleCol.classList.add('col-md-3', 'job-item');
+                        titleCol.innerHTML = job.title;
+
+                        const countryCol = document.createElement('div');
+                        countryCol.classList.add('col-md-2', 'job-item');
+                        countryCol.innerHTML = job.country;
+
+                        const pubDateCol = document.createElement('div');
+                        pubDateCol.classList.add('col-md-3', 'job-item');
+                        pubDateCol.innerHTML = job.publishing_date;
+
+                        const expDateCol = document.createElement('div');
+                        expDateCol.classList.add('col-md-3', 'job-item');
+                        expDateCol.innerHTML = job.expiration_date;
+
+                        const detailsCol = document.createElement('div');
+                        detailsCol.classList.add('col-md-1', 'job-item');
+                        const detailsLink = document.createElement('a');
+                        detailsLink.href = job.link;
+                        detailsLink.target = '_blank';
+                        detailsLink.innerHTML = 'View';
+                        detailsCol.appendChild(detailsLink);
+
+                        jobRow.appendChild(titleCol);
+                        jobRow.appendChild(countryCol);
+                        jobRow.appendChild(pubDateCol);
+                        jobRow.appendChild(expDateCol);
+                        jobRow.appendChild(detailsCol);
+
+                        jobList.appendChild(jobRow);
                     });
                 })
-                .catch(error => console.error('Feil:', error));
+                .catch(error => console.error('Error:', error));
         });
     </script>
 </body>

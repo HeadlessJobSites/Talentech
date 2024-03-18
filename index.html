@@ -30,11 +30,11 @@
     <div class="container">
         <h1 class="text-center my-4">Ledige stillinger</h1>
         <div class="row job-header">
-            <div class="col-6 col-md-3">Title</div>
-            <div class="col-6 col-md-2">Country</div>
-            <div class="col-12 col-md-3">Publishing Date</div>
-            <div class="col-12 col-md-3">Expiration Date</div>
-            <div class="col-12 col-md-1">Details</div>
+            <div class="col-6 col-md-3">Stilling</div>
+            <div class="col-6 col-md-2">Land</div>
+            <div class="col-12 col-md-3">Publisert dato</div>
+            <div class="col-12 col-md-3">Søknadsfrist</div>
+            <div class="col-12 col-md-1">Annonse</div>
         </div>
         <div id="jobList" class="list-group"></div>
     </div>
@@ -75,7 +75,7 @@
                         const detailsLink = document.createElement('a');
                         detailsLink.href = job.link;
                         detailsLink.target = '_blank';
-                        detailsLink.innerHTML = 'View';
+                        detailsLink.innerHTML = 'Se annonse';
                         detailsCol.appendChild(detailsLink);
 
                         jobRow.appendChild(titleCol);

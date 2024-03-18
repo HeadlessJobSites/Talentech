@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,6 +9,29 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
+        .hero-section {
+            position: relative;
+            height: 100vh; /* Make the hero section cover the whole viewport */
+            overflow: hidden;
+        }
+        .hero-video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            transform: translate(-50%, -50%);
+            z-index: -1; /* Ensure the video stays in the background */
+        }
+        .hero-content {
+            position: relative;
+            text-align: center;
+            top: 50%;
+            transform: translateY(-50%);
+            color: white;
+        }
         .job-listing {
             margin-bottom: 20px;
         }
@@ -27,7 +51,17 @@
 </head>
 
 <body>
-    <div class="container">
+    <div class="hero-section">
+        <video playsinline="playsinline" autoplay="autoplay" muted="muted" loop="loop" class="hero-video">
+            <source src="/video.mp4" type="video/mp4">
+        </video>
+        <div class="hero-content">
+            <h1>Welcome to the Job Portal</h1>
+            <a href="#" class="btn btn-primary btn-lg">Find Jobs</a> <!-- This is the CTA button -->
+        </div>
+    </div>
+
+    <div class="container mt-5"> <!-- Added mt-5 to add some space between the hero section and the content -->
         <h1 class="text-center my-4">Ledige stillinger</h1>
         <div class="row job-header">
             <div class="col-6 col-md-3">Title</div>
@@ -93,3 +127,4 @@
 </body>
 
 </html>
+

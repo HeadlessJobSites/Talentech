@@ -16,7 +16,7 @@
 
 <body>
     <div class="container">
-        <h1 class="text-center my-4">Ledige stillinger2</h1>
+        <h1 class="text-center my-4">Ledige stillinger</h1>
         <div id="jobList" class="list-group"></div>
     </div>
 
@@ -36,7 +36,7 @@
                         jobElement.classList.add('list-group-item', 'list-group-item-action', 'job-listing');
                         jobElement.href = job.link; // Adjust according to the actual attribute name for the job link
                         jobElement.target = '_blank';
-                        jobElement.innerHTML = `${job.title} - ${job.country}`; // Adjust according to the actual attributes for job title and location
+                        jobElement.innerHTML = `${job.title} - ${job.country} <br> Publish Date: ${job.publishing_date}, Expiration Date: ${job.expiration_date}`;
                         jobList.appendChild(jobElement);
                     });
                 })

@@ -1,31 +1,22 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="en" class="h-100" data-bs-theme="auto">
+  <head><script src="../assets/js/color-modes.js"></script>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Stillingsportal</title>
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/style.css">
-    <style>
-        .job-listing {
-            margin-bottom: 20px;
-        }
-        .job-header, .job-item {
-            padding: 10px;
-            text-align: center;
-        }
-        .job-header {
-            font-weight: bold;
-            background-color: #f8f9fa;
-            border-bottom: 2px solid #e9ecef;
-        }
-        .job-item {
-            word-wrap: break-word; /* Ensures content fits within the columns on smaller screens */
-        }
-    </style>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.122.0">
+    <title>Cover Template · Bootstrap v5.3</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/cover/">
+
     
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
+
+<link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
+
     <style>
       .bd-placeholder-img {
         font-size: 1.125rem;
@@ -104,9 +95,6 @@
         display: block !important;
       }
     </style>
-</head>
-
-<body>
 
     
     <!-- Custom styles for this template -->
@@ -164,71 +152,32 @@
       </ul>
     </div>
 
-
-
-    <div class="container">
-        <h1 class="text-center my-4">Ledige stillinger</h1>
-        <div class="row job-header">
-            <div class="col-6 col-md-3">Stilling</div>
-            <div class="col-6 col-md-2">Land</div>
-            <div class="col-12 col-md-3">Publisert dato</div>
-            <div class="col-12 col-md-3">Søknadsfrist</div>
-            <div class="col-12 col-md-1">Annonse</div>
-        </div>
-        <div id="jobList" class="list-group"></div>
+    
+<div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+  <header class="mb-auto">
+    <div>
+      <h3 class="float-md-start mb-0">Cover</h3>
+      <nav class="nav nav-masthead justify-content-center float-md-end">
+        <a class="nav-link fw-bold py-1 px-0 active" aria-current="page" href="#">Home</a>
+        <a class="nav-link fw-bold py-1 px-0" href="#">Features</a>
+        <a class="nav-link fw-bold py-1 px-0" href="#">Contact</a>
+      </nav>
     </div>
+  </header>
 
-    <!-- Bootstrap and jQuery -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script>
-        $(document).ready(function () {
-            fetch('https://site201.reachmee.com/api/public/v1/feed/5?lang=SE&customer=demopatrik&format=json&feed_key=hwati8e5l0')
-                .then(response => response.json())
-                .then(data => {
-                    const jobs = data; // Adjust according to the actual structure of your data
-                    const jobList = document.getElementById('jobList');
-                    jobs.forEach(job => {
-                        const jobRow = document.createElement('div');
-                        jobRow.classList.add('row', 'job-listing');
+  <main class="px-3">
+    <h1>Cover your page.</h1>
+    <p class="lead">Cover is a one-page template for building simple and beautiful home pages. Download, edit the text, and add your own fullscreen background photo to make it your own.</p>
+    <p class="lead">
+      <a href="#" class="btn btn-lg btn-light fw-bold border-white bg-white">Learn more</a>
+    </p>
+  </main>
 
-                        const titleCol = document.createElement('div');
-                        titleCol.classList.add('col-6', 'col-md-3', 'job-item');
-                        titleCol.innerHTML = job.title;
+  <footer class="mt-auto text-white-50">
+    <p>Cover template for <a href="https://getbootstrap.com/" class="text-white">Bootstrap</a>, by <a href="https://twitter.com/mdo" class="text-white">@mdo</a>.</p>
+  </footer>
+</div>
+<script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
 
-                        const countryCol = document.createElement('div');
-                        countryCol.classList.add('col-6', 'col-md-2', 'job-item');
-                        countryCol.innerHTML = job.country;
-
-                        const pubDateCol = document.createElement('div');
-                        pubDateCol.classList.add('col-12', 'col-md-3', 'job-item');
-                        pubDateCol.innerHTML = job.publishing_date;
-
-                        const expDateCol = document.createElement('div');
-                        expDateCol.classList.add('col-12', 'col-md-3', 'job-item');
-                        expDateCol.innerHTML = job.expiration_date;
-
-                        const detailsCol = document.createElement('div');
-                        detailsCol.classList.add('col-12', 'col-md-1', 'job-item');
-                        const detailsLink = document.createElement('a');
-                        detailsLink.href = job.link;
-                        detailsLink.target = '_blank';
-                        detailsLink.innerHTML = 'Se annonse';
-                        detailsCol.appendChild(detailsLink);
-
-                        jobRow.appendChild(titleCol);
-                        jobRow.appendChild(countryCol);
-                        jobRow.appendChild(pubDateCol);
-                        jobRow.appendChild(expDateCol);
-                        jobRow.appendChild(detailsCol);
-
-                        jobList.appendChild(jobRow);
-                    });
-                })
-                .catch(error => console.error('Error:', error));
-        });
-    </script>
-</body>
-
+    </body>
 </html>

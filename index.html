@@ -16,7 +16,7 @@
 
 <body>
     <div class="container">
-        <h1 class="text-center my-4">Ledige stillinger</h1>
+        <h1 class="text-center my-4">Ledige stillinger1</h1>
         <div id="jobList" class="list-group"></div>
     </div>
 
@@ -26,21 +26,42 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script>
         $(document).ready(function () {
-            fetch('https://site201.reachmee.com/api/public/v1/feed/5?lang=SE&customer=demopatrik&format=json&feed_key=hwati8e5l0')
-                .then(response => response.json())
-                .then(data => {
-                    const jobs = data.jobs;
-                    const jobList = document.getElementById('jobList');
-                    jobs.forEach(job => {
-                        const jobElement = document.createElement('a');
-                        jobElement.classList.add('list-group-item', 'list-group-item-action', 'job-listing');
-                        jobElement.href = job.url; // Assuming 'url' is the key for the job link
-                        jobElement.target = '_blank';
-                        jobElement.innerText = `${job.title} - ${job.location}`;
-                        jobList.appendChild(jobElement);
-                    });
-                })
-                .catch(error => console.error('Feil:', error));
+            // Simulating fetching data
+            const data = [{
+                "ad_id": 60,
+                "project_id": 62,
+                "publishing_date": "2023-07-03",
+                "expiration_date": "2024-09-02",
+                "title": "Store assistant!",
+                "description": "<p><strong>OM TJÄNSTEN<br></strong>...</p>",
+                "hide_apply_button": false,
+                "working_hours": "Dag",
+                "country": "Sverige",
+                "position": "Anställd/Medarbetare",
+                "occupation_area": "Försäljning, inköp, marknadsföring",
+                "occupation_orientation": "Försäljare, dagligvaror",
+                "employment_level": "Tillsvidareanställning",
+                "ad_language": "SE",
+                "image_link": "https://site111.reachmee.com/Admin/images/extstorage/RM229/image_bank/softneuro.png",
+                "image_alt_text": "Soft",
+                "link": "http://web103.reachmee.com/ext/I001/229/main?site=5&validator=2e8c13f9da236375021461ec91682e50&lang=SE&rmpage=job&rmjob=60",
+                "url": "rmpage=job&rmjob=60",
+                "contact_persons": [{"first_name": "Allan", "surname": "Mangold", "email": "patrik.dalivin@talentech.com", "phone": "0701221121212", "position": "Toppen"}, {"first_name": "Per-Ove", "surname": "Andersson", "email": "patrik.ee@dalivin.se", "phone": "patrik.ee@dalivin.se", "position": "Chef"}],
+                "organizations": [{"orgunitseqno": 24, "nameorgunit": "Lexington"}, {"orgunitseqno": 25, "nameorgunit": "Lexington 2"}, {"orgunitseqno": 26, "nameorgunit": "Lexington 3"}],
+                "areas": [{"id": 1, "name": "Stockholms län"}, {"id": 17, "name": "Stockholm"}]
+            }];
+            
+            // Process the jobs data
+            const jobs = data; // Assuming 'data' is the array containing job objects.
+            const jobList = document.getElementById('jobList');
+            jobs.forEach(job => {
+                const jobElement = document.createElement('a');
+                jobElement.classList.add('list-group-item', 'list-group-item-action', 'job-listing');
+                jobElement.href = job.link; // Use 'link' instead of 'url' for the full link
+                jobElement.target = '_blank';
+                jobElement.innerHTML = `${job.title} - ${job.country}`; // Change 'location' to 'country' or other appropriate data
+                jobList.appendChild(jobElement);
+            });
         });
     </script>
 </body>

@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Stillingsliste</title>
+    <title>Stillingsportal</title>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
@@ -18,19 +18,6 @@
     <div class="container">
         <h1 class="text-center my-4">Ledige stillinger</h1>
         <div id="jobList" class="list-group"></div>
-        <div><h2>Gobi test</h2>
-<script src="https://widget.gobistories.com/gwi/6" async onload="gobi.discover()"></script>
-
-<div class="gobi-stories"
-  data-gobi-stories="pp7ep"
-  data-gobi-bubble-size="100px"
-  data-gobi-animated-bubble="true"
-  data-gobi-disable-shadow-dom="false"
-  data-gobi-inherit-text-font-family="true"
-  data-gobi-auto-start-with-sound="true">
-</div>
-        </div>
-        
     </div>
 
     <!-- Bootstrap and jQuery -->
@@ -47,13 +34,13 @@
                     jobs.forEach(job => {
                         const jobElement = document.createElement('a');
                         jobElement.classList.add('list-group-item', 'list-group-item-action', 'job-listing');
-                        jobElement.href = url; // Assuming 'url' is the key for the job link
+                        jobElement.href = job.url; // Assuming 'url' is the key for the job link
                         jobElement.target = '_blank';
-                        jobElement.innerText = `${title} - ${location}`;
+                        jobElement.innerText = `${job.title} - ${job.location}`;
                         jobList.appendChild(jobElement);
                     });
                 })
-                .catch(error => console.error('Ops:', error));
+                .catch(error => console.error('Feil:', error));
         });
     </script>
 </body>

@@ -507,22 +507,19 @@ font-size: 3rem;
 
 
 	
-
-
-
 <div class="container mt-5">
-    <h1 class="text-center my-4">Available Jobs0</h1>
+    <h1 class="text-center my-4">Available Jobs</h1>
     <div class="row">
         <div class="col-md-6 mb-3">
             <select id="locationFilter" class="form-control">
                 <option value="All">All locations</option>
-                <!-- Location options will be added here -->
+                <!-- Location options will be dynamically added here -->
             </select>
         </div>
         <div class="col-md-6 mb-3">
             <select id="jobTypeFilter" class="form-control">
                 <option value="All">All job types</option>
-                <!-- Job type options will be added here -->
+                <!-- Job type options will be dynamically added here -->
             </select>
         </div>
     </div>
@@ -531,118 +528,121 @@ font-size: 3rem;
 </div>
 
 
+
+
+
+
+	
+
 <script>
 $(document).ready(function () {
-    let jobs = [];
-    let displayedJobs = 0;
-    const jobsToShow = 1;
-    const allJobs = []; // Store all jobs for filtering
+    let jobs = []; // Array to store all jobs
+    let displayedJobs = 0; // Counter for the number of jobs currently displayed
+    const jobsToShow = 1; // Number of jobs to show each time "Load More" is clicked
 
-    // Populate filter dropdowns
+    // Function to populate filter dropdowns based on jobs
     function populateFilters() {
-        const locations = new Set(['All']);
-        const jobTypes = new Set(['All']);
+        const locationSet = new Set();
+        const jobTypeSet = new Set();
 
-        allJobs.forEach(job => {
-            locations.add(job.area + ' - ' + job.country);
-            jobTypes.add(job.title);
+        jobs.forEach(job => {
+            if (job.area && job.country) { // Check if job has area and country
+                locationSet.add(`${job.area} - ${job.country}`);
+            }
+            if (job.title) { // Check if job has a title
+                jobTypeSet.add(job.title);
+            }
         });
 
-        // Add location options to the dropdown
-        $('#locationFilter').empty().append([...locations].map(loc => `<option value="${loc}">${loc}</option>`));
-        // Add job type options to the dropdown
-        $('#jobTypeFilter').empty().append([...jobTypes].map(type => `<option value="${type}">${type}</option>`));
+        // Populate location filter
+        $('#locationFilter').html('<option value="All">All locations</option>');
+        locationSet.forEach(location => {
+            $('#locationFilter').append(`<option value="${location}">${location}</option>`);
+        });
+
+        // Populate job type filter
+        $('#jobTypeFilter').html('<option value="All">All job types</option>');
+        jobTypeSet.forEach(type => {
+            $('#jobTypeFilter').append(`<option value="${type}">${type}</option>`);
+        });
     }
 
-    // Function to display jobs
+    // Function to display jobs based on filters
     function displayJobs() {
         $('#jobList').empty(); // Clear current jobs
-        let filteredJobs = allJobs;
 
-        // Filter by location
+        let filteredJobs = jobs.slice(0, displayedJobs + jobsToShow); // Get a subset of jobs to display
+
+        // Apply filters
         const selectedLocation = $('#locationFilter').val();
-        if (selectedLocation && selectedLocation !== 'All') {
-            const [area, country] = selectedLocation.split(' - ');
-            filteredJobs = filteredJobs.filter(job => job.area === area && job.country === country);
-        }
-
-        // Filter by job type
         const selectedJobType = $('#jobTypeFilter').val();
-        if (selectedJobType && selectedJobType !== 'All') {
-            filteredJobs = filteredJobs.filter(job => job.title === selectedJobType);
-        }
+        filteredJobs = filteredJobs.filter(job => {
+            const jobLocation = `${job.area} - ${job.country}`;
+            return (selectedLocation === 'All' || jobLocation === selectedLocation) &&
+                   (selectedJobType === 'All' || job.title === selectedJobType);
+        });
 
-        // Display filtered jobs
-        for (let i = 0; i < jobsToShow && i < filteredJobs.length; i++) {
-            const job = filteredJobs[i];
-            const jobCard = document.createElement('div');
-            jobCard.classList.add('col-12', 'col-md-6', 'col-lg-3', 'mb-4');
-            jobCard.innerHTML = `
-                <div class="card h-100">
-                    <div class="card-body">
-                        <h5 class="card-title">${job.title}</h5>
-                        <p class="card-text">${job.area} - ${job.country}</p>
+        // Add job cards to the DOM
+        filteredJobs.forEach(job => {
+            const jobCard = `
+                <div class="col-12 col-md-6 col-lg-3 mb-4">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">${job.title}</h5>
+                            <p class="card-text">${job.area} - ${job.country}</p>
+                        </div>
+                        <div class="card-footer">
+                            <a href="${job.link}" target="_blank" class="stretched-link">
+                                <img src="/arrow-right-thin.svg" alt="Details">
+                            </a>
+                        </div>
                     </div>
-                    <div class="card-footer">
-                        <a href="${job.link}" target="_blank" class="stretched-link"><img src="/arrow-right-thin.svg" alt="Details"></a>
-                    </div>
-                </div>
-            `;
+                </div>`;
             $('#jobList').append(jobCard);
-        }
+        });
     }
 
-    // Fetch jobs and populate filters
+    // Function to fetch jobs from the API
     function fetchJobs() {
-        fetch('https://api.talentech.io/reachmee/feed/')
+        fetch('https://api.talentech.io/reachmee/feed/') // Make sure this URL is correct
             .then(response => response.json())
             .then(data => {
-                allJobs.push(...data); // Store fetched jobs
-                populateFilters(); // Populate filter options
-                displayJobs(); // Display initial jobs
+                jobs = data; // Assume this array is the correct response format
+                populateFilters(); // Fill dropdowns with options
+                displayJobs(); // Show initial jobs
             })
-            .catch(error => console.error('Error:', error));
+            .catch(error => {
+                console.error('Error fetching jobs:', error);
+            });
     }
 
-    fetchJobs();
+    fetchJobs(); // Load jobs when page is ready
 
-    // Re-display jobs when filters change
-    $('#locationFilter, #jobTypeFilter').change(displayJobs);
-
-    // Load more jobs when the button is clicked
+    // Event listener for "Load More" button
     $('#loadMore').click(function() {
-        displayedJobs += jobsToShow; // Increment the counter
-        displayJobs(); // Show next set of jobs
+        displayedJobs += jobsToShow; // Increase the number of displayed jobs
+        displayJobs(); // Display new set of jobs based on the increased count
+
+        // Hide the Load More button if all jobs are displayed
+        if (displayedJobs >= jobs.length) {
+            $('#loadMore').hide();
+        }
     });
 
+    // Event listeners for filter dropdowns
+    $('#locationFilter').change(function() {
+        displayedJobs = jobsToShow; // Reset displayed jobs to initial count when filter changes
+        displayJobs(); // Apply filter and display jobs
+    });
 
-
-
-	
-	
-<script>
-// Initialize the map
-var mymap = L.map('mapid').setView([59.9139, 10.7522], 5); // Default view set to Norway
-
-// Set up the map tiles
-L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
-    maxZoom: 19,
-    attribution: '© OpenStreetMap contributors'
-}).addTo(mymap);
-
-// Sample data from your feed, replace this with dynamic data fetching and geocoding
-var jobLocations = [
-    {name: "Stockholm", lat: 59.3293, lon: 18.0686}, // Coordinates for Stockholm
-    {name: "Oslo", lat: 59.9139, lon: 10.7522} // Coordinates for Oslo
-];
-
-// Add pins to the map without popups
-jobLocations.forEach(function(location) {
-    L.marker([location.lat, location.lon]).addTo(mymap);
+    $('#jobTypeFilter').change(function() {
+        displayedJobs = jobsToShow; // Reset displayed jobs to initial count when filter changes
+        displayJobs(); // Apply filter and display jobs
+    });
 });
+</script>
 
 
-    </script>
 	
 	
 </body>

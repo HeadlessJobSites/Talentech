@@ -701,52 +701,55 @@ font-size: 3rem;
 
 <script>
     $(document).ready(function () {
+        let jobs = []; // Array to store all jobs
         let jobCount = 0; // Counter to keep track of the number of jobs displayed
+        const jobsToShow = 1; // Number of jobs to show each time Load More is clicked
 
         // Function to display jobs
-        function displayJobs(jobs) {
+        function displayJobs() {
             const jobList = document.getElementById('jobList');
-            jobs.forEach((job, index) => {
-                if (index < jobCount + 1) { // Display one job initially
-                    const jobCard = document.createElement('div');
-                    jobCard.classList.add('col-12', 'col-md-6', 'col-lg-3', 'mb-4');
-
-                    // Customize this part as per your job card design
-                    jobCard.innerHTML = `
-                        <div class="card h-100">
-                            <div class="card-body">
-                                <h5 class="card-title">${job.title}</h5>
-                                <p class="card-text">${job.country} - Hybrid</p>
-                            </div>
-                            <div class="card-footer">
-                                <a href="${job.link}" target="_blank" class="stretched-link"><img src="/arrow-right-thin.svg" alt="Details"></a>
-                            </div>
+            // Clear current job listings
+            jobList.innerHTML = '';
+            // Display jobs from the array based on jobCount
+            for (let i = 0; i < jobCount && i < jobs.length; i++) {
+                const job = jobs[i]; // Get the job from array
+                const jobCard = document.createElement('div');
+                jobCard.classList.add('col-12', 'col-md-6', 'col-lg-3', 'mb-4');
+                
+                // Customize this part as per your job card design
+                jobCard.innerHTML = `
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">${job.title}</h5>
+                            <p class="card-text">${job.country} - Hybrid</p>
                         </div>
-                    `;
-
-                    jobList.appendChild(jobCard);
-                }
-            });
-
-            jobCount += 1; // Increase the number of jobs displayed
+                        <div class="card-footer">
+                            <a href="${job.link}" target="_blank" class="stretched-link"><img src="/arrow-right-thin.svg" alt="Details"></a>
+                        </div>
+                    </div>
+                `;
+                jobList.appendChild(jobCard);
+            }
         }
 
-        // Fetch and display jobs
-        fetch('https://api.talentech.io/reachmee/feed/')
-            .then(response => response.json())
-            .then(data => {
-                displayJobs(data); // Adjust based on the actual structure of your data
-            })
-            .catch(error => console.error('Error:', error));
-
-        // Load more jobs when the button is clicked
-        $('#loadMore').click(function() {
+        // Function to fetch jobs
+        function fetchJobs() {
             fetch('https://api.talentech.io/reachmee/feed/')
                 .then(response => response.json())
                 .then(data => {
-                    displayJobs(data); // Display more jobs
+                    jobs = data; // Store fetched jobs in the array
+                    displayJobs(); // Display jobs
                 })
                 .catch(error => console.error('Error:', error));
+        }
+
+        // Initial fetch
+        fetchJobs();
+
+        // Load more jobs when the button is clicked
+        $('#loadMore').click(function() {
+            jobCount += jobsToShow; // Increase the number of jobs to be displayed
+            displayJobs(); // Update the displayed jobs
         });
     });
 </script>

@@ -463,6 +463,21 @@ font-size: 3rem;
     height: auto;
 }
 
+
+.stretched-link {
+    position: absolute;
+    right: 20px;
+    bottom: 20px;
+}
+.stretched-link img {
+	width: 20px;
+}
+.card {
+	border: 0;
+}
+
+	    
+
 @media (max-width: 768px) {
     /* Targets screens smaller than 768px (mobile devices) */
     .benefits-section .row {
@@ -589,10 +604,9 @@ function displayJobs() {
             <div class="col-12 col-md-6 col-lg-3 mb-4">
                 <div class="card h-100">
                     <div class="card-body">
+		    	<div class="card-category">Category</div>
                         <h5 class="card-title">${job.title}</h5>
                         <p class="card-text">${job.country}</p>
-                    </div>
-                    <div class="card-footer">
                         <a href="${job.link}" target="_blank" class="stretched-link">
                             <img src="https://reboot.no/arrow-right-thin.svg" alt="Details">
                         </a>

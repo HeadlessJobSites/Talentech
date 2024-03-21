@@ -681,7 +681,7 @@ font-size: 3rem;
 
 
 	<div class="container mt-5"> <!-- Add some space between the hero section and the content -->
-    <h1 class="text-center my-4">Available Jobs</h1>
+    <h1 class="text-center my-4">Available_Jobs</h1>
     <div class="row">
         <div class="col-md-6 mb-3">
             <select class="form-control">
@@ -698,61 +698,61 @@ font-size: 3rem;
     <button id="loadMore" class="btn btn-primary">Load more</button>
 </div>
 
-
 <script>
-    $(document).ready(function () {
-        let jobs = []; // Array to store all jobs
-        let jobCount = 0; // Counter to keep track of the number of jobs displayed
-        const jobsToShow = 1; // Number of jobs to show each time Load More is clicked
+$(document).ready(function () {
+    let jobs = []; // Array to store all jobs
+    const jobsToShow = 1; // Number of jobs to show initially and with each "Load More" click
+    let displayedJobs = 0; // Counter for the number of jobs currently displayed
 
-        // Function to display jobs
-        function displayJobs() {
-            const jobList = document.getElementById('jobList');
-            // Display jobs from the array based on jobCount
-            for (let i = 0; i < jobCount; i++) {
-                if (i >= jobs.length) break; // Stop if there are no more jobs
+    // Function to display a subset of jobs based on the count
+    function displayJobs() {
+        const jobList = document.getElementById('jobList');
+        // Display new set of jobs based on the current count
+        for (let i = displayedJobs; i < jobs.length && i < displayedJobs + jobsToShow; i++) {
+            const job = jobs[i]; // Get the job from array
+            const jobCard = document.createElement('div');
+            jobCard.classList.add('col-12', 'col-md-6', 'col-lg-3', 'mb-4');
 
-                const job = jobs[i]; // Get the job from array
-                const jobCard = document.createElement('div');
-                jobCard.classList.add('col-12', 'col-md-6', 'col-lg-3', 'mb-4');
-                
-                // Customize this part as per your job card design
-                jobCard.innerHTML = `
-                    <div class="card h-100">
-                        <div class="card-body">
-                            <h5 class="card-title">${job.title}</h5>
-                            <p class="card-text">${job.country} - Hybrid</p>
-                        </div>
-                        <div class="card-footer">
-                            <a href="${job.link}" target="_blank" class="stretched-link"><img src="/arrow-right-thin.svg" alt="Details"></a>
-                        </div>
+            // Customize this part as per your job card design
+            jobCard.innerHTML = `
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">${job.title}</h5>
+                        <p class="card-text">${job.country} - Hybrid</p>
                     </div>
-                `;
-                jobList.appendChild(jobCard);
-            }
+                    <div class="card-footer">
+                        <a href="${job.link}" target="_blank" class="stretched-link"><img src="/arrow-right-thin.svg" alt="Details"></a>
+                    </div>
+                </div>
+            `;
+            jobList.appendChild(jobCard);
         }
+        displayedJobs += jobsToShow; // Increase the count of displayed jobs
+    }
 
-        // Function to fetch jobs
-        function fetchJobs() {
-            fetch('https://api.talentech.io/reachmee/feed/')
-                .then(response => response.json())
-                .then(data => {
-                    jobs = data; // Store fetched jobs in the array
-                    jobCount = Math.min(jobsToShow, jobs.length); // Initialize jobCount based on available jobs
-                    displayJobs(); // Display initial set of jobs
-                })
-                .catch(error => console.error('Error:', error));
+    // Function to fetch jobs
+    function fetchJobs() {
+        fetch('https://api.talentech.io/reachmee/feed/')
+            .then(response => response.json())
+            .then(data => {
+                jobs = data; // Store fetched jobs in the array
+                displayJobs(); // Display the initial set of jobs
+            })
+            .catch(error => console.error('Error:', error));
+    }
+
+    // Initial fetch
+    fetchJobs();
+
+    // Load more jobs when the button is clicked
+    $('#loadMore').click(function() {
+        displayJobs(); // Show next set of jobs
+        // Hide Load More button if all jobs have been displayed
+        if (displayedJobs >= jobs.length) {
+            $('#loadMore').hide();
         }
-
-        // Initial fetch
-        fetchJobs();
-
-        // Load more jobs when the button is clicked
-        $('#loadMore').click(function() {
-            jobCount = Math.min(jobCount + jobsToShow, jobs.length); // Increase the number of jobs to be displayed without exceeding total
-            displayJobs(); // Update the displayed jobs
-        });
     });
+});
 </script>
 
 

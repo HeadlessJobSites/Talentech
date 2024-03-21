@@ -472,10 +472,23 @@ font-size: 3rem;
 .stretched-link img {
 	width: 20px;
 }
-.card {
+#jobList .card {
 	border: 0;
 }
-
+.card-category {
+    margin-bottom: 30px;
+    position: relative;
+    left: -8px;
+}
+.card-category span {
+    background: #eeeef2;
+    padding: 8px;
+    border-radius: 5px;
+    font-size: 0.9rem;
+}
+#jobList .card-body {
+    padding: 1.75rem;
+}
 	    
 
 @media (max-width: 768px) {
@@ -608,7 +621,7 @@ function displayJobs() {
                         <h5 class="card-title">${job.title}</h5>
                         <p class="card-text">${job.country}</p>
                         <a href="${job.link}" target="_blank" class="stretched-link">
-                            <img src="https://reboot.no/arrow-right-thin.svg" alt="Details">
+                            <img src="https://reboot.no/tt/arrow-right-thin.svg" alt="Details">
                         </a>
                     </div>
                 </div>

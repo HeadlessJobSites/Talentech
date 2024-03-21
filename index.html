@@ -542,8 +542,8 @@ $(document).ready(function () {
 
     // Function to populate filter dropdowns based on jobs
 function populateFilters() {
-    const locationSet = new Set(['All']);
-    const jobTypeSet = new Set(['All']);
+    const locationSet = new Set(); // Remove 'All' from here
+    const jobTypeSet = new Set(); // Remove 'All' from here
 
     jobs.forEach(job => {
         if (job.country) { // Check if job has a country
@@ -555,13 +555,13 @@ function populateFilters() {
     });
 
     // Populate location filter
-    $('#locationFilter').html('<option value="All">All locations</option>');
+    $('#locationFilter').html('<option value="All">All locations</option>'); // 'All locations' only needs to be added once here
     locationSet.forEach(country => {
         $('#locationFilter').append(`<option value="${country}">${country}</option>`);
     });
 
     // Populate job type filter
-    $('#jobTypeFilter').html('<option value="All">All job types</option>');
+    $('#jobTypeFilter').html('<option value="All">All job types</option>'); // 'All job types' only needs to be added once here
     jobTypeSet.forEach(type => {
         $('#jobTypeFilter').append(`<option value="${type}">${type}</option>`);
     });

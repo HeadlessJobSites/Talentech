@@ -490,6 +490,13 @@ font-size: 3rem;
 #jobList .card-body {
     padding: 1.75rem;
 }
+
+#loadMore {
+	font-weight: 800;
+}
+
+
+	    
 	    
 
 @media (max-width: 768px) {
@@ -538,7 +545,7 @@ font-size: 3rem;
 	
 <div class="feature-section my-5 py-5" style="background-color: #eeeef2;">
 <div class="container mt-5">
-    <h1 class="text-center my-4">Available Jobs</h1>
+    <h1 class="my-5">Available <span style="font-weight: 800">Jobs</span></h1>
     <div class="row my-3">
         <div class="col-md-6 mb-3">
             <select id="locationFilter" class="form-control">
@@ -554,7 +561,9 @@ font-size: 3rem;
         </div>
     </div>
     <div id="jobList" class="row"></div>
+	<div class="text-center mt-2">
     <button id="loadMore" class="btn btn-primary">Load more</button>
+	</div>
 </div>
 </div>
 
@@ -567,10 +576,19 @@ font-size: 3rem;
 
 <script>
 $(document).ready(function () {
-    let jobs = []; // Array to store all jobs
-    let displayedJobs = 0; // Counter for the number of jobs currently displayed
-    const jobsToShow = 1; // Number of jobs to show each time "Load More" is clicked
+    let jobs = [];
+    let displayedJobs = 0; // This will be set correctly after fetching jobs
+    // Set initial jobs to show based on screen width
+    let jobsToShow = window.innerWidth > 768 ? 6 : 1;
 
+    // Add a resize event listener to update jobsToShow when window size changes
+    $(window).resize(function() {
+        jobsToShow = window.innerWidth > 768 ? 6 : 1;
+        displayedJobs = Math.min(jobsToShow, jobs.length); // Update displayedJobs according to new jobsToShow
+        displayJobs(); // Redisplay jobs based on new size
+    });
+
+	
     // Function to populate filter dropdowns based on jobs
 function populateFilters() {
     const locationSet = new Set(); // Remove 'All' from here
@@ -615,7 +633,7 @@ function displayJobs() {
     // Add job cards to the DOM
     filteredJobs.forEach(job => {
         const jobCard = `
-            <div class="col-12 col-md-4 col-lg-3 mb-4">
+            <div class="col-12 col-md-4 col-lg-4 mb-4">
                 <div class="card h-100">
                     <div class="card-body">
 		    	<div class="card-category"><span>Category</span></div>
@@ -633,26 +651,28 @@ function displayJobs() {
 
     // Function to fetch jobs from the API
 function fetchJobs() {
-    fetch('https://api.talentech.io/reachmee/feed/') // Ensure this URL is correct
-        .then(response => response.json())
-        .then(data => {
-            jobs = data; // Store fetched jobs
-            displayedJobs = Math.min(jobsToShow, jobs.length); // Update this line
-            populateFilters(); // Fill dropdowns with options
-            displayJobs(); // Show initial jobs
-        })
-        .catch(error => {
-            console.error('Error fetching jobs:', error);
-        });
-}
+        fetch('https://api.talentech.io/reachmee/feed/') // Make sure this URL is correct
+            .then(response => response.json())
+            .then(data => {
+                jobs = data; // Store fetched jobs
+                displayedJobs = Math.min(jobsToShow, jobs.length); // Initialize displayedJobs based on actual fetched jobs count
+                populateFilters(); // Fill dropdowns with options
+                displayJobs(); // Show initial jobs
+            })
+            .catch(error => {
+                console.error('Error fetching jobs:', error);
+            });
+    }
 
     fetchJobs(); // Load jobs when page is ready
 
     // Event listener for "Load More" button
     $('#loadMore').click(function() {
-        displayedJobs += jobsToShow; // Increase the number of displayed jobs
-        displayJobs(); // Display new set of jobs based on the increased count
-
+        let newDisplayCount = Math.min(displayedJobs + jobsToShow, jobs.length);
+        if (newDisplayCount > displayedJobs) { // Only update if we have more jobs to show
+            displayedJobs = newDisplayCount;
+            displayJobs(); // Display new set of jobs
+        }
         // Hide the Load More button if all jobs are displayed
         if (displayedJobs >= jobs.length) {
             $('#loadMore').hide();

@@ -702,18 +702,20 @@ font-size: 3rem;
 <script>
     $(document).ready(function () {
         let jobs = []; // Array to store all jobs
-        const jobsToShow = 1; // Number of jobs to show initially and each time Load More is clicked
-        let jobCount = jobsToShow; // Start with 'jobsToShow' number of jobs
+        let jobCount = 0; // Counter to keep track of the number of jobs displayed
+        const jobsToShow = 1; // Number of jobs to show each time Load More is clicked
 
         // Function to display jobs
         function displayJobs() {
             const jobList = document.getElementById('jobList');
-            // Only add new jobs up to jobCount
-            for (let i = 0; i < jobCount && i < jobs.length; i++) {
-                const job = jobs[i]; // Get the job from the array
+            // Display jobs from the array based on jobCount
+            for (let i = 0; i < jobCount; i++) {
+                if (i >= jobs.length) break; // Stop if there are no more jobs
+
+                const job = jobs[i]; // Get the job from array
                 const jobCard = document.createElement('div');
                 jobCard.classList.add('col-12', 'col-md-6', 'col-lg-3', 'mb-4');
-
+                
                 // Customize this part as per your job card design
                 jobCard.innerHTML = `
                     <div class="card h-100">
@@ -736,6 +738,7 @@ font-size: 3rem;
                 .then(response => response.json())
                 .then(data => {
                     jobs = data; // Store fetched jobs in the array
+                    jobCount = Math.min(jobsToShow, jobs.length); // Initialize jobCount based on available jobs
                     displayJobs(); // Display initial set of jobs
                 })
                 .catch(error => console.error('Error:', error));
@@ -746,11 +749,12 @@ font-size: 3rem;
 
         // Load more jobs when the button is clicked
         $('#loadMore').click(function() {
-            jobCount += jobsToShow; // Increase the number of jobs to be displayed
+            jobCount = Math.min(jobCount + jobsToShow, jobs.length); // Increase the number of jobs to be displayed without exceeding total
             displayJobs(); // Update the displayed jobs
         });
     });
 </script>
+
 
 
 	

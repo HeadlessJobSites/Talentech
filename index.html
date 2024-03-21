@@ -508,7 +508,7 @@ font-size: 3rem;
 
 	
 <div class="container mt-5">
-    <h1 class="text-center my-4">Available-Jobs</h1>
+    <h1 class="text-center my-4">Available-Jobs-</h1>
     <div class="row">
         <div class="col-md-6 mb-3">
             <select id="locationFilter" class="form-control">
@@ -602,18 +602,19 @@ function displayJobs() {
 }
 
     // Function to fetch jobs from the API
-    function fetchJobs() {
-        fetch('https://api.talentech.io/reachmee/feed/') // Make sure this URL is correct
-            .then(response => response.json())
-            .then(data => {
-                jobs = data; // Assume this array is the correct response format
-                populateFilters(); // Fill dropdowns with options
-                displayJobs(); // Show initial jobs
-            })
-            .catch(error => {
-                console.error('Error fetching jobs:', error);
-            });
-    }
+function fetchJobs() {
+    fetch('https://api.talentech.io/reachmee/feed/') // Ensure this URL is correct
+        .then(response => response.json())
+        .then(data => {
+            jobs = data; // Store fetched jobs
+            displayedJobs = Math.min(jobsToShow, jobs.length); // Update this line
+            populateFilters(); // Fill dropdowns with options
+            displayJobs(); // Show initial jobs
+        })
+        .catch(error => {
+            console.error('Error fetching jobs:', error);
+        });
+}
 
     fetchJobs(); // Load jobs when page is ready
 
@@ -628,16 +629,17 @@ function displayJobs() {
         }
     });
 
-    // Event listeners for filter dropdowns
-    $('#locationFilter').change(function() {
-        displayedJobs = jobsToShow; // Reset displayed jobs to initial count when filter changes
-        displayJobs(); // Apply filter and display jobs
-    });
+	// Event listeners for filter dropdowns
+$('#locationFilter').change(function() {
+    displayedJobs = jobsToShow; // Consider not resetting this if you want to maintain the loaded number of jobs
+    displayJobs(); // Apply filter and display jobs
+});
 
-    $('#jobTypeFilter').change(function() {
-        displayedJobs = jobsToShow; // Reset displayed jobs to initial count when filter changes
-        displayJobs(); // Apply filter and display jobs
-    });
+$('#jobTypeFilter').change(function() {
+    displayedJobs = jobsToShow; // Same consideration as above
+    displayJobs(); // Apply filter and display jobs
+});
+
 });
 </script>
 

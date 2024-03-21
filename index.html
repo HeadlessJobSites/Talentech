@@ -674,69 +674,79 @@ font-size: 3rem;
 	
 	
 
-    <div class="container mt-5"> <!-- Added mt-5 to add some space between the hero section and the content -->
-        <h1 class="text-center my-4">Ledige stillinger1</h1>
-        <div class="row job-header">
-            <div class="col-6 col-md-3">Title</div>
-            <div class="col-6 col-md-2">Country</div>
-            <div class="col-12 col-md-3">Publishing Date</div>
-            <div class="col-12 col-md-3">Expiration Date</div>
-            <div class="col-12 col-md-1">Details</div>
-        </div>
-        <div id="jobList" class="list-group"></div>
-    </div>
 
-    <!-- Bootstrap and jQuery -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script>
-        $(document).ready(function () {
+
+	<div class="container mt-5"> <!-- Add some space between the hero section and the content -->
+    <h1 class="text-center my-4">Available Jobs</h1>
+    <div class="row">
+        <div class="col-md-6 mb-3">
+            <select class="form-control">
+                <option>All locations</option>
+            </select>
+        </div>
+        <div class="col-md-6 mb-3">
+            <select class="form-control">
+                <option>All job types</option>
+            </select>
+        </div>
+    </div>
+    <div id="jobList" class="row"></div> <!-- Jobs will be listed here -->
+    <button id="loadMore" class="btn btn-primary">Load more</button>
+</div>
+
+
+<script>
+    $(document).ready(function () {
+        let jobCount = 0; // Counter to keep track of the number of jobs displayed
+
+        // Function to display jobs
+        function displayJobs(jobs) {
+            const jobList = document.getElementById('jobList');
+            jobs.forEach((job, index) => {
+                if (index < jobCount + 1) { // Display one job initially
+                    const jobCard = document.createElement('div');
+                    jobCard.classList.add('col-12', 'col-md-6', 'col-lg-3', 'mb-4');
+
+                    // Customize this part as per your job card design
+                    jobCard.innerHTML = `
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h5 class="card-title">${job.title}</h5>
+                                <p class="card-text">${job.country} - Hybrid</p>
+                            </div>
+                            <div class="card-footer">
+                                <a href="${job.link}" target="_blank" class="stretched-link"><img src="/arrow-right-thin.svg" alt="Details"></a>
+                            </div>
+                        </div>
+                    `;
+
+                    jobList.appendChild(jobCard);
+                }
+            });
+
+            jobCount += 1; // Increase the number of jobs displayed
+        }
+
+        // Fetch and display jobs
+        fetch('https://api.talentech.io/reachmee/feed/')
+            .then(response => response.json())
+            .then(data => {
+                displayJobs(data); // Adjust based on the actual structure of your data
+            })
+            .catch(error => console.error('Error:', error));
+
+        // Load more jobs when the button is clicked
+        $('#loadMore').click(function() {
             fetch('https://api.talentech.io/reachmee/feed/')
                 .then(response => response.json())
                 .then(data => {
-                    const jobs = data; // Adjust according to the actual structure of your data
-                    const jobList = document.getElementById('jobList');
-                    jobs.forEach(job => {
-                        const jobRow = document.createElement('div');
-                        jobRow.classList.add('row', 'job-listing');
-
-                        const titleCol = document.createElement('div');
-                        titleCol.classList.add('col-6', 'col-md-3', 'job-item');
-                        titleCol.innerHTML = job.title;
-
-                        const countryCol = document.createElement('div');
-                        countryCol.classList.add('col-6', 'col-md-2', 'job-item');
-                        countryCol.innerHTML = job.country;
-
-                        const pubDateCol = document.createElement('div');
-                        pubDateCol.classList.add('col-12', 'col-md-3', 'job-item');
-                        pubDateCol.innerHTML = job.publishing_date;
-
-                        const expDateCol = document.createElement('div');
-                        expDateCol.classList.add('col-12', 'col-md-3', 'job-item');
-                        expDateCol.innerHTML = job.expiration_date;
-
-                        const detailsCol = document.createElement('div');
-                        detailsCol.classList.add('col-12', 'col-md-1', 'job-item');
-                        const detailsLink = document.createElement('a');
-                        detailsLink.href = job.link;
-                        detailsLink.target = '_blank';
-                        detailsLink.innerHTML = 'View';
-                        detailsCol.appendChild(detailsLink);
-
-                        jobRow.appendChild(titleCol);
-                        jobRow.appendChild(countryCol);
-                        jobRow.appendChild(pubDateCol);
-                        jobRow.appendChild(expDateCol);
-                        jobRow.appendChild(detailsCol);
-
-                        jobList.appendChild(jobRow);
-                    });
+                    displayJobs(data); // Display more jobs
                 })
                 .catch(error => console.error('Error:', error));
         });
-    </script>
+    });
+</script>
+
 	
 	
 <script>

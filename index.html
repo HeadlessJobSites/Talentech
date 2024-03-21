@@ -508,7 +508,7 @@ font-size: 3rem;
 
 	
 <div class="container mt-5">
-    <h1 class="text-center my-4">Available Jobs</h1>
+    <h1 class="text-center my-4">Available-Jobs</h1>
     <div class="row">
         <div class="col-md-6 mb-3">
             <select id="locationFilter" class="form-control">
@@ -541,66 +541,65 @@ $(document).ready(function () {
     const jobsToShow = 1; // Number of jobs to show each time "Load More" is clicked
 
     // Function to populate filter dropdowns based on jobs
-    function populateFilters() {
-        const locationSet = new Set();
-        const jobTypeSet = new Set();
+function populateFilters() {
+    const locationSet = new Set(['All']);
+    const jobTypeSet = new Set(['All']);
 
-        jobs.forEach(job => {
-            if (job.area && job.country) { // Check if job has area and country
-                locationSet.add(`${job.area} - ${job.country}`);
-            }
-            if (job.title) { // Check if job has a title
-                jobTypeSet.add(job.title);
-            }
-        });
+    jobs.forEach(job => {
+        if (job.country) { // Check if job has a country
+            locationSet.add(job.country);
+        }
+        if (job.title) { // Check if job has a title
+            jobTypeSet.add(job.title);
+        }
+    });
 
-        // Populate location filter
-        $('#locationFilter').html('<option value="All">All locations</option>');
-        locationSet.forEach(location => {
-            $('#locationFilter').append(`<option value="${location}">${location}</option>`);
-        });
+    // Populate location filter
+    $('#locationFilter').html('<option value="All">All locations</option>');
+    locationSet.forEach(country => {
+        $('#locationFilter').append(`<option value="${country}">${country}</option>`);
+    });
 
-        // Populate job type filter
-        $('#jobTypeFilter').html('<option value="All">All job types</option>');
-        jobTypeSet.forEach(type => {
-            $('#jobTypeFilter').append(`<option value="${type}">${type}</option>`);
-        });
-    }
+    // Populate job type filter
+    $('#jobTypeFilter').html('<option value="All">All job types</option>');
+    jobTypeSet.forEach(type => {
+        $('#jobTypeFilter').append(`<option value="${type}">${type}</option>`);
+    });
+}
 
     // Function to display jobs based on filters
-    function displayJobs() {
-        $('#jobList').empty(); // Clear current jobs
+function displayJobs() {
+    $('#jobList').empty(); // Clear current jobs
 
-        let filteredJobs = jobs.slice(0, displayedJobs + jobsToShow); // Get a subset of jobs to display
+    let filteredJobs = jobs.slice(0, displayedJobs); // Get the subset of jobs to be displayed
 
-        // Apply filters
-        const selectedLocation = $('#locationFilter').val();
-        const selectedJobType = $('#jobTypeFilter').val();
-        filteredJobs = filteredJobs.filter(job => {
-            const jobLocation = `${job.area} - ${job.country}`;
-            return (selectedLocation === 'All' || jobLocation === selectedLocation) &&
-                   (selectedJobType === 'All' || job.title === selectedJobType);
-        });
+    // Apply filters
+    const selectedCountry = $('#locationFilter').val();
+    const selectedJobType = $('#jobTypeFilter').val();
+    filteredJobs = filteredJobs.filter(job => {
+        return (selectedCountry === 'All' || job.country === selectedCountry) &&
+               (selectedJobType === 'All' || job.title === selectedJobType);
+    });
 
-        // Add job cards to the DOM
-        filteredJobs.forEach(job => {
-            const jobCard = `
-                <div class="col-12 col-md-6 col-lg-3 mb-4">
-                    <div class="card h-100">
-                        <div class="card-body">
-                            <h5 class="card-title">${job.title}</h5>
-                            <p class="card-text">${job.area} - ${job.country}</p>
-                        </div>
-                        <div class="card-footer">
-                            <a href="${job.link}" target="_blank" class="stretched-link">
-                                <img src="/arrow-right-thin.svg" alt="Details">
-                            </a>
-                        </div>
+    // Add job cards to the DOM
+    filteredJobs.forEach(job => {
+        const jobCard = `
+            <div class="col-12 col-md-6 col-lg-3 mb-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">${job.title}</h5>
+                        <p class="card-text">${job.country}</p>
                     </div>
-                </div>`;
-            $('#jobList').append(jobCard);
-        });
-    }
+                    <div class="card-footer">
+                        <a href="${job.link}" target="_blank" class="stretched-link">
+                            <img src="/arrow-right-thin.svg" alt="Details">
+                        </a>
+                    </div>
+                </div>
+            </div>`;
+        $('#jobList').append(jobCard);
+    });
+}
 
     // Function to fetch jobs from the API
     function fetchJobs() {

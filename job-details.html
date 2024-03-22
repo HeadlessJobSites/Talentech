@@ -1087,39 +1087,45 @@ jobLocations.forEach(function(location) {
     </script>
 	
 	
-    <script>
-        $(document).ready(function() {
-            const params = new URLSearchParams(window.location.search);
-            const jobId = parseInt(params.get('jobId'), 10); // Convert jobId to integer
+<script>
+    $(document).ready(function() {
+        // Initially hide job details and show loading indicator
+        $('#jobDetails').hide();
+        $('#loadingIndicator').show();  // Assume you have a loading indicator
 
-            fetch('https://api.talentech.io/reachmee/feed/')
-                .then(response => response.json())
-                .then(jobs => {
-                    const job = jobs.find(job => job.ad_id === jobId);
-                    if (job) {
-                        const city = job.areas && job.areas.length > 0 ? job.areas[0].name : 'Not specified';
-                        const organizationUnit = job.organizations && job.organizations.length > 0 ? job.organizations[0].nameorgunit : 'Not specified';
+        const params = new URLSearchParams(window.location.search);
+        const jobId = parseInt(params.get('jobId'), 10); // Convert jobId to integer
 
-                        $('#jobTitle').text(job.title);
-                        $('#organizationUnit').text(organizationUnit);
-                        $('#city').text(city);
-                        $('#country').text(job.country);
-                        $('#publishingDate').text(job.publishing_date);
-                        $('#expirationDate').text(job.expiration_date);
+        fetch('https://api.talentech.io/reachmee/feed/')
+            .then(response => response.json())
+            .then(jobs => {
+                const job = jobs.find(job => job.ad_id === jobId);
+                if (job) {
+                    const city = job.areas && job.areas.length > 0 ? job.areas[0].name : 'Not specified';
+                    const organizationUnit = job.organizations && job.organizations.length > 0 ? job.organizations[0].nameorgunit : 'Not specified';
 
-                        $('#loadingIndicator').hide(); // Hide the loading indicator
-                        $('#jobDetails').show(); // Show the job details
-                    } else {
-                        $('#loadingIndicator').text('Job not found.');
-                    }
-                })
-		    $('#jobDetails').css('visibility', 'visible');
-                .catch(error => {
-                    console.error('Error fetching job details:', error);
-                    $('#loadingIndicator').text('Job details could not be loaded.');
-                });
-        });
-    </script>
+                    // Set the text for each piece of job information
+                    $('#jobTitle').text(job.title);
+                    $('#organizationUnit').text(organizationUnit);
+                    $('#city').text(city);
+                    $('#country').text(job.country);
+                    $('#publishingDate').text(job.publishing_date);
+                    $('#expirationDate').text(job.expiration_date);
+
+                    // Hide the loading indicator and show the job details
+                    $('#loadingIndicator').hide();
+                    $('#jobDetails').show();
+                } else {
+                    $('#loadingIndicator').text('Job not found.');
+                }
+            })
+            .catch(error => {
+                console.error('Error fetching job details:', error);
+                $('#loadingIndicator').text('Job details could not be loaded.');
+            });
+    });
+</script>
+
 
 	
 	

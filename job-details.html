@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Job Details</title>
+    <!-- Add your head content here -->
+</head>
+<body>
+    <div id="jobTitle"></div>
+    <div id="jobDescription"></div>
+    <!-- Add more elements as needed -->
+
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const jobId = urlParams.get('jobId');
+
+        fetch(`https://api.talentech.io/reachmee/feed/${jobId}`) // Adjust the URL as necessary
+            .then(response => response.json())
+            .then(job => {
+                document.getElementById('jobTitle').innerText = job.title;
+                document.getElementById('jobDescription').innerHTML = job.description;
+                // Populate other details similarly
+            })
+            .catch(error => console.error('Error:', error));
+    </script>
+</body>
+</html>

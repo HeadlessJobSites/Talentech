@@ -15,6 +15,8 @@
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
 	<!-- FontAwesome -->
 	<script src="https://kit.fontawesome.com/ca38a06270.js" crossorigin="anonymous"></script>
+	<!-- Gobi -->
+	<script src="https://widget.gobistories.com/gwi/6" async onload="gobi.discover()"></script>
 
     <style>
 @font-face {
@@ -136,6 +138,11 @@
 
 
 
+
+	    
+.bg-dark {
+background-color: #2b293f !important;
+}
         .hero-section {
             position: relative;
             height: 100vh; /* Make the hero section cover the whole viewport */
@@ -412,6 +419,93 @@ font-size: 3rem;
 
 
 
+
+
+
+
+
+/* Additional styles for the team section layout */
+.team-section .container {
+    max-width: 1200px; /* Adjust based on your design needs */
+}
+
+.team-section .row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.team-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 30px; /* Adjust based on your spacing preference */
+    text-align: center;
+    min-width: 250px; /* Ensures each team item has a minimum width */
+    flex: 1; /* Allows flex items to grow */
+    flex-basis: calc(25% - 60px); /* Adjust the percentage based on number of items per row and subtract total margin/padding */
+}
+
+.team-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: start; /* Center the content vertically */
+    align-items: center; /* Center the content horizontally */
+    background-color: #eeeef2; /* Light gray background */
+    border-radius: 10px; /* Rounded corners */
+    padding: 20px; /* Padding around the text */
+    padding-top: 60px; /* Additional padding on top */
+    width: 100%; /* Match width to the parent */
+    height: 100%; /* Make sure the content stretches to full height */
+}
+.team-icon {
+    position: relative; /* Positioning relative to its normal position */
+    margin-bottom: -50px; /* Half of the icon's height to overlap */
+    border-radius: 50%;
+    width: 100px;
+    height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2; /* Ensure icon is above text box */
+}
+
+.team-icon img {
+    width: 25px; /* Icon size */
+    height: auto;
+}
+
+.team-icon i {
+    font-size: 2rem;
+}
+
+@media (max-width: 768px) {
+    /* Targets screens smaller than 768px (mobile devices) */
+    .team-section .row {
+        display: flex;
+        flex-wrap: nowrap; /* Make sure team are in a single line */
+        overflow-x: auto; /* Enable horizontal scrolling */
+    justify-content: left;
+    }
+
+    .team-item, .process-item {
+        flex: 0 0 80%; /* On mobile, each item takes 80% of the screen width, adjust based on design */
+        margin-right: 20px; /* Adds space between items */
+    }
+
+    .team-content {
+        /* No changes needed here, but you can adjust if necessary */
+    }
+}
+
+
+
+
+
+
+
+
+
 /* Additional styles for the benefits section layout */
 .benefits-section .container {
     max-width: 1200px; /* Adjust based on your design needs */
@@ -545,7 +639,6 @@ font-size: 3rem;
 <body>
 
 
-
 <nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color: rgba(0, 0, 0, 0.0); padding: 20px; position: absolute; ">
     <div class="container">
     <a class="navbar-brand" href="#">
@@ -628,21 +721,72 @@ font-size: 3rem;
 
 
 
-    <div class="container my-5 py-3"> 
-        <h2 class="py-5">Meet the <span style="font-weight: 800;">team</span></h2>
-<script src="https://widget.gobistories.com/gwi/6" async onload="gobi.discover()"></script>
 
-<div class="gobi-stories pb-5"
-  data-gobi-stories="co9vu p5z64 pp7ep"
-  data-gobi-color="#ffcfcd"
-  data-gobi-bubble-size="200px"
+<section class="team-section my-5">
+        <h2 class="container pt-5 mb-0 pb-0">Meet the <span style="font-weight: 800;">team</span></h2>
+    <div class="container mt-0 pt-0">
+        <div class="row mt-5 pt-5">
+            <!-- team 1 -->
+            <div class="col-md-3 col-sm-4 team-item">
+                <div class="team-icon">
+<div class="gobi-stories"
+  data-gobi-stories="co9vu"
+  data-gobi-color="transparent"
+  data-gobi-bubble-size="180px"
   data-gobi-animated-bubble="true"
+  data-gobi-hide-title="true"
   data-gobi-disable-shadow-dom="true"
   data-gobi-inherit-text-font-family="true"
   data-gobi-auto-start-with-sound="true">
 </div>
-
+                </div>
+    <div class="team-content mt-4">
+                <strong>CSM Joanna</strong>
+                <p>3500kr budget for equipment to your home office</p>
+            </div>
+            </div>
+            <!-- team 2 -->
+            <div class="col-md-3 col-sm-4 team-item">
+                <div class="team-icon">
+<div class="gobi-stories"
+  data-gobi-stories="cf2hs"
+  data-gobi-color="transparent"
+  data-gobi-bubble-size="180px"
+  data-gobi-animated-bubble="true"
+  data-gobi-hide-title="true"
+  data-gobi-disable-shadow-dom="true"
+  data-gobi-inherit-text-font-family="true"
+  data-gobi-auto-start-with-sound="true">
 </div>
+                </div>
+    <div class="team-content mt-4">
+                <strong>Health allowance</strong>
+                <p>6000kr each year in health allowance</p>
+            </div>
+            </div>
+            <!-- team 3 -->
+            <div class="col-md-3 col-sm-4 team-item">
+                <div class="team-icon">
+<div class="gobi-stories"
+  data-gobi-stories="pp7ep"
+  data-gobi-color="transparent"
+  data-gobi-bubble-size="180px"
+  data-gobi-animated-bubble="true"
+  data-gobi-hide-title="true"
+  data-gobi-disable-shadow-dom="true"
+  data-gobi-inherit-text-font-family="true"
+  data-gobi-auto-start-with-sound="true">
+</div>
+                </div>
+    <div class="team-content mt-4">
+                <strong>Scooter</strong>
+                <p>50% discount on scooter rides</p>
+            </div>
+            </div>
+       
+        </div>
+    </div>
+</section>
 
 
 <div class="quote-section py-5">

@@ -1,26 +1,47 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Job Details</title>
-    <!-- Add your head content here -->
+    <!-- Bootstrap CSS for styling -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
-    <div id="jobTitle"></div>
-    <div id="jobDescription"></div>
-    <!-- Add more elements as needed -->
+    <div class="container mt-5">
+        <h1 id="jobTitle">Loading...</h1>
+        <p id="publishingDate"></p>
+    </div>
 
     <script>
-        const urlParams = new URLSearchParams(window.location.search);
-        const jobId = urlParams.get('jobId');
+        $(document).ready(function() {
+            const params = new URLSearchParams(window.location.search);
+            const jobId = params.get('jobId');
 
-        fetch(`https://api.talentech.io/reachmee/feed/${jobId}`) // Adjust the URL as necessary
-            .then(response => response.json())
-            .then(job => {
-                document.getElementById('jobTitle').innerText = job.title;
-                document.getElementById('jobDescription').innerHTML = job.description;
-                // Populate other details similarly
-            })
-            .catch(error => console.error('Error:', error));
+            if (jobId) {
+                fetch(`https://api.talentech.io/reachmee/feed/${jobId}`) // Replace with your actual URL to fetch job details
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Network response was not ok');
+                        }
+                        return response.json();
+                    })
+                    .then(job => {
+                        // Assume 'job' is the object that has 'title' and 'publishing_date' properties.
+                        // You will need to adjust these based on your actual API response structure.
+                        $('#jobTitle').text(job.title);
+                        $('#publishingDate').text(`Published on: ${job.publishing_date}`);
+                    })
+                    .catch(error => {
+                        console.error('Error fetching job details:', error);
+                        $('#jobTitle').text('Job details could not be loaded.');
+                    });
+            } else {
+                $('#jobTitle').text('No job selected.');
+            }
+        });
     </script>
 </body>
 </html>

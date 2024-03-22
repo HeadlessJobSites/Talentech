@@ -544,6 +544,9 @@ font-size: 3rem;
 #jobTitle {
 font-weight: 800;
 }
+#jobDetails {
+    visibility: hidden;
+}
 
 
 
@@ -1110,6 +1113,7 @@ jobLocations.forEach(function(location) {
                         $('#loadingIndicator').text('Job not found.');
                     }
                 })
+		    $('#jobDetails').css('visibility', 'visible');
                 .catch(error => {
                     console.error('Error fetching job details:', error);
                     $('#loadingIndicator').text('Job details could not be loaded.');

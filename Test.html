@@ -1,0 +1,189 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stillingsportal</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+	<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+	<!-- FontAwesome -->
+	<script src="https://kit.fontawesome.com/ca38a06270.js" crossorigin="anonymous"></script>
+
+</head>
+
+<body>
+
+
+
+	
+<div class="feature-section mb-5 pt-3 pb-5" style="background-color: #eeeef2;">
+<div class="container mt-5">
+    <h1 class="my-5">Available <span style="font-weight: 800">jobs</span></h1>
+    <div class="row my-3">
+        <div class="col-md-3 mb-3">
+            <label for="locationFilter">Location</label>
+            <select id="locationFilter" class="form-control">
+                <option value="All">All locations</option>
+                <!-- Location options will be dynamically added here -->
+            </select>
+        </div>
+        <div class="col-md-3 mb-3">
+            <label for="jobTypeFilter">Job type</label>
+            <select id="jobTypeFilter" class="form-control">
+                <option value="All">All job types</option>
+                <!-- Job type options will be dynamically added here -->
+            </select>
+        </div>
+    </div>
+    <div id="jobList" class="row"></div>
+	<div class="text-center mt-2">
+    <button id="loadMore" class="btn btn-primary">Load more</button>
+	</div>
+</div>
+</div>
+
+
+<script>
+$(document).ready(function () {
+    let jobs = []; // Array to store all jobs
+    let displayedJobs = 0; // Counter for the number of jobs currently displayed
+    const jobsToShowDesktop = 6; // Number of jobs to show on desktop before "Load More"
+    const jobsToShowMobile = 1; // Number of jobs to show on mobile before "Load More"
+    let jobsToShow = window.innerWidth > 768 ? jobsToShowDesktop : jobsToShowMobile;
+
+    // Adjust jobsToShow based on window resize
+    $(window).resize(function() {
+        jobsToShow = window.innerWidth > 768 ? jobsToShowDesktop : jobsToShowMobile;
+        displayedJobs = Math.min(jobsToShow, jobs.length); // Adjust displayedJobs based on new jobsToShow
+        displayJobs(); // Redisplay jobs based on new size
+        updateLoadMoreVisibility(); // Update button visibility after resize
+    });
+
+    // Function to populate filter dropdowns based on jobs
+    function populateFilters() {
+        const locationSet = new Set();
+        const jobTypeSet = new Set();
+
+        jobs.forEach(job => {
+            if (job.country) { // Check if job has a country
+                locationSet.add(job.country);
+            }
+            if (job.title) { // Check if job has a title
+                jobTypeSet.add(job.title);
+            }
+        });
+
+        // Populate location filter
+        $('#locationFilter').html('<option value="All">All locations</option>');
+        locationSet.forEach(country => {
+            $('#locationFilter').append(`<option value="${country}">${country}</option>`);
+        });
+
+        // Populate job type filter
+        $('#jobTypeFilter').html('<option value="All">All job types</option>');
+        jobTypeSet.forEach(type => {
+            $('#jobTypeFilter').append(`<option value="${type}">${type}</option>`);
+        });
+    }
+
+    // Function to display jobs based on filters
+    function displayJobs() {
+        $('#jobList').empty(); // Clear current jobs
+
+        let filteredJobs = jobs.slice(0, displayedJobs); // Get the subset of jobs to be displayed
+
+        // Apply filters
+        const selectedCountry = $('#locationFilter').val();
+        const selectedJobType = $('#jobTypeFilter').val();
+        filteredJobs = filteredJobs.filter(job => {
+            return (selectedCountry === 'All' || job.country === selectedCountry) &&
+                   (selectedJobType === 'All' || job.title === selectedJobType);
+        });
+
+        // Add job cards to the DOM
+        filteredJobs.forEach(job => {
+            $('#jobList').append(buildJobCard(job));
+        });
+
+        updateLoadMoreVisibility(); // Update the visibility of the "Load More" button
+    }
+
+    // Function to build HTML for a job card
+    function buildJobCard(job) {
+        return `
+            <div class="col-12 col-md-4 col-lg-4 mb-4">
+                <div class="card h-100">
+                    <div class="card-body">
+		    	<div class="card-category"><span>Category</span></div>
+                        <h5 class="card-title">${job.title}</h5>
+                        <p class="card-text">${job.country}</p>
+                        <a href="${job.link}" target="_blank" class="stretched-link">
+                            <img src="https://reboot.no/tt/arrow-right-thin.svg" alt="Details">
+                        </a>
+                    </div>
+                </div>
+            </div>`;
+    }
+
+    // Function to update the visibility of the "Load More" button
+    function updateLoadMoreVisibility() {
+        if (displayedJobs >= jobs.length) {
+            $('#loadMore').hide();
+        } else {
+            $('#loadMore').show();
+        }
+    }
+
+    // Function to fetch jobs from the API
+    function fetchJobs() {
+        fetch('https://api.talentech.io/reachmee/feed/') // Ensure this URL is correct
+            .then(response => response.json())
+            .then(data => {
+                jobs = data; // Store fetched jobs
+                displayedJobs = Math.min(jobsToShow, jobs.length); // Initialize displayedJobs
+                populateFilters(); // Fill dropdowns with options
+                displayJobs(); // Show initial jobs
+            })
+            .catch(error => {
+                console.error('Error fetching jobs:', error);
+            });
+    }
+
+    // Load jobs when page is ready
+    fetchJobs();
+
+    // Event listener for "Load More" button
+    $('#loadMore').click(function() {
+        displayedJobs += jobsToShow; // Increase the number of displayed jobs
+        displayJobs(); // Display new set of jobs
+        updateLoadMoreVisibility(); // Check if we still need the "Load More" button
+    });
+
+    // Event listeners for filter dropdowns
+    $('#locationFilter').change(function() {
+        displayedJobs = jobsToShow; // Reset displayed jobs to show initial count based on current device
+        displayJobs(); // Apply filter and display jobs
+        updateLoadMoreVisibility(); // Update "Load More" button visibility based on filters
+    });
+
+    $('#jobTypeFilter').change(function() {
+        displayedJobs = jobsToShow; // Reset displayed jobs to show initial count based on current device
+        displayJobs(); // Apply filter and display jobs
+        updateLoadMoreVisibility(); // Update "Load More" button visibility based on filters
+    });
+});
+</script>
+
+
+	
+	
+</body>
+
+</html>

@@ -989,6 +989,9 @@ font-size: 3rem;
 </div>
 
 
+	
+
+
 <div class="container my-5 py-5">
     <div class="">
         <h2>Couldn't find the job you were looking for?</h2>
@@ -1129,23 +1132,20 @@ $(document).ready(function () {
 
     // Function to build HTML for a job card
     function buildJobCard(job) {
-    // Assuming job-details.html is your detail page and it can handle job IDs
-    // Adjust accordingly if your detail page has a different URL structure
-    const jobDetailUrl = `job-details.html?jobId=${job.ad_id}`;
-
-    return `
-        <div class="col-12 col-md-6 col-lg-3 mb-4">
-            <div class="card h-100">
-                <div class="card-body">
-                    <h5 class="card-title">${job.title}</h5>
-                    <p class="card-text">${job.country}</p>
-                    <a href="${jobDetailUrl}" target="_blank" class="btn btn-primary">
-                        View Details
-                    </a>
+        return `
+            <div class="col-12 col-md-4 col-lg-4 mb-4">
+                <div class="card h-100">
+                    <div class="card-body">
+		    	<div class="card-category"><span>Category</span></div>
+                        <h5 class="card-title">${job.title}</h5>
+                        <p class="card-text">${job.country}</p>
+                        <a href="${job.link}" target="_blank" class="stretched-link">
+                            <img src="https://reboot.no/tt/arrow-right-thin.svg" alt="Details">
+                        </a>
+                    </div>
                 </div>
-            </div>
-        </div>`;
-}
+            </div>`;
+    }
 
     // Function to update the visibility of the "Load More" button
     function updateLoadMoreVisibility() {
@@ -1195,6 +1195,7 @@ $(document).ready(function () {
     });
 });
 </script>
+
 
 
 	

@@ -544,11 +544,58 @@ font-size: 3rem;
 #jobTitle {
 font-weight: 800;
 }
+.skeleton {
+    margin-top: 20px;
+}
+
+.skeleton > div {
+    background-color: #ddd;
+    margin: 10px 0;
+    border-radius: 4px;
+}
+
+.skeleton-title {
+    width: 60%;
+    height: 30px;
+}
+
+.skeleton-info {
+    width: 80%;
+    height: 20px;
+}
+
+@keyframes shimmer {
+    0% {
+        background-position: -468px 0
+    }
+    100% {
+        background-position: 468px 0; 
+    }
+}
+
+.skeleton > div {
+    background-image: linear-gradient(90deg, #eee 25%, #ddd 50%, #eee 75%);
+    background-size: 1000px 100%;
+    animation: shimmer 1.5s infinite;
+}
+
+
+
+
+	    
     </style>
 </head>
 
 <body>
-
+	
+   <div id="jobSkeleton" class="skeleton">
+        <div class="skeleton-title"></div>
+        <div class="skeleton-info"></div>
+        <div class="skeleton-info"></div>
+        <div class="skeleton-info"></div>
+        <div class="skeleton-info"></div>
+    </div>
+	
 <div id="jobDetails" style="display: none;"> <!-- This will hide the job details initially -->
             <h1 id="jobTitle">Job title</h1>
             <p style="font-size: 1.25rem;">
@@ -1089,38 +1136,52 @@ jobLocations.forEach(function(location) {
 	
 	
 	
-    <script>
-        $(document).ready(function() {
-            const params = new URLSearchParams(window.location.search);
-            const jobId = parseInt(params.get('jobId'), 10); // Convert jobId to integer
+$(document).ready(function() {
+    // Show the skeleton and hide the job details initially
+    $('#jobSkeleton').show();
+    $('#jobDetails').hide();
 
-            fetch('https://api.talentech.io/reachmee/feed/')
-                .then(response => response.json())
-                .then(jobs => {
-                    const job = jobs.find(job => job.ad_id === jobId);
-                    if (job) {
-                        const city = job.areas && job.areas.length > 0 ? job.areas[0].name : 'Not specified';
-                        const organizationUnit = job.organizations && job.organizations.length > 0 ? job.organizations[0].nameorgunit : 'Not specified';
+    // Parse jobId from URL parameters
+    const params = new URLSearchParams(window.location.search);
+    const jobId = parseInt(params.get('jobId'), 10);
 
-                        $('#jobTitle').text(job.title);
-                        $('#organizationUnit').text(organizationUnit);
-                        $('#city').text(city);
-                        $('#country').text(job.country);
-                        $('#publishingDate').text(job.publishing_date);
-                        $('#expirationDate').text(job.expiration_date);
+    // Fetch job details from API
+    fetch('https://api.talentech.io/reachmee/feed/')
+        .then(response => response.json())
+        .then(jobs => {
+            // Find the job with the matching ID
+            const job = jobs.find(job => job.ad_id === jobId);
 
-                        $('#loadingIndicator').hide(); // Hide the loading indicator
-                        $('#jobDetails').show(); // Show the job details
-                    } else {
-                        $('#loadingIndicator').text('Job not found.');
-                    }
-                })
-                .catch(error => {
-                    console.error('Error fetching job details:', error);
-                    $('#loadingIndicator').text('Job details could not be loaded.');
-                });
+            if (job) {
+                // Extract necessary details
+                const city = job.areas && job.areas.length > 0 ? job.areas[0].name : 'Not specified';
+                const organizationUnit = job.organizations && job.organizations.length > 0 ? job.organizations[0].nameorgunit : 'Not specified';
+
+                // Update the page with the job details
+                $('#jobTitle').text(job.title);
+                $('#organizationUnit').text(organizationUnit);
+                $('#city').text(city);
+                $('#country').text(job.country);
+                $('#publishingDate').text(job.publishing_date);
+                $('#expirationDate').text(job.expiration_date);
+
+                // After the data has been successfully loaded
+                $('#jobSkeleton').hide(); // Hide the skeleton
+                $('#jobDetails').show(); // Show the job details
+            } else {
+                // If the job was not found
+                $('#jobSkeleton').hide(); // Hide the skeleton
+                $('#jobDetails').text('Job not found.').show(); // Show the error message
+            }
+        })
+        .catch(error => {
+            // If there was an error fetching the job details
+            console.error('Error fetching job details:', error);
+            $('#jobSkeleton').hide(); // Hide the skeleton
+            $('#jobDetails').text('Job details could not be loaded.').show(); // Show the error message
         });
-    </script>
+});
+
 
 	
 	

@@ -30,7 +30,7 @@
     src: url('Telegraf-UltraLight.eot?#iefix') format('embedded-opentype'),
         url('Telegraf-UltraLight.woff2') format('woff2'),
         url('Telegraf-UltraLight.woff') format('woff'),
-        url('Telegraf-UltraLight.ttf') format('truetype'),
+        url('https://reboot.no/tt/fonts/Telegraf-UltraLight.ttf') format('truetype'),
         url('Telegraf-UltraLight.svg#Telegraf-UltraLight') format('svg');
     font-weight: 200;
     font-style: normal;
@@ -43,7 +43,7 @@
     src: url('Telegraf-Medium.eot?#iefix') format('embedded-opentype'),
         url('Telegraf-Medium.woff2') format('woff2'),
         url('Telegraf-Medium.woff') format('woff'),
-        url('Telegraf-Medium.ttf') format('truetype'),
+        url('https://reboot.no/tt/fonts/Telegraf-Medium.ttf') format('truetype'),
         url('Telegraf-Medium.svg#Telegraf-Medium') format('svg');
     font-weight: 500;
     font-style: normal;
@@ -56,7 +56,7 @@
     src: url('Telegraf-SemiBold.eot?#iefix') format('embedded-opentype'),
         url('Telegraf-SemiBold.woff2') format('woff2'),
         url('Telegraf-SemiBold.woff') format('woff'),
-        url('Telegraf-SemiBold.ttf') format('truetype'),
+        url('https://reboot.no/tt/fonts/Telegraf-SemiBold.ttf') format('truetype'),
         url('Telegraf-SemiBold.svg#Telegraf-SemiBold') format('svg');
     font-weight: 600;
     font-style: normal;
@@ -69,7 +69,7 @@
     src: url('Telegraf.eot?#iefix') format('embedded-opentype'),
         url('Telegraf.woff2') format('woff2'),
         url('Telegraf.woff') format('woff'),
-        url('Telegraf.ttf') format('truetype'),
+        url('https://reboot.no/tt/fonts/Telegraf.ttf') format('truetype'),
         url('Telegraf.svg#Telegraf') format('svg');
     font-weight: normal;
     font-style: normal;
@@ -82,7 +82,7 @@
     src: url('Telegraf-UltraBold.eot?#iefix') format('embedded-opentype'),
         url('Telegraf-UltraBold.woff2') format('woff2'),
         url('Telegraf-UltraBold.woff') format('woff'),
-        url('Telegraf-UltraBold.ttf') format('truetype'),
+        url('https://reboot.no/tt/fonts/Telegraf-UltraBold.ttf') format('truetype'),
         url('Telegraf-UltraBold.svg#Telegraf-UltraBold') format('svg');
     font-weight: 800;
     font-style: normal;
@@ -95,7 +95,7 @@
     src: url('Telegraf-Light.eot?#iefix') format('embedded-opentype'),
         url('Telegraf-Light.woff2') format('woff2'),
         url('Telegraf-Light.woff') format('woff'),
-        url('Telegraf-Light.ttf') format('truetype'),
+        url('https://reboot.no/tt/fonts/Telegraf-Light.ttf') format('truetype'),
         url('Telegraf-Light.svg#Telegraf-Light') format('svg');
     font-weight: 300;
     font-style: normal;
@@ -108,7 +108,7 @@
     src: url('Telegraf-Regular.eot?#iefix') format('embedded-opentype'),
         url('Telegraf-Regular.woff2') format('woff2'),
         url('Telegraf-Regular.woff') format('woff'),
-        url('Telegraf-Regular.ttf') format('truetype'),
+        url('https://reboot.no/tt/fonts/Telegraf-Regular.ttf') format('truetype'),
         url('Telegraf-Regular.svg#Telegraf-Regular') format('svg');
     font-weight: normal;
     font-style: normal;
@@ -121,7 +121,7 @@
     src: url('Telegraf-Black.eot?#iefix') format('embedded-opentype'),
         url('Telegraf-Black.woff2') format('woff2'),
         url('Telegraf-Black.woff') format('woff'),
-        url('Telegraf-Black.ttf') format('truetype'),
+        url('https://reboot.no/tt/fonts/Telegraf-Black.ttf') format('truetype'),
         url('Telegraf-Black.svg#Telegraf-Black') format('svg');
     font-weight: 900;
     font-style: normal;
@@ -134,7 +134,7 @@
     src: url('Telegraf-Bold.eot?#iefix') format('embedded-opentype'),
         url('Telegraf-Bold.woff2') format('woff2'),
         url('Telegraf-Bold.woff') format('woff'),
-        url('Telegraf-Bold.ttf') format('truetype'),
+        url('https://reboot.no/tt/fonts/Telegraf-Bold.ttf') format('truetype'),
         url('Telegraf-Bold.svg#Telegraf-Bold') format('svg');
     font-weight: bold;
     font-style: normal;
@@ -1273,17 +1273,16 @@ $(document).ready(function () {
     const jobDetailUrl = `job-details.html?jobId=${job.ad_id}`;
         return `
             <div class="col-12 col-md-4 col-lg-4 mb-4">
-	    <a href="${jobDetailUrl}" class="stretched-link">
                 <div class="card h-100">
                     <div class="card-body">
 		    	<div class="card-category"><span>Category</span></div>
                         <h5 class="card-title">${job.title}</h5>
                         <p class="card-text">${job.country}</p>
-                        
+	    <a href="${jobDetailUrl}" class="stretched-link">
                             <img src="https://reboot.no/tt/arrow-right-thin.svg" alt="Details">
+                        </a>
                     </div>
                 </div>
-                        </a>
             </div>`;
     }
 

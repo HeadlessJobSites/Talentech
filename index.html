@@ -18,7 +18,10 @@
 	<script src="https://kit.fontawesome.com/ca38a06270.js" crossorigin="anonymous"></script>
 	<!-- Gobi -->
 	<script src="https://widget.gobistories.com/gwi/6" async onload="gobi.discover()"></script>
-	
+	<!-- Map -->
+	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+
 	
     <style>
 @font-face {
@@ -769,7 +772,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Event listener for the mute button
     muteBtn.addEventListener('click', () => {
         video.muted = !video.muted;
-        muteIcon.src = video.muted ? "https://reboot.no/tt/volume-off-thin.svg" : "https://reboot.no/tt/volume-xmark-thin.svg";
+        muteIcon.src = video.muted ? "https://reboot.no/tt/volume-xmark-thin.svg" : "https://reboot.no/tt/volume-off-thin.svg";
         muteIcon.alt = video.muted ? "Mute" : "Unmute";
     });
 });
@@ -787,7 +790,7 @@ document.addEventListener('DOMContentLoaded', () => {
         </video>
         <div class="video-controls">
             <button id="playPauseBtn"><img src="https://reboot.no/tt/pause-thin.svg" alt="Pause"></button>
-            <button id="muteBtn"><img src="https://reboot.no/tt/volume-off-thin.svg" alt="Mute"></button>
+            <button id="muteBtn"><img src="https://reboot.no/tt/volume-xmark-thin.svg" alt="Mute"></button>
         </div>
     </div>
 </div>
@@ -1010,7 +1013,7 @@ border-radius: 0 !important;
 
 
 
-<section class="benefits-section my-5">
+<section class="benefits-section my-5 pb-4">
         <h2 class="container pt-5"><span style="font-weight: 800;">Benefits</span></h2>
     <div class="container">
         <div class="row">
@@ -1138,10 +1141,10 @@ border-radius: 0 !important;
             <label for="locationSelect">Location</label>
             <select id="locationSelect" class="form-control">
                 <option>All locations</option>
-                <option>New York</option>
-                <option>San Francisco</option>
-                <option>London</option>
-                <option>Tokyo</option>
+                <option>Oslo</option>
+                <option>Stockholm</option>
+                <option>Helsinki</option>
+                <option>Amsterdam</option>
             </select>
         </div>
         <div class="col-md-4 mt-3">
@@ -1327,17 +1330,29 @@ $(document).ready(function () {
 </script>
 
 
-	
-	
+
 <script>
 // Initialize the map
-var mymap = L.map('mapid').setView([59.9139, 10.7522], 5); // Default view set to Norway
+var mymap = L.map('mapid').setView([59.9139, 10.7522], 4); // Default view set to Norway
 
 // Set up the map tiles
-L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+L.tileLayer('https://api.mapbox.com/styles/v1/inequi/clu45jmjw007101qrhjb35kmh/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoiaW5lcXVpIiwiYSI6ImNsdTQ0c2FybTFiZG4ya3FzZjQxOW91ejUifQ.Z_vyEld041G0LshX2Mdtpw', {
     maxZoom: 19,
-    attribution: '© OpenStreetMap contributors'
+    attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+    id: 'mapbox/streets-v11',
+    tileSize: 512,
+    zoomOffset: -1,
+    accessToken: 'yourMapboxAccessToken'
 }).addTo(mymap);
+
+
+// Create a custom icon
+var customIcon = L.icon({
+    iconUrl: 'https://reboot.no/tt/TT-fav.svg',
+    iconSize: [38, 95], // Size of the icon, adjust as needed
+    iconAnchor: [22, 50], // Point of the icon which will correspond to marker's location
+    popupAnchor: [-3, -76] // Point from which the popup should open relative to the iconAnchor
+});
 
 // Sample data from your feed, replace this with dynamic data fetching and geocoding
 var jobLocations = [
@@ -1345,10 +1360,11 @@ var jobLocations = [
     {name: "Oslo", lat: 59.9139, lon: 10.7522} // Coordinates for Oslo
 ];
 
-// Add pins to the map without popups
+// Add pins to the map with custom icons
 jobLocations.forEach(function(location) {
-    L.marker([location.lat, location.lon]).addTo(mymap);
+    L.marker([location.lat, location.lon], {icon: customIcon}).addTo(mymap);
 });
+
 
 
     </script>
@@ -1357,3 +1373,9 @@ jobLocations.forEach(function(location) {
 </body>
 
 </html>
+
+
+
+
+
+

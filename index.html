@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Stillingsportal</title>
+    <title>Stillingsportal1</title>
     <!-- Bootstrap CSS -->
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
@@ -1265,6 +1265,9 @@ $(document).ready(function () {
 
     // Function to build HTML for a job card
     function buildJobCard(job) {
+    // Assuming job-details.html is your detail page and it can handle job IDs
+    // Adjust accordingly if your detail page has a different URL structure
+    const jobDetailUrl = `job-details.html?jobId=${job.ad_id}`;
         return `
             <div class="col-12 col-md-4 col-lg-4 mb-4">
                 <div class="card h-100">
@@ -1272,7 +1275,7 @@ $(document).ready(function () {
 		    	<div class="card-category"><span>Category</span></div>
                         <h5 class="card-title">${job.title}</h5>
                         <p class="card-text">${job.country}</p>
-                        <a href="${job.link}" target="_blank" class="stretched-link">
+                        <a href="${jobDetailUrl}" target="_blank" class="stretched-link">
                             <img src="https://reboot.no/tt/arrow-right-thin.svg" alt="Details">
                         </a>
                     </div>

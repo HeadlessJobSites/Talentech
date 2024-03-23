@@ -648,9 +648,18 @@ font-size: 3rem;
 
 
 strong {
-	font-weight: 900;
+	font-weight: 800;
 }
-
+a:hover {
+    color: #0056b3;
+    text-decoration: none;
+}
+a {
+    color: #2b293f;
+    text-decoration: none;
+    background-color: transparent;
+    text-decoration: underline;
+}
 
 
 .stretched-link {
@@ -1241,8 +1250,7 @@ $(document).ready(function() {
                 job.contact_persons.forEach((person) => {
                     const contactInfo = `
                         <div class="contact-person">
-                            <p>Name: ${person.first_name} ${person.surname} • ${person.position}<</p>
-                            <p><a href="mailto:${person.email}">${person.email}</a> • <a href="tel:${person.phone}">${person.phone}</a></p>
+                            <p>${person.first_name} ${person.surname}, ${person.position}<br><a href="mailto:${person.email}">${person.email}</a><br><a href="tel:${person.phone}">${person.phone}</a></p>
                         </div>`;
                     $('.contact-persons').append(contactInfo);
                 });

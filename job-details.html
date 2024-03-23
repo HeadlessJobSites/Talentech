@@ -1241,10 +1241,8 @@ $(document).ready(function() {
                 job.contact_persons.forEach((person) => {
                     const contactInfo = `
                         <div class="contact-person">
-                            <p>Name: ${person.first_name} ${person.surname}</p>
-                            <p>Email: <a href="mailto:${person.email}">${person.email}</a></p>
-                            <p>Phone: <a href="tel:${person.phone}">${person.phone}</a></p>
-                            <p>Position: ${person.position}</p>
+                            <p>Name: ${person.first_name} ${person.surname} • ${person.position}<</p>
+                            <p><a href="mailto:${person.email}">${person.email}</a> • <a href="tel:${person.phone}">${person.phone}</a></p>
                         </div>`;
                     $('.contact-persons').append(contactInfo);
                 });

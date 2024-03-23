@@ -788,12 +788,12 @@ font-weight: 800;
                 <span>UX & Design Team</span>
             </div>
             <div class="col-md-3 col-6 job-info">
-                <span class="job-info-title">Location</span>
-                <span>Strand</span>
+                <span class="job-info-title"><strong>Location</strong></span>
+                <span id="city"></span>
             </div>
             <div class="col-md-3 col-6 job-info">
                 <span class="job-info-title">Application due date</span>
-                <span>18 April 2024</span>
+                <span id="expirationDate"></span>
             </div>
             <div class="col-md-3 col-6 text-center apply-btn-header">
                 <button class="apply-btn">Apply for the job</button>
@@ -965,11 +965,14 @@ Teknisk support och felsökning i systemen
 
 
 
+	
+
+
 
 	
 <div class="feature-section mb-5 pt-3 pb-5" style="background-color: #eeeef2;">
-<div class="container mt-5 mb-4">
-    <h1 class="">Similar <span style="font-weight: 800">jobs</span></h1>
+<div class="container mt-3 mb-5">
+    <h1 class="my-5">Available <span style="font-weight: 800">jobs</span></h1>
     <div class="row my-3">
         <div class="col-md-3 mb-3">
             <label for="locationFilter">Location</label>
@@ -1002,15 +1005,15 @@ Teknisk support och felsökning i systemen
 		<p>Sign up and you'll get an e-mail when there is any position available similar to your prenumeration.</p>
 		</div>
     </div>
-    <div class="row justify-content-center mt-4">
+    <div class="row justify-content-center mt-4 mb-3">
         <div class="col-md-4 mt-3">
             <label for="locationSelect">Location</label>
             <select id="locationSelect" class="form-control">
                 <option>All locations</option>
-                <option>New York</option>
-                <option>San Francisco</option>
-                <option>London</option>
-                <option>Tokyo</option>
+                <option>Oslo</option>
+                <option>Stockholm</option>
+                <option>Helsinki</option>
+                <option>Amsterdam</option>
             </select>
         </div>
         <div class="col-md-4 mt-3">
@@ -1053,14 +1056,13 @@ Teknisk support och felsökning i systemen
 </section>
 
 <section class="bg-light text-dark">
-    <div class="container">
+    <div class="container my-1 py-1">
         <div class="d-flex align-items-center">
             <span class="mr-1">Powered by</span>
             <img src="https://reboot.no/tt/TT-fav.svg" alt="Talentech Logo" style="width: 20px; vertical-align: middle; position: relative; bottom: 1px;">
 			<span class="ml-1" style="">Talentech</span>
         </div>
     </div>
-
 
 	
 
@@ -1238,7 +1240,7 @@ $(document).ready(function() {
                 const city = job.areas && job.areas.length > 0 ? job.areas[0].name : 'Not specified';
 
                 // Organization unit name
-                const organizationUnit = job.organizations && job.organizations.length > 0 ? job.organizations[0].nameorgunit : 'Not specified';
+                const organizationUnit = job.organizations && job.organizations.length > 0 ? job.organizations[1].nameorgunit : 'Not specified';
 
                 $('#jobTitle').text(job.title);
                 $('#organizationUnit').text(organizationUnit);
@@ -1262,9 +1264,3 @@ $(document).ready(function() {
 </body>
 
 </html>
-
-
-
-
-
-

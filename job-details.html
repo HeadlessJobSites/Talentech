@@ -1215,7 +1215,7 @@ $(document).ready(function() {
                 const city = job.areas && job.areas.length > 0 ? job.areas[0].name : 'Not specified';
 
                 // Organization unit name
-                const organizationUnit = job.organizations && job.organizations.length > 0 ? job.organizations[0].nameorgunit : 'Not specified';
+                const organizationUnit = job.organizations && job.organizations.length > 0 ? job.organizations[1].nameorgunit : 'Not specified';
 
                 // Update all elements with the specific class
                 $('.job-title').text(job.title);

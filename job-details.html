@@ -806,7 +806,8 @@ font-weight: 800;
 	
 	<div class="talentech-section mb-5 pb-5">
     <div class="container mt-5 pt-3">
-        <h2 class="mb-5" class="job-title"> </h2>
+	                <h2 class="job-title"> </h2>
+
         <p class="my-3" style="font-size: 1.05rem;">Talentech är en ledande aktör inom HR-tech med en stark framtidstro och vi växer både organiskt och genom förvärv. Med över 2 200 kunder globalt, varav 700 på den svenska marknaden, ser vi mycket goda utsikter för vår fortsatta resa framåt.</p>
         <p class="my-3" style="font-size: 1.05rem;">Vi hjälper verksamheter inom både privat och offentlig sektor att utveckla sin medarbetarresa. Från att attrahera och rekrytera, till onboarding och medarbetarutveckling.</p>
         <p class="my-5">Nu söker vi en Customer Support Agent till vårt kontor i Stockholm som vill vara med och hjälpa verksamheter att göra rätt investeringar i sin viktigaste tillgång – medarbetarna!
@@ -1200,29 +1201,6 @@ $(document).ready(function () {
 
 	
 	
-<script>
-// Initialize the map
-var mymap = L.map('mapid').setView([59.9139, 10.7522], 5); // Default view set to Norway
-
-// Set up the map tiles
-L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
-    maxZoom: 19,
-    attribution: '© OpenStreetMap contributors'
-}).addTo(mymap);
-
-// Sample data from your feed, replace this with dynamic data fetching and geocoding
-var jobLocations = [
-    {name: "Stockholm", lat: 59.3293, lon: 18.0686}, // Coordinates for Stockholm
-    {name: "Oslo", lat: 59.9139, lon: 10.7522} // Coordinates for Oslo
-];
-
-// Add pins to the map without popups
-jobLocations.forEach(function(location) {
-    L.marker([location.lat, location.lon]).addTo(mymap);
-});
-
-
-    </script>
 	
 	
 	

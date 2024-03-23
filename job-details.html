@@ -139,6 +139,7 @@
         }
         h1 {
             font-family: Telegraf;
+		font-weight: 800;
 			font-size: 4rem;
 			margin-bottom: 2rem;
         }
@@ -893,7 +894,7 @@ font-weight: 800;
 
 
 <section class="team-section my-5">
-        <h2 class="container pt-5 mb-0 pb-0">The <span style="font-weight: 800;">UX & design team</span></h2>
+        <h2 class="container pt-5 mb-0 pb-0">The <span class="job-title" style="font-weight: 800;"></span><span class="job-title" style="font-weight: 800;"> team/<span></span></h2>
     <div class="container mt-0 pt-0">
         <div class="row mt-5 pt-5">
             <!-- team 1 -->
@@ -1204,36 +1205,40 @@ $(document).ready(function () {
 <script>
 $(document).ready(function() {
     const params = new URLSearchParams(window.location.search);
-    const jobId = parseInt(params.get('jobId'), 10); // Convert jobId to integer
+    const jobId = parseInt(params.get('jobId'), 10);
 
     fetch('https://api.talentech.io/reachmee/feed/')
         .then(response => response.json())
         .then(jobs => {
             const job = jobs.find(job => job.ad_id === jobId);
             if (job) {
-                // Assume city comes from the first area if areas are provided
                 const city = job.areas && job.areas.length > 0 ? job.areas[0].name : 'Not specified';
+                const organizationUnit = job.organizations && job.organizations.length > 0 ? job.organizations[0].nameorgunit : 'Not specified';
 
-                // Organization unit name
-                const organizationUnit = job.organizations && job.organizations.length > 0 ? job.organizations[1].nameorgunit : 'Not specified';
+                // Split the title into words, and apply different styling to the last word
+                const titleWords = job.title.split(' ');
+                const lastWord = titleWords.pop(); // Remove and save the last word
+                const restOfTitle = titleWords.join(' '); // Join the rest of the words back together
 
-                // Update all elements with the specific class
-                $('.job-title').text(job.title);
-		$('.job-description').html(job.description); // Use .html for description if it contains HTML
+                // Set the title with the last word styled differently
+                $('.job-title').html(`${restOfTitle} <span style="font-weight: 800;">${lastWord}</span>`);
+
+                $('.job-description').html(job.description); // Assuming the description contains HTML
                 $('.organization-unit').text(organizationUnit);
                 $('.city').text(city);
                 $('.country').text(job.country);
                 $('.publishing-date').text(job.publishing_date);
                 $('.expiration-date').text(job.expiration_date);
             } else {
-                $('.job-details').text('Job not found.'); // Assuming .job-details is a class for error messages
+                $('.job-details').text('Job not found.');
             }
         })
         .catch(error => {
             console.error('Error fetching job details:', error);
-            $('.job-details').text('Job details could not be loaded.'); // Assuming .job-details is a class for error messages
+            $('.job-details').text('Job details could not be loaded.');
         });
 });
+
 
 </script>
 

@@ -1226,35 +1226,29 @@ $(document).ready(function() {
         .then(jobs => {
             const job = jobs.find(job => job.ad_id === jobId);
             if (job) {
+                // Check if there is more than one organization and the second one exists, otherwise default to the first one
+                const organizationUnit = job.organizations && job.organizations.length > 1 ? job.organizations[1].nameorgunit : job.organizations[0]?.nameorgunit || 'Not specified';
+
+                // The rest of your script remains unchanged
                 const city = job.areas && job.areas.length > 0 ? job.areas[0].name : 'Not specified';
-                const organizationUnit = job.organizations && job.organizations.length > 0 ? job.organizations[1].nameorgunit : 'Not specified';
-
-                // Split the title into words, and apply different styling to the last word
-                const titleWords = job.title.split(' ');
-                const lastWord = titleWords.pop(); // Remove and save the last word
-                const restOfTitle = titleWords.join(' '); // Join the rest of the words back together
-
-                // Set the title with the last word styled differently
                 $('.job-title').text(job.title);
-                $('.job-description').html(job.description); // Assuming HTML content in description
-                $('.organization-unit').text(job.organizations && job.organizations.length > 0 ? job.organizations[0].nameorgunit : 'Not specified');
-                $('.city').text(job.areas && job.areas.length > 0 ? job.areas[0].name : 'Not specified');
+                $('.job-description').html(job.description);
+                $('.organization-unit').text(organizationUnit);
+                $('.city').text(city);
                 $('.country').text(job.country);
                 $('.publishing-date').text(job.publishing_date);
                 $('.expiration-date').text(job.expiration_date);
 
-                // Clear previous contact persons
                 $('.contact-persons').empty();
-
-                // Processing contact persons
                 job.contact_persons.forEach((person) => {
                     const contactInfo = `
                         <div class="contact-person">
-                            <p>${person.first_name} ${person.surname}, ${person.position}<br><a href="mailto:${person.email}">${person.email}</a><br><a href="tel:${person.phone}">${person.phone}</a></p>
+                            <p>${person.first_name} ${person.surname}, ${person.position}<br>
+                            <a href="mailto:${person.email}">${person.email}</a><br>
+                            <a href="tel:${person.phone}">${person.phone}</a></p>
                         </div>`;
                     $('.contact-persons').append(contactInfo);
                 });
-
             } else {
                 $('.job-details').text('Job not found.');
             }
@@ -1264,6 +1258,7 @@ $(document).ready(function() {
             $('.job-details').text('Job details could not be loaded.');
         });
 });
+
 
 
 </script>

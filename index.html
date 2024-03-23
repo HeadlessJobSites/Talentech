@@ -1227,18 +1227,18 @@ $(document).ready(function () {
     // Adjust accordingly if your detail page has a different URL structure
     const jobDetailUrl = `job-details.html?jobId=${job.ad_id}`;
         return `
-            <div class="col-12 col-md-4 col-lg-4 mb-4">
-                <div class="card h-100">
-                    <div class="card-body">
-		    	<div class="card-category"><span>Category</span></div>
-                        <h5 class="card-title">${job.title}</h5>
-                        <p class="card-text">${job.country}</p>
-	    <a href="${jobDetailUrl}" class="stretched-link">
-                            <img src="https://reboot.no/tt/arrow-right-thin.svg" alt="Details">
-                        </a>
-                    </div>
-                </div>
-            </div>`;
+<div class="col-12 col-md-4 col-lg-4 mb-4">
+    <a href="${jobDetailUrl}" class="stretched-link" style="text-decoration: none; color: inherit;">
+        <div class="card h-100">
+            <div class="card-body">
+		        <div class="card-category"><span>Category</span></div>
+                <h5 class="card-title">${job.title}</h5>
+                <p class="card-text">${job.country}</p>
+                <img src="https://reboot.no/tt/arrow-right-thin.svg" alt="Details" style="visibility: hidden;">
+            </div>
+        </div>
+    </a>
+</div>
     }
 
     // Function to update the visibility of the "Load More" button

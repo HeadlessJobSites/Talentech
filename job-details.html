@@ -520,6 +520,12 @@ font-size: 3rem;
     font-size: 2rem;
 }
 
+.job-description h2 {
+    font-size: 1.4rem;
+}	    
+.job-description p {
+	text-align: left !important;
+}	
 	    
 
 @media (max-width: 768px) {
@@ -687,7 +693,7 @@ background-color: #2b293f !important;
 
 @media (min-width: 992px) { /* Bootstrap's large device breakpoint */
     .talentech-section h2,
-    .talentech-section p {
+    .talentech-section p, .talentech-section ul, .talentech-section ol, .talentech-section h3, .talentech-section h4, .talentech-section h5, .talentech-section h6 {
         padding-left: 210px; /* Increase indentation on large screens */
         padding-right: 260px; /* Increase indentation on large screens */
     line-height: 1.6;
@@ -1208,7 +1214,7 @@ $(document).ready(function() {
 
                 // Update all elements with the specific class
                 $('.job-title').text(job.title);
-		        $('.job-description').html(job.description); // Use .html for description if it contains HTML
+		$('.job-description').html(job.description); // Use .html for description if it contains HTML
                 $('.organization-unit').text(organizationUnit);
                 $('.city').text(city);
                 $('.country').text(job.country);

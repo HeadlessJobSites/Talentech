@@ -7,9 +7,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Stillingsportal</title>
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
-<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 	<!-- jQuery -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
@@ -17,7 +18,8 @@
 	<script src="https://kit.fontawesome.com/ca38a06270.js" crossorigin="anonymous"></script>
 	<!-- Gobi -->
 	<script src="https://widget.gobistories.com/gwi/6" async onload="gobi.discover()"></script>
-
+	
+	
     <style>
 @font-face {
     font-family: 'Telegraf';
@@ -197,6 +199,10 @@ background-color: #2b293f !important;
 		border-radius: 50px;
 		padding: 0.6rem 1.5rem;
 		}
+		.btn-primary:hover {
+    background-color: #1a192a;
+    border-color: #1a192a;
+	}
 		.nav-link {
 		font-size: 1.1rem;
 		}
@@ -402,7 +408,7 @@ font-size: 3rem;
 }
 
 .quote-section .container {
-    max-width: 640px; /* Adjust this value to make the section narrower or wider */
+    max-width: 800px; /* Adjust this value to make the section narrower or wider */
     margin: auto; /* This keeps the container centered */
 }
 
@@ -454,7 +460,7 @@ font-size: 3rem;
     background-color: #eeeef2; /* Light gray background */
     border-radius: 10px; /* Rounded corners */
     padding: 20px; /* Padding around the text */
-    padding-top: 60px; /* Additional padding on top */
+    padding-top: 70px; /* Additional padding on top */
     width: 100%; /* Match width to the parent */
     height: 100%; /* Make sure the content stretches to full height */
 }
@@ -595,6 +601,15 @@ font-size: 3rem;
 }
 
 
+
+
+.rounded-video {
+    width: 100%; /* Make the video responsive */
+    border-radius: 15px; /* Adjust the border radius to match your design */
+    overflow: hidden; /* Ensure the corners look rounded */
+}
+
+
 	    
 	    
 
@@ -671,48 +686,146 @@ font-size: 3rem;
         </div>
     </div>
 	
+	
 	<div class="talentech-section">
-    <div class="container mt-5 pt-3">
-        <h2>Life at <span style="font-weight: 800;">Talentech</span></h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor. Cras elementum ultrices diam.</p>
-        <p>Maecenas ligula massa, varius a, semper congue, euismod non, mi. Proin porttitor, orci nec nonummy molestie, enim est eleifend mi, non fermentum diam nisl sit amet erat. Duis semper.</p>
+    <div class="container mt-5 pt-4">
+        <h2 class="">Life at <span style="font-weight: 800;">Talentech</span></h2>
+        <p class="my-4">Talentech has set out to become the largest and most innovative HR tech company of its kind. With the aim of providing a seamless talent journey in one central platform, the product suite today spans the entire talent pipeline from recruitment, to onboarding and talent management with our products Talent Recruiter, ReachMee, Webcruiter, Talmundo, Weekli, irecommend and ontame.</p>
+        <p>We know that great HR makes a difference and we want to be a part of shaping the future with the vision that all companies should know that Talent Comes First. To reach our goals we need you! Talentech as a workplace is characterized by a lot of great and engaged colleges that really believe in what we do and want to grow together with the company.</p>
     </div>
 </div>
 
-	<div class="talentech-section pb-5">
-    <div class="container mt-5 pt-2 mb-5 pb-3">
-        <img src="https://reboot.no/tt/image.jpg" alt="Life at Talentech" class="rounded-img">
+
+<style>
+.video-container {
+    position: relative;
+}
+
+.video-controls {
+    position: absolute;
+    bottom: 40px;
+    right: 40px;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.video-controls button {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 16px;
+    margin-right: 10px;
+    cursor: pointer;
+    filter: brightness(0) invert(1);
+    width: 30px;
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const video = document.getElementById('talentechVideo');
+    const playPauseIcon = document.getElementById('playPauseBtn').querySelector('img');
+    const muteBtn = document.getElementById('muteBtn');
+    const muteIcon = muteBtn.querySelector('img');
+
+    // Function to toggle video play/pause
+    const togglePlayPause = () => {
+        if (video.paused || video.ended) {
+            video.play();
+            playPauseIcon.src = "https://reboot.no/tt/pause-thin.svg";
+            playPauseIcon.alt = "Pause";
+        } else {
+            video.pause();
+            playPauseIcon.src = "https://reboot.no/tt/play-thin.svg";
+            playPauseIcon.alt = "Play";
+        }
+    };
+
+    // Click event for the video itself
+    video.addEventListener('click', () => {
+        togglePlayPause();
+    });
+
+    // Intersection Observer for autoplay/pause on visibility
+    const observer = new IntersectionObserver((entries) => {
+        const [entry] = entries;
+        if (entry.isIntersecting) {
+            video.play();
+            playPauseIcon.src = "https://reboot.no/tt/pause-thin.svg";
+            playPauseIcon.alt = "Pause";
+        } else {
+            video.pause();
+            playPauseIcon.src = "https://reboot.no/tt/play-thin.svg";
+            playPauseIcon.alt = "Play";
+        }
+    }, {
+        root: null,
+        threshold: 0.5
+    });
+
+    observer.observe(video);
+
+    // Event listener for the mute button
+    muteBtn.addEventListener('click', () => {
+        video.muted = !video.muted;
+        muteIcon.src = video.muted ? "https://reboot.no/tt/volume-off-thin.svg" : "https://reboot.no/tt/volume-xmark-thin.svg";
+        muteIcon.alt = video.muted ? "Mute" : "Unmute";
+    });
+});
+</script>
+
+
+
+
+
+<div class="talentech-section pb-4 mb-5">
+    <div class="container mt-4 pt-2 mb-5 pb-3 video-container">
+        <video id="talentechVideo" class="rounded-video" autoplay muted loop>
+            <source src="https://reboot.no/tt/TT-video.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <div class="video-controls">
+            <button id="playPauseBtn"><img src="https://reboot.no/tt/pause-thin.svg" alt="Pause"></button>
+            <button id="muteBtn"><img src="https://reboot.no/tt/volume-off-thin.svg" alt="Mute"></button>
+        </div>
     </div>
 </div>
+
+
+
 
 <div class="feature-section" style="background-color: #eeeef2;">
     <div class="container py-5">
         <h2 class="pt-5">Our <span style="font-weight: 800;">culture</span></h2>
         <div class="row align-items-center mt-5 mb-5 pb-3 flex-column-reverse flex-lg-row"> <!-- Changes for mobile first -->
             <div class="col-lg-7">
-                <div class="background-image rounded-image" style="background-image: url('https://reboot.no/tt/image.jpg');"></div>
+                <div class="background-image rounded-image" style="background-image: url('https://reboot.no/tt/TT-fabian-3.jpg');"></div>
             </div>
             <div class="col-lg-5 text-padding"> <!-- text-padding class for more padding -->
-                <h3>Lorem ipsum</h3>
-				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus laoreet.</p>
+                <h3>Fabian Söderström</h3>
+				<p><strong>Advertising Manager</strong></p>
+				<p>"Working on new products where my work has real impact on technical decision is really inspirational. At Talentech a programmer is more of a partner when it comes to decision making, so your voice is heard and that truly matters. But Talentech isn’t only work – it’s the people you work with - and that's the main reason why I love to work at Talentech."</p>
             </div>
         </div>
         <div class="row align-items-center mt-5 mb-5 pt-5 pb-3">
             <div class="col-lg-5 text-padding">
-                <h3>Lorem ipsum</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus laoreet.</p>
+                <h3>Carolina Asp</h3>
+				<p><strong>Senior Implementation Consultant</strong></p>
+                <p>The biggest reason why I work at Talentech is the opportunity you have to evolve and constantly learn while working across countries, departments and with a wide range of different customers, all with their own experience and a goal to be as awesome as possible.  Plus you have the most amazing colleagues. At Talentech new ideas are always welcome and there is always someone who can help in our team of ambitious Talentecher’s.</p>
             </div>
             <div class="col-lg-7">
-                <div class="background-image rounded-image" style="background-image: url('https://reboot.no/tt/image.jpg');"></div>
+                <div class="background-image rounded-image" style="background-image: url('https://reboot.no/tt/TT-carolina-1.jpg');"></div>
             </div>
         </div>
         <div class="row align-items-center mt-5 mb-5 pb-3 pt-5 flex-column-reverse flex-lg-row"> <!-- Changes for mobile first -->
             <div class="col-lg-7">
-                <div class="background-image rounded-image" style="background-image: url('https://reboot.no/tt/image.jpg');"></div>
+                <div class="background-image rounded-image" style="background-image: url('https://reboot.no/tt/TT-roger-1.jpg');"></div>
             </div>
             <div class="col-lg-5 text-padding"> <!-- text-padding class for more padding -->
-                <h3>Lorem ipsum</h3>
-				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus laoreet.</p>
+                <h3>Roger Larsson</h3>
+				<p><strong>Head of Group IT Operations</strong></p>
+				<p>I work with various projects both internally and externally, which helps to develop me both personally and professionally. We have a lot of social events and we have so much fun together across all departments.</p>
             </div>
         </div>
     </div>
@@ -720,19 +833,24 @@ font-size: 3rem;
 
 
 
+<style>
+/*.kocpYL {
+border-radius: 0 !important;
+}
+*/
+</style>
 
-
-<section class="team-section my-5">
+<section class="team-section my-5 pb-4">
         <h2 class="container pt-5 mb-0 pb-0">Meet the <span style="font-weight: 800;">team</span></h2>
-    <div class="container mt-0 pt-0">
+    <div class="container mt-0 pt-2">
         <div class="row mt-5 pt-5">
             <!-- team 1 -->
-            <div class="col-md-3 col-sm-4 team-item">
+            <div class="col-md-4 col-sm-4 team-item">
                 <div class="team-icon">
 <div class="gobi-stories"
-  data-gobi-stories="co9vu"
+  data-gobi-stories="5gp7h"
   data-gobi-color="transparent"
-  data-gobi-bubble-size="180px"
+  data-gobi-bubble-size="185px"
   data-gobi-animated-bubble="true"
   data-gobi-hide-title="true"
   data-gobi-disable-shadow-dom="true"
@@ -741,17 +859,17 @@ font-size: 3rem;
 </div>
                 </div>
     <div class="team-content mt-4">
-                <strong>CSM Joanna</strong>
-                <p>3500kr budget for equipment to your home office</p>
+                <strong>Joanna</strong>
+                <p>How to work as a Customer Success Manager</p>
             </div>
             </div>
             <!-- team 2 -->
-            <div class="col-md-3 col-sm-4 team-item">
+            <div class="col-md-4 col-sm-4 team-item">
                 <div class="team-icon">
 <div class="gobi-stories"
   data-gobi-stories="cf2hs"
   data-gobi-color="transparent"
-  data-gobi-bubble-size="180px"
+  data-gobi-bubble-size="185px"
   data-gobi-animated-bubble="true"
   data-gobi-hide-title="true"
   data-gobi-disable-shadow-dom="true"
@@ -760,17 +878,17 @@ font-size: 3rem;
 </div>
                 </div>
     <div class="team-content mt-4">
-                <strong>Health allowance</strong>
-                <p>6000kr each year in health allowance</p>
+                <strong>Joanna</strong>
+                <p>A day in the life of a CSM at Talentech</p>
             </div>
             </div>
             <!-- team 3 -->
-            <div class="col-md-3 col-sm-4 team-item">
+            <div class="col-md-4 col-sm-4 team-item">
                 <div class="team-icon">
 <div class="gobi-stories"
   data-gobi-stories="pp7ep"
   data-gobi-color="transparent"
-  data-gobi-bubble-size="180px"
+  data-gobi-bubble-size="185px"
   data-gobi-animated-bubble="true"
   data-gobi-hide-title="true"
   data-gobi-disable-shadow-dom="true"
@@ -779,8 +897,27 @@ font-size: 3rem;
 </div>
                 </div>
     <div class="team-content mt-4">
-                <strong>Scooter</strong>
-                <p>50% discount on scooter rides</p>
+                <strong>Jane</strong>
+                <p>My favorite parts of working as a project leader at Talentech</p>
+            </div>
+            </div>
+            <!-- team 4 -->
+            <div class="col-md-4 col-sm-4 team-item">
+                <div class="team-icon">
+<div class="gobi-stories"
+  data-gobi-stories="p5z64"
+  data-gobi-color="transparent"
+  data-gobi-bubble-size="185px"
+  data-gobi-animated-bubble="true"
+  data-gobi-hide-title="true"
+  data-gobi-disable-shadow-dom="true"
+  data-gobi-inherit-text-font-family="true"
+  data-gobi-auto-start-with-sound="true">
+</div>
+                </div>
+    <div class="team-content mt-4">
+                <strong>Jens</strong>
+                <p>Why Talentech is such a great workplace</p>
             </div>
             </div>
        
@@ -789,11 +926,14 @@ font-size: 3rem;
 </section>
 
 
+
+
+
 <div class="quote-section py-5">
-    <div class="container py-5">
+    <div class="container py-5 mt-3">
         <blockquote class="blockquote text-center">
-            <p class="mb-4">"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut et massa mi."</p>
-            <footer class="blockquote-footer">Nullam Vulputate</footer>
+            <p class="mb-4">"Starting at Talentech, I immediately felt welcomed and part of a dynamic, innovative team."</p>
+            <footer class="blockquote-footer">Henrik Moberg</footer>
         </blockquote>
     </div>
 </div>
@@ -806,7 +946,7 @@ font-size: 3rem;
 	
 	
 	
-        <h2 class="container pt-5">Job <span style="font-weight: 800;">categories</span></h2>
+        <h2 class="container pt-5 mt-5">Job <span style="font-weight: 800;">categories</span></h2>
 	<div id="teamCarousel" class="carousel slide" data-interval="false">
     <div class="carousel-inner">
         <div class="carousel-item active">
@@ -814,24 +954,21 @@ font-size: 3rem;
                 <div class="row ">
                     <!-- Team Member 1 -->
                     <div class="col-md-4 team-member">
-<div class="team-background-image mb-3" alt="Jostein Knudsen" style="background-image: url('https://reboot.no/tt/image.jpg')"></div>
-                        <p class="role mb-3">Designer</p>
-                        <p>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
-						<a href="your-link-here" class="link-with-arrow mt-3">Click Here<i class="fa-thin fa-arrow-right"></i></a>
+<div class="team-background-image mb-3" alt="Jostein Knudsen" style="background-image: url('https://reboot.no/tt/cat-1.jpg')"></div>
+                        <p class="role mb-3">Software Development</p>
+                        <p>Join our Software Development team to innovate and build cutting-edge technology solutions that revolutionize talent management.</p>
                     </div>
                     <!-- Team Member 2 -->
                     <div class="col-md-4 team-member">
-<div class="team-background-image mb-3" alt="Jostein Knudsen" style="background-image: url('https://reboot.no/tt/image.jpg')"></div>
-                        <p class="role mb-3">Designer</p>
-                        <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.</p>
-						<a href="your-link-here" class="link-with-arrow mt-3">Click Here<i class="fa-thin fa-arrow-right"></i></a>
+<div class="team-background-image mb-3" alt="Jostein Knudsen" style="background-image: url('https://reboot.no/tt/cat-2.jpg')"></div>
+                        <p class="role mb-3">Customer Success</p>
+                        <p>Be a part of our Customer Success team, where your efforts directly contribute to our clients' growth and satisfaction.</p>
                     </div>
                     <!-- Team Member 3 -->
                     <div class="col-md-4 team-member">
-<div class="team-background-image mb-3" alt="Jostein Knudsen" style="background-image: url('https://reboot.no/tt/image.jpg')"></div>
-                        <p class="role mb-3">Designer</p>
-                        <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.</p>
-						<a href="your-link-here" class="link-with-arrow mt-3">Click Here<i class="fa-thin fa-arrow-right"></i></a>
+<div class="team-background-image mb-3" alt="Jostein Knudsen" style="background-image: url('https://reboot.no/tt/cat-3.jpg')"></div>
+                        <p class="role mb-3">Sales and Marketing</p>
+                        <p>Drive growth and build meaningful relationships in our Sales and Marketing team, connecting clients with the solutions they need.</p>
                     </div>
                 </div>
             </div>
@@ -842,10 +979,9 @@ font-size: 3rem;
                 <div class="row ">
                     <!-- Additional Team Member -->
                     <div class="col-md-4 team-member">
-<div class="team-background-image mb-3" alt="Jostein Knudsen" style="background-image: url('https://reboot.no/tt/image.jpg')"></div>
-                        <p class="role mb-3">Designer</p>
-                        <p>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
-						<a href="your-link-here" class="link-with-arrow mt-3">Click Here<img src="arrow-right-thin.svg" alt=">" class="arrow-icon"></a>
+<div class="team-background-image mb-3" alt="Jostein Knudsen" style="background-image: url('https://reboot.no/tt/cat-4.jpg')"></div>
+                        <p class="role mb-3">Product Management</p>
+                        <p>Shape the future of our offerings as a member of the Product Management team, where your vision can transform the talent acquisition landscape.</p>
                     </div>
                     <!-- You can duplicate previous members here or add new ones -->
                     <!-- Placeholder for additional team members if needed -->
@@ -881,7 +1017,7 @@ font-size: 3rem;
             <!-- Benefit 1 -->
             <div class="col-md-3 col-sm-4 benefit-item">
                 <div class="benefit-icon">
-                   <i class="fa-thin fa-display-code"></i>
+				<i class="fa-solid fa-display-code"></i>
                 </div>
     <div class="benefit-content">
                 <strong>Home office</strong>
@@ -891,7 +1027,7 @@ font-size: 3rem;
             <!-- Benefit 2 -->
             <div class="col-md-3 col-sm-4 benefit-item">
                 <div class="benefit-icon">
-                    <i class="fa-thin fa-notes-medical"></i>
+                    <i class="fa-solid fa-notes-medical"></i>
                 </div>
     <div class="benefit-content">
                 <strong>Health allowance</strong>
@@ -901,7 +1037,7 @@ font-size: 3rem;
             <!-- Benefit 3 -->
             <div class="col-md-3 col-sm-4 benefit-item">
                 <div class="benefit-icon">
-                    <i class="fa-thin fa-bicycle"></i>
+                    <i class="fa-solid fa-bicycle"></i>
                 </div>
     <div class="benefit-content">
                 <strong>Scooter</strong>
@@ -911,7 +1047,7 @@ font-size: 3rem;
             <!-- Benefit 4 -->
             <div class="col-md-3 col-sm-4 benefit-item">
                 <div class="benefit-icon">
-                    <i class="fa-thin fa-map-location-dot"></i>
+                    <i class="fa-solid fa-map-location-dot"></i>
                 </div>
     <div class="benefit-content">
                 <strong>Vacation days</strong>
@@ -921,7 +1057,7 @@ font-size: 3rem;
             <!-- Benefit 5 -->
             <div class="col-md-3 col-sm-4 benefit-item">
                 <div class="benefit-icon">
-                    <i class="fa-thin fa-pot-food"></i>
+                    <i class="fa-solid fa-pot-food"></i>
                 </div>
     <div class="benefit-content">
                 <strong>Lunch discount</strong>
@@ -931,7 +1067,7 @@ font-size: 3rem;
             <!-- Benefit 6 -->
             <div class="col-md-3 col-sm-4 benefit-item">
                 <div class="benefit-icon">
-                    <i class="fa-thin fa-laptop"></i>
+                    <i class="fa-solid fa-laptop"></i>
                 </div>
     <div class="benefit-content">
                 <strong>Remote first</strong>
@@ -941,7 +1077,7 @@ font-size: 3rem;
             <!-- Benefit 7 -->
             <div class="col-md-3 col-sm-6 benefit-item">
                 <div class="benefit-icon">
-                    <i class="fa-thin fa-dog"></i>
+                    <i class="fa-solid fa-dog"></i>
                 </div>
     <div class="benefit-content">
                 <strong>Dog friendly</strong>
@@ -988,8 +1124,6 @@ font-size: 3rem;
 </div>
 </div>
 
-
-	
 
 
 <div class="container my-5 py-5">
@@ -1060,10 +1194,6 @@ font-size: 3rem;
 
 
 	
-
-
-
-
 
 <script>
 $(document).ready(function () {
@@ -1197,9 +1327,6 @@ $(document).ready(function () {
 </script>
 
 
-
-	
-
 	
 	
 <script>
@@ -1230,9 +1357,3 @@ jobLocations.forEach(function(location) {
 </body>
 
 </html>
-
-
-
-
-
-

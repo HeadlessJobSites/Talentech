@@ -707,7 +707,7 @@ font-weight: 800;
 		margin-bottom: 15px; /* Space between the job infos on mobile */
 	}
 	.job-info-title {
-		font-weight: bold;
+		font-weight: 800;
 		display: block; /* Ensure title is on a new line */
 	}
 	.apply-btn {
@@ -774,7 +774,7 @@ font-weight: 800;
             <source src="https://reboot.no/tt/video.mp4" type="video/mp4">
         </video>
         <div class="hero-content">
-            <h1 id="jobTitle">Job title</h1>
+            <h1 id="jobTitle"> </h1>
             <p style="font-size: 1.25rem;"><span id="organizationUnit">Location</span> • <span id="city">City</span> • <span id="country">Country</span> • <span id="publishingDate">Published date</span> • <span id="expirationDate">Application due date</span> </p>
         </div>
     </div>
@@ -788,12 +788,12 @@ font-weight: 800;
                 <span>UX & Design Team</span>
             </div>
             <div class="col-md-3 col-6 job-info">
-                <span class="job-info-title"><strong>Location</strong></span>
-                <span id="city"></span>
+                <span class="job-info-title">Location</span>
+                <span id="city"> </span>
             </div>
             <div class="col-md-3 col-6 job-info">
                 <span class="job-info-title">Application due date</span>
-                <span id="expirationDate"></span>
+                <span id="expirationDate"> </span>
             </div>
             <div class="col-md-3 col-6 text-center apply-btn-header">
                 <button class="apply-btn">Apply for the job</button>
@@ -806,7 +806,7 @@ font-weight: 800;
 	
 	<div class="talentech-section mb-5 pb-5">
     <div class="container mt-5 pt-3">
-        <h2 class="mb-5">Join our UX & design team as a <span style="font-weight: 800;">UX-Designer</span></h2>
+        <h2 class="mb-5" id="jobTitle"> </h2>
         <p class="my-3" style="font-size: 1.05rem;">Talentech är en ledande aktör inom HR-tech med en stark framtidstro och vi växer både organiskt och genom förvärv. Med över 2 200 kunder globalt, varav 700 på den svenska marknaden, ser vi mycket goda utsikter för vår fortsatta resa framåt.</p>
         <p class="my-3" style="font-size: 1.05rem;">Vi hjälper verksamheter inom både privat och offentlig sektor att utveckla sin medarbetarresa. Från att attrahera och rekrytera, till onboarding och medarbetarutveckling.</p>
         <p class="my-5">Nu söker vi en Customer Support Agent till vårt kontor i Stockholm som vill vara med och hjälpa verksamheter att göra rätt investeringar i sin viktigaste tillgång – medarbetarna!
@@ -1243,6 +1243,7 @@ $(document).ready(function() {
                 const organizationUnit = job.organizations && job.organizations.length > 0 ? job.organizations[1].nameorgunit : 'Not specified';
 
                 $('#jobTitle').text(job.title);
+		$('#jobDescription').text(job.description);
                 $('#organizationUnit').text(organizationUnit);
                 $('#city').text(city);
                 $('#country').text(job.country);

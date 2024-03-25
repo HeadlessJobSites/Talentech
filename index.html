@@ -5,11 +5,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Stillingsportal</title>
+    <title>Ledige stillinger</title>
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
-<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 	<!-- jQuery -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
@@ -17,7 +18,11 @@
 	<script src="https://kit.fontawesome.com/ca38a06270.js" crossorigin="anonymous"></script>
 	<!-- Gobi -->
 	<script src="https://widget.gobistories.com/gwi/6" async onload="gobi.discover()"></script>
+	<!-- Map -->
+	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
 
+	
     <style>
 @font-face {
 	font-family: 'Telegraf';
@@ -42,14 +47,14 @@
 }
 @font-face {
 	font-family: 'Telegraf';
-	src: url('https://reboot.no/tt/fonts/Telegraf-Medium.ttf');
+	src: url('https://reboot.no/tt/fonts/Telegraf.ttf');
 	font-weight: normal;
 	font-style: normal;
 	font-display: swap;
 }
 @font-face {
 	font-family: 'Telegraf';
-	src: url('https://reboot.no/tt/fonts/Telegraf-Bold.ttf');
+	src: url('https://reboot.no/tt/fonts/Telegraf-UltraBold.ttf');
 	font-weight: 800;
 	font-style: normal;
 	font-display: swap;
@@ -63,24 +68,20 @@
 }
 @font-face {
 	font-family: 'Telegraf';
-	src: url('https://reboot.no/tt/fonts/Telegraf-Medium.ttf');
-	font-weight: normal;
-	font-style: normal;
-	font-display: swap;
-}
-@font-face {
-	font-family: 'Telegraf';
-	src: url('https://reboot.no/tt/fonts/Telegraf-Ultrabold.ttf');
+	src: url('https://reboot.no/tt/fonts/Telegraf-Black.ttf');
 	font-weight: 900;
 	font-style: normal;
 	font-display: swap;
 }
 @font-face {
 	font-family: 'Telegraf';
-	src: url('https://reboot.no/tt/fonts/Telegraf-Bold.ttf');
+	src: url('https://reboot.no/tt/fonts/Telegraf-UltraBold.ttf');
 	font-weight: bold;
 	font-style: normal;
 	font-display: swap;
+}
+.bg-dark {
+	background-color: #2b293f !important;
 }
 .hero-section {
 	position: relative;
@@ -127,7 +128,6 @@ body {
 }
 h1 {
 	font-family: Telegraf;
-	font-weight: 800;
 	font-size: 4rem;
 	margin-bottom: 2rem;
 }
@@ -189,10 +189,10 @@ h2 {
 	width: 100%;
 }
 .carousel-control-prev-icon {
-	background-image: url(https:
+	background-image: url(https://reboot.no/tt/circle-arrow-left-thin.svg);
 }
 .carousel-control-next-icon {
-	background-image: url(https:
+	background-image: url(https://reboot.no/tt/circle-arrow-right-thin.svg);
 }
 .carousel-control-next-icon, .carousel-control-prev-icon {
 	width: 40px;
@@ -301,7 +301,7 @@ h2 {
 	padding: 60px 20px;
 }
 .quote-section .container {
-	max-width: 640px;
+	max-width: 800px;
 	margin: auto;
 }
 .blockquote p {
@@ -312,6 +312,68 @@ h2 {
 .blockquote-footer {
 	color: #fff;
 	font-size: 20px;
+}
+.team-section .container {
+	max-width: 1200px;
+}
+.team-section .row {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+}
+.team-item {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin-bottom: 30px;
+	text-align: center;
+	min-width: 250px;
+	flex: 1;
+	flex-basis: calc(25% - 60px);
+}
+.team-content {
+	display: flex;
+	flex-direction: column;
+	justify-content: start;
+	align-items: center;
+	background-color: #eeeef2;
+	border-radius: 10px;
+	padding: 20px;
+	padding-top: 70px;
+	width: 100%;
+	height: 100%;
+}
+.team-icon {
+	position: relative;
+	margin-bottom: -50px;
+	border-radius: 50%;
+	width: 100px;
+	height: 120px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	z-index: 2;
+}
+.team-icon img {
+	width: 25px;
+	height: auto;
+}
+.team-icon i {
+	font-size: 2rem;
+}
+@media (max-width: 768px) {
+	.team-section .row {
+		display: flex;
+		flex-wrap: nowrap;
+		overflow-x: auto;
+		justify-content: left;
+	}
+	.team-item, .process-item {
+		flex: 0 0 60%;
+		margin-right: 10px;
+	}
+	.team-content {
+	}
 }
 .benefits-section .container {
 	max-width: 1200px;
@@ -362,180 +424,6 @@ h2 {
 .benefit-icon i {
 	font-size: 2rem;
 }
-@media (max-width: 768px) {
-	.benefits-section .row {
-		display: flex;
-		flex-wrap: nowrap;
-		overflow-x: auto;
-	}
-	.benefit-item {
-		flex: 0 0 80%;
-		margin-right: 20px;
-	}
-	.benefit-content {
-	}
-}
-.process-content p {
-	margin-bottom: 0;
-}
-.process-section .container {
-	max-width: 1200px;
-}
-.process-section .row {
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: center;
-}
-.process-item {
-	display: flex;
-	flex-direction: column;
-	align-items: start;
-	margin-bottom: 30px;
-	text-align: left;
-	min-width: 250px;
-	flex: 1;
-	flex-basis: calc(33.33% - 60px);
-}
-.process-content {
-	display: flex;
-	flex-direction: column;
-	align-items: start;
-	background-color: #fff;
-	border-radius: 10px;
-	padding: 20px;
-	padding-top: 50px;
-	width: 100%;
-	height: 100%;
-}
-.process-icon {
-	position: relative;
-	margin-bottom: -50px;
-	border-radius: 50%;
-	width: 100px;
-	height: 120px;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	z-index: 2;
-}
-.process-icon p {
-	font-size: 4.5rem;
-	position: absolute;
-	font-weight: 700;
-}
-.process-icon img {
-	width: 25px;
-	height: auto;
-}
-.process-icon i {
-	font-size: 2rem;
-}
-.job-description h3,.job-description h4,.job-description h5,.job-description h6,.job-description h2 {
-	font-size: 1.1rem;
-	font-weight: 800;
-}
-.job-description p {
-	text-align: left !important;
-}
-@media (max-width: 768px) {
-	.process-item {
-		flex: 0 0 80%;
-		margin-right: 20px;
-	}
-}
-@media (max-width: 768px) {
-	.process-section .row {
-		display: flex;
-		flex-wrap: nowrap;
-		overflow-x: auto;
-		margin-left: -15px;
-		margin-right: -15px;
-	}
-	.process-item {
-		flex: 0 0 50%;
-		max-width: 50%;
-		padding-left: 15px;
-		padding-right: 15px;
-	}
-	.process-section .row {
-		justify-content: left;
-	}
-}
-.team-section .container {
-	max-width: 1200px;
-}
-.team-section .row {
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: center;
-}
-.team-item {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	margin-bottom: 30px;
-	text-align: center;
-	min-width: 250px;
-	flex: 1;
-	flex-basis: calc(25% - 60px);
-}
-.team-content {
-	display: flex;
-	flex-direction: column;
-	justify-content: start;
-	align-items: center;
-	background-color: #eeeef2;
-	border-radius: 10px;
-	padding: 20px;
-	padding-top: 60px;
-	width: 100%;
-	height: 100%;
-}
-.team-icon {
-	position: relative;
-	margin-bottom: -50px;
-	border-radius: 50%;
-	width: 100px;
-	height: 120px;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	z-index: 2;
-}
-.team-icon img {
-	width: 25px;
-	height: auto;
-}
-.team-icon i {
-	font-size: 2rem;
-}
-@media (max-width: 768px) {
-	.team-section .row {
-		display: flex;
-		flex-wrap: nowrap;
-		overflow-x: auto;
-		justify-content: left;
-	}
-	.team-item, .process-item {
-		flex: 0 0 80%;
-		margin-right: 20px;
-	}
-	.team-content {
-	}
-}
-strong {
-	font-weight: 800;
-}
-a:hover {
-	color: #0056b3;
-	text-decoration: none;
-}
-a {
-	color: #2b293f;
-	text-decoration: none;
-	background-color: transparent;
-	text-decoration: underline;
-}
 .stretched-link {
 	position: absolute;
 	right: 20px;
@@ -565,8 +453,41 @@ a {
 #loadMore {
 	font-weight: 800;
 }
-.bg-dark {
-	background-color: #2b293f !important;
+.rounded-video {
+	width: 100%;
+	border-radius: 15px;
+	overflow: hidden;
+}
+@media (max-width: 768px) {
+	.benefits-section .row {
+		display: flex;
+		flex-wrap: nowrap;
+		overflow-x: auto;
+	}
+	.benefit-item {
+		flex: 0 0 80%;
+		margin-right: 0px;
+	}
+	.benefit-content {
+	}
+.m-m-0{margin:0!important}.m-mt-0,.m-my-0{margin-top:0!important}.m-mr-0,.m-mx-0{margin-right:0!important}.m-mb-0,.m-my-0{margin-bottom:0!important}.m-ml-0,.m-mx-0{margin-left:0!important}.m-m-1{margin:.25rem!important}.m-mt-1,.m-my-1{margin-top:.25rem!important}.m-mr-1,.m-mx-1{margin-right:.25rem!important}.m-mb-1,.m-my-1{margin-bottom:.25rem!important}.m-ml-1,.m-mx-1{margin-left:.25rem!important}.m-m-2{margin:.5rem!important}.m-mt-2,.m-my-2{margin-top:.5rem!important}.m-mr-2,.m-mx-2{margin-right:.5rem!important}.m-mb-2,.m-my-2{margin-bottom:.5rem!important}.m-ml-2,.m-mx-2{margin-left:.5rem!important}.m-m-3{margin:1rem!important}.m-mt-3,.m-my-3{margin-top:1rem!important}.m-mr-3,.m-mx-3{margin-right:1rem!important}.m-mb-3,.m-my-3{margin-bottom:1rem!important}.m-ml-3,.m-mx-3{margin-left:1rem!important}.m-m-4{margin:1.5rem!important}.m-mt-4,.m-my-4{margin-top:1.5rem!important}.m-mr-4,.m-mx-4{margin-right:1.5rem!important}.m-mb-4,.m-my-4{margin-bottom:1.5rem!important}.m-ml-4,.m-mx-4{margin-left:1.5rem!important}.m-m-5{margin:3rem!important}.m-mt-5,.m-my-5{margin-top:3rem!important}.m-mr-5,.m-mx-5{margin-right:3rem!important}.m-mb-5,.m-my-5{margin-bottom:3rem!important}.m-ml-5,.m-mx-5{margin-left:3rem!important}
+.m-p-0{padding:0!important}.m-pt-0,.m-py-0{padding-top:0!important}.m-pr-0,.m-px-0{padding-right:0!important}.m-pb-0,.m-py-0{padding-bottom:0!important}.m-pl-0,.m-px-0{padding-left:0!important}.m-p-1{padding:.25rem!important}.m-pt-1,.m-py-1{padding-top:.25rem!important}.m-pr-1,.m-px-1{padding-right:.25rem!important}.m-pb-1,.m-py-1{padding-bottom:.25rem!important}.m-pl-1,.m-px-1{padding-left:.25rem!important}.m-p-2{padding:.5rem!important}.m-pt-2,.m-py-2{padding-top:.5rem!important}.m-pr-2,.m-px-2{padding-right:.5rem!important}.m-pb-2,.m-py-2{padding-bottom:.5rem!important}.m-pl-2,.m-px-2{padding-left:.5rem!important}.m-p-3{padding:1rem!important}.m-pt-3,.m-py-3{padding-top:1rem!important}.m-pr-3,.m-px-3{padding-right:1rem!important}.m-pb-3,.m-py-3{padding-bottom:1rem!important}.m-pl-3,.m-px-3{padding-left:1rem!important}.m-p-4{padding:1.5rem!important}.m-pt-4,.m-py-4{padding-top:1.5rem!important}.m-pr-4,.m-px-4{padding-right:1.5rem!important}.m-pb-4,.m-py-4{padding-bottom:1.5rem!important}.m-pl-4,.m-px-4{padding-left:1.5rem!important}.m-p-5{padding:3rem!important}.m-pt-5,.m-py-5{padding-top:3rem!important}.m-pr-5,.m-px-5{padding-right:3rem!important}.m-pb-5,.m-py-5{padding-bottom:3rem!important}.m-pl-5,.m-px-5{padding-left:3rem!important}
+  h2 {
+    font-size: 2.3rem;
+}
+.blockquote p {
+    font-size: 25px;
+	}
+	.blockquote-footer {
+    font-size: 18px;
+    font-weight: 500;
+}
+.benefits-section .row {
+	justify-content: start;
+}
+h1 {
+    font-size: 3.5rem;
+	}
 }
 @media (max-width: 991.98px) {
 	.background-image {
@@ -574,74 +495,9 @@ a {
 	}
 }
 @media (min-width: 992px) {
-	.talentech-section h2,.talentech-section p, .talentech-section ul, .talentech-section ol, .talentech-section h3, .talentech-section h4, .talentech-section h5, .talentech-section h6 {
-		padding-left: 210px;
-		padding-right: 260px;
-		line-height: 1.6;
-	}
-	.job-description ul {
-		margin-left: 40px;
-	}
-}
-#jobTitle {
-	font-weight: 800;
-}
-.job-section {
-	background-color: #f8f9fa;
-	padding: 0;
-}
-.job-info {
-	margin-bottom: 15px;
-}
-.job-info-title {
-	font-weight: 800;
-	display: block;
-}
-.apply-btn {
-	background-color: #2b293f;
-	color: white;
-	border: none;
-	border-radius: 50px;
-	font-size: 16px;
-	padding: 10px 20px;
-	font-weight: bold;
-}
-@media (min-width: 768px) {
-	.job-info {
-		margin-bottom: 0;
-	}
-  .no-padding-mobile {
-    padding-top: 0 !important;
-    padding-bottom: 0 !important;
-  }
-  .no-margin-mobile {
-    margin-top: 0 !important;
-    margin-bottom: 0 !important;
-  }
-  .margin-mobile-t-2 {
-  margin-top: 20px !important;
-  }
-  h2 {
-    font-size: 2.3rem;
-}
-h1 {
-    font-size: 3.5rem;
-	}
-}
-@media (max-width: 768px) {
-	.text-center {
-		text-align: left !important;
-	}
-	.job-info, .apply-btn-header {
-		margin-top: 20px;
-	}
-	.centerd-apply-btn {
-		text-align: center !important;
-	}
-	.apply-btn {
-		font-size: 14px;
-		padding: 8px 16px;
-		font-weight: 600;
+	.talentech-section h2,.talentech-section p {
+		padding-left: 100px;
+		padding-right: 150px;
 	}
 }
 
@@ -651,9 +507,10 @@ h1 {
 <body>
 
 
+
 <nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color: rgba(0, 0, 0, 0.0); padding: 20px; position: absolute; ">
     <div class="container no-padding-mobile">
-    <a class="navbar-brand" href="#">
+    <a class="navbar-brand" href="https://headlessjobsites.github.io/Talentech">
         <img src="https://reboot.no/tt/TT-2.png" height="40" class="d-inline-block align-top" alt="">
     </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -662,10 +519,10 @@ h1 {
     <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ml-auto">
             <li class="nav-item active">
-                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="https://headlessjobsites.github.io/Talentech">Home <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Jobs</a>
+                <a class="nav-link" href="https://headlessjobsites.github.io/Talentech#jobs-anchor">Jobs</a>
             </li>
         </ul>
     </div>
@@ -673,130 +530,182 @@ h1 {
 </nav>
 
 
+
     <div class="hero-section">
         <video playsinline="playsinline" autoplay="autoplay" muted="muted" loop="loop" class="hero-video">
-            <source src="https://reboot.no/tt/Compressed-3.mp4" type="video/mp4">
+            <source src="https://reboot.no/tt/Compressed-2.mp4" type="video/mp4">
         </video>
         <div class="hero-content">
-            <h1 class="job-title"> </h1>
-            <p style="font-size: 1.25rem;"><span class="organization-unit"> </span> • <span class="city"> </span></p>
+            <h1>Join our <span style="font-weight: 800;">journey</span></h1>
+            <a href="#jobs-anchor" class="btn btn-primary btn-lg"><strong>See available positions</strong></a>
         </div>
     </div>
 	
 	
-<div class="job-section">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-3 col-6 job-info">
-                <span class="job-info-title">Team</span>
-                <span class="organization-unit"> </span>
+	<div class="talentech-section">
+    <div class="container mt-5 pt-4 m-mt-2">
+        <h2 class="m-px-2">Life at <span style="font-weight: 800;">Talentech</span></h2>
+        <p class="my-4  m-px-2">Talentech has set out to become the largest and most innovative HR tech company of its kind. With the aim of providing a seamless talent journey in one central platform, the product suite today spans the entire talent pipeline from recruitment, to onboarding and talent management with our products Talent Recruiter, ReachMee, Webcruiter, Talmundo, Weekli, irecommend and ontame.</p>
+        <p class="m-px-2">We know that great HR makes a difference and we want to be a part of shaping the future with the vision that all companies should know that Talent Comes First. To reach our goals we need you! Talentech as a workplace is characterized by a lot of great and engaged colleges that really believe in what we do and want to grow together with the company.</p>
+    </div>
+</div>
+
+
+<style>
+.video-container {
+    position: relative;
+}
+
+.video-controls {
+    position: absolute;
+    bottom: 40px;
+    right: 40px;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.video-controls button {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 16px;
+    margin-right: 10px;
+    cursor: pointer;
+    filter: brightness(0) invert(1);
+    width: 30px;
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const video = document.getElementById('talentechVideo');
+    const playPauseIcon = document.getElementById('playPauseBtn').querySelector('img');
+    const muteBtn = document.getElementById('muteBtn');
+    const muteIcon = muteBtn.querySelector('img');
+
+    // Function to toggle video play/pause
+    const togglePlayPause = () => {
+        if (video.paused || video.ended) {
+            video.play();
+            playPauseIcon.src = "https://reboot.no/tt/pause-thin.svg";
+            playPauseIcon.alt = "Pause";
+        } else {
+            video.pause();
+            playPauseIcon.src = "https://reboot.no/tt/play-thin.svg";
+            playPauseIcon.alt = "Play";
+        }
+    };
+
+    // Click event for the video itself
+    video.addEventListener('click', () => {
+        togglePlayPause();
+    });
+
+    // Intersection Observer for autoplay/pause on visibility
+    const observer = new IntersectionObserver((entries) => {
+        const [entry] = entries;
+        if (entry.isIntersecting) {
+            video.play();
+            playPauseIcon.src = "https://reboot.no/tt/pause-thin.svg";
+            playPauseIcon.alt = "Pause";
+        } else {
+            video.pause();
+            playPauseIcon.src = "https://reboot.no/tt/play-thin.svg";
+            playPauseIcon.alt = "Play";
+        }
+    }, {
+        root: null,
+        threshold: 0.5
+    });
+
+    observer.observe(video);
+
+    // Event listener for the mute button
+    muteBtn.addEventListener('click', () => {
+        video.muted = !video.muted;
+        muteIcon.src = video.muted ? "https://reboot.no/tt/volume-xmark-thin.svg" : "https://reboot.no/tt/volume-off-thin.svg";
+        muteIcon.alt = video.muted ? "Mute" : "Unmute";
+    });
+});
+</script>
+
+
+
+
+
+<div class="talentech-section pb-4 mb-5 m-mb-3">
+    <div class="container mt-4 pt-2 mb-5 pb-3 video-container m-my-0">
+        <video id="talentechVideo" class="rounded-video" autoplay muted loop>
+            <source src="https://reboot.no/tt/TT-video.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <div class="video-controls">
+            <button id="playPauseBtn"><img src="https://reboot.no/tt/pause-thin.svg" alt="Pause"></button>
+            <button id="muteBtn"><img src="https://reboot.no/tt/volume-xmark-thin.svg" alt="Mute"></button>
+        </div>
+    </div>
+</div>
+
+
+
+
+<div class="feature-section" style="background-color: #eeeef2;">
+    <div class="container py-5 m-py-0">
+        <h2 class="pt-5 m-px-2">Our <span style="font-weight: 800;">culture</span></h2>
+        <div class="row align-items-center mt-5 mb-5 pb-3 flex-lg-row m-mt-4 m-mb-0"> <!-- Changes for mobile first -->
+            <div class="col-lg-7">
+                <div class="background-image rounded-image m-mb-0" style="background-image: url('https://reboot.no/tt/TT-fabian-3.jpg');"></div>
             </div>
-            <div class="col-md-3 col-6 job-info">
-                <span class="job-info-title">Location</span>
-                <span class="city">Location</span>
+            <div class="col-lg-5 text-padding m-p-4"> <!-- text-padding class for more padding -->
+                <h3>Fabian Söderström</h3>
+				<p><strong>Advertising Manager</strong></p>
+				<p>"Working on new products where my work has real impact on technical decision is really inspirational. At Talentech a programmer is more of a partner when it comes to decision making, so your voice is heard and that truly matters. But Talentech isn’t only work – it’s the people you work with - and that's the main reason why I love to work at Talentech."</p>
             </div>
-            <div class="col-md-3 col-6 job-info">
-                <span class="job-info-title">Application due date</span>
-                <span class="expiration-date">Application due date</span>
+        </div>
+        <div class="row align-items-center mt-5 mb-5 pt-5 pb-3 flex-column-reverse m-my-0 m-pt-0">
+            <div class="col-lg-5 text-padding m-p-4">
+                <h3>Carolina Asp</h3>
+				<p><strong>Senior Implementation Consultant</strong></p>
+                <p>The biggest reason why I work at Talentech is the opportunity you have to evolve and constantly learn while working across countries, departments and with a wide range of different customers, all with their own experience and a goal to be as awesome as possible.  Plus you have the most amazing colleagues. At Talentech new ideas are always welcome and there is always someone who can help in our team of ambitious Talentecher’s.</p>
             </div>
-            <div class="col-md-3 col-6 text-center apply-btn-header">
-                <button class="apply-btn">Apply for the job</button>
+            <div class="col-lg-7">
+                <div class="background-image rounded-image m-mb-0" style="background-image: url('https://reboot.no/tt/TT-carolina-1.jpg');"></div>
+            </div>
+        </div>
+        <div class="row align-items-center mt-5 mb-5 pb-3 pt-5 flex-lg-row m-mt-0 m-pt-0 m-mb-0 m-pb-4"> <!-- Changes for mobile first -->
+            <div class="col-lg-7">
+                <div class="background-image rounded-image m-mb-0" style="background-image: url('https://reboot.no/tt/TT-roger-1.jpg');"></div>
+            </div>
+            <div class="col-lg-5 text-padding m-p-4"> <!-- text-padding class for more padding -->
+                <h3>Roger Larsson</h3>
+				<p><strong>Head of Group IT Operations</strong></p>
+				<p>I work with various projects both internally and externally, which helps to develop me both personally and professionally. We have a lot of social events and we have so much fun together across all departments.</p>
             </div>
         </div>
     </div>
 </div>
 
 
-	
-	<div class="talentech-section mb-5 pb-5">
-    <div class="container mt-5 pt-3">
-        <h2 class="mb-5 job-title"> </h2>
 
-        <div class="my-3 job-description"> </div>
-	    <div class="contact-persons"></div>
-    </div>
+<style>
+/*.kocpYL {
+border-radius: 0 !important;
+}
+*/
+</style>
 
-            <div class="text-center centerd-apply-btn">
-                <button class="apply-btn">Apply for the job</button>
-            </div>
-</div>
-
-
-
-
-
-<section class="process-section my-5 py-5" style="background-color: #eeeef2;">
-        <h2 class="container pt-5">Our <span style="font-weight: 800;">recruitment process</span></h2>
-    <div class="container">
-        <div class="row">
-            <!-- Benefit 1 -->
-            <div class="col-md-4 col-sm-4 process-item">
-                <div class="process-icon">
-                   <p>1</p>
-                </div>
-    <div class="process-content">
-                <strong>Submit Your Application</strong>
-                <p>Start your journey by applying through our career portal; upload your CV and share a bit about yourself.</p>
-            </div>
-            </div>
-            <!-- Benefit 2 -->
-            <div class="col-md-4 col-sm-4 process-item">
-                <div class="process-icon">
-                   <p>2</p>
-                </div>
-    <div class="process-content">
-                <strong>Initial Screening</strong>
-                <p>Our HR team will review your application to assess the alignment between your skills and the job requirements.</p>
-            </div>
-            </div>
-            <!-- Benefit 3 -->
-            <div class="col-md-4 col-sm-4 process-item">
-                <div class="process-icon">
-                   <p>3</p>
-                </div>
-    <div class="process-content">
-                <strong>Interview Process</strong>
-                <p>Engage with us through one or more interviews to discuss your experiences, skills, and aspirations.</p>
-            </div>
-            </div>
-            <!-- Benefit 4 -->
-            <div class="col-md-4 col-sm-4 process-item">
-                <div class="process-icon">
-                   <p>4</p>
-                </div>
-    <div class="process-content">
-                <strong>Assessment</strong>
-                <p>Depending on the role, you may be invited to complete assignments or assessments to showcase your capabilities.</p>
-            </div>
-            </div>
-            <!-- Benefit 5 -->
-            <div class="col-md-4 col-sm-4 process-item">
-                <div class="process-icon">
-                   <p>5</p>
-                </div>
-    <div class="process-content">
-                <strong>Offer & Onboarding</strong>
-                <p>If it's a match, we'll extend an offer. Once accepted, we'll guide you through every step of your onboarding journey.</p>
-            </div>
-            </div>
-    </div>
-</section>
-
-
-
-
-
-<section class="team-section my-5">
-        <h2 class="container pt-5 mb-0 pb-0">The <span class="organization-unit" style="font-weight: 800;"></span><span style="font-weight: 800;"> team</span></h2>
-    <div class="container mt-0 pt-0">
-        <div class="row mt-5 pt-5">
+<section class="team-section my-5 pb-4 m-my-0">
+        <h2 class="container pt-5 mb-0 pb-0 m-px-4">Meet the <span style="font-weight: 800;">team</span></h2>
+    <div class="container mt-0 pt-2">
+        <div class="row mt-5 pt-5 m-mt-2">
             <!-- team 1 -->
-            <div class="col-md-3 col-sm-4 team-item">
+            <div class="col-md-4 col-sm-4 team-item">
                 <div class="team-icon">
 <div class="gobi-stories"
   data-gobi-stories="5gp7h"
   data-gobi-color="transparent"
-  data-gobi-bubble-size="175px"
+  data-gobi-bubble-size="185px"
   data-gobi-animated-bubble="true"
   data-gobi-hide-title="true"
   data-gobi-disable-shadow-dom="true"
@@ -810,12 +719,12 @@ h1 {
             </div>
             </div>
             <!-- team 2 -->
-            <div class="col-md-3 col-sm-4 team-item">
+            <div class="col-md-4 col-sm-4 team-item">
                 <div class="team-icon">
 <div class="gobi-stories"
   data-gobi-stories="cf2hs"
   data-gobi-color="transparent"
-  data-gobi-bubble-size="175px"
+  data-gobi-bubble-size="185px"
   data-gobi-animated-bubble="true"
   data-gobi-hide-title="true"
   data-gobi-disable-shadow-dom="true"
@@ -829,12 +738,12 @@ h1 {
             </div>
             </div>
             <!-- team 3 -->
-            <div class="col-md-3 col-sm-4 team-item">
+            <div class="col-md-4 col-sm-4 team-item">
                 <div class="team-icon">
 <div class="gobi-stories"
   data-gobi-stories="pp7ep"
   data-gobi-color="transparent"
-  data-gobi-bubble-size="175px"
+  data-gobi-bubble-size="185px"
   data-gobi-animated-bubble="true"
   data-gobi-hide-title="true"
   data-gobi-disable-shadow-dom="true"
@@ -847,6 +756,25 @@ h1 {
                 <p>My favorite parts of working as a project leader at Talentech</p>
             </div>
             </div>
+            <!-- team 4 -->
+            <div class="col-md-4 col-sm-4 team-item">
+                <div class="team-icon">
+<div class="gobi-stories"
+  data-gobi-stories="p5z64"
+  data-gobi-color="transparent"
+  data-gobi-bubble-size="185px"
+  data-gobi-animated-bubble="true"
+  data-gobi-hide-title="true"
+  data-gobi-disable-shadow-dom="true"
+  data-gobi-inherit-text-font-family="true"
+  data-gobi-auto-start-with-sound="true">
+</div>
+                </div>
+    <div class="team-content mt-4">
+                <strong>Jens</strong>
+                <p>Why Talentech is such a great workplace</p>
+            </div>
+            </div>
        
         </div>
     </div>
@@ -856,16 +784,190 @@ h1 {
 
 
 
+<div class="quote-section py-5">
+    <div class="container py-5 mt-3 m-py-2">
+        <blockquote class="blockquote text-center">
+            <p class="mb-4">"Starting at Talentech, I immediately felt welcomed and part of a dynamic, innovative team."</p>
+            <footer class="blockquote-footer">Henrik Moberg</footer>
+        </blockquote>
+    </div>
+</div>
+
+
+
+
 
 	
+	
+	
+	
+        <h2 class="container pt-5 mt-5 m-my-0 m-px-4 m-pb-0">Job <span style="font-weight: 800;">categories</span></h2>
+	<div id="teamCarousel" class="carousel slide" data-interval="false">
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <div class="container">
+                <div class="row ">
+                    <!-- Team Member 1 -->
+                    <div class="col-md-4 team-member">
+<div class="team-background-image mb-3" alt="Jostein Knudsen" style="background-image: url('https://reboot.no/tt/cat-1.jpg')"></div>
+                        <p class="role mb-3">Software Development</p>
+                        <p>Join our Software Development team to innovate and build cutting-edge technology solutions that revolutionize talent management.</p>
+                    </div>
+                    <!-- Team Member 2 -->
+                    <div class="col-md-4 team-member">
+<div class="team-background-image mb-3" alt="Jostein Knudsen" style="background-image: url('https://reboot.no/tt/cat-2.jpg')"></div>
+                        <p class="role mb-3">Customer Success</p>
+                        <p>Be a part of our Customer Success team, where your efforts directly contribute to our clients' growth and satisfaction.</p>
+                    </div>
+                    <!-- Team Member 3 -->
+                    <div class="col-md-4 team-member">
+<div class="team-background-image mb-3" alt="Jostein Knudsen" style="background-image: url('https://reboot.no/tt/cat-3.jpg')"></div>
+                        <p class="role mb-3">Sales and Marketing</p>
+                        <p>Drive growth and build meaningful relationships in our Sales and Marketing team, connecting clients with the solutions they need.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- New Carousel Item -->
+        <div class="carousel-item">
+            <div class="container">
+                <div class="row ">
+                    <!-- Additional Team Member -->
+                    <div class="col-md-4 team-member">
+<div class="team-background-image mb-3" alt="Jostein Knudsen" style="background-image: url('https://reboot.no/tt/cat-4.jpg')"></div>
+                        <p class="role mb-3">Product Management</p>
+                        <p>Shape the future of our offerings as a member of the Product Management team, where your vision can transform the talent acquisition landscape.</p>
+                    </div>
+                    <div class="col-md-4 team-member">
+<div class="team-background-image mb-3" alt="Jostein Knudsen" style="background-image: url('https://reboot.no/tt/cat-4.jpg')"></div>
+                        <p class="role mb-3">Human Resources</p>
+                        <p>Empower and enrich our company culture as part of the Human Resources team, focusing on talent development and organizational growth.</p>
+                    </div>
+                    <div class="col-md-4 team-member">
+<div class="team-background-image mb-3" alt="Jostein Knudsen" style="background-image: url('https://reboot.no/tt/cat-4.jpg')"></div>
+                        <p class="role mb-3">Data Analysis & Insights</p>
+                        <p>Join our Data Analysis & Insights team to harness the power of data, driving strategic decisions and enhancing our product offerings.</p>
+                    </div>
+                    <!-- You can duplicate previous members here or add new ones -->
+                    <!-- Placeholder for additional team members if needed -->
+                    <div class="col-md-4 team-member"> <!-- Placeholder if you want more than one member per slide -->
+                        <!-- Content for another member -->
+                    </div>
+                    <div class="col-md-4 team-member"> <!-- Placeholder if you want more than one member per slide -->
+                        <!-- Content for another member -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End of New Carousel Item -->
+    </div>
+    <a class="carousel-control-prev" href="#teamCarousel" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#teamCarousel" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+    </a>
+</div>
 
+
+
+
+
+<section class="benefits-section my-5 pb-4 m-py-0 m-mt-0">
+        <h2 class="container pt-5 m-pt-4 m-px-4 m-pb-2"><span style="font-weight: 800;">Benefits</span></h2>
+    <div class="container">
+        <div class="row">
+            <!-- Benefit 1 -->
+            <div class="col-md-3 col-sm-4 benefit-item">
+                <div class="benefit-icon">
+				<i class="fa-solid fa-display-code"></i>
+                </div>
+    <div class="benefit-content">
+                <strong>Home office</strong>
+                <p>3500kr budget for equipment to your home office</p>
+            </div>
+            </div>
+            <!-- Benefit 2 -->
+            <div class="col-md-3 col-sm-4 benefit-item">
+                <div class="benefit-icon">
+                    <i class="fa-solid fa-notes-medical"></i>
+                </div>
+    <div class="benefit-content">
+                <strong>Health allowance</strong>
+                <p>6000kr each year in health allowance</p>
+            </div>
+            </div>
+            <!-- Benefit 3 -->
+            <div class="col-md-3 col-sm-4 benefit-item">
+                <div class="benefit-icon">
+                    <i class="fa-solid fa-bicycle"></i>
+                </div>
+    <div class="benefit-content">
+                <strong>Scooter</strong>
+                <p>50% discount on scooter rides</p>
+            </div>
+            </div>
+            <!-- Benefit 4 -->
+            <div class="col-md-3 col-sm-4 benefit-item">
+                <div class="benefit-icon">
+                    <i class="fa-solid fa-map-location-dot"></i>
+                </div>
+    <div class="benefit-content">
+                <strong>Vacation days</strong>
+                <p>30 days paid vacation to do whatever you want</p>
+            </div>
+            </div>
+            <!-- Benefit 5 -->
+            <div class="col-md-3 col-sm-4 benefit-item">
+                <div class="benefit-icon">
+                    <i class="fa-solid fa-pot-food"></i>
+                </div>
+    <div class="benefit-content">
+                <strong>Lunch discount</strong>
+                <p>Discount on lunches – paid by us!</p>
+            </div>
+            </div>
+            <!-- Benefit 6 -->
+            <div class="col-md-3 col-sm-4 benefit-item">
+                <div class="benefit-icon">
+                    <i class="fa-solid fa-laptop"></i>
+                </div>
+    <div class="benefit-content">
+                <strong>Remote first</strong>
+                <p>Work where you work the best – even though we want to meet sometimes</p>
+            </div>
+            </div>
+            <!-- Benefit 7 -->
+            <div class="col-md-3 col-sm-6 benefit-item">
+                <div class="benefit-icon">
+                    <i class="fa-solid fa-dog"></i>
+                </div>
+    <div class="benefit-content">
+                <strong>Dog friendly</strong>
+                <p>Dogs are welcome in the office</p>
+            </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+	
+	
+
+	
+<div class=" mt-5">
+    <div id="mapid" style="height: 400px; overflow: hidden;"></div>
+</div>
+	
 
 
 
 	
 <div class="feature-section mb-5 pt-3 pb-5" id="jobs-anchor" style="background-color: #eeeef2;">
 <div class="container mt-3 mb-5 m-mb-0">
-    <h2 class="my-5 m-px-2 m-my-0">Similar <span style="font-weight: 800">jobs</span></h2>
+    <h2 class="my-5 m-px-2 m-my-0">Available <span style="font-weight: 800">jobs</span></h2>
     <div class="row my-3">
         <div class="col-md-3 mb-3">
             <label for="locationFilter">Location</label>
@@ -959,6 +1061,7 @@ h1 {
 
 
 	
+	
 
 <script>
 $(document).ready(function () {
@@ -1027,19 +1130,24 @@ $(document).ready(function () {
 
     // Function to build HTML for a job card
     function buildJobCard(job) {
+    // Assuming job-details.html is your detail page and it can handle job IDs
+    // Adjust accordingly if your detail page has a different URL structure
+    const jobDetailUrl = `job-details.html?jobId=${job.ad_id}`;
         return `
-            <div class="col-12 col-md-4 col-lg-4 mb-4">
-                <div class="card h-100">
-                    <div class="card-body">
-		    	<div class="card-category"><span>Category</span></div>
-                        <h5 class="card-title">${job.title}</h5>
-                        <p class="card-text">${job.country}</p>
-                        <a href="${job.link}" target="_blank" class="stretched-link">
-                            <img src="https://reboot.no/tt/arrow-right-thin.svg" alt="Details">
-                        </a>
-                    </div>
-                </div>
-            </div>`;
+<div class="col-12 col-md-4 col-lg-4 mb-4">
+    <a href="${jobDetailUrl}" class="" style="text-decoration: none; color: inherit;">
+        <div class="card h-100">
+            <div class="card-body">
+		        <div class="card-category"><span>Category</span></div>
+                <h5 class="card-title">${job.title}</h5>
+                <p class="card-text">${job.country}</p>
+			    <a href="${jobDetailUrl}" class="stretched-link">
+                <img src="https://reboot.no/tt/arrow-right-thin.svg" class="stretched-link" alt="Details" style="">
+		</a>
+            </div>
+        </div>
+    </a>
+</div>`;
     }
 
     // Function to update the visibility of the "Load More" button
@@ -1092,58 +1200,44 @@ $(document).ready(function () {
 </script>
 
 
-	
-	
-	
-	
-	
+
 <script>
-$(document).ready(function() {
-    const params = new URLSearchParams(window.location.search);
-    const jobId = parseInt(params.get('jobId'), 10);
+// Initialize the map
+var mymap = L.map('mapid', {
+    attributionControl: false,
+    scrollWheelZoom: false
+}).setView([59.9139, 10.7522], 4);
 
-    fetch('https://api.talentech.io/reachmee/feed/')
-        .then(response => response.json())
-        .then(jobs => {
-            const job = jobs.find(job => job.ad_id === jobId);
-            if (job) {
-                // Check if there is more than one organization and the second one exists, otherwise default to the first one
-                const organizationUnit = job.organizations && job.organizations.length > 1 ? job.organizations[1].nameorgunit : job.organizations[0]?.nameorgunit || 'Not specified';
+// Set up the map tiles
+L.tileLayer('https://api.mapbox.com/styles/v1/inequi/clu45jmjw007101qrhjb35kmh/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoiaW5lcXVpIiwiYSI6ImNsdTQ0c2FybTFiZG4ya3FzZjQxOW91ejUifQ.Z_vyEld041G0LshX2Mdtpw', {
+    maxZoom: 19,
+    attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+    id: 'mapbox/streets-v11',
+    tileSize: 512,
+    zoomOffset: -1,
+    accessToken: 'yourMapboxAccessToken'
+}).addTo(mymap);
 
-                // The rest of your script remains unchanged
-                const city = job.areas && job.areas.length > 0 ? job.areas[0].name : 'Not specified';
-                $('.job-title').text(job.title);
-                $('.job-description').html(job.description);
-                $('.organization-unit').text(organizationUnit);
-                $('.city').text(city);
-                $('.country').text(job.country);
-                $('.publishing-date').text(job.publishing_date);
-                $('.expiration-date').text(job.expiration_date);
 
-                $('.contact-persons').empty();
-                job.contact_persons.forEach((person) => {
-                    const contactInfo = `
-                        <div class="contact-person">
-                            <p>${person.first_name} ${person.surname}, ${person.position}<br>
-                            <a href="mailto:${person.email}">${person.email}</a><br>
-                            <a href="tel:${person.phone}">${person.phone}</a></p>
-                        </div>`;
-                    $('.contact-persons').append(contactInfo);
-                });
-            } else {
-                $('.job-details').text('Job not found.');
-            }
-        })
-        .catch(error => {
-            console.error('Error fetching job details:', error);
-            $('.job-details').text('Job details could not be loaded.');
-        });
+// Create a custom icon
+var customIcon = L.icon({
+    iconUrl: 'https://reboot.no/tt/TT-fav.svg',
+    iconSize: [38, 95], // Size of the icon, adjust as needed
+    iconAnchor: [22, 50], // Point of the icon which will correspond to marker's location
+    popupAnchor: [-3, -76] // Point from which the popup should open relative to the iconAnchor
 });
 
+// Sample data from your feed, replace this with dynamic data fetching and geocoding
+var jobLocations = [
+    {name: "Stockholm", lat: 59.3293, lon: 18.0686}, // Coordinates for Stockholm
+    {name: "Oslo", lat: 59.9139, lon: 10.7522} // Coordinates for Oslo
+];
 
-
-</script>
-
+// Add pins to the map with custom icons
+jobLocations.forEach(function(location) {
+    L.marker([location.lat, location.lon], {icon: customIcon}).addTo(mymap);
+});
+    </script>
 	
 	
 </body>

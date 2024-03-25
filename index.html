@@ -546,90 +546,11 @@ h1 {
 	<div class="talentech-section">
     <div class="container mt-5 pt-4 m-mt-2">
         <h2 class="m-px-2">Life at <span style="font-weight: 800;">Talentech</span></h2>
-        <p class="my-4  m-px-2">Talentech has set out to become the largest and most innovative HR tech company of its kind. With the aim of providing a seamless talent journey in one central platform, the product suite today spans the entire talent pipeline from recruitment, to onboarding and talent management with our products Talent Recruiter, ReachMee, Webcruiter, Talmundo, Weekli, irecommend and ontame.</p>
-        <p class="m-px-2">We know that great HR makes a difference and we want to be a part of shaping the future with the vision that all companies should know that Talent Comes First. To reach our goals we need you! Talentech as a workplace is characterized by a lot of great and engaged colleges that really believe in what we do and want to grow together with the company.</p>
+        <p class="my-4  m-px-2">Talentech has set out to become the largest and most innovative HR tech company of its kind. The product suite today spans the entire talent pipeline from recruitment, to onboarding and talent management with our products Talent Recruiter, ReachMee, Webcruiter, Talmundo, Weekli, irecommend and ontame.</p>
+        <p class="m-px-2">We know that great HR makes a difference and we want to be a part of shaping the future with the vision that all companies should know that Talent Comes First. To reach our goals we need you! Talentech as a workplace is characterized by a lot of great and engaged colleges that really believe in what we do.</p>
     </div>
 </div>
 
-
-<style>
-.video-container {
-    position: relative;
-}
-
-.video-controls {
-    position: absolute;
-    bottom: 40px;
-    right: 40px;
-    background-color: rgba(0, 0, 0, 0.5);
-    padding: 5px;
-    border-radius: 5px;
-}
-
-.video-controls button {
-    background: none;
-    border: none;
-    color: white;
-    font-size: 16px;
-    margin-right: 10px;
-    cursor: pointer;
-    filter: brightness(0) invert(1);
-    width: 30px;
-}
-</style>
-
-<script>
-document.addEventListener('DOMContentLoaded', () => {
-    const video = document.getElementById('talentechVideo');
-    const playPauseIcon = document.getElementById('playPauseBtn').querySelector('img');
-    const muteBtn = document.getElementById('muteBtn');
-    const muteIcon = muteBtn.querySelector('img');
-
-    // Function to toggle video play/pause
-    const togglePlayPause = () => {
-        if (video.paused || video.ended) {
-            video.play();
-            playPauseIcon.src = "https://reboot.no/tt/pause-thin.svg";
-            playPauseIcon.alt = "Pause";
-        } else {
-            video.pause();
-            playPauseIcon.src = "https://reboot.no/tt/play-thin.svg";
-            playPauseIcon.alt = "Play";
-        }
-    };
-
-    // Click event for the video itself
-    video.addEventListener('click', () => {
-        togglePlayPause();
-    });
-
-    // Intersection Observer for autoplay/pause on visibility
-    const observer = new IntersectionObserver((entries) => {
-        const [entry] = entries;
-        if (entry.isIntersecting) {
-            video.play();
-            playPauseIcon.src = "https://reboot.no/tt/pause-thin.svg";
-            playPauseIcon.alt = "Pause";
-        } else {
-            video.pause();
-            playPauseIcon.src = "https://reboot.no/tt/play-thin.svg";
-            playPauseIcon.alt = "Play";
-        }
-    }, {
-        root: null,
-        threshold: 0.5
-    });
-
-    observer.observe(video);
-
-    // Event listener for the mute button
-    muteBtn.addEventListener('click', () => {
-        video.muted = !video.muted;
-        muteIcon.src = video.muted ? "https://reboot.no/tt/volume-xmark-thin.svg" : "https://reboot.no/tt/volume-off-thin.svg";
-        muteIcon.alt = video.muted ? "Mute" : "Unmute";
-    });
-});
-</script>
 
 
 

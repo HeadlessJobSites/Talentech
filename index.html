@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ledige stillinger1</title>
+    <title>Ledige stillinger</title>
     <!-- Bootstrap CSS -->
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
@@ -582,15 +582,16 @@ h1 {
 }
 @media (max-width: 768px) { /* Adjust the max-width as necessary */
     #playPauseBtn {
-	    display: none;
+	    visibility: hidden;
     }
-	.video-controls button {
+    .video-controls button {
         width: 30px; /* You can adjust the size */
         height: 30px; /* Make sure the height is sufficient */
+        padding: 5px; /* Adjust padding if necessary */
     }
     .video-controls {
-        bottom: 30px; /* Adjust positioning for better visibility */
-        right: 30px;
+        bottom: 20px; /* Adjust positioning for better visibility */
+        right: 20px;
     }
 }
 </style>

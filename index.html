@@ -598,56 +598,60 @@ h1 {
 
 <script>
 document.addEventListener('DOMContentLoaded', () => {
-    const video = document.getElementById('talentechVideo');
-    const playPauseIcon = document.getElementById('playPauseBtn').querySelector('img');
-    const muteBtn = document.getElementById('muteBtn');
-    const muteIcon = muteBtn.querySelector('img');
+    // Only run the script if the window width is more than 992 pixels (desktop devices)
+    if (window.innerWidth > 992) {
+        const video = document.getElementById('talentechVideo');
+        const playPauseIcon = document.getElementById('playPauseBtn').querySelector('img');
+        const muteBtn = document.getElementById('muteBtn');
+        const muteIcon = muteBtn.querySelector('img');
 
-    // Function to toggle video play/pause
-    const togglePlayPause = () => {
-        if (video.paused || video.ended) {
-            video.play();
-            playPauseIcon.src = "https://reboot.no/tt/pause-thin.svg";
-            playPauseIcon.alt = "Pause";
-        } else {
-            video.pause();
-            playPauseIcon.src = "https://reboot.no/tt/play-thin.svg";
-            playPauseIcon.alt = "Play";
-        }
-    };
+        // Function to toggle video play/pause
+        const togglePlayPause = () => {
+            if (video.paused || video.ended) {
+                video.play();
+                playPauseIcon.src = "https://reboot.no/tt/pause-thin.svg";
+                playPauseIcon.alt = "Pause";
+            } else {
+                video.pause();
+                playPauseIcon.src = "https://reboot.no/tt/play-thin.svg";
+                playPauseIcon.alt = "Play";
+            }
+        };
 
-    // Click event for the video itself
-    video.addEventListener('click', () => {
-        togglePlayPause();
-    });
+        // Click event for the video itself
+        video.addEventListener('click', () => {
+            togglePlayPause();
+        });
 
-    // Intersection Observer for autoplay/pause on visibility
-    const observer = new IntersectionObserver((entries) => {
-        const [entry] = entries;
-        if (entry.isIntersecting) {
-            video.play();
-            playPauseIcon.src = "https://reboot.no/tt/pause-thin.svg";
-            playPauseIcon.alt = "Pause";
-        } else {
-            video.pause();
-            playPauseIcon.src = "https://reboot.no/tt/play-thin.svg";
-            playPauseIcon.alt = "Play";
-        }
-    }, {
-        root: null,
-        threshold: 0.5
-    });
+        // Intersection Observer for autoplay/pause on visibility
+        const observer = new IntersectionObserver((entries) => {
+            const [entry] = entries;
+            if (entry.isIntersecting) {
+                video.play();
+                playPauseIcon.src = "https://reboot.no/tt/pause-thin.svg";
+                playPauseIcon.alt = "Pause";
+            } else {
+                video.pause();
+                playPauseIcon.src = "https://reboot.no/tt/play-thin.svg";
+                playPauseIcon.alt = "Play";
+            }
+        }, {
+            root: null,
+            threshold: 0.5
+        });
 
-    observer.observe(video);
+        observer.observe(video);
 
-    // Event listener for the mute button
-    muteBtn.addEventListener('click', () => {
-        video.muted = !video.muted;
-        muteIcon.src = video.muted ? "https://reboot.no/tt/volume-xmark-thin.svg" : "https://reboot.no/tt/volume-off-thin.svg";
-        muteIcon.alt = video.muted ? "Mute" : "Unmute";
-    });
+        // Event listener for the mute button
+        muteBtn.addEventListener('click', () => {
+            video.muted = !video.muted;
+            muteIcon.src = video.muted ? "https://reboot.no/tt/volume-xmark-thin.svg" : "https://reboot.no/tt/volume-off-thin.svg";
+            muteIcon.alt = video.muted ? "Mute" : "Unmute";
+        });
+    }
 });
 </script>
+
 <div class="talentech-section pb-4 mb-5 m-mb-3">
     <div class="container mt-4 pt-2 mb-5 pb-3 video-container m-my-0">
         <video id="talentechVideo" class="rounded-video" playsinline autoplay loop muted>

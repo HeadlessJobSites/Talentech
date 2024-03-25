@@ -676,7 +676,7 @@ font-size: 1.8rem;
             <source src="https://reboot.no/tt/Compressed-3.mp4" type="video/mp4">
         </video>
         <div class="hero-content">
-            <h1 class="job-title"> </h1>
+            <h1 class="job-title2"> </h1>
             <p style="font-size: 1.25rem;"><span class="organization-unit"> </span> • <span class="city"> </span></p>
         </div>
     </div>
@@ -1133,6 +1133,7 @@ $(document).ready(function() {
                 const restOfTitle = titleWords.join(' '); // Join the rest of the words back together
                 $('.job-title').html(`<span style="font-weight:400;">${firstWord}</span> <span style="font-weight:800;">${restOfTitle}</span>`); // Set the styled title
 
+                $('.job-title2').html(job.title);
                 $('.job-description').html(job.description);
                 $('.organization-unit').text(organizationUnit);
                 $('.city').text(city);

@@ -1124,22 +1124,23 @@ $(document).ready(function() {
         .then(jobs => {
             const job = jobs.find(job => job.ad_id === jobId);
             if (job) {
-                // Check if there is more than one organization and the second one exists, otherwise default to the first one
                 const organizationUnit = job.organizations && job.organizations.length > 1 ? job.organizations[1].nameorgunit : job.organizations[0]?.nameorgunit || 'Not specified';
-
                 const city = job.areas && job.areas.length > 0 ? job.areas[0].name : 'Not specified';
-                $('.job-title').text(job.title);
+
+                // Split the job title into words and apply different styles
+                const titleWords = job.title.split(' ');
+                const firstWord = titleWords.shift(); // Remove and save the first word
+                const restOfTitle = titleWords.join(' '); // Join the rest of the words back together
+                $('.job-title').html(`<span style="font-weight:400;">${firstWord}</span> <span style="font-weight:800;">${restOfTitle}</span>`); // Set the styled title
+
                 $('.job-description').html(job.description);
                 $('.organization-unit').text(organizationUnit);
                 $('.city').text(city);
                 $('.country').text(job.country);
                 $('.publishing-date').text(job.publishing_date);
                 $('.expiration-date').text(job.expiration_date);
-
-                // Set the application form link
                 $('#applyButton').attr('onclick', `window.location.href='${job.link}'`);
 
-                // Clear previous contact persons and add new ones
                 $('.contact-persons').empty();
                 job.contact_persons.forEach((person) => {
                     const contactInfo = `
@@ -1159,6 +1160,7 @@ $(document).ready(function() {
             $('.job-details').text('Job details could not be loaded.');
         });
 });
+
 </script>
 
 	

@@ -558,12 +558,18 @@ h1 {
 
 <div class="talentech-section pb-4 mb-5 m-mb-3">
     <div class="container mt-4 pt-2 mb-5 pb-3 video-container m-my-0">
-        <video autoplay muted loop>
+        <video id="talentechVideo" class="rounded-video" playsinline autoplay loop muted>
             <source src="https://reboot.no/tt/TT-video.mp4" type="video/mp4">
             Your browser does not support the video tag.
         </video>
+        <div class="video-controls">
+            <button id="playPauseBtn"><img src="https://reboot.no/tt/pause-thin.svg" alt="Pause"></button>
+            <button id="muteBtn"><img src="https://reboot.no/tt/volume-xmark-thin.svg" alt="Mute"></button>
+        </div>
     </div>
 </div>
+
+
 
 
 

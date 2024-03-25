@@ -705,7 +705,7 @@ font-size: 1.8rem;
                 <span class="expiration-date">Application due</span>
             </div>
             <div class="col-md-3 col-6 text-center apply-btn-header">
-                <button class="apply-btn">Apply for the job</button>
+                <button class="apply-btn application-form">Apply for the job</button>
             </div>
         </div>
     </div>
@@ -722,7 +722,7 @@ font-size: 1.8rem;
     </div>
 
             <div class="text-center centerd-apply-btn">
-                <button class="apply-btn">Apply for the job</button>
+                <button class="apply-btn application-form">Apply for the job</button>
             </div>
 </div>
 
@@ -1131,9 +1131,9 @@ $(document).ready(function() {
         .then(jobs => {
             const job = jobs.find(job => job.ad_id === jobId);
             if (job) {
-                // Check if there is more than one organization and the second one exists, otherwise default to the first one
                 const organizationUnit = job.organizations && job.organizations.length > 1 ? job.organizations[1].nameorgunit : job.organizations[0]?.nameorgunit || 'Not specified';
-
+                const applicationFormUrl = `https://career.talentech.com/jobs/${jobId}-${job.title.replace(/\s+/g, '-').toLowerCase()}?rmpage=apply&rmjob=${jobId}`;
+                
                 // The rest of your script remains unchanged
                 const city = job.areas && job.areas.length > 0 ? job.areas[0].name : 'Not specified';
                 $('.job-title').text(job.title);
@@ -1143,6 +1143,7 @@ $(document).ready(function() {
                 $('.country').text(job.country);
                 $('.publishing-date').text(job.publishing_date);
                 $('.expiration-date').text(job.expiration_date);
+                $('.application-form').attr('href', applicationFormUrl); // Assuming you have an element for the application link
 
                 $('.contact-persons').empty();
                 job.contact_persons.forEach((person) => {
@@ -1163,9 +1164,6 @@ $(document).ready(function() {
             $('.job-details').text('Job details could not be loaded.');
         });
 });
-
-
-
 </script>
 
 	

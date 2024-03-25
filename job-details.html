@@ -625,19 +625,30 @@ a {
 		font-size: 14px;
 		padding: 8px 16px;
 		font-weight: 600;
-	}
+	}/*
 	    .hero-video {
         left: auto; /* Remove the 'left: 50%' setting */
         right: 0; /* Align to the right side of the screen */
         transform: translateY(-50%); /* Keep it centered vertically */
-    }
+    }*/
+	.hero-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transform: translate(0, 0); /* Remove translate as it's no longer needed */
+    object-fit: cover; /* This will ensure the video covers the area without being cropped */
+    z-index: -1;
+}
+
 .m-m-0{margin:0!important}.m-mt-0,.m-my-0{margin-top:0!important}.m-mr-0,.m-mx-0{margin-right:0!important}.m-mb-0,.m-my-0{margin-bottom:0!important}.m-ml-0,.m-mx-0{margin-left:0!important}.m-m-1{margin:.25rem!important}.m-mt-1,.m-my-1{margin-top:.25rem!important}.m-mr-1,.m-mx-1{margin-right:.25rem!important}.m-mb-1,.m-my-1{margin-bottom:.25rem!important}.m-ml-1,.m-mx-1{margin-left:.25rem!important}.m-m-2{margin:.5rem!important}.m-mt-2,.m-my-2{margin-top:.5rem!important}.m-mr-2,.m-mx-2{margin-right:.5rem!important}.m-mb-2,.m-my-2{margin-bottom:.5rem!important}.m-ml-2,.m-mx-2{margin-left:.5rem!important}.m-m-3{margin:1rem!important}.m-mt-3,.m-my-3{margin-top:1rem!important}.m-mr-3,.m-mx-3{margin-right:1rem!important}.m-mb-3,.m-my-3{margin-bottom:1rem!important}.m-ml-3,.m-mx-3{margin-left:1rem!important}.m-m-4{margin:1.5rem!important}.m-mt-4,.m-my-4{margin-top:1.5rem!important}.m-mr-4,.m-mx-4{margin-right:1.5rem!important}.m-mb-4,.m-my-4{margin-bottom:1.5rem!important}.m-ml-4,.m-mx-4{margin-left:1.5rem!important}.m-m-5{margin:3rem!important}.m-mt-5,.m-my-5{margin-top:3rem!important}.m-mr-5,.m-mx-5{margin-right:3rem!important}.m-mb-5,.m-my-5{margin-bottom:3rem!important}.m-ml-5,.m-mx-5{margin-left:3rem!important}
 .m-p-0{padding:0!important}.m-pt-0,.m-py-0{padding-top:0!important}.m-pr-0,.m-px-0{padding-right:0!important}.m-pb-0,.m-py-0{padding-bottom:0!important}.m-pl-0,.m-px-0{padding-left:0!important}.m-p-1{padding:.25rem!important}.m-pt-1,.m-py-1{padding-top:.25rem!important}.m-pr-1,.m-px-1{padding-right:.25rem!important}.m-pb-1,.m-py-1{padding-bottom:.25rem!important}.m-pl-1,.m-px-1{padding-left:.25rem!important}.m-p-2{padding:.5rem!important}.m-pt-2,.m-py-2{padding-top:.5rem!important}.m-pr-2,.m-px-2{padding-right:.5rem!important}.m-pb-2,.m-py-2{padding-bottom:.5rem!important}.m-pl-2,.m-px-2{padding-left:.5rem!important}.m-p-3{padding:1rem!important}.m-pt-3,.m-py-3{padding-top:1rem!important}.m-pr-3,.m-px-3{padding-right:1rem!important}.m-pb-3,.m-py-3{padding-bottom:1rem!important}.m-pl-3,.m-px-3{padding-left:1rem!important}.m-p-4{padding:1.5rem!important}.m-pt-4,.m-py-4{padding-top:1.5rem!important}.m-pr-4,.m-px-4{padding-right:1.5rem!important}.m-pb-4,.m-py-4{padding-bottom:1.5rem!important}.m-pl-4,.m-px-4{padding-left:1.5rem!important}.m-p-5{padding:3rem!important}.m-pt-5,.m-py-5{padding-top:3rem!important}.m-pr-5,.m-px-5{padding-right:3rem!important}.m-pb-5,.m-py-5{padding-bottom:3rem!important}.m-pl-5,.m-px-5{padding-left:3rem!important}
   h2 {
     font-size: 2.3rem;
 }
 h1 {
-    font-size: 3.5rem;
+    font-size: 2.8rem;
 	}
 	.h2-small {
 font-size: 1.8rem;
@@ -674,7 +685,7 @@ font-size: 1.8rem;
 
     <div class="hero-section">
         <video playsinline="playsinline" autoplay="autoplay" muted="muted" loop="loop" class="hero-video">
-            <source src="https://reboot.no/tt/Compressed-2.mp4" type="video/mp4">
+            <source src="https://reboot.no/tt/Compressed-3.mp4" type="video/mp4">
         </video>
         <div class="hero-content">
             <h1 class="job-title"> </h1>
@@ -708,8 +719,8 @@ font-size: 1.8rem;
 
 	
 	<div class="talentech-section mb-5 pb-5 m-pb-3">
-    <div class="container mt-5 pt-3">
-        <h2 class="mb-5 job-title"> </h2>
+    <div class="container mt-5 pt-3 m-px-4 m-mt-4">
+        <h2 class="mb-5 job-title m-mb-4"> </h2>
 
         <div class="my-3 job-description"> </div>
 	    <div class="contact-persons"></div>

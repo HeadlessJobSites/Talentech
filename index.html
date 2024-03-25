@@ -555,7 +555,6 @@ h1 {
 
 
 
-
 <style>
 .video-container {
     position: relative;
@@ -568,6 +567,7 @@ h1 {
     background-color: rgba(0, 0, 0, 0.5);
     padding: 5px;
     border-radius: 5px;
+	z-index: 10;
 }
 
 .video-controls button {
@@ -579,6 +579,17 @@ h1 {
     cursor: pointer;
     filter: brightness(0) invert(1);
     width: 30px;
+}
+@media (max-width: 768px) { /* Adjust the max-width as necessary */
+    .video-controls button {
+        width: 30px; /* You can adjust the size */
+        height: 30px; /* Make sure the height is sufficient */
+        padding: 5px; /* Adjust padding if necessary */
+    }
+    .video-controls {
+        bottom: 20px; /* Adjust positioning for better visibility */
+        right: 20px;
+    }
 }
 </style>
 

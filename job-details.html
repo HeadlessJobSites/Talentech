@@ -1124,10 +1124,9 @@ $(document).ready(function() {
         .then(jobs => {
             const job = jobs.find(job => job.ad_id === jobId);
             if (job) {
+                // Check if there is more than one organization and the second one exists, otherwise default to the first one
                 const organizationUnit = job.organizations && job.organizations.length > 1 ? job.organizations[1].nameorgunit : job.organizations[0]?.nameorgunit || 'Not specified';
-                const applicationFormUrl = `https://career.talentech.com/jobs/${jobId}-${job.title.replace(/\s+/g, '-').toLowerCase()}?rmpage=apply&rmjob=${jobId}`;
-                
-                // The rest of your script remains unchanged
+
                 const city = job.areas && job.areas.length > 0 ? job.areas[0].name : 'Not specified';
                 $('.job-title').text(job.title);
                 $('.job-description').html(job.description);
@@ -1136,8 +1135,11 @@ $(document).ready(function() {
                 $('.country').text(job.country);
                 $('.publishing-date').text(job.publishing_date);
                 $('.expiration-date').text(job.expiration_date);
-                $('.application-form').attr('href', applicationFormUrl); // Assuming you have an element for the application link
 
+                // Set the application form link
+                $('#applyButton').attr('onclick', `window.location.href='${job.link}'`);
+
+                // Clear previous contact persons and add new ones
                 $('.contact-persons').empty();
                 job.contact_persons.forEach((person) => {
                     const contactInfo = `

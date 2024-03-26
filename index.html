@@ -510,7 +510,7 @@ h1 {
 
 
 <nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color: rgba(0, 0, 0, 0.0); padding: 20px; position: absolute; ">
-    <div class="container no-padding-mobile">
+    <div class="container m-py-0">
     <a class="navbar-brand" href="https://headlessjobsites.github.io/Talentech">
         <img src="https://reboot.no/tt/TT-2.png" height="40" class="d-inline-block align-top" alt="">
     </a>
@@ -598,49 +598,50 @@ h1 {
 
 <script>
 document.addEventListener('DOMContentLoaded', () => {
-    // Only run the script if the window width is more than 992 pixels (desktop devices)
+    const video = document.getElementById('talentechVideo');
+    const playPauseIcon = document.getElementById('playPauseBtn').querySelector('img');
+    const muteBtn = document.getElementById('muteBtn');
+    const muteIcon = muteBtn.querySelector('img');
+
+    // Function to toggle video play/pause
+    const togglePlayPause = () => {
+        if (video.paused || video.ended) {
+            video.play();
+            playPauseIcon.src = "https://reboot.no/tt/pause-thin.svg";
+            playPauseIcon.alt = "Pause";
+        } else {
+            video.pause();
+            playPauseIcon.src = "https://reboot.no/tt/play-thin.svg";
+            playPauseIcon.alt = "Play";
+        }
+    };
+
+    // Setup Intersection Observer for autoplay/pause based on visibility
+    // This part will now work on all devices
+    const observer = new IntersectionObserver((entries) => {
+        const [entry] = entries;
+        if (entry.isIntersecting) {
+            video.play();
+            playPauseIcon.src = "https://reboot.no/tt/pause-thin.svg";
+            playPauseIcon.alt = "Pause";
+        } else {
+            video.pause();
+            playPauseIcon.src = "https://reboot.no/tt/play-thin.svg";
+            playPauseIcon.alt = "Play";
+        }
+    }, {
+        root: null,
+        threshold: 0.5
+    });
+
+    observer.observe(video);
+
+    // Check if we are on desktop before adding event listeners for play/pause and mute controls
     if (window.innerWidth > 992) {
-        const video = document.getElementById('talentechVideo');
-        const playPauseIcon = document.getElementById('playPauseBtn').querySelector('img');
-        const muteBtn = document.getElementById('muteBtn');
-        const muteIcon = muteBtn.querySelector('img');
-
-        // Function to toggle video play/pause
-        const togglePlayPause = () => {
-            if (video.paused || video.ended) {
-                video.play();
-                playPauseIcon.src = "https://reboot.no/tt/pause-thin.svg";
-                playPauseIcon.alt = "Pause";
-            } else {
-                video.pause();
-                playPauseIcon.src = "https://reboot.no/tt/play-thin.svg";
-                playPauseIcon.alt = "Play";
-            }
-        };
-
         // Click event for the video itself
         video.addEventListener('click', () => {
             togglePlayPause();
         });
-
-        // Intersection Observer for autoplay/pause on visibility
-        const observer = new IntersectionObserver((entries) => {
-            const [entry] = entries;
-            if (entry.isIntersecting) {
-                video.play();
-                playPauseIcon.src = "https://reboot.no/tt/pause-thin.svg";
-                playPauseIcon.alt = "Pause";
-            } else {
-                video.pause();
-                playPauseIcon.src = "https://reboot.no/tt/play-thin.svg";
-                playPauseIcon.alt = "Play";
-            }
-        }, {
-            root: null,
-            threshold: 0.5
-        });
-
-        observer.observe(video);
 
         // Event listener for the mute button
         muteBtn.addEventListener('click', () => {
@@ -651,6 +652,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 </script>
+
 
 <div class="talentech-section pb-4 mb-5 m-mb-3">
     <div class="container mt-4 pt-2 mb-5 pb-3 video-container m-my-0">

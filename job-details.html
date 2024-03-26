@@ -719,7 +719,7 @@ font-size: 1.8rem;
     </div>
 
             <div class="text-center centerd-apply-btn">
-<button id="applyButton" class="apply-btn m-px-4 m-py-3">Apply for the job</button>
+<button id="applyButton-tt" class="apply-btn m-px-4 m-py-3">Apply for the job</button>
             </div>
 </div>
 
@@ -1145,6 +1145,7 @@ $(document).ready(function() {
                 $('.publishing-date').text(job.publishing_date);
                 $('.expiration-date').text(job.expiration_date);
                 $('#applyButton').attr('onclick', `window.location.href='${job.link}'`);
+                $('#applyButton-tt').attr('onclick', `window.location.href='${job.link}'`);
 
                 $('.contact-persons').empty();
                 job.contact_persons.forEach((person) => {

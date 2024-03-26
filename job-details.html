@@ -985,8 +985,8 @@ font-size: 1.8rem;
 $(document).ready(function () {
     let jobs = []; // Array to store all jobs
     let displayedJobs = 0; // Counter for the number of jobs currently displayed
-    const jobsToShowDesktop = 6; // Number of jobs to show on desktop before "Load More"
-    const jobsToShowMobile = 1; // Number of jobs to show on mobile before "Load More"
+    const jobsToShowDesktop = 12; // Number of jobs to show on desktop before "Load More"
+    const jobsToShowMobile = 6; // Number of jobs to show on mobile before "Load More"
     let jobsToShow = window.innerWidth > 768 ? jobsToShowDesktop : jobsToShowMobile;
 
     // Adjust jobsToShow based on window resize

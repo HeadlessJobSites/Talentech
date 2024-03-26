@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Stillingsannonse_</title>
+    <title>Stillingsannonse</title>
     <!-- Bootstrap CSS -->
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
@@ -1131,11 +1131,10 @@ $(document).ready(function() {
             if (job) {
                 const organizationUnit = job.organizations && job.organizations.length > 1 ? job.organizations[1].nameorgunit : job.organizations[0]?.nameorgunit || 'Not specified';
                 const city = job.areas && job.areas.length > 0 ? job.areas[0].name : 'Not specified';
-
+		    
                 const applicationLink = job.link.replace("rmpage=job", "rmpage=apply");
-                $('#applyButton').attr('onclick', applicationLink); 
-                $('#applyButton-tt').attr('onclick', applicationLink);
-
+                $('#applyButton').attr('onclick', `window.location.href='${applicationLink}'`);
+                $('#applyButton-tt').attr('onclick', `window.location.href='${applicationLink}'`);
 
                 // Split the job title into words and apply different styles
                 const titleWords = job.title.split(' ');

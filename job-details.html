@@ -1133,8 +1133,8 @@ $(document).ready(function() {
                 const city = job.areas && job.areas.length > 0 ? job.areas[0].name : 'Not specified';
 
                 const applicationLink = job.link.replace("rmpage=job", "rmpage=apply");
-                $('#applyButton').attr('href', applicationLink); 
-                $('#applyButton-tt').attr('href', applicationLink); 
+                $('#applyButton').attr('onclick', `window.location.href='${job.link}'`);
+                $('#applyButton-tt').attr('onclick', `window.location.href='${job.link}'`);
 
                 // Split the job title into words and apply different styles
                 const titleWords = job.title.split(' ');

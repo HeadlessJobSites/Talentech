@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Stillingsannonse_</title>
+    <title>Stillingsannonse</title>
     <!-- Bootstrap CSS -->
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
@@ -1328,11 +1328,15 @@ document.addEventListener('DOMContentLoaded', function () {
   const originalContentContainer = document.getElementById('originalContentContainer');
   const modalBody = modalElement.querySelector('.modal-body');
   
+  // Ensure the original content container is visible
+  originalContentContainer.style.display = ''; // Reset any display style to default
+
   // Function to move content to modal
   const moveToModal = () => {
     while (originalContentContainer.firstChild) {
       modalBody.appendChild(originalContentContainer.firstChild);
     }
+    originalContentContainer.style.display = 'none'; // Hide original container while content is in modal
   };
 
   // Function to move content back to original place
@@ -1340,31 +1344,22 @@ document.addEventListener('DOMContentLoaded', function () {
     while (modalBody.firstChild) {
       originalContentContainer.appendChild(modalBody.firstChild);
     }
-  };
-
-  // Function to handle the modal being shown
-  const showModalContent = () => {
-    moveToModal();
-    modal.show();
-  };
-
-  // Function to handle the modal being hidden
-  const hideModalContent = () => {
-    moveToOriginalPlace();
+    originalContentContainer.style.display = ''; // Make sure the container is visible after moving content back
   };
 
   // Attach event listeners to trigger buttons
   document.querySelectorAll('.modalTrigger').forEach(button => {
-    button.addEventListener('click', showModalContent);
+    button.addEventListener('click', function () {
+      showModalContent();
+    });
   });
 
   // Listen for the modal closing and move the content back
-  modalElement.addEventListener('hidden.bs.modal', hideModalContent);
-
-  // Optionally: If your modal is triggered programmatically somewhere else
-  // You might want to ensure the content is moved back to its place when the modal is programmatically hidden
-  modalElement.addEventListener('hide.bs.modal', hideModalContent);
+  modalElement.addEventListener('hidden.bs.modal', function () {
+    hideModalContent();
+  });
 });
+
 </script>
 	
 	

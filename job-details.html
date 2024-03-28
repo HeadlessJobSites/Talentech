@@ -700,6 +700,21 @@ font-size: 1.8rem;
 .modal-content {
   position: relative; /* Ensures the absolute positioning of the header is relative to the modal content */
 }
+.modal-fullscreen-90w .modal-content {
+  background-color: pink; /* Your existing pink background */
+  overflow-y: auto; /* Allows scrolling within the modal */
+  max-height: 90vh; /* Limits the modal height to 90% of the viewport height */
+  width: 100%; /* Full width */
+}
+
+.modal-dialog {
+  margin: 5vh auto; /* Centers the modal vertically with 5% top/bottom margin */
+  max-width: 100%; /* Allows the modal to be full width */
+}
+
+.modal-body {
+  overflow-y: auto; /* Ensures only the modal body scrolls, not the entire modal */
+}
 
 
 	    
@@ -759,7 +774,7 @@ font-size: 1.8rem;
                 <span class="expiration-date">Application due</span>
             </div>
             <div class="col-md-3 col-6 text-center apply-btn-header">
-<button id="applyButton" class="apply-btn">Apply for the job</button>
+<button id="modalTrigger" class="apply-btn">Apply for the job</button>
             </div>
         </div>
     </div>

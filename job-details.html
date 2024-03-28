@@ -650,6 +650,7 @@ font-size: 1.8rem;
 
 
 
+
 .modal-fullscreen-90w .modal-content {
   height: 90vh;
   width: 100vw;
@@ -677,6 +678,31 @@ font-size: 1.8rem;
   border: 0;
   border-radius: 0;
 }
+.modal-header {
+  /*position: absolute;
+  top: 0;
+  right: 0;*/
+  width: 100%; 
+  display: flex;
+  justify-content: flex-end; /* Aligns items to the right */
+  border: none; /* Removes any default border that might exist */
+  background: transparent; /* Optional: Makes the header background transparent */
+}
+
+#closeModalButton {
+  background: none; /* Makes the background transparent */
+  border: none; /* Removes the border */
+  font-size: 24px; /* Adjust size as needed */
+  margin-right: 1rem; /* Adds margin to the right */
+  padding: 1rem; /* Ensures there's padding around the icon for easier clicking */
+}
+
+.modal-content {
+  position: relative; /* Ensures the absolute positioning of the header is relative to the modal content */
+}
+
+
+	    
     </style>
 </head>
 
@@ -716,26 +742,24 @@ font-size: 1.8rem;
     </div>
 	
 	
-<div class="job-section">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-3 col-6 job-info">
-                <span class="job-info-title">Team</span>
-                <span class="organization-unit"> </span>
-            </div>
-            <div class="col-md-3 col-6 job-info">
-                <span class="job-info-title">Location</span>
-                <span class="city">Location</span>
-            </div>
-            <div class="col-md-3 col-6 job-info">
-                <span class="job-info-title">Application due</span>
-                <span class="expiration-date">Application due</span>
-            </div>
-            <div class="col-md-3 col-6 text-center apply-btn-header">
-<button id="modalTrigger" class="apply-btn">Apply for the job</button>
-            </div>
-        </div>
+<!-- Modal -->
+<div class="modal fade" id="modalSection" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-fullscreen-90w">
+    <div class="modal-content">
+      <div class="modal-header">
+<!-- Custom Close Button in the Modal Header -->
+<div class="modal-header justify-content-end">
+  <button type="button" class="btn-close" aria-label="Close" data-bs-dismiss="modal" id="closeModalButton" style="position: absolute; right: 1rem; top: 1rem;">
+    <i class="fas fa-chevron-down"></i>
+  </button>
+</div>
+        </button>
+      </div>
+      <div class="modal-body">
+        <!-- Content moved here when modal is opened -->
+      </div>
     </div>
+  </div>
 </div>
 
 
@@ -904,26 +928,36 @@ font-size: 1.8rem;
 </section>
 
 
-	
+
+<!-- Modal -->
 <div class="modal fade" id="modalSection" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog modal-fullscreen-90w">
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span> <!-- Customize this part for a chevron or use an icon -->
+<!-- Custom Close Button in the Modal Header -->
+<div class="modal-header justify-content-end">
+  <button type="button" class="btn-close" aria-label="Close" data-bs-dismiss="modal" id="closeModalButton" style="position: absolute; right: 1rem; top: 1rem;">
+    <i class="fas fa-chevron-down"></i>
+  </button>
+</div>
         </button>
       </div>
       <div class="modal-body">
-<div class="container mt-5">
-    <div class="turbo-frame">
-<div id="applicationFormContainer"></div>
-    </div>
-</div>
+        <!-- Content moved here when modal is opened -->
       </div>
     </div>
   </div>
 </div>
 
+
+<div id="originalContentContainer">
+<div class="container mt-5">
+    <div class="turbo-frame">
+<div id="applicationFormContainer"></div>
+    </div>
+</div>
+
+</div>
 
 
 
@@ -1246,29 +1280,47 @@ $(document).ready(function() {
 
 </script>
 
+
+
 <script>
-  document.addEventListener('DOMContentLoaded', function () {
-    var modalElement = document.getElementById('modalSection');
-    var modal = new bootstrap.Modal(modalElement, {
-      backdrop: 'static'
-    });
+document.addEventListener('DOMContentLoaded', function () {
+  const modalElement = document.getElementById('modalSection');
+  const modal = new bootstrap.Modal(modalElement);
+  const originalContentContainer = document.getElementById('originalContentContainer');
+  const modalBody = modalElement.querySelector('.modal-body');
+  const closeModalButton = document.getElementById('closeModalButton'); // Ensure this matches your close button's ID
 
-    document.getElementById('modalTrigger').addEventListener('click', function () {
-      modal.show();
-    });
+  // Function to move content to modal
+  const moveToModal = () => {
+    while (originalContentContainer.firstChild) {
+      modalBody.appendChild(originalContentContainer.firstChild);
+    }
+  };
 
-    modalElement.addEventListener('click', function (event) {
-      var content = document.querySelector('.modal-content');
-      if (event.target === content || content.contains(event.target)) {
-      } else {
-        modal.hide();
-      }
-    });
+  // Function to move content back to original place
+  const moveToOriginalPlace = () => {
+    while (modalBody.firstChild) {
+      originalContentContainer.appendChild(modalBody.firstChild);
+    }
+  };
 
-    document.querySelector('.modal-content .close').addEventListener('click', function () {
-      modal.hide();
-    });
+  document.getElementById('modalTrigger').addEventListener('click', function () {
+    moveToModal();
+    modal.show();
   });
+
+  // Listen for the modal closing and move the content back
+  modalElement.addEventListener('hidden.bs.modal', function () {
+    moveToOriginalPlace();
+  });
+
+  // If using a custom close button, ensure it triggers the modal to close
+document.getElementById('closeModalButton').addEventListener('click', function () {
+  modal.hide(); // Hide the modal
+});
+
+});
+
 </script>
 	
 	

@@ -1327,8 +1327,7 @@ document.addEventListener('DOMContentLoaded', function () {
   const modal = new bootstrap.Modal(modalElement);
   const originalContentContainer = document.getElementById('originalContentContainer');
   const modalBody = modalElement.querySelector('.modal-body');
-  const closeModalButton = document.getElementById('closeModalButton'); // Ensure this matches your close button's ID
-
+  
   // Function to move content to modal
   const moveToModal = () => {
     while (originalContentContainer.firstChild) {
@@ -1343,24 +1342,28 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   };
 
-  // Select all trigger buttons and add click event listeners
+  // Function to handle the modal being shown
+  const showModalContent = () => {
+    moveToModal();
+    modal.show();
+  };
+
+  // Function to handle the modal being hidden
+  const hideModalContent = () => {
+    moveToOriginalPlace();
+  };
+
+  // Attach event listeners to trigger buttons
   document.querySelectorAll('.modalTrigger').forEach(button => {
-    button.addEventListener('click', function () {
-      moveToModal();
-      modal.show();
-    });
+    button.addEventListener('click', showModalContent);
   });
 
   // Listen for the modal closing and move the content back
-  modalElement.addEventListener('hidden.bs.modal', function () {
-    moveToOriginalPlace();
-  });
+  modalElement.addEventListener('hidden.bs.modal', hideModalContent);
 
-  // If using a custom close button, ensure it triggers the modal to close
-  closeModalButton.addEventListener('click', function () {
-    modal.hide(); // Hide the modal
-  });
-
+  // Optionally: If your modal is triggered programmatically somewhere else
+  // You might want to ensure the content is moved back to its place when the modal is programmatically hidden
+  modalElement.addEventListener('hide.bs.modal', hideModalContent);
 });
 </script>
 	

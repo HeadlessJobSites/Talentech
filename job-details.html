@@ -682,6 +682,7 @@ font-size: 1.8rem;
   /*position: absolute;
   top: 0;
   right: 0;*/
+  padding-top: 10px;
   width: 100%; 
   display: flex;
   justify-content: flex-end; /* Aligns items to the right */
@@ -701,7 +702,7 @@ font-size: 1.8rem;
   position: relative; /* Ensures the absolute positioning of the header is relative to the modal content */
 }
 .modal-fullscreen-90w .modal-content {
-  background-color: pink; /* Your existing pink background */
+  background-color: #fff; 
   overflow-y: auto; /* Allows scrolling within the modal */
   max-height: 90vh; /* Limits the modal height to 90% of the viewport height */
   width: 100%; /* Full width */
@@ -714,6 +715,7 @@ font-size: 1.8rem;
 
 .modal-body {
   overflow-y: auto; /* Ensures only the modal body scrolls, not the entire modal */
+  padding: 0;
 }
 
 
@@ -791,7 +793,7 @@ font-size: 1.8rem;
       <div class="modal-header">
 <!-- Custom Close Button in the Modal Header -->
 <div class="modal-header justify-content-end">
-  <button type="button" class="btn-close" aria-label="Close" data-bs-dismiss="modal" id="closeModalButton" style="position: absolute; right: 1rem; top: 1rem;">
+  <button type="button" class="btn-close" aria-label="Close" data-bs-dismiss="modal" id="closeModalButton" style="position: absolute; right: 1rem; top: 0;">
     <i class="fas fa-chevron-down"></i>
   </button>
 </div>
@@ -993,12 +995,7 @@ font-size: 1.8rem;
 
 
 <div id="originalContentContainer">
-<div class="container mt-5">
-    <div class="turbo-frame">
 <div id="applicationFormContainer"></div>
-    </div>
-</div>
-
 </div>
 
 

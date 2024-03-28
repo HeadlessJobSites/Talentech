@@ -905,12 +905,25 @@ font-size: 1.8rem;
 
 
 	
-
+<div class="modal fade" id="modalSection" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-fullscreen-90w">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span> <!-- Customize this part for a chevron or use an icon -->
+        </button>
+      </div>
+      <div class="modal-body">
 <div class="container mt-5">
     <div class="turbo-frame">
 <div id="applicationFormContainer"></div>
     </div>
 </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 
 
 
@@ -1233,30 +1246,25 @@ $(document).ready(function() {
 
 </script>
 
-	<script>
+<script>
   document.addEventListener('DOMContentLoaded', function () {
     var modalElement = document.getElementById('modalSection');
     var modal = new bootstrap.Modal(modalElement, {
       backdrop: 'static'
     });
 
-    // Code to show modal
     document.getElementById('modalTrigger').addEventListener('click', function () {
       modal.show();
     });
 
-    // Close modal when clicking the close icon or the area above the modal
     modalElement.addEventListener('click', function (event) {
       var content = document.querySelector('.modal-content');
       if (event.target === content || content.contains(event.target)) {
-        // Click inside the modal content, do nothing
       } else {
-        // Click outside the modal content or on the close button/icon
         modal.hide();
       }
     });
 
-    // Close modal on close icon click specifically, if not using data-bs-dismiss
     document.querySelector('.modal-content .close').addEventListener('click', function () {
       modal.hide();
     });

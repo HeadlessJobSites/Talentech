@@ -648,6 +648,35 @@ font-size: 1.8rem;
 }
 }
 
+
+
+.modal-fullscreen-90w .modal-content {
+  height: 90vh;
+  width: 100vw;
+}
+.modal.fade .modal-dialog {
+  transform: translate(0, 100%);
+  transition: transform 0.3s ease-out;
+}
+
+.modal.show .modal-dialog {
+  transform: translate(0, 10%);
+}
+
+.modal-dialog {
+  max-width: 100%;
+  margin: 0;
+  margin-top: 10vh; /* Adjust if necessary */
+}
+
+.modal-fullscreen-90w .modal-content {
+  background-color: pink; /* Custom background color */
+}
+
+.modal-content {
+  border: 0;
+  border-radius: 0;
+}
     </style>
 </head>
 
@@ -703,7 +732,7 @@ font-size: 1.8rem;
                 <span class="expiration-date">Application due</span>
             </div>
             <div class="col-md-3 col-6 text-center apply-btn-header">
-<button id="applyButton" class="apply-btn">Apply for the job</button>
+<button id="modalTrigger" class="apply-btn">Apply for the job</button>
             </div>
         </div>
     </div>
@@ -720,7 +749,7 @@ font-size: 1.8rem;
     </div>
 
             <div class="text-center centerd-apply-btn">
-<button id="applyButton-tt" class="apply-btn m-px-4 m-py-3">Apply for the job</button>
+<button id="modalTrigger" class="apply-btn m-px-4 m-py-3">Apply for the job</button>
             </div>
 </div>
 
@@ -905,7 +934,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const iframe = document.createElement('iframe');
     iframe.setAttribute('src', iframeSrc);
     iframe.setAttribute('width', '100%');
-    iframe.setAttribute('height', '4000px'); // Adjust height as needed
+    iframe.setAttribute('height', '1800px');
     iframe.style.border = 'none';
 
     // Append the iframe to the container
@@ -1204,6 +1233,35 @@ $(document).ready(function() {
 
 </script>
 
+	<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    var modalElement = document.getElementById('modalSection');
+    var modal = new bootstrap.Modal(modalElement, {
+      backdrop: 'static'
+    });
+
+    // Code to show modal
+    document.getElementById('modalTrigger').addEventListener('click', function () {
+      modal.show();
+    });
+
+    // Close modal when clicking the close icon or the area above the modal
+    modalElement.addEventListener('click', function (event) {
+      var content = document.querySelector('.modal-content');
+      if (event.target === content || content.contains(event.target)) {
+        // Click inside the modal content, do nothing
+      } else {
+        // Click outside the modal content or on the close button/icon
+        modal.hide();
+      }
+    });
+
+    // Close modal on close icon click specifically, if not using data-bs-dismiss
+    document.querySelector('.modal-content .close').addEventListener('click', function () {
+      modal.hide();
+    });
+  });
+</script>
 	
 	
 </body>

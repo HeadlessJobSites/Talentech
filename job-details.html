@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Stillingsannonse_</title>
+    <title>Stillingsannonse</title>
     <!-- Bootstrap CSS -->
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
@@ -1327,21 +1327,30 @@ document.addEventListener('DOMContentLoaded', function () {
   const modal = new bootstrap.Modal(modalElement);
   const originalContentContainer = document.getElementById('originalContentContainer');
   const modalBody = modalElement.querySelector('.modal-body');
-  const closeModalButton = document.getElementById('closeModalButton'); // Ensure this matches your close button's ID
 
+  // Assuming your original content is placed directly within `originalContentContainer` in your HTML.
+  
   // Function to move content to modal
   const moveToModal = () => {
+    const content = document.createDocumentFragment();
     while (originalContentContainer.firstChild) {
-      modalBody.appendChild(originalContentContainer.firstChild);
+      content.appendChild(originalContentContainer.firstChild);
     }
+    modalBody.appendChild(content);
   };
 
   // Function to move content back to original place
   const moveToOriginalPlace = () => {
+    const content = document.createDocumentFragment();
     while (modalBody.firstChild) {
-      originalContentContainer.appendChild(modalBody.firstChild);
+      content.appendChild(modalBody.firstChild);
     }
+    originalContentContainer.appendChild(content);
   };
+
+  // Ensure content is initially shown outside the modal
+  // This is crucial if your modal is meant to be shown right from the start or there's dynamic content loading
+  moveToOriginalPlace();
 
   // Select all trigger buttons and add click event listeners
   document.querySelectorAll('.modalTrigger').forEach(button => {
@@ -1357,12 +1366,13 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 
   // If using a custom close button, ensure it triggers the modal to close
-  closeModalButton.addEventListener('click', function () {
-    modal.hide(); // Hide the modal
+  document.getElementById('closeModalButton').addEventListener('click', function () {
+    modal.hide(); // This might be redundant if 'data-bs-dismiss="modal"' is doing its job
   });
 
 });
 </script>
+
 	
 	
 </body>

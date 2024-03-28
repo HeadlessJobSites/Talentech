@@ -875,40 +875,41 @@ font-size: 1.8rem;
 </section>
 
 
+	
 
-
-
-<section class="text-center bg-dark text-light py-5">
-    <div class="container">
-	    <div id="applicationFormContainer"></div>
+<div class="container mt-5">
+    <div class="turbo-frame">
+<div id="applicationFormContainer"></div>
     </div>
-</section>
+</div>
 
 
+
+	
 <script>
-	$(document).ready(function() {
+document.addEventListener('DOMContentLoaded', function() {
     const params = new URLSearchParams(window.location.search);
-    const jobId = parseInt(params.get('jobId'), 10);
+    const jobId = params.get('jobId');
+    
+    // Assuming the base URL and parameters for your iframe source
+    const baseUrl = "https://web103.reachmee.com/ext/I019/834/apply";
+    const siteId = "19"; // Adjust as necessary
+    const validator = "fa38d2eb8febb7bc22c8a91e10a1e9de"; // This might need to be dynamically fetched or set per job
+    const language = "UK";
+    const ihelper = encodeURIComponent(`https://career.talentech.com/jobs/rm?rmpage=job&rmjob=${jobId}`);
 
-    fetch('https://api.talentech.io/reachmee/feed/')
-        .then(response => response.json())
-        .then(jobs => {
-            const job = jobs.find(job => job.ad_id === jobId);
-            if (job) {
-                // Assuming you want to display the iframe for the "Finance controller" job with ad_id 312
-                if(job.ad_id === 312) {
-                    const iframeSrc = `https://web103.reachmee.com/ext/I019/834/apply?job_id=${job.ad_id}&site=19&validator=fa38d2eb8febb7bc22c8a91e10a1e9de&lang=UK&ihelper=https://career.talentech.com/jobs/rm`;
-                    const applicationFormIframe = `<iframe allowtransparency="true" title="ReachMee Recruit external site" id="riframe" name="riframe" onload="scrollToIframe(this)" width="100%" height="4000" frameborder="0" src="${iframeSrc}" data-cookieconsent="ignore" data-loaded-first-time="true" style="height: 1808px;"></iframe>`;
-                    // Append the iframe to a specific element on your page, for example, a div with the ID 'applicationFormContainer'
-                    $('#applicationFormContainer').html(applicationFormIframe);
-                }
-            } else {
-                console.log('Job not found.');
-            }
-        })
-        .catch(error => {
-            console.error('Error fetching job details:', error);
-        });
+    // Construct the iframe source URL
+    const iframeSrc = `${baseUrl}?job_id=${jobId}&site=${siteId}&validator=${validator}&lang=${language}&ihelper=${ihelper}`;
+
+    // Create the iframe element
+    const iframe = document.createElement('iframe');
+    iframe.setAttribute('src', iframeSrc);
+    iframe.setAttribute('width', '100%');
+    iframe.setAttribute('height', '4000px'); // Adjust height as needed
+    iframe.style.border = 'none';
+
+    // Append the iframe to the container
+    document.getElementById('applicationFormContainer').appendChild(iframe);
 });
 </script>
 

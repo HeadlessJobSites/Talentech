@@ -716,7 +716,6 @@ font-size: 1.8rem;
   padding: 0;
 }
 
-
 	    
     </style>
 </head>
@@ -970,6 +969,7 @@ font-size: 1.8rem;
     </div>
   </div>
 </div>
+
 
 
 <div id="originalContentContainer">
@@ -1298,44 +1298,29 @@ $(document).ready(function() {
 </script>
 
 
-
 <script>
-document.addEventListener('DOMContentLoaded', function () {
-  const modalElement = document.getElementById('modalSection');
-  const modal = new bootstrap.Modal(modalElement);
-  const originalContentContainer = document.getElementById('originalContentContainer');
-  const modalBody = modalElement.querySelector('.modal-body');
-  
-  // Ensure the original content is displayed when the page loads
-  originalContentContainer.style.display = 'block';
+$(document).ready(function () {
+  const modalElement = $('#modalSection');
+  const originalContent = $('#originalContentContainer').html(); // Store original content
+  const modalBody = modalElement.find('.modal-body');
 
-  // Function to move content to modal
-  const moveToModal = () => {
-    while (originalContentContainer.childNodes.length > 0) {
-      modalBody.appendChild(originalContentContainer.childNodes[0]);
-    }
+  // Function to display content in the modal
+  const displayInModal = () => {
+    modalBody.html(originalContent); // Set the modal body to the original content
+    $('#originalContentContainer').hide(); // Optionally hide the original content container
   };
 
-  // Function to move content back to original place
-  const moveToOriginalPlace = () => {
-    while (modalBody.childNodes.length > 0) {
-      originalContentContainer.appendChild(modalBody.childNodes[0]);
-    }
-    // Explicitly make sure the container is visible after moving content back
-    originalContentContainer.style.display = 'block'; // Adjust this as necessary to match your layout needs
-  };
-
-  // Attach event listeners to trigger buttons
-  document.querySelectorAll('.modalTrigger').forEach(button => {
-    button.addEventListener('click', function () {
-      moveToModal();
-      modal.show();
-    });
+  // Attach event listener to trigger buttons
+  $('.modalTrigger').on('click', function () {
+    displayInModal();
+    modalElement.modal('show'); // Use jQuery to show the modal
   });
 
-  // Listen for the modal closing and move the content back
-  modalElement.addEventListener('hidden.bs.modal', function () {
-    moveToOriginalPlace();
+  // Listen for the modal closing and handle the content
+  modalElement.on('hidden.bs.modal', function () {
+    $('#originalContentContainer').show(); // Show the original content container again
+    // If you want to clear the modal content after hiding
+    modalBody.html(''); // Clear the modal body content
   });
 });
 </script>

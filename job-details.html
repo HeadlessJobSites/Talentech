@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Stillingsannonse_</title>
+    <title>Stillingsannonse</title>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <!-- jQuery (Only one version, the full version for compatibility with Bootstrap) -->
@@ -1308,26 +1308,17 @@ $(document).ready(function() {
 <script>
 $(document).ready(function () {
   const modalElement = $('#modalSection');
-  const originalContent = $('#originalContentContainer').html(); // Store original content
-  const modalBody = modalElement.find('.modal-body');
+  const originalContentContainer = $('#originalContentContainer');
 
-  // Function to display content in the modal
-  const displayInModal = () => {
-    modalBody.html(originalContent); // Set the modal body to the original content
-    $('#originalContentContainer').hide(); // Optionally hide the original content container
-  };
-
-  // Attach event listener to trigger buttons
+  // Attach event listener to trigger button
   $('.modalTrigger').on('click', function () {
-    displayInModal();
-    modalElement.modal('show'); // Use jQuery to show the modal
+    originalContentContainer.hide(); // Hide the original content
+    modalElement.modal('show'); // Show the modal
   });
 
-  // Listen for the modal closing and handle the content
+  // Listen for the modal closing and toggle content visibility
   modalElement.on('hidden.bs.modal', function () {
-    $('#originalContentContainer').show(); // Show the original content container again
-    // If you want to clear the modal content after hiding
-    modalBody.html(''); // Clear the modal body content
+    originalContentContainer.show(); // Show the original content again
   });
 });
 </script>

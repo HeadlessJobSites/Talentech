@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Stillingsannonse</title>
+    <title>Stillingsannonse_</title>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <!-- jQuery (Only one version, the full version for compatibility with Bootstrap) -->
@@ -655,73 +655,6 @@ font-size: 1.8rem;
 
 
 
-.modal-fullscreen-90w .modal-content {
-  height: 90vh;
-  width: 100vw;
-}
-.modal.fade .modal-dialog {
-  transform: translate(0, 100%);
-  transition: transform 0.3s ease-out;
-}
-
-.modal.show .modal-dialog {
-  transform: translate(0, 10%);
-}
-
-.modal-dialog {
-  max-width: 100%;
-  margin: 0;
-  margin-top: 10vh; /* Adjust if necessary */
-}
-
-.modal-fullscreen-90w .modal-content {
-  background-color: #fff;
-}
-
-.modal-content {
-  border: 0;
-  border-radius: 0;
-}
-.modal-header {
-  /*position: absolute;
-  top: 0;
-  right: 0;*/
-  padding-top: 10px;
-  width: 100%; 
-  display: flex;
-  justify-content: flex-end; /* Aligns items to the right */
-  border: none; /* Removes any default border that might exist */
-  background: transparent; /* Optional: Makes the header background transparent */
-}
-
-#closeModalButton {
-  background: none; /* Makes the background transparent */
-  border: none; /* Removes the border */
-  font-size: 24px; /* Adjust size as needed */
-  margin-right: 1rem; /* Adds margin to the right */
-  padding: 1rem; /* Ensures there's padding around the icon for easier clicking */
-}
-
-.modal-content {
-  position: relative; /* Ensures the absolute positioning of the header is relative to the modal content */
-}
-.modal-fullscreen-90w .modal-content {
-  background-color: #fff; 
-  overflow-y: auto; /* Allows scrolling within the modal */
-  max-height: 90vh; /* Limits the modal height to 90% of the viewport height */
-  width: 100%; /* Full width */
-}
-
-.modal-dialog {
-  margin: 5vh auto; /* Centers the modal vertically with 5% top/bottom margin */
-  max-width: 100%; /* Allows the modal to be full width */
-}
-
-.modal-body {
-  overflow-y: auto; /* Ensures only the modal body scrolls, not the entire modal */
-  padding: 0;
-}
-
 	    
     </style>
 </head>
@@ -779,7 +712,7 @@ font-size: 1.8rem;
                 <span class="expiration-date">Application due</span>
             </div>
             <div class="col-md-3 col-6 text-center apply-btn-header">
-<button type="button" class="modalTrigger apply-btn" id="modalTrigger1">Apply for the job</button>
+<button type="button" class="modalTrigger apply-btn" id="applicationForm">Apply for the job</button>
             </div>
         </div>
     </div>
@@ -800,7 +733,7 @@ font-size: 1.8rem;
     </div>
 
             <div class="text-center centerd-apply-btn">
-<button id="modalTrigger2" class="modalTrigger apply-btn m-px-4 m-py-3">Apply for the job</button>
+<button id="applicationForm" class="modalTrigger apply-btn m-px-4 m-py-3">Apply for the job</button>
             </div>
 </div>
 
@@ -867,27 +800,6 @@ font-size: 1.8rem;
 
 
 
-<!-- Modal -->
-<div class="modal fade" id="modalSection" tabindex="-1" aria-hidden="true">
-  <div class="modal-dialog modal-fullscreen-90w">
-    <div class="modal-content">
-      <div class="modal-header">
-<!-- Custom Close Button in the Modal Header -->
-<div class="modal-header justify-content-end">
-  <button type="button" class="btn-close" aria-label="Close" data-dismiss="modal" style="position: absolute; right: 1rem; top: 1rem; background: transparent; border: 0;">
-    <i class="fas fa-chevron-down"></i>
-  </button>
-</div>
-        </button>
-      </div>
-      <div class="modal-body">
-        <!-- Content moved here when modal is opened -->
-      </div>
-    </div>
-  </div>
-</div>
-
-	
 <h2 class="container pt-5 m-px-4 m-pb-2">Application <span style="font-weight: 800;">form</span></h2>
 <!-- Application form -->
 <div id="originalContentContainer">
@@ -1305,23 +1217,6 @@ $(document).ready(function() {
 </script>
 
 
-<script>
-$(document).ready(function () {
-  const modalElement = $('#modalSection');
-  const originalContentContainer = $('#originalContentContainer');
-
-  // Attach event listener to trigger button
-  $('.modalTrigger').on('click', function () {
-    originalContentContainer.hide(); // Hide the original content
-    modalElement.modal('show'); // Show the modal
-  });
-
-  // Listen for the modal closing and toggle content visibility
-  modalElement.on('hidden.bs.modal', function () {
-    originalContentContainer.show(); // Show the original content again
-  });
-});
-</script>
 
 	
 	

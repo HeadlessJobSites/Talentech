@@ -1116,9 +1116,6 @@ $(document).ready(function () {
             }
         });
 
-        
-        // Use the second organization unit if available, otherwise use the first one
-        const organizationUnitName = job.organizations.length > 1 ? job.organizations[1].nameorgunit : job.organizations[0]?.nameorgunit || 'Not specified';
 	    
 	// Populate location filter
         $('#locationFilter').html('<option value="All">All locations</option>');
@@ -1160,6 +1157,8 @@ $(document).ready(function () {
     // Assuming job-details.html is your detail page and it can handle job IDs
     // Adjust accordingly if your detail page has a different URL structure
     const jobDetailUrl = `job-details.html?jobId=${job.ad_id}`;
+        // Use the second organization unit if available, otherwise use the first one
+        const organizationUnitName = job.organizations.length > 1 ? job.organizations[1].nameorgunit : job.organizations[0]?.nameorgunit || 'Not specified';
         return `
 <div class="col-12 col-md-4 col-lg-4 mb-4">
     <a href="${jobDetailUrl}" class="" style="text-decoration: none; color: inherit;">

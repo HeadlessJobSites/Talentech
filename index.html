@@ -1116,7 +1116,11 @@ $(document).ready(function () {
             }
         });
 
-        // Populate location filter
+        
+        // Use the second organization unit if available, otherwise use the first one
+        const organizationUnitName = job.organizations.length > 1 ? job.organizations[1].nameorgunit : job.organizations[0]?.nameorgunit || 'Not specified';
+	    
+	// Populate location filter
         $('#locationFilter').html('<option value="All">All locations</option>');
         locationSet.forEach(country => {
             $('#locationFilter').append(`<option value="${country}">${country}</option>`);
@@ -1161,7 +1165,7 @@ $(document).ready(function () {
     <a href="${jobDetailUrl}" class="" style="text-decoration: none; color: inherit;">
         <div class="card h-100">
             <div class="card-body">
-		        <div class="card-category"><span>Category</span></div>
+		        <div class="card-category"><span>${organizationUnitName}</span></div>
                 <h5 class="card-title">${job.title}</h5>
                 <p class="card-text">${job.country}</p>
 			    <a href="${jobDetailUrl}" class="stretched-link">

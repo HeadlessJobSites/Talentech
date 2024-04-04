@@ -26,56 +26,56 @@
     <style>
 @font-face {
 	font-family: 'Telegraf';
-	src: url('/Telegraf-UltraLight.ttf');
+	src: url('https://headlessjobsites.github.io/Talentech/Telegraf-UltraLight.ttf');
 	font-weight: 200;
 	font-style: normal;
 	font-display: swap;
 }
 @font-face {
 	font-family: 'Telegraf';
-	src: url('/Telegraf-Medium.ttf');
+	src: url('https://headlessjobsites.github.io/Talentech/Telegraf-Medium.ttf');
 	font-weight: 500;
 	font-style: normal;
 	font-display: swap;
 }
 @font-face {
 	font-family: 'Telegraf';
-	src: url('/Telegraf-SemiBold.ttf');
+	src: url('https://headlessjobsites.github.io/Talentech/Telegraf-SemiBold.ttf');
 	font-weight: 600;
 	font-style: normal;
 	font-display: swap;
 }
 @font-face {
 	font-family: 'Telegraf';
-	src: url('/Telegraf-Regular.ttf');
+	src: url('https://headlessjobsites.github.io/Talentech/Telegraf-Regular.ttf');
 	font-weight: normal;
 	font-style: normal;
 	font-display: swap;
 }
 @font-face {
 	font-family: 'Telegraf';
-	src: url('/Telegraf-UltraBold.ttf');
+	src: url('https://headlessjobsites.github.io/Talentech/Telegraf-UltraBold.ttf');
 	font-weight: 800;
 	font-style: normal;
 	font-display: swap;
 }
 @font-face {
 	font-family: 'Telegraf';
-	src: url('/Telegraf-Light.ttf');
+	src: url('https://headlessjobsites.github.io/Talentech/Telegraf-Light.ttf');
 	font-weight: 300;
 	font-style: normal;
 	font-display: swap;
 }
 @font-face {
 	font-family: 'Telegraf';
-	src: url('/Telegraf-Black.ttf');
+	src: url('https://headlessjobsites.github.io/Talentech/Telegraf-Black.ttf');
 	font-weight: 900;
 	font-style: normal;
 	font-display: swap;
 }
 @font-face {
 	font-family: 'Telegraf';
-	src: url('/Telegraf-UltraBold.ttf');
+	src: url('https://headlessjobsites.github.io/Talentech/Telegraf-UltraBold.ttf');
 	font-weight: bold;
 	font-style: normal;
 	font-display: swap;
@@ -542,6 +542,26 @@ h1 {
             <a href="#jobs-anchor" class="btn btn-primary btn-lg"><strong>See available positions</strong></a>
         </div>
     </div>
+
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Fetch the jobs from the feed
+  fetch('https://api.talentech.io/reachmee/feed/')
+    .then(response => response.json())
+    .then(jobs => {
+      const positionsCount = jobs.length; // Get the count of jobs from the feed
+      const btnText = positionsCount === 1 ? 'See 1 available position' : `See ${positionsCount} available positions`; // Update button text based on count
+      document.querySelector('a.btn.btn-primary.btn-lg strong').textContent = positionsCount > 0 ? btnText : 'See available positions';
+    })
+    .catch(error => {
+      console.error('Error fetching job details:', error);
+      // If there is an error fetching the jobs, show default text
+      document.querySelector('a.btn.btn-primary.btn-lg strong').textContent = 'See available positions';
+    });
+});
+</script>
+
 	
 	
 	<div class="talentech-section">

@@ -362,6 +362,81 @@ h2 {
 .team-icon i {
 	font-size: 2rem;
 }
+
+.process-content p {
+	margin-bottom: 0;
+}
+.process-section .container {
+	max-width: 1200px;
+}
+.process-section .row {
+	display: flex;
+	flex-wrap: wrap;
+	/*justify-content: center;*/
+}
+.process-item {
+	display: flex;
+	flex-direction: column;
+	align-items: start;
+	margin-bottom: 30px;
+	text-align: left;
+	min-width: 250px;
+	flex: 1;
+	flex-basis: calc(33.33% - 60px);
+}
+.process-content {
+	display: flex;
+	flex-direction: column;
+	align-items: start;
+	background-color: #fff;
+	border-radius: 10px;
+	padding: 20px;
+	padding-top: 50px;
+	width: 100%;
+	height: 100%;
+}
+.process-icon {
+	position: relative;
+	margin-bottom: -50px;
+	border-radius: 50%;
+	width: 100px;
+	height: 120px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	z-index: 2;
+}
+.process-icon p {
+	font-size: 4.5rem;
+	position: absolute;
+	font-weight: 700;
+}
+.process-icon img {
+	width: 25px;
+	height: auto;
+}
+.process-icon i {
+	font-size: 2rem;
+}
+@media (max-width: 768px) {
+	.process-section .process-row {
+		display: flex;
+		flex-wrap: nowrap;
+		overflow-x: auto;
+		margin-left: -15px;
+		margin-right: -15px;
+	}
+	.process-item {
+		flex: 0 0 50%;
+		max-width: 80%;
+		padding-left: 10px;
+		padding-right: 10px;
+	}
+	.process-section .process-row {
+		justify-content: left;
+	}
+}
+
 @media (max-width: 768px) {
 	.team-section .row {
 		display: flex;
@@ -839,6 +914,80 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
+<section class="process-section mb-5 py-5 m-my-0 m-pt-0 m-pb-4" style="background-color: #eeeef2;">
+    <div class="container pt-5 m-px-4 m-pb-2">
+        <h2>Our <span style="font-weight: 800;">recruitment process</span></h2>
+    </div>
+    <div class="container">
+        <div class="row">
+            <!-- New Column for Latin Text -->
+            <div class="col-md-3 order-md-2">
+<script src="https://widget.gobistories.com/gwi/6" async onload="gobi.discover()"></script>
+
+<div class="gobi-collection" data-gobi-collection-id="5sbn2"></div>
+            </div>
+            <!-- Existing Content in Right Column -->
+            <div class="col-md-9 pl-5 m-px-4 order-md-1">
+                <div class="row process-row">
+                    <!-- Benefit 1 -->
+                    <div class="col-md-4 col-sm-4 process-item">
+                        <div class="process-icon">
+                            <p>1</p>
+                        </div>
+                        <div class="process-content">
+                            <strong>Submit Your Application</strong>
+                            <p>Start your journey by applying through our career portal; upload your CV and share a bit about yourself.</p>
+                        </div>
+                    </div>
+                    <!-- Benefit 2 -->
+                    <div class="col-md-4 col-sm-4 process-item">
+                        <div class="process-icon">
+                            <p>2</p>
+                        </div>
+                        <div class="process-content">
+                            <strong>Initial Screening</strong>
+                            <p>Our HR team will review your application to assess the alignment between your skills and the job requirements.</p>
+                        </div>
+                    </div>
+                    <!-- Benefit 3 -->
+                    <div class="col-md-4 col-sm-4 process-item">
+                        <div class="process-icon">
+                            <p>3</p>
+                        </div>
+                        <div class="process-content">
+                            <strong>Interview Process</strong>
+                            <p>Engage with us through one or more interviews to discuss your experiences, skills, and aspirations.</p>
+                        </div>
+                    </div>
+                    <!-- Benefit 4 -->
+                    <div class="col-md-4 col-sm-4 process-item">
+                        <div class="process-icon">
+                            <p>4</p>
+                        </div>
+                        <div class="process-content">
+                            <strong>Assessment</strong>
+                            <p>Depending on the role, you may be invited to complete assignments or assessments to showcase your capabilities.</p>
+                        </div>
+                    </div>
+                    <!-- Benefit 5 -->
+                    <div class="col-md-4 col-sm-4 process-item">
+                        <div class="process-icon">
+                            <p>5</p>
+                        </div>
+                        <div class="process-content">
+                            <strong>Offer & Onboarding</strong>
+                            <p>If it's a match, we'll extend an offer. Once accepted, we'll guide you through every step of your onboarding journey.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
 	
 	
 	
@@ -1032,6 +1181,13 @@ document.addEventListener('DOMContentLoaded', () => {
 	</div>
 </div>
 </div>
+
+
+
+
+
+
+
 
 
 

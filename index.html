@@ -536,7 +536,70 @@ h2 {
 	border-radius: 15px;
 	overflow: hidden;
 }
+  .gobi-stories-container {
+    display: flex; /* Enable flexbox */
+    flex-direction: column; /* Stack items vertically */
+    align-items: center; /* Center items horizontally */
+    position: fixed;
+    bottom: 20px; /* Adjust the space from the bottom */
+    left: 20px; /* Adjust the space from the left */
+    z-index: 1000; /* Ensure it's above other elements */
+  }
+  .gobi-stories-text {
+    color: #ffffff; /* White text color */
+    background-color: #000000; /* Black background for visibility */
+    padding: 5px 12px; /* Some padding around the text */
+    border-radius: 5px; /* Rounded corners for the text box */
+    margin-top: 0px; /* Space between the widget and the text */
+    font-size: 13px; /* Small text size */
+    width: fit-content; /* Adjust width based on content */
+    background-color: #ffcfcd !important;
+    padding: 11px !important;
+    color: #26253e !important;
+    font-weight: 700 !important;
+    border-radius: 10px !imporant;
+	text-align: center;
+  }  
+  .close-btn {
+    z-index: 10000;
+    position: absolute; /* Position it relative to the container */
+    top: 10px; /* At the top */
+    right: 10px; /* At the right */
+    cursor: pointer; /* Change cursor to pointer to indicate it's clickable */
+    padding: 2px 5px; /* Padding around the text */
+    background-color: transparent; /* Light grey background */
+	background: transparent;
+    border: none; /* No border */
+    border-radius: 2px; /* Slightly rounded corners */
+    color: #26253e !important;
+  }
+  .close-btn i{
+    color: #ffcfcd !important;
+    font-size: 20px;
+
+  }
+  .gs-m {
+  display: none;
+  }
+
 @media (max-width: 768px) {
+  .gs-m {
+  display: inherit;
+  }
+  .gs-d {
+  display: none;
+  }
+  .close-btn {
+    top: -5px; /* At the top */
+    right: -5px; /* At the right */
+  }
+  .gobi-stories-container {
+    bottom: 5px; /* Adjust the space from the bottom */
+    left: 5px; /* Adjust the space from the left */
+  }
+  .gobi-stories-text {
+  display: none;
+  }
 	.benefits-section .row {
 		display: flex;
 		flex-wrap: nowrap;
@@ -638,9 +701,40 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 </script>
 
+
+<div class="gobi-stories-container" id="gobi-stories-container">
+  <button class="close-btn" onclick="document.getElementById('gobi-stories-container').style.display='none';"><i class="fa-regular fa-xmark"></i></button>
+  <script src="https://widget.gobistories.com/gwi/6" async onload="gobi.discover()"></script>
+<div class="gobi-stories gs-m"
+  data-gobi-stories="5gp7h"
+  data-gobi-color="#ffcfcd"
+  data-gobi-bubble-size="80px"
+  data-gobi-animated-bubble="true"
+  data-gobi-align="start"
+  data-gobi-hide-title="true"
+  data-gobi-disable-shadow-dom="false"
+  data-gobi-inherit-text-font-family="true"
+  data-gobi-auto-start-with-sound="true"
+  data-gobi-auto-start="false">
+  </div>
+<div class="gobi-stories gs-d"
+  data-gobi-stories="5gp7h"
+  data-gobi-color="#ffcfcd"
+  data-gobi-bubble-size="150px"
+  data-gobi-animated-bubble="true"
+  data-gobi-align="start"
+  data-gobi-hide-title="true"
+  data-gobi-disable-shadow-dom="false"
+  data-gobi-inherit-text-font-family="true"
+  data-gobi-auto-start-with-sound="true"
+  data-gobi-auto-start="false">
+  </div>
+  <a href="#company-section"><div class="gobi-stories-text">Get to know us</div></a>
+</div>
+
 	
 	
-	<div class="talentech-section">
+	<div class="talentech-section" id="company-section">
     <div class="container mt-5 pt-4 m-mt-2">
         <h2 class="m-px-2">Life at <span style="font-weight: 800;">Talentech</span></h2>
         <p class="my-4  m-px-2">Talentech has set out to become the largest and most innovative HR tech company of its kind. The product suite today spans the entire talent pipeline from recruitment, to onboarding and talent management with our products Talent Recruiter, ReachMee, Webcruiter, Talmundo, Weekli, irecommend and ontame.</p>

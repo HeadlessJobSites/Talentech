@@ -875,6 +875,44 @@ font-size: 1.8rem;
 
 
 
+
+
+
+	
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const params = new URLSearchParams(window.location.search);
+    const jobId = params.get('jobId');
+    
+    // Assuming the base URL and parameters for your iframe source
+    const baseUrl = "https://web103.reachmee.com/ext/I019/834/apply";
+    const siteId = "19"; // Adjust as necessary
+    const validator = "fa38d2eb8febb7bc22c8a91e10a1e9de"; // This might need to be dynamically fetched or set per job
+    const language = "UK";
+    const ihelper = encodeURIComponent(`https://career.talentech.com/jobs/rm?rmpage=job&rmjob=${jobId}`);
+
+    // Construct the iframe source URL
+    const iframeSrc = `${baseUrl}?job_id=${jobId}&site=${siteId}&validator=${validator}&lang=${language}&ihelper=${ihelper}`;
+
+    // Create the iframe element
+    const iframe = document.createElement('iframe');
+    iframe.setAttribute('src', iframeSrc);
+    iframe.setAttribute('width', '100%');
+    iframe.setAttribute('height', '2000px');
+    iframe.style.border = 'none';
+
+    // Append the iframe to the container
+    document.getElementById('applicationFormContainer').appendChild(iframe);
+});
+</script>
+
+
+
+
+
+
+	
+
 	
 <div class="feature-section mb-5 pt-3 pb-5" id="jobs-anchor" style="background-color: #eeeef2;">
 <div class="container mt-3 mb-5 m-mb-0">

@@ -893,30 +893,44 @@ document.addEventListener('DOMContentLoaded', function() {
     const params = new URLSearchParams(window.location.search);
     const jobId = params.get('jobId');
     
-    // Assuming the base URL and parameters for your iframe source
     const baseUrl = "https://web103.reachmee.com/ext/I019/834/apply";
-    const siteId = "19"; // Adjust as necessary
-    const validator = "fa38d2eb8febb7bc22c8a91e10a1e9de"; // This might need to be dynamically fetched or set per job
+    const siteId = "19"; 
+    const validator = "fa38d2eb8febb7bc22c8a91e10a1e9de"; 
     const language = "UK";
     const ihelper = encodeURIComponent(`https://career.talentech.com/jobs/rm?rmpage=job&rmjob=${jobId}`);
 
-    // Construct the iframe source URL
     const iframeSrc = `${baseUrl}?job_id=${jobId}&site=${siteId}&validator=${validator}&lang=${language}&ihelper=${ihelper}`;
 
-    // Create the iframe element
     const iframe = document.createElement('iframe');
     iframe.setAttribute('src', iframeSrc);
     iframe.setAttribute('width', '100%');
-    iframe.setAttribute('height', '2000px');
     iframe.style.border = 'none';
+    iframe.id = 'applicationFormIframe'; // Set an ID for the iframe
 
-    // Append the iframe to the container
     document.getElementById('applicationFormContainer').appendChild(iframe);
+
+    // Listen for messages from the iframe
+    window.addEventListener('message', function(event) {
+        // Check if the message is about the iframe height
+        if (event.data.hasOwnProperty('iframeHeight')) {
+            document.getElementById('applicationFormIframe').style.height = event.data.iframeHeight + 'px';
+        }
+    }, false);
 });
 </script>
 
+
 <script>
-document.write('<script type="text/javascript">function parentIframeResize(){var height = getParam(\'height\'); if (height != "") parent.parent.resizeIframe(height);}function getParam( name ){name = name.replace(/[\[]/,"\\\[").replace(/[\]]/,"\\\]");var regexS = "[\\?&]"+name+"=([^&#]*)";var regex = new RegExp( regexS );var results = regex.exec( window.location.href );if( results == null )	return "";else return results[1];} parentIframeResize(); </script>');
+window.onload = function() {
+    var body = document.body,
+        html = document.documentElement;
+
+    var height = Math.max(body.scrollHeight, body.offsetHeight, 
+                          html.clientHeight, html.scrollHeight, html.offsetHeight);
+
+    // Send a message to the parent window
+    parent.postMessage({ 'iframeHeight': height }, '*');
+};
 </script>
 
 

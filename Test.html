@@ -1,17 +1,37 @@
-<meta name="viewport" content="width=device-width, initial-scale=1">
 
-
-<script src="https://widget.gobistories.com/gwi/6" async onload="gobi.discover()"></script>
-
-<div class="gobi-stories"
-  data-gobi-stories="5gp7h"
-  data-gobi-color="transparent"
-  data-gobi-bubble-size="250px"
-  data-gobi-animated-bubble="true"
-  data-gobi-align="left"
-  data-gobi-hide-title="true"
-  data-gobi-disable-shadow-dom="false"
-  data-gobi-inherit-text-font-family="true"
-  data-gobi-auto-start-with-sound="true"
-  data-gobi-auto-start="false">
+<section class="process-section my-5 m-my-0 m-pt-0 m-pb-4" style="">
+<h2 class="container pt-5 m-px-4 m-pb-2" id="appFormWrapper">Application <span style="font-weight: 800;">form</span></h2>
+<!-- Application form -->
+<div id="originalContentContainer">
+<div id="applicationFormContainer"></div>
 </div>
+</section>
+	
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const params = new URLSearchParams(window.location.search);
+    const jobId = params.get('jobId');
+    
+    // Assuming the base URL and parameters for your iframe source
+    const baseUrl = "https://web103.reachmee.com/ext/I019/834/apply";
+    const siteId = "19"; // Adjust as necessary
+    const validator = "fa38d2eb8febb7bc22c8a91e10a1e9de"; // This might need to be dynamically fetched or set per job
+    const language = "UK";
+    const ihelper = encodeURIComponent(`https://career.talentech.com/jobs/rm?rmpage=job&rmjob=${jobId}`);
+
+    // Construct the iframe source URL
+    const iframeSrc = `${baseUrl}?job_id=${jobId}&site=${siteId}&validator=${validator}&lang=${language}&ihelper=${ihelper}`;
+
+    // Create the iframe element
+    const iframe = document.createElement('iframe');
+    iframe.setAttribute('src', iframeSrc);
+    iframe.setAttribute('width', '100%');
+    iframe.setAttribute('height', '2000px');
+    iframe.style.border = 'none';
+
+    // Append the iframe to the container
+    document.getElementById('applicationFormContainer').appendChild(iframe);
+});
+</script>
+
+

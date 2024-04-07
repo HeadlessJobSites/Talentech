@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Stillingsannonse11</title>
+    <title>Stillingsannonse1</title>
     <!-- Bootstrap CSS -->
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
@@ -918,75 +918,40 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 <script>
-window.onload = function() {
-    // Better to use 'load' event to ensure all content, including images, has loaded
-    var body = document.body,
-        html = document.documentElement;
+document.addEventListener('DOMContentLoaded', function() {
+    const iframe = document.createElement('iframe');
+    iframe.style.width = "100%";
+    iframe.style.border = "none";
+    iframe.id = "applicationFormIframe";
+    // Set the iframe's src to your desired URL
+    iframe.setAttribute('src', 'YOUR_IFRAME_SOURCE_URL');
+    document.getElementById('applicationFormContainer').appendChild(iframe);
 
-    var height = Math.max(body.scrollHeight, body.offsetHeight, 
-                          html.clientHeight, html.scrollHeight, html.offsetHeight);
-
-    // Send a message to the parent window with the current height
-    parent.postMessage({ 'iframeHeight': height }, '*');
-};
-
-</script>
-
-	<script>
-		document.write('<script type="text/javascript">function parentIframeResize(){var height = getParam(\'height\'); if (height != "") parent.parent.resizeIframe(height);}function getParam( name ){name = name.replace(/[\[]/,"\\\[").replace(/[\]]/,"\\\]");var regexS = "[\\?&]"+name+"=([^&#]*)";var regex = new RegExp( regexS );var results = regex.exec( window.location.href );if( results == null )	return "";else return results[1];} parentIframeResize(); </script>');
-</script>
-	
-<script>
-// Ensure the script is encapsulated to not pollute the global namespace
-(function() {
-    // Function to resize iframe
-    function resizeIframe(height) {
-        var iframe = document.getElementById('riframe');
-        if (iframe) {
-            iframe.style.height = parseInt(height, 10) + 60 + 'px'; // Adjust '+60' as needed
-        }
-    }
-
-    // Function to scroll to the iframe
-    function scrollToIframe(iframeElement) {
-        if (!iframeElement.dataset.loadedFirstTime) {
-            iframeElement.scrollIntoView(true);
-            iframeElement.dataset.loadedFirstTime = 'true';
-        }
-    }
-
-    if (typeof rmihelper === 'undefined') { // Check if `rmihelper` is not defined
-        var iframe = document.createElement("iframe");
-        iframe.setAttribute('allowTransparency', 'true');
-        iframe.setAttribute('title', 'Dynamic Content'); // Ensure 'title' is defined
-        iframe.setAttribute('id', 'riframe');
-        iframe.setAttribute('name', 'riframe');
-        iframe.onload = function() { scrollToIframe(this); };
-        iframe.setAttribute('width', '100%');
-        iframe.setAttribute('frameborder', '0');
-        iframe.setAttribute('src', 'YOUR_IFRAME_URL_HERE'); // Make sure to set your iframe URL
-        iframe.setAttribute('data-cookieconsent', 'ignore');
-
-        var targetElementId = "reachmee-iframe-" + "CUSTOMER" + "-" + "SITE"; // Set these variables as needed
-        var targetElement = document.getElementById(targetElementId);
-        if (targetElement) {
-            targetElement.appendChild(iframe);
-        } else {
-            console.error('Target element not found:', targetElementId);
-        }
-
-        // Listen for messages sent from the iframe
-        window.addEventListener("message", function(e) {
-            if (typeof e.data === 'string' && e.data.startsWith('resize::')) {
-                var height = e.data.replace('resize::', '');
-                resizeIframe(height);
+    // Listen for messages from the iframe
+    window.addEventListener('message', function(event) {
+        // You might want to add security checks here, such as verifying event.origin
+        if (typeof event.data === 'string' && event.data.startsWith('resize::')) {
+            const height = event.data.split('resize::')[1];
+            if (height) {
+                iframe.style.height = height + 'px';
             }
-        }, false);
-    }
-})();
+        }
+    }, false);
+});
+
 </script>
 
-
+<script>
+	window.addEventListener('message', function(event) {
+    const expectedOrigin = 'https://example.com'; // Replace this with the iframe's origin
+    if (event.origin === expectedOrigin && typeof event.data === 'string' && event.data.startsWith('resize::')) {
+        const height = event.data.split('resize::')[1];
+        if (height) {
+            document.getElementById('applicationFormIframe').style.height = height + 'px';
+        }
+    }
+}, false);
+</script>
 
 
 	

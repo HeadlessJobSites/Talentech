@@ -1311,7 +1311,36 @@ document.addEventListener('DOMContentLoaded', () => {
     </div>
 </section>
 
+
 	
+    <button id="agent" class="btn btn-primary">agent</button>
+
+
+<div class="modal fade modal-fullscreen-90w" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" id="closeModalButton" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <iframe id="modalIframe" src="" style="border: none; width: 100%; height: 450px;"></iframe>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById('agent').addEventListener('click', function() {
+        var iframeUrl = "https://web103.reachmee.com/ext/I019/834/subscribe?site=19&lang=UK&validator=fa38d2eb8febb7bc22c8a91e10a1e9de";
+        document.getElementById('modalIframe').src = iframeUrl;
+        $('#exampleModal').modal('show');
+    });
+});
+</script>
+
 	
 
 	
@@ -1365,40 +1394,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		<p>Sign up and you'll get an e-mail when there is any position available similar to your prenumeration.</p>
 		</div>
     </div>
-    <button id="agent" class="btn btn-primary" style="font-weight: 800; margin: 0 auto;">Sign up</button>
-
-<div class="modal fade modal-fullscreen-90w" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" id="closeModalButton" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <iframe id="agent" src="" style="border: none; width: 100%; height: 50vh;"></iframe>
-      </div>
-    </div>
-  </div>
-</div>
-
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    document.getElementById('agent').addEventListener('click', function() {
-        var iframeUrl = "https://web103.reachmee.com/ext/I019/834/subscribe?site=19&lang=UK&validator=fa38d2eb8febb7bc22c8a91e10a1e9de";
-        
-        // Set the iframe src attribute to the URL
-        document.getElementById('modalIframe').src = iframeUrl;
-
-        // Create a new instance of the Bootstrap Modal
-        var myModal = new bootstrap.Modal(document.getElementById('exampleModal'));
-        
-        // Show the modal
-        myModal.show();
-    });
-});
-
-</script>
+ 
 	
 	
 </div>

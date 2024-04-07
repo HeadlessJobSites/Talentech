@@ -647,6 +647,79 @@ font-size: 1.8rem;
 }
 }
 
+
+
+
+
+.modal-fullscreen-90w {
+  padding-right: 0 !important;
+  }
+.modal-fullscreen-90w .modal-content {
+  height: 500px;
+  width: 100vw;
+}
+.modal.fade .modal-dialog {
+  transform: translate(0, 100%);
+  transition: transform 0.3s ease-out;
+}
+
+.modal.show .modal-dialog {
+  transform: translate(0, 40%);
+}
+
+.modal-dialog {
+  max-width: 100%;
+  margin: 0;
+  /*margin-top: 30vh;  Adjust if necessary */
+}
+
+.modal-fullscreen-90w .modal-content {
+  background-color: #fff;
+}
+
+.modal-content {
+  border: 0;
+  border-radius: 0;
+}
+.modal-header {
+  /*position: absolute;
+  top: 0;
+  right: 0;*/
+  padding-top: 10px;
+  width: 100%; 
+  display: flex;
+  justify-content: flex-end; /* Aligns items to the right */
+  border: none; /* Removes any default border that might exist */
+  background: transparent; /* Optional: Makes the header background transparent */
+}
+
+#closeModalButton {
+  background: none; /* Makes the background transparent */
+  border: none; /* Removes the border */
+  font-size: 24px; /* Adjust size as needed */
+  margin-right: 1rem; /* Adds margin to the right */
+  padding: 1rem; /* Ensures there's padding around the icon for easier clicking */
+}
+
+.modal-content {
+  position: relative; /* Ensures the absolute positioning of the header is relative to the modal content */
+}
+.modal-fullscreen-90w .modal-content {
+  background-color: #fff; 
+  overflow-y: auto; /* Allows scrolling within the modal */
+  max-height: 500px; /* Limits the modal height to 90% of the viewport height */
+  width: 100%; /* Full width */
+}
+
+.modal-dialog {
+  margin: 5vh auto; /* Centers the modal vertically with 5% top/bottom margin */
+  max-width: 100%; /* Allows the modal to be full width */
+}
+
+.modal-body {
+  overflow-y: auto; /* Ensures only the modal body scrolls, not the entire modal */
+  padding: 0;
+}	    	    
     </style>
 </head>
 

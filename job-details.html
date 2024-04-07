@@ -879,42 +879,45 @@ window.addEventListener('message', function(event) {
 
 
 
-<div class="container my-5 py-5 m-my-0 m-pt-0">
+<div class="container my-5 py-5 m-my-0 m-pt-0" style="text-align: center;">
     <div class="">
-        <h2 class="h2-small">Couldn't find the job you were looking for?</h2>
+        <h2>Couldn't find the job you were looking for?</h2>
         <div class="mt-4 mb-2">
 		<p>Sign up and you'll get an e-mail when there is any position available similar to your prenumeration.</p>
 		</div>
     </div>
-    <div class="row justify-content-center mt-4 mb-3">
-        <div class="col-md-4 mt-3">
-            <label for="locationSelect">Location</label>
-            <select id="locationSelect" class="form-control">
-                <option>All locations</option>
-                <option>Oslo</option>
-                <option>Stockholm</option>
-                <option>Helsinki</option>
-                <option>Amsterdam</option>
-            </select>
-        </div>
-        <div class="col-md-4 mt-3">
-            <label for="jobTypeSelect">Job type</label>
-            <select id="jobTypeSelect" class="form-control">
-                <option>All job types</option>
-                <option>Full-time</option>
-                <option>Part-time</option>
-                <option>Contract</option>
-                <option>Internship</option>
-            </select>
-        </div>
-        <div class="col-md-4 mt-3">
-            <label for="emailInput">E-mail</label>
-            <input type="email" id="emailInput" class="form-control" placeholder="Write your e-mail here">
-        </div>
-        <div class="mt-5 text-center">
-            <button class="btn btn-primary" style="font-weight: 800;">Sign up</button>
-        </div>
+ 
+
+    <button id="agent" class="mt-3 btn btn-primary" style="font-weight:800">Sign up</button>
+
+
+<div class="modal fade modal-fullscreen-90w" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" id="closeModalButton" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <iframe id="modalIframe" src="" style="border: none; width: 100%; height: 450px;"></iframe>
+      </div>
     </div>
+  </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById('agent').addEventListener('click', function() {
+        var iframeUrl = "https://web103.reachmee.com/ext/I019/834/subscribe?site=19&lang=UK&validator=fa38d2eb8febb7bc22c8a91e10a1e9de";
+        document.getElementById('modalIframe').src = iframeUrl;
+        $('#exampleModal').modal('show');
+    });
+});
+</script>
+
+		
+	
 </div>
 
 

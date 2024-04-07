@@ -1,37 +1,31 @@
-
-<section class="process-section my-5 m-my-0 m-pt-0 m-pb-4" style="">
-<h2 class="container pt-5 m-px-4 m-pb-2" id="appFormWrapper">Application <span style="font-weight: 800;">form</span></h2>
-<!-- Application form -->
-<div id="originalContentContainer">
-<div id="applicationFormContainer"></div>
-</div>
-</section>
-	
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    const params = new URLSearchParams(window.location.search);
-    const jobId = params.get('jobId');
     
-    // Assuming the base URL and parameters for your iframe source
-    const baseUrl = "https://web103.reachmee.com/ext/I019/834/apply";
-    const siteId = "19"; // Adjust as necessary
-    const validator = "fa38d2eb8febb7bc22c8a91e10a1e9de"; // This might need to be dynamically fetched or set per job
-    const language = "UK";
-    const ihelper = encodeURIComponent(`https://career.talentech.com/jobs/rm?rmpage=job&rmjob=${jobId}`);
-
-    // Construct the iframe source URL
-    const iframeSrc = `${baseUrl}?job_id=${jobId}&site=${siteId}&validator=${validator}&lang=${language}&ihelper=${ihelper}`;
-
-    // Create the iframe element
-    const iframe = document.createElement('iframe');
-    iframe.setAttribute('src', iframeSrc);
-    iframe.setAttribute('width', '100%');
-    iframe.setAttribute('height', '2000px');
-    iframe.style.border = 'none';
-
-    // Append the iframe to the container
-    document.getElementById('applicationFormContainer').appendChild(iframe);
-});
-</script>
+    <script src="//web103.reachmee.com/customerjs/helper.js" type="text/javascript"></script>
+    <script src="//web103.reachmee.com/customerjs/I019-834-19.js?reftracking=false" type="text/javascript"></script>
 
 
+<iframe allowtransparency="true" title="ReachMee Recruit external site" id="riframe" name="riframe" onload="scrollToIframe(this)" width="100%" height="4000" frameborder="0" src="https://web103.reachmee.com/ext/I019/834/apply?job_id=312&amp;site=19&amp;validator=fa38d2eb8febb7bc22c8a91e10a1e9de&amp;lang=UK&amp;ihelper=https://career.talentech.com/jobs/rm" data-cookieconsent="ignore" data-loaded-first-time="true"></iframe>
+
+
+
+        <script>
+            window.addEventListener("DOMContentLoaded",function(){!function(e){for(var t,a,n,s=document.querySelectorAll(e)[0],l=s.querySelectorAll(".at-links-container")[0],i=s.querySelectorAll(".at-links-wrapper")[0],r=i.children,c=s.querySelectorAll(".at-hidden-links-wrapper")[0],o=s.querySelectorAll(".at-menu-hamburger-wrapper")[0],d=0,u=0,g=[],m=0;m<r.length;m++)d+=r[m].offsetWidth,u+=1,g.push(d);function f(){t=parseInt(getComputedStyle(l).width)-10,a=r.length,n=g[a-1],t<n?(c.insertBefore(r[r.length-1],c.firstChild),a-=1,f()):t>g[a]?(i.appendChild(c.children[0]),a-=1,f()):a===u?p(s,"at-collapsed"):function(e,t){e.classList?e.classList.add(t):e.className+=" "+t}(s,"at-collapsed"),p(i,"at-links-hidden")}function p(e,t){e.classList?e.classList.remove(t):e.className=e.className.replace(new RegExp("(^|\\b)"+t.split(" ").join("|")+"(\\b|$)","gi")," ")}f(),window.addEventListener("resize",f),o.addEventListener("click",function(){!function(e,t){if(e.classList)e.classList.toggle(t);else{var a=e.className.split(" "),n=a.indexOf(t);0<=n?a.splice(n,1):(a.push(t),e.className=a.join(" "))}}(s,"at-hamburger-active")})}("#at-menu-block")}),window.addEventListener("load",function(){var e=document.getElementsByClassName("at-js-lazy-bg-image"),t=document.getElementsByClassName("at-js-lazy-image");!function(e){for(var t=0;t<e.length;t++){var a=e[t].getAttribute("data-src");a&&e[t].setAttribute("style","background-image: url("+a+")")}}(e),function(e){for(var t=0;t<e.length;t++){var a=e[t].getAttribute("data-src");a&&e[t].setAttribute("src",a)}}(t)});
+        </script>
+
+        <script>
+            (function() {
+                if (isInIframe()) {
+                    var script = document.createElement('script');
+                    script.async = true;
+                    script.src = "/static/dist/js/admin-related.js?_v=1701932320";
+                    document.getElementsByTagName('head')[0].appendChild(script);
+                }
+
+                function isInIframe () {
+                    try {
+                        return window.self !== window.top;
+                    } catch (e) {
+                        return true;
+                    }
+                }
+            }());
+        </script>

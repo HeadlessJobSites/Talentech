@@ -642,6 +642,78 @@ h1 {
 	}
 }
 
+
+.modal-fullscreen-90w {
+  padding-right: 0 !important;
+  }
+.modal-fullscreen-90w .modal-content {
+  height: 70vh;
+  width: 100vw;
+}
+.modal.fade .modal-dialog {
+  transform: translate(0, 100%);
+  transition: transform 0.3s ease-out;
+}
+
+.modal.show .modal-dialog {
+  transform: translate(0, 40%);
+}
+
+.modal-dialog {
+  max-width: 100%;
+  margin: 0;
+  margin-top: 30vh; /* Adjust if necessary */
+}
+
+.modal-fullscreen-90w .modal-content {
+  background-color: #fff;
+}
+
+.modal-content {
+  border: 0;
+  border-radius: 0;
+}
+.modal-header {
+  /*position: absolute;
+  top: 0;
+  right: 0;*/
+  padding-top: 10px;
+  width: 100%; 
+  display: flex;
+  justify-content: flex-end; /* Aligns items to the right */
+  border: none; /* Removes any default border that might exist */
+  background: transparent; /* Optional: Makes the header background transparent */
+}
+
+#closeModalButton {
+  background: none; /* Makes the background transparent */
+  border: none; /* Removes the border */
+  font-size: 24px; /* Adjust size as needed */
+  margin-right: 1rem; /* Adds margin to the right */
+  padding: 1rem; /* Ensures there's padding around the icon for easier clicking */
+}
+
+.modal-content {
+  position: relative; /* Ensures the absolute positioning of the header is relative to the modal content */
+}
+.modal-fullscreen-90w .modal-content {
+  background-color: #fff; 
+  overflow-y: auto; /* Allows scrolling within the modal */
+  max-height: 70vh; /* Limits the modal height to 90% of the viewport height */
+  width: 100%; /* Full width */
+}
+
+.modal-dialog {
+  margin: 5vh auto; /* Centers the modal vertically with 5% top/bottom margin */
+  max-width: 100%; /* Allows the modal to be full width */
+}
+
+.modal-body {
+  overflow-y: auto; /* Ensures only the modal body scrolls, not the entire modal */
+  padding: 0;
+}
+
+	    
     </style>
 </head>
 
@@ -1285,14 +1357,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-<div class="container my-5 py-5 m-my-0 m-pt-0">
+<div class="container my-5 py-5 m-my-0 m-pt-0" style="text-align: center;">
     <div class="">
         <h2>Couldn't find the job you were looking for?</h2>
         <div class="mt-4 mb-2">
 		<p>Sign up and you'll get an e-mail when there is any position available similar to your prenumeration.</p>
 		</div>
     </div>
-    <div class="row justify-content-center mt-4 mb-3">
+<!--    <div class="row justify-content-center mt-4 mb-3">
         <div class="col-md-4 mt-3">
             <label for="locationSelect">Location</label>
             <select id="locationSelect" class="form-control">
@@ -1321,6 +1393,37 @@ document.addEventListener('DOMContentLoaded', () => {
             <button class="btn btn-primary" style="font-weight: 800;">Sign up</button>
         </div>
     </div>
+	-->
+
+
+    <button id="agent" class="btn btn-primary" style="font-weight: 800; margin: 0 auto;">Sign up</button>
+
+<div class="modal fade modal-fullscreen-90w" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" id="closeModalButton" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <iframe id="modalIframe" src="" style="border: none; width: 100%; height: 50vh;"></iframe>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById('agent').addEventListener('click', function() {
+        var iframeUrl = "https://web103.reachmee.com/ext/I019/834/subscribe?site=19&lang=UK&validator=fa38d2eb8febb7bc22c8a91e10a1e9de";
+        document.getElementById('modalIframe').src = iframeUrl;
+        $('#exampleModal').modal('show');
+    });
+});
+</script>
+	
+	
 </div>
 
 

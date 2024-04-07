@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Stillingsannonse</title>
+    <title>Stillingsannonse1</title>
     <!-- Bootstrap CSS -->
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
@@ -905,7 +905,7 @@ document.addEventListener('DOMContentLoaded', function() {
     iframe.setAttribute('src', iframeSrc);
     iframe.setAttribute('width', '100%');
     iframe.style.border = 'none';
-    iframe.id = 'applicationFormIframe';
+    iframe.id = 'applicationFormContainer';
 
     document.getElementById('applicationFormContainer').appendChild(iframe);
 
@@ -913,7 +913,7 @@ document.addEventListener('DOMContentLoaded', function() {
     window.addEventListener('message', function(event) {
         // Securely check if the message is about the iframe height
         if (event.data && typeof event.data === 'object' && 'iframeHeight' in event.data) {
-            document.getElementById('applicationFormIframe').style.height = `${event.data.iframeHeight}px`;
+            document.getElementById('applicationFormContainer').style.height = `${event.data.iframeHeight}px`;
         }
     }, false);
 });

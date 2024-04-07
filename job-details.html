@@ -905,32 +905,35 @@ document.addEventListener('DOMContentLoaded', function() {
     iframe.setAttribute('src', iframeSrc);
     iframe.setAttribute('width', '100%');
     iframe.style.border = 'none';
-    iframe.id = 'applicationFormIframe'; // Set an ID for the iframe
+    iframe.id = 'applicationFormIframe';
 
     document.getElementById('applicationFormContainer').appendChild(iframe);
 
-    // Listen for messages from the iframe
+    // Adjust to listen for specific resize messages
     window.addEventListener('message', function(event) {
-        // Check if the message is about the iframe height
-        if (event.data.hasOwnProperty('iframeHeight')) {
-            document.getElementById('applicationFormIframe').style.height = event.data.iframeHeight + 'px';
+        // Securely check if the message is about the iframe height
+        if (event.data && typeof event.data === 'object' && 'iframeHeight' in event.data) {
+            document.getElementById('applicationFormIframe').style.height = `${event.data.iframeHeight}px`;
         }
     }, false);
 });
+
 </script>
 
 
 <script>
 window.onload = function() {
+    // Better to use 'load' event to ensure all content, including images, has loaded
     var body = document.body,
         html = document.documentElement;
 
     var height = Math.max(body.scrollHeight, body.offsetHeight, 
                           html.clientHeight, html.scrollHeight, html.offsetHeight);
 
-    // Send a message to the parent window
+    // Send a message to the parent window with the current height
     parent.postMessage({ 'iframeHeight': height }, '*');
 };
+
 </script>
 
 

@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Stillingsannonse1</title>
+    <title>Stillingsannonse</title>
     <!-- Bootstrap CSS -->
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
@@ -892,28 +892,24 @@ font-size: 1.8rem;
 document.addEventListener('DOMContentLoaded', function() {
     const params = new URLSearchParams(window.location.search);
     const jobId = params.get('jobId');
-    
-    const baseUrl = "https://web103.reachmee.com/ext/I019/834/apply";
-    const siteId = "19"; 
-    const validator = "fa38d2eb8febb7bc22c8a91e10a1e9de"; 
-    const language = "UK";
-    const ihelper = encodeURIComponent(`https://career.talentech.com/jobs/rm?rmpage=job&rmjob=${jobId}`);
-
-    const iframeSrc = `${baseUrl}?job_id=${jobId}&site=${siteId}&validator=${validator}&lang=${language}&ihelper=${ihelper}`;
-
     const iframe = document.createElement('iframe');
+    iframe.style.width = "100%";
+    iframe.style.border = "none";
+    iframe.id = "applicationFormIframe";
+    iframe.onload = function() {
+        // Once the iframe has loaded, you can send a message to request its height
+        // This assumes you can control the content to respond to this message
+        iframe.contentWindow.postMessage({requestHeight: true}, "*");
+    };
+
+    const iframeSrc = `https://web103.reachmee.com/ext/I019/834/apply?job_id=${jobId}&site=19&validator=fa38d2eb8febb7bc22c8a91e10a1e9de&lang=UK&ihelper=${encodeURIComponent(`https://career.talentech.com/jobs/rm?rmpage=job&rmjob=${jobId}`)}`;
     iframe.setAttribute('src', iframeSrc);
-    iframe.setAttribute('width', '100%');
-    iframe.style.border = 'none';
-    iframe.id = 'applicationFormContainer';
 
     document.getElementById('applicationFormContainer').appendChild(iframe);
 
-    // Adjust to listen for specific resize messages
     window.addEventListener('message', function(event) {
-        // Securely check if the message is about the iframe height
-        if (event.data && typeof event.data === 'object' && 'iframeHeight' in event.data) {
-            document.getElementById('applicationFormContainer').style.height = `${event.data.iframeHeight}px`;
+        if (event.data && typeof event.data.iframeHeight !== 'undefined') {
+            document.getElementById('applicationFormIframe').style.height = event.data.iframeHeight + 'px';
         }
     }, false);
 });
@@ -922,17 +918,16 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 <script>
-window.onload = function() {
-    // Better to use 'load' event to ensure all content, including images, has loaded
+	window.addEventListener('load', function() {
     var body = document.body,
         html = document.documentElement;
 
     var height = Math.max(body.scrollHeight, body.offsetHeight, 
-                          html.clientHeight, html.scrollHeight, html.offsetHeight);
+                          html.clientHeight, html.scrollHeight, html.offsetHeight );
 
-    // Send a message to the parent window with the current height
+    // Post a message back to the parent with the new height
     parent.postMessage({ 'iframeHeight': height }, '*');
-};
+});
 
 </script>
 

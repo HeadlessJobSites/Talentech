@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Stillingsannonse1</title>
+    <title>Stillingsannonse11</title>
     <!-- Bootstrap CSS -->
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
@@ -876,74 +876,36 @@ font-size: 1.8rem;
 
 
 
-
-
 <section class="process-section my-5 m-my-0 m-pt-0 m-pb-4" style="">
-<h2 class="container pt-5 m-px-4 m-pb-2" id="appFormWrapper">Application <span style="font-weight: 800;">form</span></h2>
-<!-- Application form -->
-<div id="originalContentContainer">
-<div id="applicationFormContainer"></div>
-</div>
+    <h2 class="container pt-5 m-px-4 m-pb-2" id="appFormWrapper">Application <span style="font-weight: 800;">form</span></h2>
+    <!-- Application form -->
+    <div id="originalContentContainer">
+        <div id="applicationFormContainer"></div>
+    </div>
 </section>
 
-	
-
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-    const params = new URLSearchParams(window.location.search);
-    const jobId = params.get('jobId');
-    const iframe = document.createElement('iframe');
-    iframe.style.width = "100%";
-    iframe.style.border = "none";
-    iframe.id = "applicationFormIframe";
-    iframe.onload = function() {
-        // Once the iframe has loaded, you can send a message to request its height
-        // This assumes you can control the content to respond to this message
-        iframe.contentWindow.postMessage({requestHeight: true}, "*");
-    };
+    // Ensure we only append the iframe once
+    if (!document.getElementById('applicationFormIframe')) {
+        const params = new URLSearchParams(window.location.search);
+        const jobId = params.get('jobId');
+        const iframe = document.createElement('iframe');
+        iframe.style.width = "100%";
+        iframe.style.border = "none";
+        iframe.id = "applicationFormIframe";
+        // Replace 'YOUR_IFRAME_SOURCE_URL' with your actual iframe source URL
+        const iframeSrc = `https://web103.reachmee.com/ext/I019/834/apply?job_id=${jobId}&site=19&validator=fa38d2eb8febb7bc22c8a91e10a1e9de&lang=UK&ihelper=${encodeURIComponent('https://career.talentech.com/jobs/rm?rmpage=job&rmjob=' + jobId)}`;
+        iframe.setAttribute('src', iframeSrc);
 
-    const iframeSrc = `https://web103.reachmee.com/ext/I019/834/apply?job_id=${jobId}&site=19&validator=fa38d2eb8febb7bc22c8a91e10a1e9de&lang=UK&ihelper=${encodeURIComponent(`https://career.talentech.com/jobs/rm?rmpage=job&rmjob=${jobId}`)}`;
-    iframe.setAttribute('src', iframeSrc);
-
-    document.getElementById('applicationFormContainer').appendChild(iframe);
-
-    window.addEventListener('message', function(event) {
-        if (event.data && typeof event.data.iframeHeight !== 'undefined') {
-            document.getElementById('applicationFormIframe').style.height = event.data.iframeHeight + 'px';
-        }
-    }, false);
+        document.getElementById('applicationFormContainer').appendChild(iframe);
+    }
 });
 
-</script>
-
-
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    const iframe = document.createElement('iframe');
-    iframe.style.width = "100%";
-    iframe.style.border = "none";
-    iframe.id = "applicationFormIframe";
-    // Set the iframe's src to your desired URL
-    iframe.setAttribute('src', 'YOUR_IFRAME_SOURCE_URL');
-    document.getElementById('applicationFormContainer').appendChild(iframe);
-
-    // Listen for messages from the iframe
-    window.addEventListener('message', function(event) {
-        // You might want to add security checks here, such as verifying event.origin
-        if (typeof event.data === 'string' && event.data.startsWith('resize::')) {
-            const height = event.data.split('resize::')[1];
-            if (height) {
-                iframe.style.height = height + 'px';
-            }
-        }
-    }, false);
-});
-
-</script>
-
-<script>
-	window.addEventListener('message', function(event) {
-    const expectedOrigin = 'https://example.com'; // Replace this with the iframe's origin
+// Consolidate message listener, adding security check
+window.addEventListener('message', function(event) {
+    // Replace 'https://web103.reachmee.com' with the actual origin of your iframe content
+    const expectedOrigin = 'https://web103.reachmee.com'; 
     if (event.origin === expectedOrigin && typeof event.data === 'string' && event.data.startsWith('resize::')) {
         const height = event.data.split('resize::')[1];
         if (height) {

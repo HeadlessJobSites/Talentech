@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Stillingsannonse1</title>
+    <title>Stillingsannonse</title>
     <!-- Bootstrap CSS -->
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -804,6 +804,17 @@ font-size: 1.8rem;
 
 
 
+<section class="team-section my-5 pb-4 m-my-0">
+        <h2 class="container pt-5 mb-0 pb-0">The <span class="organization-unit" style="font-weight: 800;"></span><span style="font-weight: 800;"> team</span></h2>
+    <div class="container mt-0 pt-2">
+        <div class="row mt-3 m-mt-2 m-mx-1">
+<div id="gobi-section"></div>		
+        </div>
+    </div>
+</section>
+
+	
+
 
 <section id="recruitment-steps" class="process-section my-5 py-5 m-my-0 m-pt-0 m-pb-4" style="background-color: #eeeef2;">
         <h2 class="container pt-5 m-px-3 m-pb-2">Our <span style="font-weight: 800;">recruitment process</span></h2>
@@ -1181,8 +1192,8 @@ $(document).ready(function() {
 
                 const newDiv = $('<div class="gobi-collection"></div>').attr('data-gobi-collection-id', collectionId);
                 
-                // Insert the new div right after the div with id 'recruitment-steps'
-                newDiv.insertAfter('#recruitment-steps');
+                // Insert the new div right after the div with id 'gobi-section'
+                newDiv.insertAfter('#gobi-section');
 
                 // Load the Gobi widget script dynamically
                 loadGobiScript();

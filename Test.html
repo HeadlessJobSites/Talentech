@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>z</title>
+    <title>zz</title>
     <!-- Bootstrap CSS -->
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -868,35 +868,6 @@ font-size: 1.8rem;
 	
 
 
-    <!-- Example placeholder for organization unit -->
-    <span class="organization-unit" style="display:none;">Finance</span> <!-- Hidden for testing -->
-
-    <!-- Placeholder for Gobi collection -->
-    <div class="gobi-collection"></div>
-
-    <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        // Map of organization units to corresponding Gobi collection IDs
-        var orgUnitToGobiId = {
-            "Finance": "tavnb",
-            "Tech": "mnnvj"
-        };
-
-        // Find the organization unit span
-        var orgUnitSpan = document.querySelector('.organization-unit');
-        var orgUnitText = orgUnitSpan.textContent.trim();
-
-        // Find the Gobi collection div
-        var gobiCollectionDiv = document.querySelector('.gobi-collection');
-
-        // Set the data-gobi-collection-id based on the organization unit
-        if (orgUnitToGobiId[orgUnitText]) {
-            gobiCollectionDiv.setAttribute('data-gobi-collection-id', orgUnitToGobiId[orgUnitText]);
-        }
-    });
-    </script>
-	
-
 
 
 
@@ -1044,7 +1015,8 @@ document.addEventListener('DOMContentLoaded', function() {
     </div>
 
 
-	<div id="greeting"></div>
+<div class="greeting"></div>
+
 
 
 
@@ -1193,7 +1165,6 @@ $(document).ready(function () {
 	
 	
 	
-	
 	<script>
 $(document).ready(function() {
     const params = new URLSearchParams(window.location.search);
@@ -1205,34 +1176,13 @@ $(document).ready(function() {
             const job = jobs.find(job => job.ad_id === jobId);
             if (job) {
                 const organizationUnit = job.organizations && job.organizations.length > 1 ? job.organizations[1].nameorgunit : job.organizations[0]?.nameorgunit || 'Not specified';
-                
-                // Update the greeting based on the organization unit
-                let greetingMessage = '';
-                switch (organizationUnit) {
-                    case 'Finance':
-                        greetingMessage = 'Hello Finance';
-                        break;
-                    case 'HR':
-                        greetingMessage = 'Hi HR';
-                        break;
-                    case 'Tech':
-                        greetingMessage = 'Howdy Tech';
-                        break;
-                    default:
-                        greetingMessage = 'Welcome'; // Default greeting
-                }
-
-                $('#greeting').text(greetingMessage);
-
-                // Continue setting other job details
+                const city = job.areas && job.areas.length > 0 ? job.areas[0].name : 'Not specified';
+		    
                 const applicationLink = job.link.replace("rmpage=job", "rmpage=apply");
                 $('#applyButton').attr('onclick', `window.location.href='${applicationLink}'`);
                 $('#applyButton-tt').attr('onclick', `window.location.href='${applicationLink}'`);
 
-                const titleWords = job.title.split(' ');
-                const firstWord = titleWords.shift();
-                const restOfTitle = titleWords.join(' ');
-                $('.job-title').html(`<span style="font-weight:400;">${firstWord}</span> <span style="font-weight:800;">${restOfTitle}</span>`);
+                $('.job-title').html(`<span style="font-weight:400;">${firstWord}</span> <span style="font-weight:800;">${restOfTitle}</span>`); 
                 $('.job-title2').html(job.title);
                 $('.job-description').html(job.description);
                 $('.organization-unit').text(organizationUnit);
@@ -1240,6 +1190,23 @@ $(document).ready(function() {
                 $('.country').text(job.country);
                 $('.publishing-date').text(job.publishing_date);
                 $('.expiration-date').text(job.expiration_date);
+
+                // Handle the greeting based on the organization unit
+                let greeting;
+                switch (organizationUnit) {
+                    case "Finance":
+                        greeting = "Hello Finance";
+                        break;
+                    case "HR":
+                        greeting = "Hi HR";
+                        break;
+                    case "Tech":
+                        greeting = "Howdy Tech";
+                        break;
+                    default:
+                        greeting = "Hello"; // Default greeting if no specific unit matched
+                }
+                $('.greeting').text(greeting); // Assuming there's a div with class 'greeting' to display this
 
                 $('.contact-persons').empty();
                 job.contact_persons.forEach((person) => {
@@ -1261,6 +1228,8 @@ $(document).ready(function() {
         });
 });
 </script>
+
+
 
 
 	

@@ -769,7 +769,7 @@ font-size: 1.8rem;
     <div class="container">
         <div class="row">
             <div class="col-md-3 col-6 job-info">
-                <span class="job-info-title">Team</span>
+                <span id="category-div-id" class="job-info-title">Team</span>
                 <span class="organization-unit"> </span>
             </div>
             <div class="col-md-3 col-6 job-info">
@@ -1247,7 +1247,19 @@ $(document).ready(function() {
 
 </script>
 
-	
+
+
+	    <div id="display-div-id"></div> <!-- This is where we will display the text -->
+
+	    <script>
+        $(document).ready(function() {
+            // Fetch the text from the 'category-div-id'
+            var categoryText = $('#category-div-id').text();
+
+            // Display the fetched text in 'display-div-id'
+            $('#display-div-id').text(categoryText);
+        });
+    </script>
 	
 </body>
 

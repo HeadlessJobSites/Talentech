@@ -882,6 +882,30 @@ font-size: 1.8rem;
 </section>
 
 
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Map of organization units to corresponding Gobi collection IDs
+    var orgUnitToGobiId = {
+        "Finance": "mnnvj",
+        "Tech": "tavnb"
+    };
+
+    // Find the organization unit span
+    var orgUnitSpan = document.querySelector('.organization-unit');
+    var orgUnitText = orgUnitSpan.textContent.trim();
+
+    // Find the Gobi collection div
+    var gobiCollectionDiv = document.querySelector('.gobi-collection');
+
+    // Set the data-gobi-collection-id based on the organization unit
+    if (orgUnitToGobiId[orgUnitText]) {
+        gobiCollectionDiv.setAttribute('data-gobi-collection-id', orgUnitToGobiId[orgUnitText]);
+    }
+});
+
+
+	
+
 
 <section class="process-section mb-5 m-my-0 m-pt-0 m-pb-4" style="">
     <h2 class="container pt-5 m-px-3 m-pb-2" id="appFormWrapper">Application <span style="font-weight: 800;">form</span></h2>

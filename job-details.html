@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Stillingsannonse</title>
+    <title>z</title>
     <!-- Bootstrap CSS -->
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -803,7 +803,7 @@ font-size: 1.8rem;
 </div>
 
 
-
+<div class="greeting"></div>
 
 
 <section class="process-section my-5 py-5 m-my-0 m-pt-0 m-pb-4" style="background-color: #eeeef2;">
@@ -1193,7 +1193,6 @@ $(document).ready(function () {
 	
 	
 	
-	
 <script>
 $(document).ready(function() {
     const params = new URLSearchParams(window.location.search);
@@ -1211,12 +1210,7 @@ $(document).ready(function() {
                 $('#applyButton').attr('onclick', `window.location.href='${applicationLink}'`);
                 $('#applyButton-tt').attr('onclick', `window.location.href='${applicationLink}'`);
 
-                // Split the job title into words and apply different styles
-                const titleWords = job.title.split(' ');
-                const firstWord = titleWords.shift(); 
-                const restOfTitle = titleWords.join(' '); 
                 $('.job-title').html(`<span style="font-weight:400;">${firstWord}</span> <span style="font-weight:800;">${restOfTitle}</span>`); 
-
                 $('.job-title2').html(job.title);
                 $('.job-description').html(job.description);
                 $('.organization-unit').text(organizationUnit);
@@ -1224,6 +1218,23 @@ $(document).ready(function() {
                 $('.country').text(job.country);
                 $('.publishing-date').text(job.publishing_date);
                 $('.expiration-date').text(job.expiration_date);
+
+                // Handle the greeting based on the organization unit
+                let greeting;
+                switch (organizationUnit) {
+                    case "Finance":
+                        greeting = "Hello Finance";
+                        break;
+                    case "HR":
+                        greeting = "Hi HR";
+                        break;
+                    case "Tech":
+                        greeting = "Howdy Tech";
+                        break;
+                    default:
+                        greeting = "Hello"; // Default greeting if no specific unit matched
+                }
+                $('.greeting').text(greeting); // Assuming there's a div with class 'greeting' to display this
 
                 $('.contact-persons').empty();
                 job.contact_persons.forEach((person) => {
@@ -1244,8 +1255,8 @@ $(document).ready(function() {
             $('.job-details').text('Job details could not be loaded.');
         });
 });
-
 </script>
+
 
 	
 	

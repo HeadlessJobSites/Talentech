@@ -871,14 +871,14 @@ font-size: 1.8rem;
 <script>
 document.addEventListener('DOMContentLoaded', function() {
     var orgUnitToGobiId = {
-        "Finance": "mnnvj",
+        "Finance": "tavnb",
         "Tech": "xxxx" // Replace 'xxxx' with the actual ID for 'Tech'
     };
 
     // Timeout to ensure any asynchronous content loads
     setTimeout(() => {
         var orgUnitSpan = document.querySelector('.organization-unit');
-        var orgUnitText = orgUnitSpan.textContent.trim();
+        var orgUnitText = orgUnitSpan ? orgUnitSpan.textContent.trim() : '';
 
         if (orgUnitToGobiId[orgUnitText]) {
             // Create the section dynamically
@@ -894,20 +894,25 @@ document.addEventListener('DOMContentLoaded', function() {
                     </div>
                 </div>`;
 
-            // Append to a specific part of the page, e.g., main content or after a specific element
-            var target = document.querySelector('main'); // Change this selector to where you want to insert
-            target.appendChild(section);
+            // Append to a specific part of the page, ensure the target exists
+            var target = document.querySelector('body'); // Changed to 'body' as an example
+            if (target) {
+                target.appendChild(section);
 
-            // Add Gobi script after inserting the section
-            var script = document.createElement('script');
-            script.src = 'https://widget.gobistories.com/gwi/6';
-            script.async = true;
-            script.onload = function() { gobi.discover(); };
-            document.body.appendChild(script);
+                // Add Gobi script after inserting the section
+                var script = document.createElement('script');
+                script.src = 'https://widget.gobistories.com/gwi/6';
+                script.async = true;
+                script.onload = function() { gobi.discover(); };
+                document.body.appendChild(script);
+            } else {
+                console.error('Target element not found');
+            }
         }
     }, 1000); // Adjust timing as necessary
 });
 </script>
+
 
 
 

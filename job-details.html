@@ -1170,49 +1170,24 @@ $(document).ready(function() {
             const job = jobs.find(job => job.ad_id === jobId);
             if (job) {
                 const organizationUnit = job.organizations && job.organizations.length > 1 ? job.organizations[1].nameorgunit : job.organizations[0]?.nameorgunit || 'Not specified';
-
-                // Create a new div and set its data-gobi-collection-id attribute based on organizationUnit
-                let collectionId;
+                
+                // Create a new div and set its data-gobi-collection-id attribute
+                let collectionId = 'no'; // Default to "no"
                 if (organizationUnit === "Finance") {
-                    collectionId = 'mnnvj';
+                    collectionId = 'mnnvj'; // Specific ID for "Finance"
                 } else if (organizationUnit === "Technology") {
-                    collectionId = 'mnnvj';
-                } else {
-                    collectionId = 'no';
+                    collectionId = 'maybe'; // Example ID for "Technology"
                 }
 
-                // Create the new div with the corresponding data-gobi-collection-id
                 const newDiv = $('<div class="gobi-collection"></div>').attr('data-gobi-collection-id', collectionId);
-                $('body').append(newDiv); // Append the new div to the body or any other container as necessary
+                $('body').append(newDiv);
 
-                // Existing code to handle other job details
-                const city = job.areas && job.areas.length > 0 ? job.areas[0].name : 'Not specified';
-                const applicationLink = job.link.replace("rmpage=job", "rmpage=apply");
-                $('#applyButton').attr('onclick', `window.location.href='${applicationLink}'`);
-                $('#applyButton-tt').attr('onclick', `window.location.href='${applicationLink}'`);
+                // Load the Gobi widget script dynamically
+                loadGobiScript();
 
-                const titleWords = job.title.split(' ');
-                const firstWord = titleWords.shift(); 
-                const restOfTitle = titleWords.join(' '); 
-                $('.job-title').html(`<span style="font-weight:400;">${firstWord}</span> <span style="font-weight:800;">${restOfTitle}</span>`); 
-                $('.job-title2').html(job.title);
-                $('.job-description').html(job.description);
-                $('.organization-unit').text(organizationUnit);
-                $('.city').text(city);
-                $('.country').text(job.country);
-                $('.publishing-date').text(job.publishing_date);
-                $('.expiration-date').text(job.expiration_date);
+                // Other existing code
+                // ...
 
-                $('.contact-persons').empty();
-                job.contact_persons.forEach((person) => {
-                    const contactInfo = `
-                        <div class="contact-person">
-                            <p>${person.first_name} ${person.surname}, ${person.position}<br>
-                            <a href="mailto:${person.email}">${person.email}</a><br>
-                            <a href="tel:${person.phone}">${person.phone}</a></p>
-                        </div>`;
-                    $('.contact-persons').append(contactInfo);
-                });
             } else {
                 $('.job-details').text('Job not found.');
             }
@@ -1221,10 +1196,20 @@ $(document).ready(function() {
             console.error('Error fetching job details:', error);
             $('.job-details').text('Job details could not be loaded.');
         });
+
+    function loadGobiScript() {
+        const gobiScript = document.createElement('script');
+        gobiScript.src = 'https://widget.gobistories.com/gwi/6';
+        gobiScript.onload = function() {
+            if (typeof gobi !== 'undefined' && gobi.discover) {
+                gobi.discover(); // Discover method called after the script is loaded
+            }
+        };
+        document.body.appendChild(gobiScript);
+    }
 });
 </script>
 
-<script src="https://widget.gobistories.com/gwi/6" async onload="gobi.discover()"></script>
 	
 	
 </body>

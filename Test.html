@@ -23,27 +23,33 @@
 
 
 
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    // Map of organization units to corresponding Gobi collection IDs
-    var orgUnitToGobiId = {
-        "Finance": "mnnvj",
-        "Tech": "tavnb"
-    };
+    <!-- Example placeholder for organization unit -->
+    <span class="organization-unit" style="display:none;">Finance</span> <!-- Hidden for testing -->
 
-    // Find the organization unit span
-    var orgUnitSpan = document.querySelector('.organization-unit');
-    var orgUnitText = orgUnitSpan.textContent.trim();
+    <!-- Placeholder for Gobi collection -->
+    <div class="gobi-collection"></div>
 
-    // Find the Gobi collection div
-    var gobiCollectionDiv = document.querySelector('.gobi-collection');
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Map of organization units to corresponding Gobi collection IDs
+        var orgUnitToGobiId = {
+            "Finance": "mnnvj",
+            "Tech": "tavnb"
+        };
 
-    // Set the data-gobi-collection-id based on the organization unit
-    if (orgUnitToGobiId[orgUnitText]) {
-        gobiCollectionDiv.setAttribute('data-gobi-collection-id', orgUnitToGobiId[orgUnitText]);
-    }
-});
-</script>
+        // Find the organization unit span
+        var orgUnitSpan = document.querySelector('.organization-unit');
+        var orgUnitText = orgUnitSpan.textContent.trim();
+
+        // Find the Gobi collection div
+        var gobiCollectionDiv = document.querySelector('.gobi-collection');
+
+        // Set the data-gobi-collection-id based on the organization unit
+        if (orgUnitToGobiId[orgUnitText]) {
+            gobiCollectionDiv.setAttribute('data-gobi-collection-id', orgUnitToGobiId[orgUnitText]);
+        }
+    });
+    </script>
 
 	
 

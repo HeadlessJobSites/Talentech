@@ -867,51 +867,35 @@ font-size: 1.8rem;
 
 	
 
+    <!-- Example placeholder for organization unit -->
+    <span class="organization-unit" style="display:none;">Finance</span> <!-- Hidden for testing -->
 
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    var orgUnitToGobiId = {
-        "Finance": "tavnb",
-        "Tech": "xxxx" // Replace 'xxxx' with the actual ID for 'Tech'
-    };
+    <!-- Placeholder for Gobi collection -->
+    <div class="gobi-collection"></div>
 
-    // Timeout to ensure any asynchronous content loads
-    setTimeout(() => {
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Map of organization units to corresponding Gobi collection IDs
+        var orgUnitToGobiId = {
+            "Finance": "tavnb",
+            "Tech": "mnnvj"
+        };
+
+        // Find the organization unit span
         var orgUnitSpan = document.querySelector('.organization-unit');
-        var orgUnitText = orgUnitSpan ? orgUnitSpan.textContent.trim() : '';
+        var orgUnitText = orgUnitSpan.textContent.trim();
 
+        // Find the Gobi collection div
+        var gobiCollectionDiv = document.querySelector('.gobi-collection');
+
+        // Set the data-gobi-collection-id based on the organization unit
         if (orgUnitToGobiId[orgUnitText]) {
-            // Create the section dynamically
-            var section = document.createElement('section');
-            section.className = 'team-section gobi-large my-5 m-my-0';
-            section.innerHTML = `
-                <h2 class="container pt-5 mb-0 pb-0">The <span class="organization-unit" style="font-weight: 800;">${orgUnitText}</span><span style="font-weight: 800;"> team</span></h2>
-                <div class="container mt-0 pt-2 m-px-3">
-                    <div class="row mt-3 m-mt-2 m-mx-1">
-                        <div class="col-md-4 col-sm-4 m-pl-0 team-item">
-                            <div class="gobi-collection" data-gobi-collection-id="${orgUnitToGobiId[orgUnitText]}"></div>
-                        </div>
-                    </div>
-                </div>`;
-
-            // Append to a specific part of the page, ensure the target exists
-            var target = document.querySelector('body'); // Changed to 'body' as an example
-            if (target) {
-                target.appendChild(section);
-
-                // Add Gobi script after inserting the section
-                var script = document.createElement('script');
-                script.src = 'https://widget.gobistories.com/gwi/6';
-                script.async = true;
-                script.onload = function() { gobi.discover(); };
-                document.body.appendChild(script);
-            } else {
-                console.error('Target element not found');
-            }
+            gobiCollectionDiv.setAttribute('data-gobi-collection-id', orgUnitToGobiId[orgUnitText]);
         }
-    }, 1000); // Adjust timing as necessary
-});
-</script>
+    });
+    </script>
+
+	
 
 
 

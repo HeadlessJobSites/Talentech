@@ -868,36 +868,6 @@ font-size: 1.8rem;
 	
 
 
-    <!-- Example placeholder for organization unit -->
-    <span class="organization-unit" style="display:none;">Finance</span> <!-- Hidden for testing -->
-
-    <!-- Placeholder for Gobi collection -->
-    <div class="gobi-collection"></div>
-
-    <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        // Map of organization units to corresponding Gobi collection IDs
-        var orgUnitToGobiId = {
-            "Finance": "tavnb",
-            "Tech": "mnnvj"
-        };
-
-        // Find the organization unit span
-        var orgUnitSpan = document.querySelector('.organization-unit');
-        var orgUnitText = orgUnitSpan.textContent.trim();
-
-        // Find the Gobi collection div
-        var gobiCollectionDiv = document.querySelector('.gobi-collection');
-
-        // Set the data-gobi-collection-id based on the organization unit
-        if (orgUnitToGobiId[orgUnitText]) {
-            gobiCollectionDiv.setAttribute('data-gobi-collection-id', orgUnitToGobiId[orgUnitText]);
-        }
-    });
-    </script>
-	
-
-
 
 
 	
@@ -1206,10 +1176,12 @@ $(document).ready(function() {
             const job = jobs.find(job => job.ad_id === jobId);
             if (job) {
                 const organizationUnit = job.organizations && job.organizations.length > 1 ? job.organizations[1].nameorgunit : job.organizations[0]?.nameorgunit || 'Not specified';
-                
-                // Check the organization unit and set the appropriate text in the finance-check div
-                if (organizationUnit === "Financex") {
+
+                // Extended check for organization unit
+                if (organizationUnit === "Technology") {
                     $('#finance-check').text('Yes');
+                } else if (organizationUnit === "Finance") {
+                    $('#finance-check').text('Maybe');  // Set text to "Maybe" for Technology
                 } else {
                     $('#finance-check').text('No');
                 }
@@ -1252,6 +1224,7 @@ $(document).ready(function() {
         });
 });
 </script>
+
 
 
 	

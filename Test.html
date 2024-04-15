@@ -1162,8 +1162,7 @@ $(document).ready(function () {
 
 	
 	
-	
-	<script>
+<script>
 $(document).ready(function() {
     const params = new URLSearchParams(window.location.search);
     const jobId = parseInt(params.get('jobId'), 10);
@@ -1180,7 +1179,12 @@ $(document).ready(function() {
                 $('#applyButton').attr('onclick', `window.location.href='${applicationLink}'`);
                 $('#applyButton-tt').attr('onclick', `window.location.href='${applicationLink}'`);
 
+                // Split the job title into words and apply different styles
+                const titleWords = job.title.split(' ');
+                const firstWord = titleWords.shift(); 
+                const restOfTitle = titleWords.join(' '); 
                 $('.job-title').html(`<span style="font-weight:400;">${firstWord}</span> <span style="font-weight:800;">${restOfTitle}</span>`); 
+
                 $('.job-title2').html(job.title);
                 $('.job-description').html(job.description);
                 $('.organization-unit').text(organizationUnit);
@@ -1188,23 +1192,6 @@ $(document).ready(function() {
                 $('.country').text(job.country);
                 $('.publishing-date').text(job.publishing_date);
                 $('.expiration-date').text(job.expiration_date);
-
-                // Handle the greeting based on the organization unit
-                let greeting;
-                switch (organizationUnit) {
-                    case "Finance":
-                        greeting = "Hello Finance";
-                        break;
-                    case "HR":
-                        greeting = "Hi HR";
-                        break;
-                    case "Tech":
-                        greeting = "Howdy Tech";
-                        break;
-                    default:
-                        greeting = "Hello"; // Default greeting if no specific unit matched
-                }
-                $('.greeting').text(greeting); // Assuming there's a div with class 'greeting' to display this
 
                 $('.contact-persons').empty();
                 job.contact_persons.forEach((person) => {
@@ -1225,9 +1212,8 @@ $(document).ready(function() {
             $('.job-details').text('Job details could not be loaded.');
         });
 });
+
 </script>
-
-
 
 
 	

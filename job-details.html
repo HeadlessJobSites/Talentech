@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Stillingsannonse1</title>
+    <title>Stillingsannonse</title>
     <!-- Bootstrap CSS -->
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -1160,11 +1160,6 @@ $(document).ready(function () {
 
 
 	
-	<div id="finance-check"></div>
-
-	
-	
-	
 <script>
 $(document).ready(function() {
     const params = new URLSearchParams(window.location.search);
@@ -1177,14 +1172,19 @@ $(document).ready(function() {
             if (job) {
                 const organizationUnit = job.organizations && job.organizations.length > 1 ? job.organizations[1].nameorgunit : job.organizations[0]?.nameorgunit || 'Not specified';
 
-                // Extended check for organization unit
-                if (organizationUnit === "Technology") {
-                    $('#finance-check').text('Yes');
-                } else if (organizationUnit === "Finance") {
-                    $('#finance-check').text('Maybe');  // Set text to "Maybe" for Technology
+                // Create a new div and set its data-gobi-collection-id attribute based on organizationUnit
+                let collectionId;
+                if (organizationUnit === "Finance") {
+                    collectionId = 'yes';
+                } else if (organizationUnit === "Technology") {
+                    collectionId = 'maybe';
                 } else {
-                    $('#finance-check').text('No');
+                    collectionId = 'no';
                 }
+
+                // Create the new div with the corresponding data-gobi-collection-id
+                const newDiv = $('<div class="gobi-collection"></div>').attr('data-gobi-collection-id', collectionId);
+                $('body').append(newDiv); // Append the new div to the body or any other container as necessary
 
                 // Existing code to handle other job details
                 const city = job.areas && job.areas.length > 0 ? job.areas[0].name : 'Not specified';

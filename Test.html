@@ -23,58 +23,64 @@
     <!-- Placeholder for Gobi collection -->
     <div class="gobi-collection"></div>
 
+
+
     <script>
-        $(document).ready(function() {
-            const params = new URLSearchParams(window.location.search);
-            const jobId = parseInt(params.get('jobId'), 10);
+$(document).ready(function() {
+    const params = new URLSearchParams(window.location.search);
+    const jobId = parseInt(params.get('jobId'), 10);
 
-            fetch('https://api.talentech.io/reachmee/feed/')
-                .then(response => response.json())
-                .then(jobs => {
-                    const job = jobs.find(job => job.ad_id === jobId);
-                    if (job) {
-                        const organizationUnit = job.organizations && job.organizations.length > 1 ? job.organizations[1].nameorgunit : job.organizations[0]?.nameorgunit || 'Not specified';
+    fetch('https://api.talentech.io/reachmee/feed/')
+        .then(response => response.json())
+        .then(jobs => {
+            const job = jobs.find(job => job.ad_id === jobId);
+            if (job) {
+                const organizationUnit = job.organizations && job.organizations.length > 1 ? job.organizations[1].nameorgunit : job.organizations[0]?.nameorgunit || 'Not specified';
 
-                        // Set the organization unit in the hidden span and show it
-                        $('.organization-unit').text(organizationUnit).show();
+                // Set the organization unit in the hidden span and show it
+                $('.organization-unit').text(organizationUnit);
 
-                        // Set up the Gobi collection based on the organization unit
-                        setupGobiCollection(organizationUnit);
-                    } else {
-                        $('.job-details').text('Job not found.');
-                    }
-                })
-                .catch(error => {
-                    console.error('Error fetching job details:', error);
-                    $('.job-details').text('Job details could not be loaded.');
-                });
-
-            function setupGobiCollection(organizationUnit) {
-                // Map of organization units to corresponding Gobi collection IDs
-                var orgUnitToGobiId = {
-                    "Finance": "tavnb",
-                    "Tech": "mnnvj"
-                };
-
-                // Get the correct Gobi collection ID based on the organization unit
-                var gobiCollectionId = orgUnitToGobiId[organizationUnit];
-
-                if (gobiCollectionId) {
-                    $('.gobi-collection').attr('data-gobi-collection-id', gobiCollectionId);
-
-                    // Dynamically load the Gobi script to ensure it initializes correctly
-                    var gobiScript = document.createElement('script');
-                    gobiScript.src = 'https://widget.gobistories.com/gwi/6';
-                    gobiScript.onload = function() {
-                        if (typeof gobi !== 'undefined' && gobi.discover) {
-                            gobi.discover();
-                        }
-                    };
-                    document.body.appendChild(gobiScript);
-                }
+                // Set up the Gobi collection based on the organization unit
+                setupGobiCollection(organizationUnit);
+            } else {
+                $('.job-details').text('Job not found.');
             }
+        })
+        .catch(error => {
+            console.error('Error fetching job details:', error);
+            $('.job-details').text('Job details could not be loaded.');
         });
-    </script>
+
+    function setupGobiCollection(organizationUnit) {
+        // Map of organization units to corresponding Gobi collection IDs
+        var orgUnitToGobiId = {
+            "Finance": "tavnb",
+            "Tech": "mnnvj"
+        };
+
+        var gobiCollectionId = orgUnitToGobiId[organizationUnit];
+
+        if (gobiCollectionId) {
+            var gobiCollectionDiv = $('.gobi-collection');
+            gobiCollectionDiv.attr('data-gobi-collection-id', gobiCollectionId);
+
+            // Remove any previously loaded Gobi scripts to prevent duplicates
+            $('script[src^="https://widget.gobistories.com/gwi"]').remove();
+
+            // Dynamically load the Gobi script to ensure it initializes correctly
+            var gobiScript = document.createElement('script');
+            gobiScript.src = 'https://widget.gobistories.com/gwi/6';
+            gobiScript.async = true;
+            gobiScript.onload = function() {
+                gobi.discover();
+            };
+            document.body.appendChild(gobiScript);
+        }
+    }
+});
+</script>
+
+    
 </body>
 
 </html>

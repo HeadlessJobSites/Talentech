@@ -882,33 +882,33 @@ font-size: 1.8rem;
 </section>
 
 <script>
-document.addEventListener('DOMContentLoaded', function() {
+	document.addEventListener('DOMContentLoaded', function() {
     setTimeout(() => {
-        // Map of organization units to corresponding Gobi collection IDs
         var orgUnitToGobiId = {
             "Finance": "tavnb",
             "Tech": "xxxx"
         };
 
-        // Find the organization unit span
         var orgUnitSpan = document.querySelector('.organization-unit');
         var orgUnitText = orgUnitSpan.textContent.trim();
 
-        // Log the text to see what is being captured
-        console.log("Organization Unit Detected:", orgUnitText);
-
-        // Find the Gobi collection div
         var gobiCollectionDiv = document.querySelector('.gobi-collection');
 
-        // Set the data-gobi-collection-id based on the organization unit
         if (orgUnitToGobiId[orgUnitText]) {
             gobiCollectionDiv.setAttribute('data-gobi-collection-id', orgUnitToGobiId[orgUnitText]);
-            console.log("Gobi Collection ID set to:", orgUnitToGobiId[orgUnitText]);
-        } else {
-            console.log("No matching organization unit found for", orgUnitText);
+
+            // Remove and reinsert the script to reload the widget
+            var oldScript = document.querySelector('script[src="https://widget.gobistories.com/gwi/6"]');
+            var newScript = document.createElement("script");
+            newScript.src = oldScript.src;
+            newScript.async = true;
+            newScript.onload = function() { gobi.discover(); };
+
+            oldScript.parentNode.replaceChild(newScript, oldScript);
         }
-    }, 1000); // Delay to ensure dynamic content is loaded, adjust as necessary
+    }, 1000);
 });
+
 </script>
 
 

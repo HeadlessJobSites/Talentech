@@ -1488,7 +1488,7 @@ $(document).ready(function () {
 var mymap = L.map('mapid', {
     attributionControl: false,
     scrollWheelZoom: false
-}).setView([55.6761, 12.5683], 4);
+}).setView([59.9139, 10.7522], 4);
 
 // Set up the map tiles
 L.tileLayer('https://api.mapbox.com/styles/v1/inequi/clu45jmjw007101qrhjb35kmh/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoiaW5lcXVpIiwiYSI6ImNsdTQ0c2FybTFiZG4ya3FzZjQxOW91ejUifQ.Z_vyEld041G0LshX2Mdtpw', {
@@ -1500,7 +1500,6 @@ L.tileLayer('https://api.mapbox.com/styles/v1/inequi/clu45jmjw007101qrhjb35kmh/t
     accessToken: 'yourMapboxAccessToken'
 }).addTo(mymap);
 
-
 // Create a custom icon
 var customIcon = L.icon({
     iconUrl: 'https://headlessjobsites.github.io/Talentech/TT-fav.svg',
@@ -1511,19 +1510,22 @@ var customIcon = L.icon({
 
 // Locations - Manual. Must be updated to automatic from feed
 var jobLocations = [
-    {name: "Oslo", lat: 59.9139, lon: 10.7522}, // Coordinates for Oslo
-    {name: "Stockholm", lat: 59.3293, lon: 18.0686}, // Coordinates for Stockholm
-    {name: "København", lat: 55.6761, lon: 12.5683}, // Coordinates for Copenhagen
-    {name: "Helsinki", lat: 60.1699, lon: 24.9384}, // Coordinates for Helsinki
-    {name: "Gdansk", lat: 54.3520, lon: 18.6466}, // Coordinates for Gdansk
-    {name: "Amsterdam", lat: 52.3676, lon: 4.9041} // Coordinates for Amsterdam
+    {name: "Oslo", lat: 59.9139, lon: 10.7522},
+    {name: "Stockholm", lat: 59.3293, lon: 18.0686},
+    {name: "København", lat: 55.6761, lon: 12.5683},
+    {name: "Helsinki", lat: 60.1699, lon: 24.9384},
+    {name: "Gdansk", lat: 54.3520, lon: 18.6466},
+    {name: "Amsterdam", lat: 52.3676, lon: 4.9041}
 ];
 
-// Add pins to the map with custom icons
+// Add pins to the map with custom icons and popups
 jobLocations.forEach(function(location) {
-    L.marker([location.lat, location.lon], {icon: customIcon}).addTo(mymap);
+    L.marker([location.lat, location.lon], {icon: customIcon})
+    .bindPopup(location.name) // Binding a popup with the location name
+    .addTo(mymap);
 });
-    </script>
+</script>
+
 	
 	
 </body>

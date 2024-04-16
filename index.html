@@ -155,6 +155,17 @@ h2 {
 .text-padding {
 	padding: 40px;
 }
+
+.leaflet-popup-content-wrapper {
+    background-color: #212529;
+    color: #c6c6da;
+    font-weight: 700;
+}
+.leaflet-popup-tip-container {
+    display: none; 
+}
+
+	    
 .team-member {
 	flex: 0 0 33.333333%;
 	max-width: 33.333333%;
@@ -1483,6 +1494,8 @@ $(document).ready(function () {
 
 
 
+
+	
 <script>
 // Initialize the map
 var mymap = L.map('mapid', {
@@ -1504,8 +1517,8 @@ L.tileLayer('https://api.mapbox.com/styles/v1/inequi/clu45jmjw007101qrhjb35kmh/t
 var customIcon = L.icon({
     iconUrl: 'https://headlessjobsites.github.io/Talentech/TT-fav.svg',
     iconSize: [38, 95], // Size of the icon, adjust as needed
-    iconAnchor: [22, 50], // Point of the icon which will correspond to marker's location
-    popupAnchor: [-3, -76] // Point from which the popup should open relative to the iconAnchor
+    iconAnchor: [22, 94], // Point of the icon which will correspond to marker's location
+    popupAnchor: [1, -80] // Adjusted to bring popup closer to the icon
 });
 
 // Locations - Manual. Must be updated to automatic from feed
@@ -1518,14 +1531,13 @@ var jobLocations = [
     {name: "Amsterdam", lat: 52.3676, lon: 4.9041}
 ];
 
-// Add pins to the map with custom icons and popups
+// Add pins to the map with custom icons and styled popups
 jobLocations.forEach(function(location) {
     L.marker([location.lat, location.lon], {icon: customIcon})
     .bindPopup(location.name) // Binding a popup with the location name
     .addTo(mymap);
 });
 </script>
-
 	
 	
 </body>

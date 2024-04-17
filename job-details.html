@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Stillingsannonse</title>
+    <title>Stillingsannonse1</title>
     <!-- Bootstrap CSS -->
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -900,7 +900,10 @@ font-size: 1.8rem;
 
 
 
-	
+
+<div id="job-desc">Job Description Here</div>
+<div id="job-meta">Job Metadata Here</div>
+    	
 
 
 <section class="process-section mb-5 m-my-0 m-pt-0 m-pb-4" style="">
@@ -943,6 +946,23 @@ window.addEventListener('message', function(event) {
 </script>
 
 
+	
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const openApplication = urlParams.get('open-application');
+    
+    if (openApplication !== null) {
+        // Change the src of the iframe
+        const applicationFormIframe = document.getElementById('applicationFormIframe');
+        applicationFormIframe.src = "https://web103.reachmee.com/ext/I019/834/apply?site=6&lang=UK&validator=319e0c2d95b73a9b706010e4fb40c3e6&job_id=-1";
+        
+        // Hide the job description and metadata
+        document.getElementById('job-desc').style.display = 'none';
+        document.getElementById('job-meta').style.display = 'none';
+    }
+});
+</script>
 	
 
 	
@@ -1011,25 +1031,6 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 </script>
 
-<div id="job-desc">Job Description Here</div>
-<div id="job-meta">Job Metadata Here</div>
-	
-<script>
-	document.addEventListener('DOMContentLoaded', function() {
-    const urlParams = new URLSearchParams(window.location.search);
-    const openApplication = urlParams.get('open-application');
-    
-    if (openApplication !== null) {
-        // Change the src of the iframe
-        const modalIframe = document.getElementById('modalIframe');
-        modalIframe.src = "https://web103.reachmee.com/ext/I019/834/apply?site=6&lang=UK&validator=319e0c2d95b73a9b706010e4fb40c3e6&job_id=-1";
-        
-        // Hide the job description and metadata
-        document.getElementById('job-desc').style.display = 'none';
-        document.getElementById('job-meta').style.display = 'none';
-    }
-});
-</script>
 	
 </div>
 

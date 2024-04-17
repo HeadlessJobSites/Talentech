@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Stillingsannonse</title>
+    <title>Stillingsannonse1</title>
     <!-- Bootstrap CSS -->
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -903,7 +903,7 @@ font-size: 1.8rem;
 
 
 <section class="process-section mb-5 m-my-0 m-pt-0 m-pb-4" style="">
-    <h2 class="container pt-5 m-px-3 m-pb-2" id="appFormWrapper">Application <span style="font-weight: 800;">form</span></h2>
+    <h2 id="appform-header" class="container pt-5 m-px-3 m-pb-2" id="appFormWrapper">Application <span style="font-weight: 800;">form</span></h2>
     <!-- Application form -->
     <div id="originalContentContainer">
         <div id="applicationFormContainer"></div>
@@ -943,32 +943,6 @@ window.addEventListener('message', function(event) {
 
 
 	
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    const urlParams = new URLSearchParams(window.location.search);
-    const openApplication = urlParams.get('open-application');
-    
-    if (openApplication !== null) {
-        // Change the src of the iframe
-        const applicationFormIframe = document.getElementById('applicationFormIframe');
-        applicationFormIframe.src = "https://web103.reachmee.com/ext/I019/834/apply?site=6&lang=UK&validator=319e0c2d95b73a9b706010e4fb40c3e6&job_id=-1";
-        
-        // Hide the job description and metadata
-        document.getElementById('our-process').style.display = 'none';
-        document.getElementById('tt-job-section').style.display = 'none';
-        document.getElementById('tt-talentech-section-1').style.display = 'none';
-        document.getElementById('tt-talentech-section-2').style.display = 'none';
-        document.getElementById('tt-team-section').style.display = 'none';
-        document.getElementById('tt-process-section').style.display = 'none';
-        document.getElementById('tt-feature-section').style.display = 'none';
-        
-        // Populate the position-title h1 with specific text
-        const positionTitleH1 = document.getElementById('position-title');
-        positionTitleH1.innerText = 'Unsolicited application';
-    }
-});
-
-</script>
 	
 
 	
@@ -1299,6 +1273,32 @@ $(document).ready(function() {
 </script>
 
 
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const openApplication = urlParams.get('open-application');
+    
+    if (openApplication !== null) {
+        // Change the src of the iframe
+        const applicationFormIframe = document.getElementById('applicationFormIframe');
+        applicationFormIframe.src = "https://web103.reachmee.com/ext/I019/834/apply?site=6&lang=UK&validator=319e0c2d95b73a9b706010e4fb40c3e6&job_id=-1";
+        
+        // Hide the job description and metadata
+        document.getElementById('our-process').style.display = 'none';
+        document.getElementById('tt-job-section').style.display = 'none';
+        document.getElementById('tt-talentech-section-1').style.display = 'none';
+        document.getElementById('tt-talentech-section-2').style.display = 'none';
+        document.getElementById('tt-process-section').style.display = 'none';
+        document.getElementById('tt-feature-section').style.display = 'none';
+        document.getElementById('appform-header').style.display = 'none';
+        
+        // Populate the position-title h1 with specific text
+        const positionTitleH1 = document.getElementById('position-title');
+        positionTitleH1.innerText = 'Unsolicited application';
+    }
+});
+
+</script>
 	
 	
 </body>

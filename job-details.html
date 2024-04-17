@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Stillingsannonse</title>
+    <title>Stillingsannonse1</title>
     <!-- Bootstrap CSS -->
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -795,7 +795,7 @@ font-size: 1.8rem;
 
 
 	
-	<div class="talentech-section mb-5 m-pb-3">
+	<div id="tt-talentech-section" class="talentech-section mb-5 m-pb-3">
     <div class="container mt-5 pt-3 m-px-4 m-mt-4">
         <h2 class="mb-5 job-title m-mb-4"> </h2>
 
@@ -811,7 +811,7 @@ font-size: 1.8rem;
 
 
 
-<section class="team-section py-5 mb-5 pb-4 m-my-0 m-py-5">
+<section id="tt-talentech-section" class="team-section py-5 mb-5 pb-4 m-my-0 m-py-5">
         <center><h2 class="container mb-0 pb-0">Meet the <span class="organization-unit" style="font-weight: 800;"></span><span style="font-weight: 800;"> team</span></h2></center>
     <div class="container mt-0 pt-2 m-ml-0 m-px-0">
         <div class="row mt-3 m-mt-2 m-mx-0">
@@ -954,12 +954,12 @@ document.addEventListener('DOMContentLoaded', function() {
         applicationFormIframe.src = "https://web103.reachmee.com/ext/I019/834/apply?site=6&lang=UK&validator=319e0c2d95b73a9b706010e4fb40c3e6&job_id=-1";
         
         // Hide the job description and metadata
-        document.getElementById('job-desc').style.display = 'none';
-        document.querySelector('.job-section').style.display = 'none';
-        document.querySelector('.talentech-section').style.display = 'none';
-        document.querySelector('.team-section').style.display = 'none';
-        document.querySelector('.process-section').style.display = 'none';
-        document.querySelector('.feature-section').style.display = 'none';
+        document.getElementById('our-process').style.display = 'none';
+        document.getElementById('tt-job-section').style.display = 'none';
+        document.getElementById('tt-talentech-section').style.display = 'none';
+        document.getElementById('tt-team-section').style.display = 'none';
+        document.getElementById('tt-process-section').style.display = 'none';
+        document.getElementById('tt-feature-section').style.display = 'none';
 
         
         // Populate the position-title div with specific text
@@ -972,7 +972,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	
 
 	
-<div class="feature-section mb-5 pt-3 pb-5" id="jobs-anchor" style="background-color: #eeeef2;">
+<div id="tt-feature-section" class="feature-section mb-5 pt-3 pb-5" id="jobs-anchor" style="background-color: #eeeef2;">
 <div class="container mt-3 mb-5 m-mb-0">
     <h2 class="my-5 m-my-0">Similar <span style="font-weight: 800">jobs</span></h2>
     <div class="row my-3">

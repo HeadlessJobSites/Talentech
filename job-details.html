@@ -766,7 +766,7 @@ font-size: 1.8rem;
         </video>
         <div class="hero-content">
             <h1 class="job-title2" id="position-title"> </h1>
-            <p style="font-size: 1.25rem;"><span class="organization-unit"> </span> • <span class="city"> </span></p>
+            <p id="position-title-meta" style="font-size: 1.25rem;"><span class="organization-unit"> </span> • <span class="city"> </span></p>
         </div>
     </div>
 	
@@ -1290,6 +1290,7 @@ document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('tt-talentech-section-2').style.display = 'none';
         document.getElementById('tt-feature-section').style.display = 'none';
         document.getElementById('appform-header').style.display = 'none';
+        document.getElementById('position-title-meta').style.display = 'none';
         
         // Populate the position-title h1 with specific text
         const positionTitleH1 = document.getElementById('position-title');

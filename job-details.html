@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Stillingsannonse1</title>
+    <title>Stillingsannonse</title>
     <!-- Bootstrap CSS -->
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -765,7 +765,7 @@ font-size: 1.8rem;
             <source src="https://headlessjobsites.github.io/Talentech/Compressed-3.mp4" type="video/mp4">
         </video>
         <div class="hero-content">
-            <h1 class="job-title2"> </h1>
+            <h1 class="job-title2" id="position-title"> </h1>
             <p style="font-size: 1.25rem;"><span class="organization-unit"> </span> • <span class="city"> </span></p>
         </div>
     </div>
@@ -826,7 +826,7 @@ font-size: 1.8rem;
 
 
 
-<section class="process-section mb-5 py-5 m-my-0 m-pt-0 m-pb-4" style="background-color: #eeeef2;">
+<section id="our-process" class="process-section mb-5 py-5 m-my-0 m-pt-0 m-pb-4" style="background-color: #eeeef2;">
     <div class="container pt-5 m-px-4 m-pb-2">
         <h2>Our <span style="font-weight: 800;">recruitment process</span></h2>
     </div>
@@ -901,10 +901,6 @@ font-size: 1.8rem;
 
 
 
-<div id="job-desc">Job Description Here</div>
-<div id="job-meta">Job Metadata Here</div>
-    	
-
 
 <section class="process-section mb-5 m-my-0 m-pt-0 m-pb-4" style="">
     <h2 class="container pt-5 m-px-3 m-pb-2" id="appFormWrapper">Application <span style="font-weight: 800;">form</span></h2>
@@ -948,7 +944,7 @@ window.addEventListener('message', function(event) {
 
 	
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function() {
     const urlParams = new URLSearchParams(window.location.search);
     const openApplication = urlParams.get('open-application');
     
@@ -959,9 +955,19 @@ window.addEventListener('message', function(event) {
         
         // Hide the job description and metadata
         document.getElementById('job-desc').style.display = 'none';
-        document.getElementById('job-meta').style.display = 'none';
+        document.querySelector('.job-section').style.display = 'none';
+        document.querySelector('.talentech-section').style.display = 'none';
+        document.querySelector('.team-section').style.display = 'none';
+        document.querySelector('.process-section').style.display = 'none';
+        document.querySelector('.feature-section').style.display = 'none';
+
+        
+        // Populate the position-title div with specific text
+        const positionTitleDiv = document.getElementById('position-title');
+        positionTitleDiv.textContent = 'Unsolicited application';
     }
 });
+
 </script>
 	
 

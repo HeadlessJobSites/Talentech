@@ -1192,7 +1192,8 @@ $(document).ready(function () {
 <script>
 $(document).ready(function() {
     const params = new URLSearchParams(window.location.search);
-    const jobId = parseInt(params.get('jobId'), 10);
+    // Get 'rmjob' if present, otherwise get 'jobId'
+    const jobId = params.get('rmjob') ? parseInt(params.get('rmjob'), 10) : parseInt(params.get('jobId'), 10);
 
     fetch('https://api.talentech.io/reachmee/feed/')
         .then(response => response.json())
@@ -1210,7 +1211,7 @@ $(document).ready(function() {
                 const titleWords = job.title.split(' ');
                 const firstWord = titleWords.shift(); 
                 const restOfTitle = titleWords.join(' '); 
-                $('.job-title').html(`<span style="font-weight:400;">${firstWord}</span> <span style="font-weight:800;">${restOfTitle}</span>`); 
+                $('.job-title').html(`<span style="font-weight:400;">${firstWord}</span> <span style="font-weight:800;">${restOfTitle}</span>`);
 
                 $('.job-title2').html(job.title);
                 $('.job-description').html(job.description);
@@ -1230,7 +1231,7 @@ $(document).ready(function() {
                         </div>`;
                     $('.contact-persons').append(contactInfo);
                 });
-		    
+                
                 // Create a new div and set its data-gobi-collection-id attribute
                 let collectionId = 'no'; // Default to "no"
                 if (organizationUnit === "Finance") {
@@ -1238,17 +1239,11 @@ $(document).ready(function() {
                 } else if (organizationUnit === "Technology") {
                     collectionId = 'maybe'; // Example ID for "Technology"
                 }
-
                 const newDiv = $('<div class="gobi-collection"></div>').attr('data-gobi-collection-id', collectionId);
-                
-                // Insert the new div right after the div with id 'gobi-section'
-                newDiv.insertAfter('#gobi-section');
-
+                 // Insert the new div right after the div with id 'gobi-section'
+               newDiv.insertAfter('#gobi-section');
                 // Load the Gobi widget script dynamically
                 loadGobiScript();
-
-                // Other existing code
-                // ...
 
             } else {
                 $('.job-details').text('Job not found.');

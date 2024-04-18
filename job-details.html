@@ -916,12 +916,13 @@ document.addEventListener('DOMContentLoaded', function() {
     // Ensure we only append the iframe once
     if (!document.getElementById('applicationFormIframe')) {
         const params = new URLSearchParams(window.location.search);
-        const jobId = params.get('jobId');
+        // Get 'rmjob' if present, otherwise get 'jobId'
+        const jobId = params.get('rmjob') || params.get('jobId');
         const iframe = document.createElement('iframe');
         iframe.style.width = "100%";
         iframe.style.border = "none";
         iframe.id = "applicationFormIframe";
-        // Replace 'YOUR_IFRAME_SOURCE_URL' with your actual iframe source URL
+        // Adjust the iframe source URL to use the correct job ID
         const iframeSrc = `https://web103.reachmee.com/ext/I019/834/apply?job_id=${jobId}&site=19&validator=fa38d2eb8febb7bc22c8a91e10a1e9de&lang=UK&ihelper=${encodeURIComponent('https://career.talentech.com/jobs/rm?rmpage=job&rmjob=' + jobId)}`;
         iframe.setAttribute('src', iframeSrc);
 
@@ -931,8 +932,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // Consolidate message listener, adding security check
 window.addEventListener('message', function(event) {
-    // Replace 'https://web103.reachmee.com' with the actual origin of your iframe content
-    const expectedOrigin = 'https://web103.reachmee.com'; 
+    // Verify the origin of your iframe content
+    const expectedOrigin = 'https://web103.reachmee.com';
     if (event.origin === expectedOrigin && typeof event.data === 'string' && event.data.startsWith('resize::')) {
         const height = event.data.split('resize::')[1];
         if (height) {
@@ -941,6 +942,7 @@ window.addEventListener('message', function(event) {
     }
 }, false);
 </script>
+
 
 
 	

@@ -737,7 +737,7 @@ h1 {
 
 <nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color: rgba(0, 0, 0, 0.0); padding: 20px; position: absolute; ">
     <div class="container m-py-0">
-    <a class="navbar-brand" href="/">
+    <a class="navbar-brand" href="/" aria-label="Home">
         <img src="/TT-2.png" height="40" class="d-inline-block align-top" alt="">
     </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -794,11 +794,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 <div class="gobi-stories-container" id="gobi-stories-container">
-  <button class="close-btn" onclick="document.getElementById('gobi-stories-container').style.display='none';"><i class="fa-regular fa-xmark"></i></button>
+  <button aria-label="Close video" class="close-btn" onclick="document.getElementById('gobi-stories-container').style.display='none';"><i class="fa-regular fa-xmark"></i></button>
 <script src="https://widget.gobistories.com/gwi/6" async onload="gobi.discover()"></script>
 
 <div class="gobi-collection" data-gobi-collection-id="pncc7"></div>
-  <a href="#company-section"><div class="gobi-stories-text">Get to know us</div></a>
+  <a href="#company-section" aria-label="Get to know us"><div class="gobi-stories-text">Get to know us</div></a>
 </div>
 
 	
@@ -1284,7 +1284,7 @@ document.addEventListener('DOMContentLoaded', () => {
     <div id="" class="row">
 
 <div class="col-12 col-md-4 col-lg-4 mb-4">
-    <a href="/job-details.html?open-application" class="" style="text-decoration: none; color: inherit;">
+    <a href="/job-details.html?open-application" class="" style="text-decoration: none; color: inherit;" aria-label="Open application">
         <div class="card h-100">
             <div class="card-body">
 		        <div class="card-category"><span>General</span></div>
@@ -1457,7 +1457,7 @@ $(document).ready(function () {
         const organizationUnitName = job.organizations.length > 1 ? job.organizations[1].nameorgunit : job.organizations[0]?.nameorgunit || 'Not specified';
         return `
 <div class="col-12 col-md-4 col-lg-4 mb-4">
-    <a href="${jobDetailUrl}" class="" style="text-decoration: none; color: inherit;">
+    <a href="${jobDetailUrl}" class="" style="text-decoration: none; color: inherit;" aria-label="Job details">
         <div class="card h-100">
             <div class="card-body">
 		        <div class="card-category"><span>${organizationUnitName}</span></div>

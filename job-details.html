@@ -727,7 +727,29 @@ font-size: 1.8rem;
 .modal-body {
   overflow-y: auto; /* Ensures only the modal body scrolls, not the entire modal */
   padding: 0;
-}	     	    
+}	   
+.navbar-dark .navbar-nav .active>.nav-link {
+    font-weight: 500;
+}
+.navbar-dark .navbar-nav .nav-link {
+    color: rgba(255, 255, 255);
+}
+.process-section .process-content h3 {
+    font-size: 1rem;
+    font-weight: 700;
+}
+.card-title {
+    font-size: 1.25rem;
+    font-weight: 500;
+}
+@media (min-width: 992px) {
+    .navbar-expand-lg .navbar-nav {
+        background: rgb(0,0,0,0.5);
+        border-radius: 10px;
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+}  	    
     </style>
 </head>
 
@@ -737,7 +759,7 @@ font-size: 1.8rem;
 <nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color: rgba(0, 0, 0, 0.0); padding: 20px; position: absolute; ">
     <div class="container m-py-0">
     <a class="navbar-brand" href="/">
-        <img src="/TT-2.png" height="40" class="d-inline-block align-top" alt="">
+        <img src="/TT-2.png" height="40" alt="Talentech logo" class="d-inline-block align-top" alt="">
     </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -845,50 +867,50 @@ font-size: 1.8rem;
                     <!-- Benefit 1 -->
                     <div class="col-md-4 col-sm-4 process-item">
                         <div class="process-icon">
-                            <p>1</p>
+                            <h3>1</h3>
                         </div>
                         <div class="process-content">
-                            <strong>Submit Your Application</strong>
+                            <h3>Submit Your Application</h3>
                             <p>Start your journey by applying through our career portal; upload your CV and share a bit about yourself.</p>
                         </div>
                     </div>
                     <!-- Benefit 2 -->
                     <div class="col-md-4 col-sm-4 process-item">
                         <div class="process-icon">
-                            <p>2</p>
+                            <h3>2</>
                         </div>
                         <div class="process-content">
-                            <strong>Initial Screening</strong>
+                            <h3>Initial Screening</h3>
                             <p>We will review your application to assess the alignment between your skills and the job requirements.</p>
                         </div>
                     </div>
                     <!-- Benefit 3 -->
                     <div class="col-md-4 col-sm-4 process-item">
                         <div class="process-icon">
-                            <p>3</p>
+                            <h3>3</h3>
                         </div>
                         <div class="process-content">
-                            <strong>Interview Process</strong>
+                            <h3>Interview Process</h3>
                             <p>Engage with us through one or more interviews to discuss your experiences, skills, and aspirations.</p>
                         </div>
                     </div>
                     <!-- Benefit 4 -->
                     <div class="col-md-4 col-sm-4 process-item">
                         <div class="process-icon">
-                            <p>4</p>
+                            <h3>4</h3>
                         </div>
                         <div class="process-content">
-                            <strong>Assessment</strong>
+                            <h3>Assessment</h3>
                             <p>Depending on the role, you may be invited to complete assignments or assessments to showcase your capabilities.</p>
                         </div>
                     </div>
                     <!-- Benefit 5 -->
                     <div class="col-md-4 col-sm-4 process-item">
                         <div class="process-icon">
-                            <p>5</p>
+                            <h3>5</h3>
                         </div>
                         <div class="process-content">
-                            <strong>Offer & Onboarding</strong>
+                            <h3>Offer & Onboarding</h3>
                             <p>If it's a match, we'll extend an offer. Once accepted, we'll guide you through every step of your onboarding journey.</p>
                         </div>
                     </div>
@@ -989,7 +1011,7 @@ window.addEventListener('message', function(event) {
     <button id="agent" class="mt-3 btn btn-primary" style="font-weight:800">Sign up</button>
 
 
-<div class="modal fade modal-fullscreen-90w" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade modal-fullscreen-90w" id="exampleModal" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -1014,7 +1036,6 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 </script>
 
-	
 </div>
 
 

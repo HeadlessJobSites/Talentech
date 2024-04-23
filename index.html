@@ -741,6 +741,10 @@ h1 {
     font-size: 1rem;
     font-weight: 700;
 }
+.card-title {
+    font-size: 1.25rem;
+    font-weight: 500;
+}
 @media (min-width: 992px) {
     .navbar-expand-lg .navbar-nav {
         background: rgb(0,0,0,0.5);
@@ -1309,7 +1313,7 @@ document.addEventListener('DOMContentLoaded', () => {
         <div class="card h-100">
             <div class="card-body">
 		        <div class="card-category"><span>General</span></div>
-                <h4 class="card-title">Unsolicited application</h4>
+                <div class="card-title">Unsolicited application</div>
                 <p class="card-text">Talentech</p>
 			    <a href="/job-details.html?open-application" class="stretched-link">
                 <img src="/arrow-right-thin.svg" class="stretched-link" alt="Details" style="">
@@ -1482,7 +1486,7 @@ $(document).ready(function () {
         <div class="card h-100">
             <div class="card-body">
 		        <div class="card-category"><span>${organizationUnitName}</span></div>
-                <h4 class="card-title">${job.title}</h4>
+                <div class="card-title">${job.title}</div>
                 <p class="card-text">${job.country}</p>
 			    <a href="${jobDetailUrl}" class="stretched-link">
                 <img src="/arrow-right-thin.svg" class="stretched-link" alt="Details" style="">

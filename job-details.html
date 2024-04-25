@@ -1089,7 +1089,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
 	
 
-
 <script>
 $(document).ready(function () {
     let jobs = []; // Array to store all jobs
@@ -1106,6 +1105,10 @@ $(document).ready(function () {
         updateLoadMoreVisibility(); // Update button visibility after resize
     });
 
+    // Get current job ID from URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const currentJobId = parseInt(urlParams.get('jobId')); // Assuming job IDs are integers
+
     // Function to populate filter dropdowns based on jobs
     function populateFilters() {
         const locationSet = new Set();
@@ -1120,8 +1123,7 @@ $(document).ready(function () {
             }
         });
 
-	    
-	// Populate location filter
+        // Populate location filter
         $('#locationFilter').html('<option value="All">All locations</option>');
         locationSet.forEach(country => {
             $('#locationFilter').append(`<option value="${country}">${country}</option>`);
@@ -1158,22 +1160,19 @@ $(document).ready(function () {
 
     // Function to build HTML for a job card
     function buildJobCard(job) {
-    // Assuming job-details.html is your detail page and it can handle job IDs
-    // Adjust accordingly if your detail page has a different URL structure
-    const jobDetailUrl = `job-details.html?jobId=${job.ad_id}`;
-        // Use the second organization unit if available, otherwise use the first one
+        const jobDetailUrl = `job-details.html?jobId=${job.ad_id}`;
         const organizationUnitName = job.organizations.length > 1 ? job.organizations[1].nameorgunit : job.organizations[0]?.nameorgunit || 'Not specified';
         return `
 <div class="col-12 col-md-4 col-lg-4 mb-4">
     <a href="${jobDetailUrl}" class="" style="text-decoration: none; color: inherit;">
         <div class="card h-100">
             <div class="card-body">
-		        <div class="card-category"><span>${organizationUnitName}</span></div>
+                <div class="card-category"><span>${organizationUnitName}</span></div>
                 <h5 class="card-title">${job.title}</h5>
                 <p class="card-text">${job.country}</p>
-			    <a href="${jobDetailUrl}" class="stretched-link">
+                <a href="${jobDetailUrl}" class="stretched-link">
                 <img src="/arrow-right-thin.svg" class="stretched-link" alt="Details" style="">
-		</a>
+        </a>
             </div>
         </div>
     </a>
@@ -1191,13 +1190,17 @@ $(document).ready(function () {
 
     // Function to fetch jobs from the API
     function fetchJobs() {
-        fetch('https://api.talentech.io/reachmee/feed/') // Ensure this URL is correct
+        fetch('https://api.talentech.io/reachmee/feed/')
             .then(response => response.json())
             .then(data => {
-                jobs = data; // Store fetched jobs
-                displayedJobs = Math.min(jobsToShow, jobs.length); // Initialize displayedJobs
-                populateFilters(); // Fill dropdowns with options
-                displayJobs(); // Show initial jobs
+                jobs = data.filter(job => job.ad_id !== currentJobId); // Exclude current job
+                displayedJobs = Math.min(jobsToShow, jobs.length);
+                if (jobs.length === 0) {
+                    $('#tt-feature-section').hide(); // Hide the section if no jobs to display
+                } else {
+                    populateFilters();
+                    displayJobs();
+                }
             })
             .catch(error => {
                 console.error('Error fetching jobs:', error);
@@ -1224,10 +1227,11 @@ $(document).ready(function () {
     $('#jobTypeFilter').change(function() {
         displayedJobs = jobsToShow; // Reset displayed jobs to show initial count based on current device
         displayJobs(); // Apply filter and display jobs
-        updateLoadMoreVisibility(); // Update "Load More" button visibility based on filters
+        updateLoad MoreVisibility(); // Update "Load More" button visibility based on filters
     });
 });
 </script>
+
 
 
 

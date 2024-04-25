@@ -1396,10 +1396,6 @@ $(document).ready(function () {
         displayJobs(); // Redisplay jobs based on new size
         updateLoadMoreVisibility(); // Update button visibility after resize
     });
-	
-    // Get current job ID from URL
-    const urlParams = new URLSearchParams(window.location.search);
-    const currentJobId = parseInt(urlParams.get('jobId')); // Assuming job IDs are integers
 
     // Function to populate filter dropdowns based on jobs
     function populateFilters() {
@@ -1486,22 +1482,18 @@ $(document).ready(function () {
 
     // Function to fetch jobs from the API
     function fetchJobs() {
-    fetch('https://api.talentech.io/reachmee/feed/')
-        .then(response => response.json())
-        .then(data => {
-            jobs = data.filter(job => job.ad_id !== currentJobId); // Exclude current job
-            displayedJobs = Math.min(jobsToShow, jobs.length);
-            if (jobs.length === 0) {
-                $('#tt-feature-section').hide(); // Hide the section if no jobs to display
-            } else {
-                populateFilters();
-                displayJobs();
-            }
-        })
-        .catch(error => {
-            console.error('Error fetching jobs:', error);
-        });
-	}
+        fetch('https://api.talentech.io/reachmee/feed/') // Ensure this URL is correct
+            .then(response => response.json())
+            .then(data => {
+                jobs = data; // Store fetched jobs
+                displayedJobs = Math.min(jobsToShow, jobs.length); // Initialize displayedJobs
+                populateFilters(); // Fill dropdowns with options
+                displayJobs(); // Show initial jobs
+            })
+            .catch(error => {
+                console.error('Error fetching jobs:', error);
+            });
+    }
 
     // Load jobs when page is ready
     fetchJobs();

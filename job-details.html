@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Stillingsannonse</title>
+    <title>Stillingsannonse1</title>
     <!-- Bootstrap CSS -->
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -1190,19 +1190,29 @@ $(document).ready(function () {
     }
 
     // Function to fetch jobs from the API
-    function fetchJobs() {
-        fetch('https://api.talentech.io/reachmee/feed/') // Ensure this URL is correct
-            .then(response => response.json())
-            .then(data => {
-                jobs = data; // Store fetched jobs
-                displayedJobs = Math.min(jobsToShow, jobs.length); // Initialize displayedJobs
-                populateFilters(); // Fill dropdowns with options
-                displayJobs(); // Show initial jobs
-            })
-            .catch(error => {
-                console.error('Error fetching jobs:', error);
-            });
-    }
+	$(document).ready(function () {
+    const currentJobId = new URLSearchParams(window.location.search).get('jobId');
+    fetchJobs(currentJobId); // Pass currentJobId to the fetchJobs function
+});
+
+function fetchJobs(currentJobId) {
+    fetch('https://api.talentech.io/reachmee/feed/')
+        .then(response => response.json())
+        .then(data => {
+            jobs = data.filter(job => job.ad_id !== parseInt(currentJobId));
+            if (jobs.length === 0) {
+                $('#tt-feature-section').hide();
+            } else {
+                displayedJobs = Math.min(jobsToShow, jobs.length);
+                populateFilters();
+                displayJobs();
+            }
+        })
+        .catch(error => {
+            console.error('Error fetching jobs:', error);
+        });
+}
+
 
     // Load jobs when page is ready
     fetchJobs();

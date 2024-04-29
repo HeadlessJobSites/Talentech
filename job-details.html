@@ -839,29 +839,6 @@ font-size: 1.8rem;
 
 
 
-<div id="hidden-iframe" style="display: none;">
-    <script type="text/javascript" src="https://web103.reachmee.com/customerjs/I019-834-19.js"></script>
-</div>
-<script>
-document.addEventListener("DOMContentLoaded", function() {
-    const params = new URLSearchParams(window.location.search);
-    const rmpage = params.get('rmpage');
-
-    if (rmpage === 'profileactivate') {
-        // Hide all content except for the hidden-iframe
-        document.body.childNodes.forEach(node => {
-            if (node.id !== 'hidden-iframe' && node.style) {
-                node.style.display = 'none';
-            }
-        });
-
-        // Show the hidden-iframe div
-        document.getElementById('hidden-iframe').style.display = 'block';
-    }
-});
-</script>
-
-
 	
 	
 	

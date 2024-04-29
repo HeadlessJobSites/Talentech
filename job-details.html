@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Stillingsannonse1</title>
+    <title>Stillingsannonse</title>
     <!-- Bootstrap CSS -->
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -1246,16 +1246,12 @@ function fetchJobs(currentJobId) {
 <script>
 $(document).ready(function() {
     const params = new URLSearchParams(window.location.search);
-    // Get 'rmjob' if present, otherwise get 'jobId'
-    const jobId = params.get('rmjob') ? parseInt(params.get('rmjob'), 10) : parseInt(params.get('jobId'), 10);
+    const rmpage = params.get('rmpage');
 
-   const urlParams = new URLSearchParams(window.location.search);
-    const rmpage = urlParams.get('rmpage');
-    const skey = urlParams.get('skey');
-
+    // Handling different rmpage parameters
     switch (rmpage) {
         case 'profileactivate':
-            activateProfile(skey);
+            activateProfile(params.get('skey'));
             break;
         case 'job':
         default:
@@ -1265,63 +1261,24 @@ $(document).ready(function() {
 });
 
 function activateProfile(skey) {
-    // Implementer logikken for aktivering av kandidatkonto her
-    // For eksempel, vise et aktiveringsform, sende forespørsel til server osv.
-    console.log("Aktiverer profil med skey:", skey);
-    // Du kan vise skjemaet eller annen relevant informasjon her
+    // Code to handle profile activation
+    console.log("Activation key:", skey);
+    // You might want to display some information or redirect the user
+    $('#activation-info').text(`Your activation key is: ${skey}`);
+    // More complex activation logic can be added here
 }
 
-	
+function displayJobDetails() {
+    const params = new URLSearchParams(window.location.search);
+    // Get 'rmjob' if present, otherwise get 'jobId'
+    const jobId = params.get('rmjob') ? parseInt(params.get('rmjob'), 10) : parseInt(params.get('jobId'), 10);
+
     fetch('https://api.talentech.io/reachmee/feed/')
         .then(response => response.json())
         .then(jobs => {
             const job = jobs.find(job => job.ad_id === jobId);
             if (job) {
-                const organizationUnit = job.organizations && job.organizations.length > 1 ? job.organizations[1].nameorgunit : job.organizations[0]?.nameorgunit || 'Not specified';
-                const city = job.areas && job.areas.length > 0 ? job.areas[0].name : 'Not specified';
-
-                const applicationLink = job.link.replace("rmpage=job", "rmpage=apply");
-                $('#applyButton').attr('onclick', `window.location.href='${applicationLink}'`);
-                $('#applyButton-tt').attr('onclick', `window.location.href='${applicationLink}'`);
-
-                // Split the job title into words and apply different styles
-                const titleWords = job.title.split(' ');
-                const firstWord = titleWords.shift(); 
-                const restOfTitle = titleWords.join(' '); 
-                $('.job-title').html(`<span style="font-weight:400;">${firstWord}</span> <span style="font-weight:800;">${restOfTitle}</span>`);
-
-                $('.job-title2').html(job.title);
-                $('.job-description').html(job.description);
-                $('.organization-unit').text(organizationUnit);
-                $('.city').text(city);
-                $('.country').text(job.country);
-                $('.publishing-date').text(job.publishing_date);
-                $('.expiration-date').text(job.expiration_date);
-
-                $('.contact-persons').empty();
-                job.contact_persons.forEach((person) => {
-                    const contactInfo = `
-                        <div class="contact-person">
-                            <p>${person.first_name} ${person.surname}, ${person.position}<br>
-                            <a href="mailto:${person.email}">${person.email}</a><br>
-                            <a href="tel:${person.phone}">${person.phone}</a></p>
-                        </div>`;
-                    $('.contact-persons').append(contactInfo);
-                });
-                
-                // Create a new div and set its data-gobi-collection-id attribute
-                let collectionId = 'no'; // Default to "no"
-                if (organizationUnit === "Finance") {
-                    collectionId = 'mnnvj'; // Specific ID for "Finance"
-                } else if (organizationUnit === "Sales") {
-                    collectionId = '7zxwk'; // Example ID for "Sales"
-                }
-                const newDiv = $('<div class="gobi-collection"></div>').attr('data-gobi-collection-id', collectionId);
-                 // Insert the new div right after the div with id 'gobi-section'
-               newDiv.insertAfter('#gobi-section');
-                // Load the Gobi widget script dynamically
-                loadGobiScript();
-
+                updateJobDetails(job);
             } else {
                 $('.job-details').text('Job not found.');
             }
@@ -1330,19 +1287,66 @@ function activateProfile(skey) {
             console.error('Error fetching job details:', error);
             $('.job-details').text('Job details could not be loaded.');
         });
+}
 
-    function loadGobiScript() {
-        const gobiScript = document.createElement('script');
-        gobiScript.src = 'https://widget.gobistories.com/gwi/6';
-        gobiScript.onload = function() {
-            if (typeof gobi !== 'undefined' && gobi.discover) {
-                gobi.discover(); // Discover method called after the script is loaded
-            }
-        };
-        document.body.appendChild(gobiScript);
+function updateJobDetails(job) {
+    const organizationUnit = job.organizations && job.organizations.length > 1 ? job.organizations[1].nameorgunit : job.organizations[0]?.nameorgunit || 'Not specified';
+    const city = job.areas && job.areas.length > 0 ? job.areas[0].name : 'Not specified';
+
+    const applicationLink = job.link.replace("rmpage=job", "rmpage=apply");
+    $('#applyButton').attr('onclick', `window.location.href='${applicationLink}'`);
+    $('#applyButton-tt').attr('onclick', `window.location.href='${applicationLink}'`);
+
+    // Split the job title into words and apply different styles
+    const titleWords = job.title.split(' ');
+    const firstWord = titleWords.shift(); 
+    const restOfTitle = titleWords.join(' '); 
+    $('.job-title').html(`<span style="font-weight:400;">${firstWord}</span> <span style="font-weight:800;">${restOfTitle}</span>`);
+
+    $('.job-title2').html(job.title);
+    $('.job-description').html(job.description);
+    $('.organization-unit').text(organizationUnit);
+    $('.city').text(city);
+    $('.country').text(job.country);
+    $('.publishing-date').text(job.publishing_date);
+    $('.expiration-date').text(job.expiration_date);
+
+    $('.contact-persons').empty();
+    job.contact_persons.forEach((person) => {
+        const contactInfo = `
+            <div class="contact-person">
+                <p>${person.first_name} ${person.surname}, ${person.position}<br>
+                <a href="mailto:${person.email}">${person.email}</a><br>
+                <a href="tel:${person.phone}">${person.phone}</a></p>
+            </div>`;
+        $('.contact-persons').append(contactInfo);
+    });
+
+    // Load Gobi Stories if applicable
+    loadGobiScript(job);
+}
+
+function loadGobiScript(job) {
+    let collectionId = 'no'; // Default to "no"
+    if (job.organizations[0].nameorgunit === "Finance") {
+        collectionId = 'mnnvj'; // Specific ID for "Finance"
+    } else if (job.organizations[0].nameorgunit === "Sales") {
+        collectionId = '7zxwk'; // Example ID for "Sales"
     }
-});
+    const newDiv = $('<div class="gobi-collection"></div>').attr('data-gobi-collection-id', collectionId);
+    newDiv.insertAfter('#gobi-section');
+
+    const gobiScript = document.createElement('script');
+    gobiScript.src = 'https://widget.gobistories.com/gwi/6';
+    gobiScript.onload = function() {
+        if (typeof gobi !== 'undefined' && gobi.discover) {
+            gobi.discover(); // Discover method called after the script is loaded
+        }
+    };
+    document.body.appendChild(gobiScript);
+}
 </script>
+
 
 
 <script>

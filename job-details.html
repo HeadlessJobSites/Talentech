@@ -838,6 +838,25 @@ font-size: 1.8rem;
 </div>
 
 
+
+<div id="hidden-iframe">
+<script type="text/javascript" src="https://web103.reachmee.com/customerjs/I019-834-19.js"></script>
+</div>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    const params = new URLSearchParams(window.location.search);
+    const rmpage = params.get('rmpage');
+
+    // Check if 'rmpage' query parameter is 'profileactivate'
+    if (rmpage === 'profileactivate') {
+        // Show the div if the condition is met
+        document.getElementById('hidden-iframe').style.display = 'block';
+    }
+});
+</script>
+
+	
+	
 	
 	<div id="tt-talentech-section-1" class="talentech-section mb-5 m-pb-3">
     <div class="container mt-5 pt-3 m-px-4 m-mt-4">

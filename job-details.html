@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Stillingsannonse</title>
+    <title>Stillingsannonse1</title>
     <!-- Bootstrap CSS -->
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -1249,6 +1249,29 @@ $(document).ready(function() {
     // Get 'rmjob' if present, otherwise get 'jobId'
     const jobId = params.get('rmjob') ? parseInt(params.get('rmjob'), 10) : parseInt(params.get('jobId'), 10);
 
+   const urlParams = new URLSearchParams(window.location.search);
+    const rmpage = urlParams.get('rmpage');
+    const skey = urlParams.get('skey');
+
+    switch (rmpage) {
+        case 'profileactivate':
+            activateProfile(skey);
+            break;
+        case 'job':
+        default:
+            displayJobDetails();
+            break;
+    }
+});
+
+function activateProfile(skey) {
+    // Implementer logikken for aktivering av kandidatkonto her
+    // For eksempel, vise et aktiveringsform, sende forespørsel til server osv.
+    console.log("Aktiverer profil med skey:", skey);
+    // Du kan vise skjemaet eller annen relevant informasjon her
+}
+
+	
     fetch('https://api.talentech.io/reachmee/feed/')
         .then(response => response.json())
         .then(jobs => {

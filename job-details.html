@@ -926,10 +926,11 @@ document.addEventListener("DOMContentLoaded", function() {
     const params = new URLSearchParams(window.location.search);
     const rmpage = params.get('rmpage');
 
-    if (rmpage === 'profileactivate') {
+    // Check for both 'profileactivate' or 'subscriptions'
+    if (rmpage === 'profileactivate' || rmpage === 'subscriptions') {
         // Hide all content except for the hidden-iframe
         document.body.childNodes.forEach(node => {
-            if (node.id !== 'hidden-iframe' && node.style) {
+            if (node.nodeType === Node.ELEMENT_NODE && node.id !== 'hidden-iframe' && node.style) {
                 node.style.display = 'none';
             }
         });
@@ -939,6 +940,7 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 });
 </script>
+
 
 	
 

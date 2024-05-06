@@ -75,7 +75,7 @@
 	font-display: swap;
 }
 .bg-dark {
-	background-color: #2b293f !important;
+	background-color: #101018 !important;
 }
 .hero-section {
 	position: relative;
@@ -753,44 +753,88 @@ h1 {
         padding-right: 15px;
     }
 }
+.navbar.bg-dark {  
+animation: fadeIn 0.5s; 
+          }
+          @keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+.navbar.bg-dark .container {
+    padding: 0;
+}
+   .navbar.bg-dark .navbar-nav {
+        background: transparent;
+        border-radius: 10px;
+        padding-left: 15px;
+        padding-right: 15px;
+        margin: 0 auto;
+    }
+
     </style>
 </head>
 
 <body>
 
 
-
-<nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color: rgba(0, 0, 0, 0.0); padding: 20px; position: absolute; ">
-    <div class="container m-py-0">
-    <a class="navbar-brand" href="/" aria-label="Home">
-        <img src="/TT-2.png" height="40" class="d-inline-block align-top" alt="">
-    </a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ml-auto">
-            <li class="nav-item active">
-                <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/#jobs-anchor">Jobs</a>
-            </li>
-            <li class="nav-item">
-                    <a class="nav-link" href="https://web103.reachmee.com/ext/I019/834/profile?site=19&validator=fa38d2eb8febb7bc22c8a91e10a1e9de&lang=UK" target="_blank">
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color: rgba(0, 0, 0, 0.0);">
+    <div class="container">
+        <a class="navbar-brand" href="/" aria-label="Home">
+            <img src="/TT-2.png" height="40" class="d-inline-block align-top" alt="">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/#jobs-anchor">Jobs</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="https://web103.reachmee.com/ext/I019/834/profile?site=19&validator=fa38d2eb8febb7bc22c8a91e10a1e9de&lang=UK"
+                        target="_blank">
                         Log in
                     </a>
-        	</li>
-        </ul>
+                </li>
+            </ul>
+        </div>
     </div>
-	</div>
 </nav>
+
+
+
+<script>
+$(document).ready(function() {
+  $(window).scroll(function() {
+    if ($(window).scrollTop() > 56) {
+      $(".navbar").addClass("bg-dark");
+    } else {
+      $(".navbar").removeClass("bg-dark");
+    }
+  });
+  $(".navbar-toggler").click(function() {
+    if (!$(".navbar-collapse").hasClass("show")) {
+      $(".navbar").addClass("bg-dark");
+    } else {
+      if ($(window).scrollTop() < 56) {
+        $(".navbar").removeClass("bg-dark");
+      } else {
+      }
+    }
+  });
+});
+</script>
+
 
 
 
     <div class="hero-section">
         <video playsinline autoplay loop muted class="hero-video">
-            <source src="/Compressed-2.mp4" type="video/mp4">
+            <source src="https://career.talentech.com/Compressed-2.mp4" type="video/mp4">
         </video>
         <div class="hero-content">
             <h1>Join our <span style="font-weight: 800;">journey</span></h1>

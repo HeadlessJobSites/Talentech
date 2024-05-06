@@ -1457,19 +1457,23 @@ document.addEventListener('DOMContentLoaded', function() {
     </div>
 </section>
 
-
 <section class="bg-light text-dark">
-    <div class="container my-0 py-1 m-py-2">
-        <div class="d-flex align-items-center">
-            <span class="mr-1">Powered by</span>
-            <img src="/TT-fav.svg" alt="Talentech Logo" style="width: 20px; vertical-align: middle; position: relative; bottom: 1px;">
-			<span class="ml-1" style="">Talentech</span>
-			<span class="ml-auto"><span style="">Share on social media: <a href="https://www.facebook.com/sharer/sharer.php?u=https://career.talentech.com/" target="_blank" rel="noopener noreferrer">
-  <img style="margin-bottom: 4px;" src="https://cdn.jsdelivr.net/npm/simple-icons/icons/facebook.svg" alt="Share on Facebook" width="16" height="16">
-</a></span>
-        </div>
+<div class="container my-0 py-1 m-py-2">
+    <div class="d-flex align-items-center flex-wrap"><!-- added flex-wrap class for responsiveness -->
+        <span class="mr-1">Powered by</span>
+        <img src="/TT-fav.svg" alt="Talentech Logo" style="width: 20px; vertical-align: middle; position: relative; bottom: 1px;">
+        <span class="ml-1" style="">Talentech</span>
+        <span class="share-container ml-auto"><!-- added ml-auto class here -->
+            <span class="d-block d-sm-none mb-1"><!-- added responsive classes -->
+                Share on social media: 
+                <a href="https://www.facebook.com/sharer/sharer.php?u=https://career.talentech.com/" target="_blank" rel="noopener noreferrer">
+                    <img src="https://cdn.jsdelivr.net/npm/simple-icons/icons/facebook.svg" alt="Share on Facebook" width="16" height="16">
+                </a>
+            </span>
+        </span>
     </div>
-
+</div>
+</section>
 
 
 	

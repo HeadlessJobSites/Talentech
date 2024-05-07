@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Stillingsannonse</title>
+    <title>Stillingsannonse1</title>
     <!-- Bootstrap CSS -->
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -930,11 +930,18 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // Check if the parameter 'rmpage' is either 'profileactivate' or 'subscriptions'
     if (rmpage === 'profileactivate' || rmpage === 'subscriptions') {
-        // If the condition is met, remove 'display: none' from the div
-        document.getElementById('hidden-iframe').style.display = '';
+        // Get the div and change visibility instead of display
+        var hiddenIframeDiv = document.getElementById('hidden-iframe');
+        
+        // Set visibility to visible and maintain the layout space
+        hiddenIframeDiv.style.visibility = 'visible';
+        hiddenIframeDiv.style.position = 'absolute'; // Keeps the element out of the document flow
+        hiddenIframeDiv.style.left = '0'; // Positions the div starting at the left of its containing element
+        hiddenIframeDiv.style.top = '0'; // Positions the div starting at the top of its containing element
     }
 });
 </script>
+
 
 
 

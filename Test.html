@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>x312</title>
+    <title>x3121</title>
     <!-- Bootstrap CSS -->
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -778,10 +778,11 @@ font-size: 1.8rem;
 <body>
 
 
+
 <nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color: rgba(0, 0, 0, 0.0); padding: 20px; position: absolute; ">
     <div class="container m-py-0">
-    <a class="navbar-brand" href="https://headlessjobsites.github.io/Talentech">
-        <img src="https://reboot.no/tt/TT-2.png" height="40" class="d-inline-block align-top" alt="">
+    <a class="navbar-brand" href="/">
+        <img src="/TT-2.png" height="40" alt="Talentech logo" class="d-inline-block align-top" alt="">
     </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -789,11 +790,16 @@ font-size: 1.8rem;
     <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ml-auto">
             <li class="nav-item active">
-                <a class="nav-link" href="https://headlessjobsites.github.io/Talentech">Home <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="https://headlessjobsites.github.io/Talentech#jobs-anchor">Jobs</a>
+                <a class="nav-link" href="/#jobs-anchor">Jobs</a>
             </li>
+            <li class="nav-item">
+                    <a class="nav-link" href="https://web103.reachmee.com/ext/I019/834/profile?site=19&validator=fa38d2eb8febb7bc22c8a91e10a1e9de&lang=UK" target="_blank">
+                        Log in
+                    </a>
+        	</li>
         </ul>
     </div>
 	</div>
@@ -802,21 +808,21 @@ font-size: 1.8rem;
 
     <div class="hero-section">
         <video playsinline="playsinline" autoplay="autoplay" muted="muted" loop="loop" class="hero-video">
-            <source src="https://reboot.no/tt/Compressed-3.mp4" type="video/mp4">
+            <source src="/Compressed-3.mp4" type="video/mp4">
         </video>
         <div class="hero-content">
-            <h1 class="job-title2"> </h1>
-            <p style="font-size: 1.25rem;"><span class="organization-unit"> </span> • <span class="city"> </span></p>
+            <div class="job-title2" id="position-title"> </div>
+            <p id="position-title-meta" style="font-size: 1.25rem;"><span class="organization-unit"> </span> • <span class="city"> </span></p>
         </div>
     </div>
 	
 	
-<div class="job-section">
+<div id="tt-job-section" class="job-section">
     <div class="container">
         <div class="row">
             <div class="col-md-3 col-6 job-info">
                 <span class="job-info-title">Team</span>
-                <span class="organization-unit"> </span>
+                <span class="organization-unit">Team</span>
             </div>
             <div class="col-md-3 col-6 job-info">
                 <span class="job-info-title">Location</span>
@@ -827,87 +833,89 @@ font-size: 1.8rem;
                 <span class="expiration-date">Application due</span>
             </div>
             <div class="col-md-3 col-6 text-center apply-btn-header">
-<button id="applyButton" class="apply-btn">Apply for the job</button>
+<a href="#appform-header" class="btn btn-primary apply-btn" role="">Apply for the job</a>
             </div>
         </div>
     </div>
 </div>
 
 
+
 	
-	<div class="talentech-section mb-5 pb-5 m-pb-3">
+	
+	
+	<div id="tt-talentech-section-1" class="talentech-section mb-5 m-pb-3">
     <div class="container mt-5 pt-3 m-px-4 m-mt-4">
-        <h2 class="mb-5 job-title m-mb-4"> </h2>
+        <div id="inner-job-title" class="mb-5 job-title m-mb-4"> </div>
 
         <div class="my-3 job-description"> </div>
 	    <div class="contact-persons"></div>
     </div>
 
             <div class="text-center centerd-apply-btn">
-<button id="applyButton-tt" class="apply-btn m-px-4 m-py-3">Apply for the job</button>
+<a href="#appform-header" class="btn btn-primary apply-btn" role="">Apply for the job</a>
             </div>
 </div>
 
 
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    const params = new URLSearchParams(window.location.search);
+    const rmpage = params.get('rmpage');
 
+    if (rmpage === 'profileactivate') {
+        loadExternalScriptAndBuildIframe();
+    }
+});
 
+function loadExternalScriptAndBuildIframe() {
+    var script = document.createElement('script');
+    script.type = 'text/javascript';
+    script.src = 'https://web103.reachmee.com/customerjs/I019-834-19.js';
+    script.onload = function() {
+        buildIframe();
+    };
+    document.head.appendChild(script);
+}
 
-<section class="process-section my-5 py-5 m-my-0 m-pt-0 m-pb-4" style="background-color: #eeeef2;">
-        <h2 class="container pt-5 m-px-4 m-pb-2">Our <span style="font-weight: 800;">recruitment process</span></h2>
-    <div class="container">
-        <div class="row">
-            <!-- Benefit 1 -->
-            <div class="col-md-4 col-sm-4 process-item">
-                <div class="process-icon">
-                   <p>1</p>
-                </div>
-    <div class="process-content">
-                <strong>Submit Your Application</strong>
-                <p>Start your journey by applying through our career portal; upload your CV and share a bit about yourself.</p>
-            </div>
-            </div>
-            <!-- Benefit 2 -->
-            <div class="col-md-4 col-sm-4 process-item">
-                <div class="process-icon">
-                   <p>2</p>
-                </div>
-    <div class="process-content">
-                <strong>Initial Screening</strong>
-                <p>Our HR team will review your application to assess the alignment between your skills and the job requirements.</p>
-            </div>
-            </div>
-            <!-- Benefit 3 -->
-            <div class="col-md-4 col-sm-4 process-item">
-                <div class="process-icon">
-                   <p>3</p>
-                </div>
-    <div class="process-content">
-                <strong>Interview Process</strong>
-                <p>Engage with us through one or more interviews to discuss your experiences, skills, and aspirations.</p>
-            </div>
-            </div>
-            <!-- Benefit 4 -->
-            <div class="col-md-4 col-sm-4 process-item">
-                <div class="process-icon">
-                   <p>4</p>
-                </div>
-    <div class="process-content">
-                <strong>Assessment</strong>
-                <p>Depending on the role, you may be invited to complete assignments or assessments to showcase your capabilities.</p>
-            </div>
-            </div>
-            <!-- Benefit 5 -->
-            <div class="col-md-4 col-sm-4 process-item">
-                <div class="process-icon">
-                   <p>5</p>
-                </div>
-    <div class="process-content">
-                <strong>Offer & Onboarding</strong>
-                <p>If it's a match, we'll extend an offer. Once accepted, we'll guide you through every step of your onboarding journey.</p>
-            </div>
-            </div>
-    </div>
-</section>
+function buildIframe() {
+    var iFrameUrl = 'https://web103.reachmee.com/ext/';
+    var validator = 'fa38d2eb8febb7bc22c8a91e10a1e9de';
+    var iid = 'I019';
+    var customer = '834';
+    var site = '19';
+    var iHelperUrl = 'https://career.talentech.com/job-details.html?';
+    var height = '4000';
+    var langDef = 'UK';
+    var title = 'ReachMee Recruit external site';
+
+    // More URL building logic here, using the current script logic
+    // Ensure the destination page is determined correctly
+    var destPage = new URLSearchParams(window.location.search).get('rmpage') + '?';
+    // Add other parameters based on your existing script logic
+
+    iFrameUrl += destPage + 'site=' + site + '&validator=' + validator + '&lang=' + langDef;
+
+    // Dynamically create the iframe
+    var iframe = document.createElement('iframe');
+    iframe.style.width = '100%';
+    iframe.style.height = height + 'px';
+    iframe.frameBorder = '0';
+    iframe.title = title;
+    iframe.src = iFrameUrl;
+
+    var targetElement = document.getElementById('iframeContainer');
+    if (!targetElement) {
+        console.error('No element found to insert the iframe into');
+        return;
+    }
+    targetElement.innerHTML = ''; // Clear previous content
+    targetElement.appendChild(iframe);
+}
+
+</script>
+<div id="iframeContainer"></div>
+
 
 
 

@@ -917,7 +917,7 @@ function buildIframe() {
 
 
 
-<div id="hidden-iframe" style="display: none;">
+<div id="hidden-iframe" style="visibility: hidden;">
     <script type="text/javascript" src="https://web103.reachmee.com/customerjs/I019-834-19.js"></script>
 </div>
 
@@ -926,20 +926,21 @@ document.addEventListener("DOMContentLoaded", function() {
     const params = new URLSearchParams(window.location.search);
     const rmpage = params.get('rmpage');
 
-    // Check for both 'profileactivate' or 'subscriptions'
     if (rmpage === 'profileactivate' || rmpage === 'subscriptions') {
-        // Hide all content except for the hidden-iframe
+        // Hide all content except for the hidden-iframe using visibility
         document.body.childNodes.forEach(node => {
             if (node.nodeType === Node.ELEMENT_NODE && node.id !== 'hidden-iframe' && node.style) {
-                node.style.display = 'none';
+                node.style.visibility = 'hidden';
             }
         });
 
-        // Show the hidden-iframe div
-        document.getElementById('hidden-iframe').style.display = 'block';
+        // Show the hidden-iframe div using visibility
+        const iframe = document.getElementById('hidden-iframe');
+        iframe.style.visibility = 'visible';
     }
 });
 </script>
+
 
 
 	

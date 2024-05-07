@@ -763,9 +763,12 @@ h1 {
         padding-right: 15px;
     }
 }
-.navbar.bg-dark {  
-animation: fadeIn 0.5s; 
+@media (max-width: 992px) {
+    .navbar.bg-dark {  
+animation: fadeIn 2s; 
 }
+}
+
 .navbar.bg-dark .nav-link {  
         font-size: 1em;
 }
@@ -781,7 +784,7 @@ animation: fadeIn 0.5s;
         border-radius: 10px;
         padding-left: 15px;
         padding-right: 15px;
-        margin: 0 auto;
+        /*margin: 0 auto;*/
     }
 @media (min-width: 992px) {
     .navbar-expand-lg .navbar-nav .nav-link {

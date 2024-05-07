@@ -2,9 +2,9 @@ document.addEventListener('DOMContentLoaded', function() {
     // Function to fetch job data and update the background
     function updateHeroBackground() {
         const params = new URLSearchParams(window.location.search);
-        const jobId = parseInt(params.get('rmjob') || params.get('jobId'));  // Handles both 'rmjob' and 'jobId'
+        const jobId = parseInt(params.get('rmjob') || params.get('jobId')); 
 
-        fetch('https://api.talentech.io/reachmee/feed/')  
+        fetch('https://api.talentech.io/reachmee/feed/') 
             .then(response => response.json())
             .then(jobs => {
                 const job = jobs.find(job => job.ad_id === jobId);

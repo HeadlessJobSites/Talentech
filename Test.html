@@ -14,61 +14,61 @@
 <script src="https://kit.fontawesome.com/ca38a06270.js" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
 <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
-<script src="https://widget.gobistories.com/gwi/6" async onload="gobi.discover()"></script>
-
+<script type="text/javascript" src="https://web103.reachmee.com/customerjs/helper.js"></script>
+	
     <style>
 @font-face {
 	font-family: 'Telegraf';
-	src: url('https://headlessjobsites.github.io/Talentech/Telegraf-UltraLight.ttf');
+	src: url('/Telegraf-UltraLight.ttf');
 	font-weight: 200;
 	font-style: normal;
 	font-display: swap;
 }
 @font-face {
 	font-family: 'Telegraf';
-	src: url('https://headlessjobsites.github.io/Talentech/Telegraf-Medium.ttf');
+	src: url('/Telegraf-Medium.ttf');
 	font-weight: 500;
 	font-style: normal;
 	font-display: swap;
 }
 @font-face {
 	font-family: 'Telegraf';
-	src: url('https://headlessjobsites.github.io/Talentech/Telegraf-SemiBold.ttf');
+	src: url('/Telegraf-SemiBold.ttf');
 	font-weight: 600;
 	font-style: normal;
 	font-display: swap;
 }
 @font-face {
 	font-family: 'Telegraf';
-	src: url('https://headlessjobsites.github.io/Talentech/Telegraf-Regular.ttf');
+	src: url('/Telegraf-Regular.ttf');
 	font-weight: normal;
 	font-style: normal;
 	font-display: swap;
 }
 @font-face {
 	font-family: 'Telegraf';
-	src: url('https://headlessjobsites.github.io/Talentech/Telegraf-UltraBold.ttf');
+	src: url('/Telegraf-UltraBold.ttf');
 	font-weight: 800;
 	font-style: normal;
 	font-display: swap;
 }
 @font-face {
 	font-family: 'Telegraf';
-	src: url('https://headlessjobsites.github.io/Talentech/Telegraf-Light.ttf');
+	src: url('/Telegraf-Light.ttf');
 	font-weight: 300;
 	font-style: normal;
 	font-display: swap;
 }
 @font-face {
 	font-family: 'Telegraf';
-	src: url('https://headlessjobsites.github.io/Talentech/Telegraf-Black.ttf');
+	src: url('/Telegraf-Black.ttf');
 	font-weight: 900;
 	font-style: normal;
 	font-display: swap;
 }
 @font-face {
 	font-family: 'Telegraf';
-	src: url('https://headlessjobsites.github.io/Talentech/Telegraf-UltraBold.ttf');
+	src: url('/Telegraf-UltraBold.ttf');
 	font-weight: bold;
 	font-style: normal;
 	font-display: swap;
@@ -89,6 +89,7 @@
 	height: auto;
 	transform: translate(-50%, -50%);
 	z-index: -1;
+	background-color: #2b2940;
 }
 .hero-content {
 	position: relative;
@@ -121,6 +122,11 @@ h1 {
 	font-weight: 800;
 	font-size: 4rem;
 	margin-bottom: 2rem;
+}
+#position-title {
+    font-family: Telegraf;
+    font-weight: 800;
+    font-size: 4rem;
 }
 .btn-primary {
 	background-color: #2b293f;
@@ -249,6 +255,9 @@ h2 {
 	.carousel-control-prev, .carousel-control-next {
 		display: none;
 	}
+	#position-title {
+    font-size: 2rem;
+}
 }
 .bg-light {
 	background-color: #f8f9fa;
@@ -375,7 +384,7 @@ h2 {
 .process-section .row {
 	display: flex;
 	flex-wrap: wrap;
-	justify-content: center;
+	/*justify-content: center;*/
 }
 .process-item {
 	display: flex;
@@ -409,7 +418,7 @@ h2 {
 	justify-content: center;
 	z-index: 2;
 }
-.process-icon p {
+.process-icon p, .process-icon h3 {
 	font-size: 4.5rem;
 	position: absolute;
 	font-weight: 700;
@@ -434,10 +443,12 @@ h2 {
     margin-right: 10px;
 	}
 }
+.process-section .row {
+    display: flex;
+    flex-wrap: wrap;
+}
 @media (max-width: 768px) {
 	.process-section .row {
-		display: flex;
-		flex-wrap: nowrap;
 		overflow-x: auto;
 		margin-left: -15px;
 		margin-right: -15px;
@@ -451,6 +462,11 @@ h2 {
 	.process-section .row {
 		justify-content: left;
 	}
+.process-section .process-row {
+    justify-content: left;
+    display: flex;
+    flex-wrap: nowrap;
+}
 }
 .team-section .container {
 	max-width: 1200px;
@@ -578,6 +594,14 @@ a:hover {
 	.job-description ul {
 		margin-left: 40px;
 	}
+#inner-job-title {
+    padding-left: 210px;
+    padding-right: 260px;
+}
+}
+#inner-job-title {
+    font-size: 3rem;
+    line-height: 1.6;
 }
 #jobTitle {
 	font-weight: 800;
@@ -609,6 +633,10 @@ a:hover {
 	}
 }
 @media (max-width: 768px) {
+	#inner-job-title {
+    font-size: 2rem;
+    line-height: 1.4;
+	}
 	.text-center {
 		text-align: left !important;
 	}
@@ -720,7 +748,29 @@ font-size: 1.8rem;
 .modal-body {
   overflow-y: auto; /* Ensures only the modal body scrolls, not the entire modal */
   padding: 0;
-}	     	    
+}	   
+.navbar-dark .navbar-nav .active>.nav-link {
+    font-weight: 500;
+}
+.navbar-dark .navbar-nav .nav-link {
+    color: rgba(255, 255, 255);
+}
+.process-section .process-content h3 {
+    font-size: 1rem;
+    font-weight: 700;
+}
+.card-title {
+    font-size: 1.25rem;
+    font-weight: 500;
+}
+@media (min-width: 992px) {
+    .navbar-expand-lg .navbar-nav {
+        background: rgb(0,0,0,0.2);
+        border-radius: 10px;
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+}  	    
     </style>
 </head>
 
@@ -729,8 +779,8 @@ font-size: 1.8rem;
 
 <nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color: rgba(0, 0, 0, 0.0); padding: 20px; position: absolute; ">
     <div class="container m-py-0">
-    <a class="navbar-brand" href="https://headlessjobsites.github.io/Talentech">
-        <img src="https://headlessjobsites.github.io/Talentech/TT-2.png" height="40" class="d-inline-block align-top" alt="">
+    <a class="navbar-brand" href="/">
+        <img src="/TT-2.png" height="40" alt="Talentech logo" class="d-inline-block align-top" alt="">
     </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -738,10 +788,10 @@ font-size: 1.8rem;
     <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ml-auto">
             <li class="nav-item active">
-                <a class="nav-link" href="https://headlessjobsites.github.io/Talentech">Home <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="https://headlessjobsites.github.io/Talentech#jobs-anchor">Jobs</a>
+                <a class="nav-link" href="/#jobs-anchor">Jobs</a>
             </li>
             <li class="nav-item">
                     <a class="nav-link" href="https://web103.reachmee.com/ext/I019/834/profile?site=19&validator=fa38d2eb8febb7bc22c8a91e10a1e9de&lang=UK" target="_blank">
@@ -756,21 +806,21 @@ font-size: 1.8rem;
 
     <div class="hero-section">
         <video playsinline="playsinline" autoplay="autoplay" muted="muted" loop="loop" class="hero-video">
-            <source src="https://headlessjobsites.github.io/Talentech/Compressed-3.mp4" type="video/mp4">
+            <source src="/Compressed-3.mp4" type="video/mp4">
         </video>
         <div class="hero-content">
-            <h1 class="job-title2"> </h1>
-            <p style="font-size: 1.25rem;"><span class="organization-unit"> </span> • <span class="city"> </span></p>
+            <div class="job-title2" id="position-title"> </div>
+            <p id="position-title-meta" style="font-size: 1.25rem;"><span class="organization-unit"> </span> • <span class="city"> </span></p>
         </div>
     </div>
 	
 	
-<div class="job-section">
+<div id="tt-job-section" class="job-section">
     <div class="container">
         <div class="row">
             <div class="col-md-3 col-6 job-info">
                 <span class="job-info-title">Team</span>
-                <span class="organization-unit"> </span>
+                <span class="organization-unit">Team</span>
             </div>
             <div class="col-md-3 col-6 job-info">
                 <span class="job-info-title">Location</span>
@@ -781,130 +831,213 @@ font-size: 1.8rem;
                 <span class="expiration-date">Application due</span>
             </div>
             <div class="col-md-3 col-6 text-center apply-btn-header">
-<a href="#appFormWrapper" class="btn btn-primary apply-btn" role="">Apply for the job</a>
+<a href="#appform-header" class="btn btn-primary apply-btn" role="">Apply for the job</a>
             </div>
         </div>
     </div>
 </div>
 
 
+
 	
-	<div class="talentech-section mb-5 pb-5 m-pb-3">
+	
+	
+	<div id="tt-talentech-section-1" class="talentech-section mb-5 m-pb-3">
     <div class="container mt-5 pt-3 m-px-4 m-mt-4">
-        <h2 class="mb-5 job-title m-mb-4"> </h2>
+        <div id="inner-job-title" class="mb-5 job-title m-mb-4"> </div>
 
         <div class="my-3 job-description"> </div>
 	    <div class="contact-persons"></div>
     </div>
 
             <div class="text-center centerd-apply-btn">
-<a href="#appFormWrapper" class="btn btn-primary apply-btn" role="">Apply for the job</a>
+<a href="#appform-header" class="btn btn-primary apply-btn" role="">Apply for the job</a>
             </div>
 </div>
 
 
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    const params = new URLSearchParams(window.location.search);
+    const rmpage = params.get('rmpage');
+
+    if (rmpage === 'profileactivate') {
+        loadExternalScriptAndBuildIframe();
+    }
+});
+
+function loadExternalScriptAndBuildIframe() {
+    var script = document.createElement('script');
+    script.type = 'text/javascript';
+    script.src = 'https://web103.reachmee.com/customerjs/I019-834-19.js';
+    script.onload = function() {
+        buildIframe();
+    };
+    document.head.appendChild(script);
+}
+
+function buildIframe() {
+    var iFrameUrl = 'https://web103.reachmee.com/ext/';
+    var validator = 'fa38d2eb8febb7bc22c8a91e10a1e9de';
+    var iid = 'I019';
+    var customer = '834';
+    var site = '19';
+    var iHelperUrl = 'https://career.talentech.com/job-details.html?';
+    var height = '4000';
+    var langDef = 'UK';
+    var title = 'ReachMee Recruit external site';
+
+    // More URL building logic here, using the current script logic
+    // Ensure the destination page is determined correctly
+    var destPage = new URLSearchParams(window.location.search).get('rmpage') + '?';
+    // Add other parameters based on your existing script logic
+
+    iFrameUrl += destPage + 'site=' + site + '&validator=' + validator + '&lang=' + langDef;
+
+    // Dynamically create the iframe
+    var iframe = document.createElement('iframe');
+    iframe.style.width = '100%';
+    iframe.style.height = height + 'px';
+    iframe.frameBorder = '0';
+    iframe.title = title;
+    iframe.src = iFrameUrl;
+
+    var targetElement = document.getElementById('iframeContainer');
+    if (!targetElement) {
+        console.error('No element found to insert the iframe into');
+        return;
+    }
+    targetElement.innerHTML = ''; // Clear previous content
+    targetElement.appendChild(iframe);
+}
+
+</script>
+<div id="iframeContainer"></div>
 
 
 
-<section class="process-section my-5 py-5 m-my-0 m-pt-0 m-pb-4" style="background-color: #eeeef2;">
-        <h2 class="container pt-5 m-px-3 m-pb-2">Our <span style="font-weight: 800;">recruitment process</span></h2>
+
+<div id="hidden-iframe" style="display: none;">
+    <script type="text/javascript" src="https://web103.reachmee.com/customerjs/I019-834-19.js"></script>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    const params = new URLSearchParams(window.location.search);
+    const rmpage = params.get('rmpage');
+
+    // Check for both 'profileactivate' or 'subscriptions'
+    if (rmpage === 'profileactivate' || rmpage === 'subscriptions') {
+        // Hide all content except for the hidden-iframe
+        document.body.childNodes.forEach(node => {
+            if (node.nodeType === Node.ELEMENT_NODE && node.id !== 'hidden-iframe' && node.style) {
+                node.style.display = 'none';
+            }
+        });
+
+        // Show the hidden-iframe div
+        document.getElementById('hidden-iframe').style.display = 'block';
+    }
+});
+</script>
+
+
+	
+
+
+<section id="tt-talentech-section-2" class="team-section py-5 mb-5 pb-4 m-my-0 m-py-5">
+        <center><h2 class="container mb-0 pb-0">Meet the <span class="organization-unit" style="font-weight: 800;"></span><span style="font-weight: 800;"> team</span></h2></center>
+    <div class="container mt-0 pt-2 m-ml-0 m-px-0">
+        <div class="row mt-3 m-mt-2 m-mx-0">
+<div id="gobi-section"></div>		
+        </div>
+    </div>
+</section>
+	
+
+
+
+
+
+
+<section id="our-process" class="process-section mb-5 py-5 m-my-0 m-pt-0 m-pb-4" style="background-color: #eeeef2;">
+    <div class="container pt-5 m-px-4 m-pb-2">
+        <h2>Our <span style="font-weight: 800;">recruitment process</span></h2>
+    </div>
     <div class="container">
         <div class="row">
-            <!-- Benefit 1 -->
-            <div class="col-md-4 col-sm-4 process-item">
-                <div class="process-icon">
-                   <p>1</p>
+            <!-- New Column for Latin Text -->
+            <div class="col-md-3">
+<script src="https://widget.gobistories.com/gwi/6" async onload="gobi.discover()"></script>
+
+<div class="gobi-collection" data-gobi-collection-id="j2jom"></div>
+            </div>
+            <!-- Existing Content in Right Column -->
+            <div class="col-md-9 pl-5 m-px-4">
+                <div class="row process-row">
+                    <!-- Benefit 1 -->
+                    <div class="col-md-4 col-sm-4 process-item">
+                        <div class="process-icon">
+                            <h3>1</h3>
+                        </div>
+                        <div class="process-content">
+                            <h3>Submit Your Application</h3>
+                            <p>Start your journey by applying through our career portal; upload your CV and share a bit about yourself.</p>
+                        </div>
+                    </div>
+                    <!-- Benefit 2 -->
+                    <div class="col-md-4 col-sm-4 process-item">
+                        <div class="process-icon">
+                            <h3>2</>
+                        </div>
+                        <div class="process-content">
+                            <h3>Initial Screening</h3>
+                            <p>We will review your application to assess the alignment between your skills and the job requirements.</p>
+                        </div>
+                    </div>
+                    <!-- Benefit 3 -->
+                    <div class="col-md-4 col-sm-4 process-item">
+                        <div class="process-icon">
+                            <h3>3</h3>
+                        </div>
+                        <div class="process-content">
+                            <h3>Interview Process</h3>
+                            <p>Engage with us through one or more interviews to discuss your experiences, skills, and aspirations.</p>
+                        </div>
+                    </div>
+                    <!-- Benefit 4 -->
+                    <div class="col-md-4 col-sm-4 process-item">
+                        <div class="process-icon">
+                            <h3>4</h3>
+                        </div>
+                        <div class="process-content">
+                            <h3>Assessment</h3>
+                            <p>Depending on the role, you may be invited to complete assignments or assessments to showcase your capabilities.</p>
+                        </div>
+                    </div>
+                    <!-- Benefit 5 -->
+                    <div class="col-md-4 col-sm-4 process-item">
+                        <div class="process-icon">
+                            <h3>5</h3>
+                        </div>
+                        <div class="process-content">
+                            <h3>Offer & Onboarding</h3>
+                            <p>If it's a match, we'll extend an offer. Once accepted, we'll guide you through every step of your onboarding journey.</p>
+                        </div>
+                    </div>
                 </div>
-    <div class="process-content">
-                <strong>Submit Your Application</strong>
-                <p>Start your journey by applying through our career portal; upload your CV and share a bit about yourself.</p>
             </div>
-            </div>
-            <!-- Benefit 2 -->
-            <div class="col-md-4 col-sm-4 process-item">
-                <div class="process-icon">
-                   <p>2</p>
-                </div>
-    <div class="process-content">
-                <strong>Initial Screening</strong>
-                <p>We will review your application to assess the alignment between your skills and the job requirements.</p>
-            </div>
-            </div>
-            <!-- Benefit 3 -->
-            <div class="col-md-4 col-sm-4 process-item">
-                <div class="process-icon">
-                   <p>3</p>
-                </div>
-    <div class="process-content">
-                <strong>Interview Process</strong>
-                <p>Engage with us through one or more interviews to discuss your experiences, skills, and aspirations.</p>
-            </div>
-            </div>
-            <!-- Benefit 4 -->
-            <div class="col-md-4 col-sm-4 process-item">
-                <div class="process-icon">
-                   <p>4</p>
-                </div>
-    <div class="process-content">
-                <strong>Assessment</strong>
-                <p>Depending on the role, you may be invited to complete assignments or assessments to showcase your capabilities.</p>
-            </div>
-            </div>
-            <!-- Benefit 5 -->
-            <div class="col-md-4 col-sm-4 process-item">
-                <div class="process-icon">
-                   <p>5</p>
-                </div>
-    <div class="process-content">
-                <strong>Offer & Onboarding</strong>
-                <p>If it's a match, we'll extend an offer. Once accepted, we'll guide you through every step of your onboarding journey.</p>
-            </div>
-            </div>
+        </div>
     </div>
 </section>
 
 
 
-	
 
-
-    <!-- Example placeholder for organization unit -->
-    <span class="organization-unit" style="display:none;">Finance</span> <!-- Hidden for testing -->
-
-    <!-- Placeholder for Gobi collection -->
-    <div class="gobi-collection"></div>
-
-    <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        // Map of organization units to corresponding Gobi collection IDs
-        var orgUnitToGobiId = {
-            "Finance": "tavnb",
-            "Tech": "mnnvj"
-        };
-
-        // Find the organization unit span
-        var orgUnitSpan = document.querySelector('.organization-unit');
-        var orgUnitText = orgUnitSpan.textContent.trim();
-
-        // Find the Gobi collection div
-        var gobiCollectionDiv = document.querySelector('.gobi-collection');
-
-        // Set the data-gobi-collection-id based on the organization unit
-        if (orgUnitToGobiId[orgUnitText]) {
-            gobiCollectionDiv.setAttribute('data-gobi-collection-id', orgUnitToGobiId[orgUnitText]);
-        }
-    });
-    </script>
-	
-
-
-
-
-	
 
 
 <section class="process-section mb-5 m-my-0 m-pt-0 m-pb-4" style="">
-    <h2 class="container pt-5 m-px-3 m-pb-2" id="appFormWrapper">Application <span style="font-weight: 800;">form</span></h2>
+    <h2 id="appform-header" class="container pt-5 m-px-3 m-pb-2" id="appFormWrapper">Application <span style="font-weight: 800;">form</span></h2>
     <!-- Application form -->
     <div id="originalContentContainer">
         <div id="applicationFormContainer"></div>
@@ -916,12 +1049,13 @@ document.addEventListener('DOMContentLoaded', function() {
     // Ensure we only append the iframe once
     if (!document.getElementById('applicationFormIframe')) {
         const params = new URLSearchParams(window.location.search);
-        const jobId = params.get('jobId');
+        // Get 'rmjob' if present, otherwise get 'jobId'
+        const jobId = params.get('rmjob') || params.get('jobId');
         const iframe = document.createElement('iframe');
         iframe.style.width = "100%";
         iframe.style.border = "none";
         iframe.id = "applicationFormIframe";
-        // Replace 'YOUR_IFRAME_SOURCE_URL' with your actual iframe source URL
+        // Adjust the iframe source URL to use the correct job ID
         const iframeSrc = `https://web103.reachmee.com/ext/I019/834/apply?job_id=${jobId}&site=19&validator=fa38d2eb8febb7bc22c8a91e10a1e9de&lang=UK&ihelper=${encodeURIComponent('https://career.talentech.com/jobs/rm?rmpage=job&rmjob=' + jobId)}`;
         iframe.setAttribute('src', iframeSrc);
 
@@ -931,8 +1065,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // Consolidate message listener, adding security check
 window.addEventListener('message', function(event) {
-    // Replace 'https://web103.reachmee.com' with the actual origin of your iframe content
-    const expectedOrigin = 'https://web103.reachmee.com'; 
+    // Verify the origin of your iframe content
+    const expectedOrigin = 'https://web103.reachmee.com';
     if (event.origin === expectedOrigin && typeof event.data === 'string' && event.data.startsWith('resize::')) {
         const height = event.data.split('resize::')[1];
         if (height) {
@@ -943,10 +1077,12 @@ window.addEventListener('message', function(event) {
 </script>
 
 
+
+	
 	
 
 	
-<div class="feature-section mb-5 pt-3 pb-5" id="jobs-anchor" style="background-color: #eeeef2;">
+<div id="tt-feature-section" class="feature-section mb-5 pt-3 pb-5" id="jobs-anchor" style="background-color: #eeeef2;">
 <div class="container mt-3 mb-5 m-mb-0">
     <h2 class="my-5 m-my-0">Similar <span style="font-weight: 800">jobs</span></h2>
     <div class="row my-3">
@@ -986,7 +1122,7 @@ window.addEventListener('message', function(event) {
     <button id="agent" class="mt-3 btn btn-primary" style="font-weight:800">Sign up</button>
 
 
-<div class="modal fade modal-fullscreen-90w" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade modal-fullscreen-90w" id="exampleModal" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -1011,8 +1147,6 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 </script>
 
-		
-	
 </div>
 
 
@@ -1021,15 +1155,15 @@ document.addEventListener('DOMContentLoaded', function() {
 
 <section class="text-center bg-dark text-light py-5">
     <div class="container">
-        <img src="https://headlessjobsites.github.io/Talentech/TT-2.png" alt="Talentech Logo" class="mb-3" style="max-width: 180px;">
+        <img src="/TT-2.png" alt="Talentech Logo" class="mb-3" style="max-width: 180px;">
                 <div class="mt-3 mb-4" style="max-width: 600px; margin: auto;">
 		 <p style="font-size: 1.25rem;">Talentech facilitates the full talent journey on a scalable platform with a tailored ecosystem of HR tech solutions.</p>
 		</div>
         <div class="">
             <!-- Replace these src attributes with your actual SVG paths -->
-            <a href="https://www.facebook.com/talentechnorway"><img src="https://headlessjobsites.github.io/Talentech/TT-f.svg" alt="Icon 1" class="mx-2" style="width: 30px; height: 30px;"></a>
-            <a href="https://www.linkedin.com/company/talentech-norway"><img src="https://headlessjobsites.github.io/Talentech/TT-l.svg" alt="Icon 2" class="mx-2" style="width: 30px; height: 30px;"></a>
-            <a href="https://talentech.com/no/kontakt"><img src="https://headlessjobsites.github.io/Talentech/TT-e.svg" alt="Icon 4" class="mx-2" style="width: 30px; height: 30px;"></a>
+            <a href="https://www.facebook.com/talentechnorway"><img src="/TT-f.svg" alt="Icon 1" class="mx-2" style="width: 30px; height: 30px;"></a>
+            <a href="https://www.linkedin.com/company/talentech-norway"><img src="/TT-l.svg" alt="Icon 2" class="mx-2" style="width: 30px; height: 30px;"></a>
+            <a href="https://talentech.com/no/kontakt"><img src="/TT-e.svg" alt="Icon 4" class="mx-2" style="width: 30px; height: 30px;"></a>
         </div>
     </div>
 </section>
@@ -1038,7 +1172,7 @@ document.addEventListener('DOMContentLoaded', function() {
     <div class="container my-0 py-1 m-py-2">
         <div class="d-flex align-items-center">
             <span class="mr-1">Powered by</span>
-            <img src="https://headlessjobsites.github.io/Talentech/TT-fav.svg" alt="Talentech Logo" style="width: 20px; vertical-align: middle; position: relative; bottom: 1px;">
+            <img src="/TT-fav.svg" alt="Talentech Logo" style="width: 20px; vertical-align: middle; position: relative; bottom: 1px;">
 			<span class="ml-1" style="">Talentech</span>
         </div>
     </div>
@@ -1129,7 +1263,7 @@ $(document).ready(function () {
                 <h5 class="card-title">${job.title}</h5>
                 <p class="card-text">${job.country}</p>
 			    <a href="${jobDetailUrl}" class="stretched-link">
-                <img src="https://headlessjobsites.github.io/Talentech/arrow-right-thin.svg" class="stretched-link" alt="Details" style="">
+                <img src="/arrow-right-thin.svg" class="stretched-link" alt="Details" style="">
 		</a>
             </div>
         </div>
@@ -1147,19 +1281,29 @@ $(document).ready(function () {
     }
 
     // Function to fetch jobs from the API
-    function fetchJobs() {
-        fetch('https://api.talentech.io/reachmee/feed/') // Ensure this URL is correct
-            .then(response => response.json())
-            .then(data => {
-                jobs = data; // Store fetched jobs
-                displayedJobs = Math.min(jobsToShow, jobs.length); // Initialize displayedJobs
-                populateFilters(); // Fill dropdowns with options
-                displayJobs(); // Show initial jobs
-            })
-            .catch(error => {
-                console.error('Error fetching jobs:', error);
-            });
-    }
+	$(document).ready(function () {
+    const currentJobId = new URLSearchParams(window.location.search).get('jobId');
+    fetchJobs(currentJobId); // Pass currentJobId to the fetchJobs function
+});
+
+function fetchJobs(currentJobId) {
+    fetch('https://api.talentech.io/reachmee/feed/')
+        .then(response => response.json())
+        .then(data => {
+            jobs = data.filter(job => job.ad_id !== parseInt(currentJobId));
+            if (jobs.length === 0) {
+                $('#tt-feature-section').hide();
+            } else {
+                displayedJobs = Math.min(jobsToShow, jobs.length);
+                populateFilters();
+                displayJobs();
+            }
+        })
+        .catch(error => {
+            console.error('Error fetching jobs:', error);
+        });
+}
+
 
     // Load jobs when page is ready
     fetchJobs();
@@ -1190,14 +1334,11 @@ $(document).ready(function () {
 
 
 	
-	
-	
-	
-	
 <script>
 $(document).ready(function() {
     const params = new URLSearchParams(window.location.search);
-    const jobId = parseInt(params.get('jobId'), 10);
+    // Get 'rmjob' if present, otherwise get 'jobId'
+    const jobId = params.get('rmjob') ? parseInt(params.get('rmjob'), 10) : parseInt(params.get('jobId'), 10);
 
     fetch('https://api.talentech.io/reachmee/feed/')
         .then(response => response.json())
@@ -1206,7 +1347,7 @@ $(document).ready(function() {
             if (job) {
                 const organizationUnit = job.organizations && job.organizations.length > 1 ? job.organizations[1].nameorgunit : job.organizations[0]?.nameorgunit || 'Not specified';
                 const city = job.areas && job.areas.length > 0 ? job.areas[0].name : 'Not specified';
-		    
+
                 const applicationLink = job.link.replace("rmpage=job", "rmpage=apply");
                 $('#applyButton').attr('onclick', `window.location.href='${applicationLink}'`);
                 $('#applyButton-tt').attr('onclick', `window.location.href='${applicationLink}'`);
@@ -1215,7 +1356,7 @@ $(document).ready(function() {
                 const titleWords = job.title.split(' ');
                 const firstWord = titleWords.shift(); 
                 const restOfTitle = titleWords.join(' '); 
-                $('.job-title').html(`<span style="font-weight:400;">${firstWord}</span> <span style="font-weight:800;">${restOfTitle}</span>`); 
+                $('.job-title').html(`<span style="font-weight:400;">${firstWord}</span> <span style="font-weight:800;">${restOfTitle}</span>`);
 
                 $('.job-title2').html(job.title);
                 $('.job-description').html(job.description);
@@ -1235,6 +1376,22 @@ $(document).ready(function() {
                         </div>`;
                     $('.contact-persons').append(contactInfo);
                 });
+                
+                // Create a new div and set its data-gobi-collection-id attribute
+                let collectionId = 'no'; // Default to "no"
+                if (organizationUnit === "Finance") {
+                    collectionId = 'mnnvj'; // Specific ID for "Finance"
+                } else if (organizationUnit === "Sales") {
+                    collectionId = '7zxwk'; // Example ID for "Sales"
+                } else {
+                    collectionId = '7zxwk'; // Other org units
+                }
+                const newDiv = $('<div class="gobi-collection"></div>').attr('data-gobi-collection-id', collectionId);
+                 // Insert the new div right after the div with id 'gobi-section'
+               newDiv.insertAfter('#gobi-section');
+                // Load the Gobi widget script dynamically
+                loadGobiScript();
+
             } else {
                 $('.job-details').text('Job not found.');
             }
@@ -1243,10 +1400,47 @@ $(document).ready(function() {
             console.error('Error fetching job details:', error);
             $('.job-details').text('Job details could not be loaded.');
         });
+
+    function loadGobiScript() {
+        const gobiScript = document.createElement('script');
+        gobiScript.src = 'https://widget.gobistories.com/gwi/6';
+        gobiScript.onload = function() {
+            if (typeof gobi !== 'undefined' && gobi.discover) {
+                gobi.discover(); // Discover method called after the script is loaded
+            }
+        };
+        document.body.appendChild(gobiScript);
+    }
+});
+</script>
+
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const openApplication = urlParams.get('open-application');
+    
+    if (openApplication !== null) {
+        // Change the src of the iframe
+        const applicationFormIframe = document.getElementById('applicationFormIframe');
+        applicationFormIframe.src = "https://web103.reachmee.com/ext/I019/834/apply?site=6&lang=UK&validator=319e0c2d95b73a9b706010e4fb40c3e6&job_id=-1";
+        
+        // Hide the job description and metadata
+        document.getElementById('our-process').style.display = 'none';
+        document.getElementById('tt-job-section').style.display = 'none';
+        document.getElementById('tt-talentech-section-1').style.display = 'none';
+        document.getElementById('tt-talentech-section-2').style.display = 'none';
+        document.getElementById('tt-feature-section').style.display = 'none';
+        document.getElementById('appform-header').style.display = 'none';
+        document.getElementById('position-title-meta').style.display = 'none';
+        
+        // Populate the position-title h1 with specific text
+        const positionTitleH1 = document.getElementById('position-title');
+        positionTitleH1.innerText = 'Unsolicited application';
+    }
 });
 
 </script>
-
 	
 	
 </body>

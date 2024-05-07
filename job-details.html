@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Stillingsannonse</title>
+    <title>Stillingsannonse1</title>
     <!-- Bootstrap CSS -->
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -919,8 +919,7 @@ function buildIframe() {
 
 
 
-
-<!-- Initial setup of the iframe, with no source set -->
+<!-- Initial setup of the iframe, initially hidden -->
 <iframe id="hidden-iframe" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: none; border: none;"></iframe>
 
 <script>
@@ -930,22 +929,27 @@ document.addEventListener("DOMContentLoaded", function() {
     const iframe = document.getElementById('hidden-iframe');
 
     if (rmpage === 'profileactivate' || rmpage === 'subscriptions') {
-        // Set iframe visibility and prepare the content
-        iframe.style.display = 'block';  // Make the iframe visible
+        // Hide all body content except the iframe
+        document.body.childNodes.forEach(node => {
+            if (node.nodeType === Node.ELEMENT_NODE && node.id !== 'hidden-iframe' && node.style) {
+                node.style.display = 'none';
+            }
+        });
 
-        // Write the script into the iframe's document when it's ready
+        // Display the iframe
+        iframe.style.display = 'block';
+        // Set src to a blank page and inject script once it loads
+        iframe.src = 'javascript:"<html><body></body></html>"'; // This creates a blank HTML document
         iframe.onload = function() {
             var doc = iframe.contentDocument || iframe.contentWindow.document;
             var script = doc.createElement('script');
             script.type = 'text/javascript';
+            script.async = true;
             script.src = 'https://web103.reachmee.com/customerjs/I019-834-19.js';
             doc.body.appendChild(script);
         };
-
-        // Set the iframe's src to about:blank to trigger onload
-        iframe.src = 'about:blank';
     } else {
-        // Ensures iframe is not visible if parameters are not matched
+        // Ensure the iframe is hidden if parameters are not matched
         iframe.style.display = 'none';
     }
 });

@@ -777,9 +777,11 @@ font-size: 1.8rem;
     .navbar.bg-dark {  
 animation: fadeIn 2s; 
 }
+a.nav-link.btn.btn-primary.apply-btn {  
+        font-size: 1em !important;
 }
-
-.navbar.bg-dark .nav-link {  
+}
+.navbar.bg-dark .nav-link.apply-btn {  
         font-size: 1em;
 }
           @keyframes fadeIn {
@@ -822,21 +824,23 @@ document.addEventListener("DOMContentLoaded", function() {
 </script>
 
 
-
 <nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color: rgba(0, 0, 0, 0.0);">
-    <div class="container">
+    <div class="container m-py-0">
         <a class="navbar-brand" href="/" aria-label="Home">
             <img src="/TT-2.png" height="40" class="d-inline-block align-top" alt="">
         </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+        <div class="d-flex justify-content-end align-items-center flex-grow-1">
+            <a class="nav-link ml-auto d-lg-none btn btn-primary apply-btn" href="#appform-header">Apply for the job</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ml-auto">
-            <li class="nav-item active">
-                <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
-            </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+                </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/#tt-feature-section">Jobs</a>
                 </li>
@@ -853,6 +857,10 @@ document.addEventListener("DOMContentLoaded", function() {
         </div>
     </div>
 </nav>
+
+
+
+
 
 	
 <script>

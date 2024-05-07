@@ -5,74 +5,70 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>x2</title>
+    <title>x3</title>
     <!-- Bootstrap CSS -->
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-	<!-- jQuery -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
-	<!-- FontAwesome -->
-	<script src="https://kit.fontawesome.com/ca38a06270.js" crossorigin="anonymous"></script>
-	<!-- Gobi -->
-	<script src="https://widget.gobistories.com/gwi/6" async onload="gobi.discover()"></script>
-	<!-- Map -->
-	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="https://kit.fontawesome.com/ca38a06270.js" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
 <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
-
+<script type="text/javascript" src="https://web103.reachmee.com/customerjs/helper.js"></script>
+	
     <style>
 @font-face {
 	font-family: 'Telegraf';
-	src: url('https://headlessjobsites.github.io/Talentech/Telegraf-UltraLight.ttf');
+	src: url('/Telegraf-UltraLight.ttf');
 	font-weight: 200;
 	font-style: normal;
 	font-display: swap;
 }
 @font-face {
 	font-family: 'Telegraf';
-	src: url('https://headlessjobsites.github.io/Talentech/Telegraf-Medium.ttf');
+	src: url('/Telegraf-Medium.ttf');
 	font-weight: 500;
 	font-style: normal;
 	font-display: swap;
 }
 @font-face {
 	font-family: 'Telegraf';
-	src: url('https://headlessjobsites.github.io/Talentech/Telegraf-SemiBold.ttf');
+	src: url('/Telegraf-SemiBold.ttf');
 	font-weight: 600;
 	font-style: normal;
 	font-display: swap;
 }
 @font-face {
 	font-family: 'Telegraf';
-	src: url('https://headlessjobsites.github.io/Talentech/Telegraf-Regular.ttf');
+	src: url('/Telegraf-Regular.ttf');
 	font-weight: normal;
 	font-style: normal;
 	font-display: swap;
 }
 @font-face {
 	font-family: 'Telegraf';
-	src: url('https://headlessjobsites.github.io/Talentech/Telegraf-UltraBold.ttf');
+	src: url('/Telegraf-UltraBold.ttf');
 	font-weight: 800;
 	font-style: normal;
 	font-display: swap;
 }
 @font-face {
 	font-family: 'Telegraf';
-	src: url('https://headlessjobsites.github.io/Talentech/Telegraf-Light.ttf');
+	src: url('/Telegraf-Light.ttf');
 	font-weight: 300;
 	font-style: normal;
 	font-display: swap;
 }
 @font-face {
 	font-family: 'Telegraf';
-	src: url('https://headlessjobsites.github.io/Talentech/Telegraf-Black.ttf');
+	src: url('/Telegraf-Black.ttf');
 	font-weight: 900;
 	font-style: normal;
 	font-display: swap;
 }
 @font-face {
 	font-family: 'Telegraf';
-	src: url('https://headlessjobsites.github.io/Talentech/Telegraf-UltraBold.ttf');
+	src: url('/Telegraf-UltraBold.ttf');
 	font-weight: bold;
 	font-style: normal;
 	font-display: swap;
@@ -81,7 +77,7 @@
 	position: relative;
 	height: 100vh;
 	overflow: hidden;
-	background-color: rgb(0 0 0 / 62%);
+	background-color: rgb(0,0,0,0.62);
 }
 .hero-video {
 	position: absolute;
@@ -93,6 +89,7 @@
 	height: auto;
 	transform: translate(-50%, -50%);
 	z-index: -1;
+	background-color: #2b2940;
 }
 .hero-content {
 	position: relative;
@@ -125,6 +122,11 @@ h1 {
 	font-weight: 800;
 	font-size: 4rem;
 	margin-bottom: 2rem;
+}
+#position-title {
+    font-family: Telegraf;
+    font-weight: 800;
+    font-size: 4rem;
 }
 .btn-primary {
 	background-color: #2b293f;
@@ -253,6 +255,9 @@ h2 {
 	.carousel-control-prev, .carousel-control-next {
 		display: none;
 	}
+	#position-title {
+    font-size: 2rem;
+}
 }
 .bg-light {
 	background-color: #f8f9fa;
@@ -379,7 +384,7 @@ h2 {
 .process-section .row {
 	display: flex;
 	flex-wrap: wrap;
-	justify-content: center;
+	/*justify-content: center;*/
 }
 .process-item {
 	display: flex;
@@ -413,7 +418,7 @@ h2 {
 	justify-content: center;
 	z-index: 2;
 }
-.process-icon p {
+.process-icon p, .process-icon h3 {
 	font-size: 4.5rem;
 	position: absolute;
 	font-weight: 700;
@@ -438,10 +443,12 @@ h2 {
     margin-right: 10px;
 	}
 }
+.process-section .row {
+    display: flex;
+    flex-wrap: wrap;
+}
 @media (max-width: 768px) {
 	.process-section .row {
-		display: flex;
-		flex-wrap: nowrap;
 		overflow-x: auto;
 		margin-left: -15px;
 		margin-right: -15px;
@@ -455,6 +462,11 @@ h2 {
 	.process-section .row {
 		justify-content: left;
 	}
+.process-section .process-row {
+    justify-content: left;
+    display: flex;
+    flex-wrap: nowrap;
+}
 }
 .team-section .container {
 	max-width: 1200px;
@@ -508,8 +520,12 @@ h2 {
 	.team-section .row {
 		display: flex;
 		flex-wrap: nowrap;
-		/*overflow-x: auto;*/
+		overflow-x: auto;
+		overflow-y: hidden;
 		justify-content: left;
+	}
+	.gobi-large .team-item {
+    align-items: start;
 	}
 	.team-item, .process-item {
 		flex: 0 0 60%;
@@ -578,6 +594,14 @@ a:hover {
 	.job-description ul {
 		margin-left: 40px;
 	}
+#inner-job-title {
+    padding-left: 210px;
+    padding-right: 260px;
+}
+}
+#inner-job-title {
+    font-size: 3rem;
+    line-height: 1.6;
 }
 #jobTitle {
 	font-weight: 800;
@@ -594,13 +618,14 @@ a:hover {
 	display: block;
 }
 .apply-btn {
-	background-color: #2b293f;
-	color: white;
-	border: none;
-	border-radius: 50px;
-	font-size: 16px;
-	padding: 10px 20px;
-	font-weight: bold;
+    background-color: #2b293f !important;
+    color: white !important;
+    border: none;
+    text-decoration: none !important;
+    border-radius: 50px;
+    font-size: 16px;
+    padding: 10px 20px;
+    font-weight: bold;
 }
 @media (min-width: 768px) {
 	.job-info {
@@ -608,6 +633,10 @@ a:hover {
 	}
 }
 @media (max-width: 768px) {
+	#inner-job-title {
+    font-size: 2rem;
+    line-height: 1.4;
+	}
 	.text-center {
 		text-align: left !important;
 	}
@@ -646,8 +675,105 @@ font-size: 1.8rem;
 }
 }
 
+
+
+
+
+.modal-fullscreen-90w {
+  padding-right: 0 !important;
+  }
+.modal-fullscreen-90w .modal-content {
+  height: 70vh;
+  width: 100vw;
+}
+.modal.fade .modal-dialog {
+  transform: translate(0, 100%);
+  transition: transform 0.3s ease-out;
+}
+
+.modal.show .modal-dialog {
+  transform: translate(0, 40%);
+}
+
+.modal-dialog {
+  max-width: 100%;
+  margin: 0;
+  margin-top: 30vh; /* Adjust if necessary */
+}
+
+.modal-fullscreen-90w .modal-content {
+  background-color: #fff;
+}
+
+.modal-content {
+  border: 0;
+  border-radius: 0;
+}
+.modal-header {
+  /*position: absolute;
+  top: 0;
+  right: 0;*/
+  padding-top: 10px;
+  width: 100%; 
+  display: flex;
+  justify-content: flex-end; /* Aligns items to the right */
+  border: none; /* Removes any default border that might exist */
+  background: transparent; /* Optional: Makes the header background transparent */
+}
+
+#closeModalButton {
+  background: none; /* Makes the background transparent */
+  border: none; /* Removes the border */
+  font-size: 24px; /* Adjust size as needed */
+    margin-right: 0;
+    padding: 1rem;
+    padding-right: 0;
+}
+
+.modal-content {
+  position: relative; /* Ensures the absolute positioning of the header is relative to the modal content */
+}
+.modal-fullscreen-90w .modal-content {
+  background-color: #fff; 
+  overflow-y: auto; /* Allows scrolling within the modal */
+  max-height: 70vh; /* Limits the modal height to 90% of the viewport height */
+  width: 100%; /* Full width */
+}
+
+.modal-dialog {
+  margin: 5vh auto; /* Centers the modal vertically with 5% top/bottom margin */
+  max-width: 100%; /* Allows the modal to be full width */
+}
+
+.modal-body {
+  overflow-y: auto; /* Ensures only the modal body scrolls, not the entire modal */
+  padding: 0;
+}	   
+.navbar-dark .navbar-nav .active>.nav-link {
+    font-weight: 500;
+}
+.navbar-dark .navbar-nav .nav-link {
+    color: rgba(255, 255, 255);
+}
+.process-section .process-content h3 {
+    font-size: 1rem;
+    font-weight: 700;
+}
+.card-title {
+    font-size: 1.25rem;
+    font-weight: 500;
+}
+@media (min-width: 992px) {
+    .navbar-expand-lg .navbar-nav {
+        background: rgb(0,0,0,0.2);
+        border-radius: 10px;
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+}  	    
     </style>
 </head>
+
 
 <body>
 

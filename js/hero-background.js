@@ -4,8 +4,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const params = new URLSearchParams(window.location.search);
         const jobId = parseInt(params.get('rmjob') || params.get('jobId'));  // Handles both 'rmjob' and 'jobId'
 
-        // Assuming jobs data is an array obtained from your API; adjust the fetch URL as needed
-        fetch('path_to_your_feed.json')  // Replace with the actual path to your job feed data
+        fetch('https://api.talentech.io/reachmee/feed/')  
             .then(response => response.json())
             .then(jobs => {
                 const job = jobs.find(job => job.ad_id === jobId);

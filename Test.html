@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>x1</title>
+    <title>x12</title>
     <!-- Bootstrap CSS -->
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -917,26 +917,35 @@ function buildIframe() {
 
 
 
-<div id="hidden-iframe" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: none;">
-    <script type="text/javascript" src="https://web103.reachmee.com/customerjs/I019-834-19.js"></script>
-</div>
+<!-- Create an iframe explicitly for the script -->
+<iframe id="hidden-iframe" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: none; border: none;"></iframe>
 
 <script>
 document.addEventListener("DOMContentLoaded", function() {
+    const iframe = document.getElementById('hidden-iframe');
     const params = new URLSearchParams(window.location.search);
     const rmpage = params.get('rmpage');
 
     if (rmpage === 'profileactivate' || rmpage === 'subscriptions') {
-        // Hide all content except for the hidden-iframe by setting display none
+        // Hide all content except for the iframe
         document.body.childNodes.forEach(node => {
             if (node.nodeType === Node.ELEMENT_NODE && node.id !== 'hidden-iframe' && node.style) {
                 node.style.display = 'none';
             }
         });
 
-        // Show the hidden-iframe div by changing display to block
-        const iframe = document.getElementById('hidden-iframe');
+        // Prepare the iframe to load the script
         iframe.style.display = 'block';
+        iframe.src = 'about:blank'; // Start with a blank document
+
+        // Write the script into the iframe's document
+        iframe.onload = function() {
+            var doc = iframe.contentDocument || iframe.contentWindow.document;
+            var script = doc.createElement('script');
+            script.type = 'text/javascript';
+            script.src = 'https://web103.reachmee.com/customerjs/I019-834-19.js';
+            doc.body.appendChild(script);
+        };
     }
 });
 </script>

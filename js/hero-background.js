@@ -18,39 +18,40 @@ document.addEventListener('DOMContentLoaded', function() {
             .catch(error => console.error('Failed to load job data:', error));
     }
 
-    function setHeroBackgroundImage(imageUrl) {
-        // Remove the video element
-        var videoElement = document.querySelector('.hero-video');
-        if (videoElement) {
-            videoElement.parentNode.removeChild(videoElement);
-        }
-
-        // Set the image as background
-        var heroSection = document.querySelector('.hero-section');
-        heroSection.style.backgroundImage = 'url(' + imageUrl + ')';
-        heroSection.style.backgroundSize = 'cover';
-        heroSection.style.backgroundPosition = 'center';
+function setHeroBackgroundImage(imageUrl) {
+    // Remove the video element
+    var videoElement = document.querySelector('.hero-video');
+    if (videoElement) {
+        videoElement.parentNode.removeChild(videoElement);
     }
 
-    function setHeroBackgroundVideo() {
-        // Ensure the video is properly set up if it's not the default or needs to be reset
-        var heroSection = document.querySelector('.hero-section');
-        if (!document.querySelector('.hero-video')) {
-            var video = document.createElement('video');
-            video.setAttribute('playsinline', 'playsinline');
-            video.setAttribute('autoplay', 'autoplay');
-            video.setAttribute('muted', 'muted');
-            video.setAttribute('loop', 'loop');
-            video.classList.add('hero-video');
+    // Set the image as background
+    var heroSection = document.querySelector('.hero-section');
+    heroSection.style.backgroundImage = 'url(' + imageUrl + ')';
+    heroSection.style.backgroundSize = 'cover';
+    heroSection.style.backgroundPosition = 'center';
+    heroSection.style.position = 'relative'; // Ensures the pseudo-element for overlay works correctly
+}
 
-            var source = document.createElement('source');
-            source.setAttribute('src', '/Compressed-3.mp4');
-            source.setAttribute('type', 'video/mp4');
+function setHeroBackgroundVideo() {
+    var heroSection = document.querySelector('.hero-section');
+    if (!document.querySelector('.hero-video')) {
+        var video = document.createElement('video');
+        video.setAttribute('playsinline', 'playsinline');
+        video.setAttribute('autoplay', 'autoplay');
+        video.setAttribute('muted', 'muted');
+        video.setAttribute('loop', 'loop');
+        video.classList.add('hero-video');
 
-            video.appendChild(source);
-            heroSection.appendChild(video);
-        }
+        var source = document.createElement('source');
+        source.setAttribute('src', '/Compressed-3.mp4');
+        source.setAttribute('type', 'video/mp4');
+
+        video.appendChild(source);
+        heroSection.appendChild(video);
     }
+}
+
 
     // Call the function to update the background
     updateHeroBackground();

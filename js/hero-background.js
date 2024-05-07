@@ -2,16 +2,17 @@ document.addEventListener('DOMContentLoaded', function() {
     // Function to fetch job data and update the background
     function updateHeroBackground() {
         const params = new URLSearchParams(window.location.search);
-        const jobId = parseInt(params.get('rmjob'));
+        const jobId = parseInt(params.get('rmjob') || params.get('jobId'));  // Handles both 'rmjob' and 'jobId'
 
-        fetch('https://api.talentech.io/reachmee/feed/')
+        // Assuming jobs data is an array obtained from your API; adjust the fetch URL as needed
+        fetch('path_to_your_feed.json')  // Replace with the actual path to your job feed data
             .then(response => response.json())
             .then(jobs => {
                 const job = jobs.find(job => job.ad_id === jobId);
                 if (job && job.image_link) {
                     setHeroBackgroundImage(job.image_link);
                 } else {
-                    setHeroBackgroundVideo(); // This can be omitted if video is the default
+                    setHeroBackgroundVideo(); // Can be omitted if video is the default
                 }
             })
             .catch(error => console.error('Failed to load job data:', error));

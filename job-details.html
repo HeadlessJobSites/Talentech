@@ -774,7 +774,9 @@ font-size: 1.8rem;
     </style>
 </head>
 
+
 <body>
+
 
 
 <nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color: rgba(0, 0, 0, 0.0); padding: 20px; position: absolute; ">
@@ -917,31 +919,6 @@ function buildIframe() {
 
 
 
-<div id="hidden-iframe" style="display: none;">
-    <script type="text/javascript" src="https://web103.reachmee.com/customerjs/I019-834-19.js"></script>
-</div>
-
-<script>
-document.addEventListener("DOMContentLoaded", function() {
-    const params = new URLSearchParams(window.location.search);
-    const rmpage = params.get('rmpage');
-
-    // Check for both 'profileactivate' or 'subscriptions'
-    if (rmpage === 'profileactivate' || rmpage === 'subscriptions') {
-        // Hide all content except for the hidden-iframe
-        document.body.childNodes.forEach(node => {
-            if (node.nodeType === Node.ELEMENT_NODE && node.id !== 'hidden-iframe' && node.style) {
-                node.style.display = 'none';
-            }
-        });
-
-        // Show the hidden-iframe div
-        document.getElementById('hidden-iframe').style.display = 'block';
-    }
-});
-</script>
-
-
 	
 
 
@@ -1078,7 +1055,17 @@ window.addEventListener('message', function(event) {
 
 
 
+
+
+
+
 	
+
+
+
+
+
+
 	
 
 	

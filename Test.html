@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>x3</title>
+    <title>x31</title>
     <!-- Bootstrap CSS -->
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -1014,9 +1014,9 @@ font-size: 1.8rem;
 	
 
 	
-<div class="feature-section mb-5 pt-3 pb-5" id="jobs-anchor" style="background-color: #eeeef2;">
+<div id="tt-feature-section" class="feature-section mb-5 pt-3 pb-5" id="jobs-anchor" style="background-color: #eeeef2;">
 <div class="container mt-3 mb-5 m-mb-0">
-    <h2 class="my-5 m-px-2 m-my-0">Similar <span style="font-weight: 800">jobs</span></h2>
+    <h2 class="my-5 m-my-0">Similar <span style="font-weight: 800">jobs</span></h2>
     <div class="row my-3">
         <div class="col-md-3 mb-3">
             <label for="locationFilter">Location</label>
@@ -1042,42 +1042,43 @@ font-size: 1.8rem;
 
 
 
-<div class="container my-5 py-5 m-my-0 m-pt-0">
+<div class="container my-5 py-5 m-my-0 m-pt-0" style="text-align: center;">
     <div class="">
-        <h2 class="h2-small">Couldn't find the job you were looking for?</h2>
+        <h2>Couldn't find the job you were looking for?</h2>
         <div class="mt-4 mb-2">
 		<p>Sign up and you'll get an e-mail when there is any position available similar to your prenumeration.</p>
 		</div>
     </div>
-    <div class="row justify-content-center mt-4 mb-3">
-        <div class="col-md-4 mt-3">
-            <label for="locationSelect">Location</label>
-            <select id="locationSelect" class="form-control">
-                <option>All locations</option>
-                <option>Oslo</option>
-                <option>Stockholm</option>
-                <option>Helsinki</option>
-                <option>Amsterdam</option>
-            </select>
-        </div>
-        <div class="col-md-4 mt-3">
-            <label for="jobTypeSelect">Job type</label>
-            <select id="jobTypeSelect" class="form-control">
-                <option>All job types</option>
-                <option>Full-time</option>
-                <option>Part-time</option>
-                <option>Contract</option>
-                <option>Internship</option>
-            </select>
-        </div>
-        <div class="col-md-4 mt-3">
-            <label for="emailInput">E-mail</label>
-            <input type="email" id="emailInput" class="form-control" placeholder="Write your e-mail here">
-        </div>
-        <div class="mt-5 text-center">
-            <button class="btn btn-primary" style="font-weight: 800;">Sign up</button>
-        </div>
+ 
+
+    <button id="agent" class="mt-3 btn btn-primary" style="font-weight:800">Sign up</button>
+
+
+<div class="modal fade modal-fullscreen-90w" id="exampleModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" id="closeModalButton" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <iframe id="modalIframe" src="" style="border: none; width: 100%; height: 450px;"></iframe>
+      </div>
     </div>
+  </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById('agent').addEventListener('click', function() {
+        var iframeUrl = "https://web103.reachmee.com/ext/I019/834/subscribe?site=19&lang=UK&validator=fa38d2eb8febb7bc22c8a91e10a1e9de";
+        document.getElementById('modalIframe').src = iframeUrl;
+        $('#exampleModal').modal('show');
+    });
+});
+</script>
+
 </div>
 
 
@@ -1086,15 +1087,15 @@ font-size: 1.8rem;
 
 <section class="text-center bg-dark text-light py-5">
     <div class="container">
-        <img src="https://reboot.no/tt/TT-2.png" alt="Talentech Logo" class="mb-3" style="max-width: 180px;">
+        <img src="/TT-2.png" alt="Talentech Logo" class="mb-3" style="max-width: 180px;">
                 <div class="mt-3 mb-4" style="max-width: 600px; margin: auto;">
 		 <p style="font-size: 1.25rem;">Talentech facilitates the full talent journey on a scalable platform with a tailored ecosystem of HR tech solutions.</p>
 		</div>
         <div class="">
             <!-- Replace these src attributes with your actual SVG paths -->
-            <a href="https://www.facebook.com/talentechnorway"><img src="https://reboot.no/tt/TT-f.svg" alt="Icon 1" class="mx-2" style="width: 30px; height: 30px;"></a>
-            <a href="https://www.linkedin.com/company/talentech-norway"><img src="https://reboot.no/tt/TT-l.svg" alt="Icon 2" class="mx-2" style="width: 30px; height: 30px;"></a>
-            <a href="https://talentech.com/no/kontakt"><img src="https://reboot.no/tt/TT-e.svg" alt="Icon 4" class="mx-2" style="width: 30px; height: 30px;"></a>
+            <a href="https://www.facebook.com/talentechnorway"><img src="/TT-f.svg" alt="Icon 1" class="mx-2" style="width: 30px; height: 30px;"></a>
+            <a href="https://www.linkedin.com/company/talentech-norway"><img src="/TT-l.svg" alt="Icon 2" class="mx-2" style="width: 30px; height: 30px;"></a>
+            <a href="https://talentech.com/no/kontakt"><img src="/TT-e.svg" alt="Icon 4" class="mx-2" style="width: 30px; height: 30px;"></a>
         </div>
     </div>
 </section>
@@ -1103,7 +1104,7 @@ font-size: 1.8rem;
     <div class="container my-0 py-1 m-py-2">
         <div class="d-flex align-items-center">
             <span class="mr-1">Powered by</span>
-            <img src="https://reboot.no/tt/TT-fav.svg" alt="Talentech Logo" style="width: 20px; vertical-align: middle; position: relative; bottom: 1px;">
+            <img src="/TT-fav.svg" alt="Talentech Logo" style="width: 20px; vertical-align: middle; position: relative; bottom: 1px;">
 			<span class="ml-1" style="">Talentech</span>
         </div>
     </div>
@@ -1194,7 +1195,7 @@ $(document).ready(function () {
                 <h5 class="card-title">${job.title}</h5>
                 <p class="card-text">${job.country}</p>
 			    <a href="${jobDetailUrl}" class="stretched-link">
-                <img src="https://reboot.no/tt/arrow-right-thin.svg" class="stretched-link" alt="Details" style="">
+                <img src="/arrow-right-thin.svg" class="stretched-link" alt="Details" style="">
 		</a>
             </div>
         </div>
@@ -1212,19 +1213,29 @@ $(document).ready(function () {
     }
 
     // Function to fetch jobs from the API
-    function fetchJobs() {
-        fetch('https://api.talentech.io/reachmee/feed/') // Ensure this URL is correct
-            .then(response => response.json())
-            .then(data => {
-                jobs = data; // Store fetched jobs
-                displayedJobs = Math.min(jobsToShow, jobs.length); // Initialize displayedJobs
-                populateFilters(); // Fill dropdowns with options
-                displayJobs(); // Show initial jobs
-            })
-            .catch(error => {
-                console.error('Error fetching jobs:', error);
-            });
-    }
+	$(document).ready(function () {
+    const currentJobId = new URLSearchParams(window.location.search).get('jobId');
+    fetchJobs(currentJobId); // Pass currentJobId to the fetchJobs function
+});
+
+function fetchJobs(currentJobId) {
+    fetch('https://api.talentech.io/reachmee/feed/')
+        .then(response => response.json())
+        .then(data => {
+            jobs = data.filter(job => job.ad_id !== parseInt(currentJobId));
+            if (jobs.length === 0) {
+                $('#tt-feature-section').hide();
+            } else {
+                displayedJobs = Math.min(jobsToShow, jobs.length);
+                populateFilters();
+                displayJobs();
+            }
+        })
+        .catch(error => {
+            console.error('Error fetching jobs:', error);
+        });
+}
+
 
     // Load jobs when page is ready
     fetchJobs();
@@ -1255,14 +1266,11 @@ $(document).ready(function () {
 
 
 	
-	
-	
-	
-	
 <script>
 $(document).ready(function() {
     const params = new URLSearchParams(window.location.search);
-    const jobId = parseInt(params.get('jobId'), 10);
+    // Get 'rmjob' if present, otherwise get 'jobId'
+    const jobId = params.get('rmjob') ? parseInt(params.get('rmjob'), 10) : parseInt(params.get('jobId'), 10);
 
     fetch('https://api.talentech.io/reachmee/feed/')
         .then(response => response.json())
@@ -1271,7 +1279,7 @@ $(document).ready(function() {
             if (job) {
                 const organizationUnit = job.organizations && job.organizations.length > 1 ? job.organizations[1].nameorgunit : job.organizations[0]?.nameorgunit || 'Not specified';
                 const city = job.areas && job.areas.length > 0 ? job.areas[0].name : 'Not specified';
-		    
+
                 const applicationLink = job.link.replace("rmpage=job", "rmpage=apply");
                 $('#applyButton').attr('onclick', `window.location.href='${applicationLink}'`);
                 $('#applyButton-tt').attr('onclick', `window.location.href='${applicationLink}'`);
@@ -1280,7 +1288,7 @@ $(document).ready(function() {
                 const titleWords = job.title.split(' ');
                 const firstWord = titleWords.shift(); 
                 const restOfTitle = titleWords.join(' '); 
-                $('.job-title').html(`<span style="font-weight:400;">${firstWord}</span> <span style="font-weight:800;">${restOfTitle}</span>`); 
+                $('.job-title').html(`<span style="font-weight:400;">${firstWord}</span> <span style="font-weight:800;">${restOfTitle}</span>`);
 
                 $('.job-title2').html(job.title);
                 $('.job-description').html(job.description);
@@ -1300,6 +1308,22 @@ $(document).ready(function() {
                         </div>`;
                     $('.contact-persons').append(contactInfo);
                 });
+                
+                // Create a new div and set its data-gobi-collection-id attribute
+                let collectionId = 'no'; // Default to "no"
+                if (organizationUnit === "Finance") {
+                    collectionId = 'mnnvj'; // Specific ID for "Finance"
+                } else if (organizationUnit === "Sales") {
+                    collectionId = '7zxwk'; // Example ID for "Sales"
+                } else {
+                    collectionId = '7zxwk'; // Other org units
+                }
+                const newDiv = $('<div class="gobi-collection"></div>').attr('data-gobi-collection-id', collectionId);
+                 // Insert the new div right after the div with id 'gobi-section'
+               newDiv.insertAfter('#gobi-section');
+                // Load the Gobi widget script dynamically
+                loadGobiScript();
+
             } else {
                 $('.job-details').text('Job not found.');
             }
@@ -1308,10 +1332,47 @@ $(document).ready(function() {
             console.error('Error fetching job details:', error);
             $('.job-details').text('Job details could not be loaded.');
         });
+
+    function loadGobiScript() {
+        const gobiScript = document.createElement('script');
+        gobiScript.src = 'https://widget.gobistories.com/gwi/6';
+        gobiScript.onload = function() {
+            if (typeof gobi !== 'undefined' && gobi.discover) {
+                gobi.discover(); // Discover method called after the script is loaded
+            }
+        };
+        document.body.appendChild(gobiScript);
+    }
+});
+</script>
+
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const openApplication = urlParams.get('open-application');
+    
+    if (openApplication !== null) {
+        // Change the src of the iframe
+        const applicationFormIframe = document.getElementById('applicationFormIframe');
+        applicationFormIframe.src = "https://web103.reachmee.com/ext/I019/834/apply?site=6&lang=UK&validator=319e0c2d95b73a9b706010e4fb40c3e6&job_id=-1";
+        
+        // Hide the job description and metadata
+        document.getElementById('our-process').style.display = 'none';
+        document.getElementById('tt-job-section').style.display = 'none';
+        document.getElementById('tt-talentech-section-1').style.display = 'none';
+        document.getElementById('tt-talentech-section-2').style.display = 'none';
+        document.getElementById('tt-feature-section').style.display = 'none';
+        document.getElementById('appform-header').style.display = 'none';
+        document.getElementById('position-title-meta').style.display = 'none';
+        
+        // Populate the position-title h1 with specific text
+        const positionTitleH1 = document.getElementById('position-title');
+        positionTitleH1.innerText = 'Unsolicited application';
+    }
 });
 
 </script>
-
 	
 	
 </body>

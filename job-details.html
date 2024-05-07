@@ -578,7 +578,7 @@ a:hover {
 	font-weight: 800;
 }
 .bg-dark {
-	background-color: #2b293f !important;
+	background-color: #101018 !important;
 }
 @media (max-width: 991.98px) {
 	.background-image {
@@ -853,6 +853,29 @@ document.addEventListener("DOMContentLoaded", function() {
         </div>
     </div>
 </nav>
+
+	
+<script>
+$(document).ready(function() {
+  $(window).scroll(function() {
+    if ($(window).scrollTop() > 56) {
+      $(".navbar").addClass("bg-dark");
+    } else {
+      $(".navbar").removeClass("bg-dark");
+    }
+  });
+  $(".navbar-toggler").click(function() {
+    if (!$(".navbar-collapse").hasClass("show")) {
+      $(".navbar").addClass("bg-dark");
+    } else {
+      if ($(window).scrollTop() < 56) {
+        $(".navbar").removeClass("bg-dark");
+      } else {
+      }
+    }
+  });
+});
+</script>
 
 
     <div class="hero-section">

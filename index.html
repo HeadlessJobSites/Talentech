@@ -1460,23 +1460,40 @@ document.addEventListener('DOMContentLoaded', function() {
     </div>
 </section>
 
-<section class="bg-light text-dark">
+
 <div class="container my-0 py-1 m-py-2">
-    <div class="d-flex align-items-center flex-wrap"><!-- added flex-wrap class for responsiveness -->
-        <span class="mr-1">Powered by</span>
-        <img src="/TT-fav.svg" alt="Talentech Logo" style="width: 20px; vertical-align: middle; position: relative; bottom: 1px;">
-        <span class="ml-1" style="">Talentech</span>
-        <span class="share-container ml-auto"><!-- added ml-auto class here -->
-            <span class="d-block d-sm-none mb-1"><!-- added responsive classes -->
+    <div class="d-flex flex-column flex-sm-row align-items-start align-items-sm-center"><!-- updated flex classes -->
+        <!-- "Powered by" section -->
+        <div>
+            <span class="mr-1">Powered by</span>
+            <img src="/TT-fav.svg" alt="Talentech Logo" style="width: 20px; vertical-align: middle; position: relative; bottom: 1px;">
+            <span class="ml-1" style="">Talentech</span>
+        </div>
+
+        <!-- Share section -->
+        <div class="share-container mt-2 mt-sm-0 ml-sm-auto"><!-- updated margin and alignment classes -->
+            <span class="d-block d-sm-inline mb-1"><!-- updated responsive classes -->
                 Share on social media: 
-                <a href="https://www.facebook.com/sharer/sharer.php?u=https://career.talentech.com/" target="_blank" rel="noopener noreferrer">
+                <a href="#" id="facebook-share-link" target="_blank" rel="noopener noreferrer">
                     <img src="https://cdn.jsdelivr.net/npm/simple-icons/icons/facebook.svg" alt="Share on Facebook" width="16" height="16">
                 </a>
             </span>
-        </span>
+        </div>
     </div>
 </div>
-</section>
+
+<script>
+    // Function to dynamically set the URL for Facebook sharing
+    function setFacebookShareUrl() {
+        var facebookShareLink = document.getElementById('facebook-share-link');
+        var currentUrl = encodeURIComponent(window.location.href);
+        facebookShareLink.href = 'https://www.facebook.com/sharer/sharer.php?u=' + currentUrl;
+    }
+
+    // Call the function to set Facebook share URL
+    setFacebookShareUrl();
+</script>
+
 
 
 	

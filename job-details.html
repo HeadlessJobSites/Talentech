@@ -1496,12 +1496,16 @@ $(document).ready(function() {
                 $('#applyButton').attr('onclick', `window.location.href='${applicationLink}'`);
                 $('#applyButton-tt').attr('onclick', `window.location.href='${applicationLink}'`);
 
-                // Split the job title into words and apply different styles
+                // Set the page title to the job title
+                document.title = job.title;
+
+                // Display the job title in the designated area with formatting
                 const titleWords = job.title.split(' ');
-                const firstWord = titleWords.shift(); 
-                const restOfTitle = titleWords.join(' '); 
+                const firstWord = titleWords.shift();
+                const restOfTitle = titleWords.join(' ');
                 $('.job-title').html(`<span style="font-weight:400;">${firstWord}</span> <span style="font-weight:800;">${restOfTitle}</span>`);
 
+                // Update elements with job details
                 $('.job-title2').html(job.title);
                 $('.job-description').html(job.description);
                 $('.organization-unit').text(organizationUnit);
@@ -1520,8 +1524,8 @@ $(document).ready(function() {
                         </div>`;
                     $('.contact-persons').append(contactInfo);
                 });
-                
-                // Create a new div and set its data-gobi-collection-id attribute
+
+                // Handle additional dynamic elements
                 let collectionId = 'no'; // Default to "no"
                 if (organizationUnit === "Finance") {
                     collectionId = 'mnnvj'; // Specific ID for "Finance"
@@ -1531,11 +1535,8 @@ $(document).ready(function() {
                     collectionId = '7zxwk'; // Other org units
                 }
                 const newDiv = $('<div class="gobi-collection"></div>').attr('data-gobi-collection-id', collectionId);
-                 // Insert the new div right after the div with id 'gobi-section'
-               newDiv.insertAfter('#gobi-section');
-                // Load the Gobi widget script dynamically
+                newDiv.insertAfter('#gobi-section');
                 loadGobiScript();
-
             } else {
                 $('.job-details').text('Job not found.');
             }
@@ -1550,13 +1551,14 @@ $(document).ready(function() {
         gobiScript.src = 'https://widget.gobistories.com/gwi/6';
         gobiScript.onload = function() {
             if (typeof gobi !== 'undefined' && gobi.discover) {
-                gobi.discover(); // Discover method called after the script is loaded
+                gobi.discover();
             }
         };
         document.body.appendChild(gobiScript);
     }
 });
 </script>
+
 
 
 <script>
@@ -1591,7 +1593,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 	
-<script src="/js/page-title.js"></script>	
 <script src="/js/share-some.js"></script>	
 </body>
 

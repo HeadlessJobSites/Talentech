@@ -952,7 +952,6 @@ document.addEventListener('DOMContentLoaded', function() {
 <script>
 document.addEventListener('DOMContentLoaded', () => {
     const video = document.getElementById('talentechVideo');
-    const playPauseIcon = document.getElementById('playPauseBtn').querySelector('img');
     const muteBtn = document.getElementById('muteBtn');
     const muteIcon = muteBtn.querySelector('img');
 
@@ -960,12 +959,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const togglePlayPause = () => {
         if (video.paused || video.ended) {
             video.play();
-            playPauseIcon.src = "/pause-thin.svg";
-            playPauseIcon.alt = "Pause";
         } else {
             video.pause();
-            playPauseIcon.src = "/play-thin.svg";
-            playPauseIcon.alt = "Play";
         }
     };
 
@@ -975,12 +970,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const [entry] = entries;
         if (entry.isIntersecting) {
             video.play();
-            playPauseIcon.src = "/pause-thin.svg";
-            playPauseIcon.alt = "Pause";
         } else {
             video.pause();
-            playPauseIcon.src = "/play-thin.svg";
-            playPauseIcon.alt = "Play";
         }
     }, {
         root: null,
@@ -1006,7 +997,6 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 </script>
 
-
 <div class="talentech-section pb-4 mb-5 m-mb-3">
     <div class="container mt-4 pt-2 mb-5 pb-3 video-container m-my-0">
         <video id="talentechVideo" class="rounded-video" playsinline autoplay loop muted>
@@ -1018,6 +1008,7 @@ document.addEventListener('DOMContentLoaded', () => {
         </div>
     </div>
 </div>
+
 
 
 	

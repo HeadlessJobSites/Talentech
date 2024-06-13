@@ -777,9 +777,9 @@ font-size: 1.8rem;
     }
 }
 @media (max-width: 992px) {
-    .navbar.bg-dark {  
+    /*.navbar.bg-dark {  
 animation: fadeIn 2s; 
-}
+}*/
 a.nav-link.btn.btn-primary.apply-btn {  
         font-size: 1em !important;
 }

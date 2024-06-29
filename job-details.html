@@ -366,10 +366,11 @@ document.addEventListener('DOMContentLoaded', function() {
     const jobId = params.get('rmjob') || params.get('jobId');
 
     // Fetch job details (assuming you have an endpoint to get job details by jobId)
-    fetch(`https://example.com/api/jobs/${jobId}`) // Replace with your actual API endpoint
+    fetch(`https://api.talentech.io/reachmee/feed/`) // Replace with your actual API endpoint
         .then(response => response.json())
-        .then(job => {
-            if (job.hide_apply_button) {
+        .then(jobs => {
+            const job = jobs.find(job => job.ad_id === parseInt(jobId));
+            if (job && job.hide_apply_button) {
                 // Display the message and button if hide_apply_button is true
                 const messageContainer = document.createElement('div');
                 messageContainer.innerHTML = `
@@ -407,6 +408,7 @@ window.addEventListener('message', function(event) {
     }
 }, false);
 </script>
+
 
 
 

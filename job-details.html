@@ -374,8 +374,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 // Display the message and button if hide_apply_button is true
                 const messageContainer = document.createElement('div');
                 messageContainer.innerHTML = `
-                    <p>Application form is disabled for this job. Please see job description for details on applying.</p>
-                    <a href="#tt-talentech-section-1" class="btn btn-primary">See job description</a>
+                    <center><p>Application form is disabled for this job. Please see job description for details on applying.</p>
+                    <a href="#tt-talentech-section-1" class="btn btn-primary">See job description</a></center>
                 `;
                 document.getElementById('applicationFormContainer').appendChild(messageContainer);
             } else {

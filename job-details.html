@@ -134,63 +134,66 @@ $(document).ready(function() {
 <script src="/js/hero-background.js"></script>
 	
 	
-<div id="tt-job-section" class="job-section">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-3 col-6 job-info">
-                <span class="job-info-title">Team</span>
-                <span class="organization-unit">Team</span>
-            </div>
-            <div class="col-md-3 col-6 job-info">
-                <span class="job-info-title">Location</span>
-                <span class="city">Location</span>
-            </div>
-            <div class="col-md-3 col-6 job-info">
-                <span class="job-info-title">Application due</span>
-                <span class="expiration-date">Application due</span>
-            </div>
-            <div class="col-md-3 col-6 text-center apply-btn-header">
-<a href="#appform-header" class="btn btn-primary apply-btn" role="">Apply for the job</a>
-            </div>
-        </div>
-    </div>
-</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    const params = new URLSearchParams(window.location.search);
+    const rmpage = params.get('rmpage');
+
+    if (rmpage === 'profileactivate') {
+        loadExternalScriptAndBuildIframe();
+    }
+});
+
+function loadExternalScriptAndBuildIframe() {
+    var script = document.createElement('script');
+    script.type = 'text/javascript';
+    script.src = 'https://web103.reachmee.com/customerjs/I019-834-19.js';
+    script.onload = function() {
+        buildIframe();
+    };
+    document.head.appendChild(script);
+}
+
+function buildIframe() {
+    var iFrameUrl = 'https://web103.reachmee.com/ext/';
+    var validator = 'fa38d2eb8febb7bc22c8a91e10a1e9de';
+    var iid = 'I019';
+    var customer = '834';
+    var site = '19';
+    var iHelperUrl = 'https://career.talentech.com/job-details.html?';
+    var height = '4000';
+    var langDef = 'UK';
+    var title = 'ReachMee Recruit external site';
+
+    // More URL building logic here, using the current script logic
+    // Ensure the destination page is determined correctly
+    var destPage = new URLSearchParams(window.location.search).get('rmpage') + '?';
+    // Add other parameters based on your existing script logic
+
+    iFrameUrl += destPage + 'site=' + site + '&validator=' + validator + '&lang=' + langDef;
+
+    // Dynamically create the iframe
+    var iframe = document.createElement('iframe');
+    iframe.style.width = '100%';
+    iframe.style.height = height + 'px';
+    iframe.frameBorder = '0';
+    iframe.title = title;
+    iframe.src = iFrameUrl;
+
+    var targetElement = document.getElementById('iframeContainer');
+    if (!targetElement) {
+        console.error('No element found to insert the iframe into');
+        return;
+    }
+    targetElement.innerHTML = ''; // Clear previous content
+    targetElement.appendChild(iframe);
+}
+
+</script>
+<div id="iframeContainer"></div>
 
 
-
-	
-	
-	
-	<div id="tt-talentech-section-1" class="talentech-section mb-5 m-pb-3">
-    <div class="container mt-5 pt-3 m-px-4 m-mt-4">
-        <div id="inner-job-title" class="mb-5 job-title m-mb-4"> </div>
-
-
-<!-- Share section -->
-        <div class="container share-container mt-2 mt-sm-0 m-px-0 py-0">
-            <span class="d-block d-sm-inline mb-1">
-                <a href="#" id="facebook-share-link" target="_blank" rel="noopener noreferrer">
-                    <img src="https://cdn.jsdelivr.net/npm/simple-icons/icons/facebook.svg" alt="Share on Facebook" width="18" height="18">
-                </a>
-                <a href="#" id="twitter-share-link" target="_blank" rel="noopener noreferrer">
-                    <img src="https://cdn.jsdelivr.net/npm/simple-icons/icons/x.svg" alt="Share on X" width="18" height="18">
-                </a>
-                <a href="#" id="linkedin-share-link" target="_blank" rel="noopener noreferrer">
-                    <img src="https://cdn.jsdelivr.net/npm/simple-icons/icons/linkedin.svg" alt="Share on LinkedIn" width="18" height="18">
-                </a>
-            </span>
-        </div>
-<!-- END Share section -->
-    
-	    
-        <div class="my-3 job-description"> </div>
-	    <div class="contact-persons"></div>
-    </div>
-
-            <div class="text-center centerd-apply-btn">
-<a href="#appform-header" class="btn btn-primary apply-btn" role="">Apply for the job</a>
-            </div>
-</div>
 
 
 

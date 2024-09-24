@@ -850,3 +850,10 @@ a.nav-link.new-link {
         display: none !important;
     }
 }
+/* Disable Gobi Meet the Team when using Low Power Mode on mobile */
+@media (prefers-reduced-motion: reduce) {
+    #tt-talentech-section-2 {
+        animation: none;
+    }
+}
+

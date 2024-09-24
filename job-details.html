@@ -135,67 +135,6 @@ $(document).ready(function() {
 	
 	
 
-<script>
-document.addEventListener("DOMContentLoaded", function() {
-    const params = new URLSearchParams(window.location.search);
-    const rmpage = params.get('rmpage');
-
-    if (rmpage === 'profileactivate') {
-        loadExternalScriptAndBuildIframe();
-    }
-});
-
-function loadExternalScriptAndBuildIframe() {
-    var script = document.createElement('script');
-    script.type = 'text/javascript';
-    script.src = 'https://web103.reachmee.com/customerjs/I019-834-19.js';
-    script.onload = function() {
-        buildIframe();
-    };
-    document.head.appendChild(script);
-}
-
-function buildIframe() {
-    var iFrameUrl = 'https://web103.reachmee.com/ext/';
-    var validator = 'fa38d2eb8febb7bc22c8a91e10a1e9de';
-    var iid = 'I019';
-    var customer = '834';
-    var site = '19';
-    var iHelperUrl = 'https://career.talentech.com/job-details.html?';
-    var height = '4000';
-    var langDef = 'UK';
-    var title = 'ReachMee Recruit external site';
-
-    // More URL building logic here, using the current script logic
-    // Ensure the destination page is determined correctly
-    var destPage = new URLSearchParams(window.location.search).get('rmpage') + '?';
-    // Add other parameters based on your existing script logic
-
-    iFrameUrl += destPage + 'site=' + site + '&validator=' + validator + '&lang=' + langDef;
-
-    // Dynamically create the iframe
-    var iframe = document.createElement('iframe');
-    iframe.style.width = '100%';
-    iframe.style.height = height + 'px';
-    iframe.frameBorder = '0';
-    iframe.title = title;
-    iframe.src = iFrameUrl;
-
-    var targetElement = document.getElementById('iframeContainer');
-    if (!targetElement) {
-        console.error('No element found to insert the iframe into');
-        return;
-    }
-    targetElement.innerHTML = ''; // Clear previous content
-    targetElement.appendChild(iframe);
-}
-
-</script>
-<div id="iframeContainer"></div>
-
-
-
-
 
 
 	

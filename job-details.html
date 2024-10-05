@@ -27,7 +27,78 @@
 <meta property="og:image:height" content="630">
 <meta property="og:type" content="website">
 
-	
+<script>
+// Helper function to decode HTML entities using character codes
+function decodeHtmlCharCodes(str) { 
+  return str.replace(/(&#(\d+);)/g, function(match, capture, charCode) {
+    return String.fromCharCode(charCode);
+  });
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    const params = new URLSearchParams(window.location.search);
+    const jobId = params.get('rmjob') ? parseInt(params.get('rmjob'), 10) : parseInt(params.get('jobId'), 10);
+
+    fetch('https://api.talentech.io/reachmee/feed/wistrand')
+        .then(response => response.json())
+        .then(jobs => {
+            const job = jobs.find(job => job.ad_id === jobId);
+            if (job) {
+                // Decode HTML entities in the job title
+                const decodedTitle = decodeHtmlCharCodes(job.title);
+
+                // Update meta tags for social media sharing
+                updateMetaTags(decodedTitle, job.description);
+
+                // Delay setting the document title to ensure it's the last modification
+                setTimeout(() => {
+                    document.title = decodedTitle;
+                    console.log("Document title set to:", document.title);
+                }, 1000); // Delay of 1000 milliseconds (1 second)
+
+            } else {
+                console.error('Job not found.');
+            }
+        })
+        .catch(error => {
+            console.error('Error fetching job details:', error);
+        });
+});
+
+function updateMetaTags(title, description) {
+    let ogTitle = document.querySelector('meta[property="og:title"]');
+    let twitterTitle = document.querySelector('meta[name="twitter:title"]');
+    let ogDescription = document.querySelector('meta[property="og:description"]');
+    let twitterDescription = document.querySelector('meta[name="twitter:description"]');
+
+    if (!ogTitle) {
+        ogTitle = document.createElement('meta');
+        ogTitle.setAttribute('property', 'og:title');
+        document.head.appendChild(ogTitle);
+    }
+    if (!twitterTitle) {
+        twitterTitle = document.createElement('meta');
+        twitterTitle.setAttribute('name', 'twitter:title');
+        document.head.appendChild(twitterTitle);
+    }
+    if (!ogDescription) {
+        ogDescription = document.createElement('meta');
+        ogDescription.setAttribute('property', 'og:description');
+        document.head.appendChild(ogDescription);
+    }
+    if (!twitterDescription) {
+        twitterDescription = document.createElement('meta');
+        twitterDescription.setAttribute('name', 'twitter:description');
+        document.head.appendChild(twitterDescription);
+    }
+
+    ogTitle.setAttribute('content', title);
+    twitterTitle.setAttribute('content', title);
+    ogDescription.setAttribute('content', description);
+    twitterDescription.setAttribute('content', description);
+}
+</script>
+
 </head>
 
 

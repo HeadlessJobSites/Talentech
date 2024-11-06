@@ -589,7 +589,7 @@ a:hover {
 	}
 }
 @media (min-width: 992px) {
-	.talentech-section h2,.talentech-section p, .talentech-section ul, .talentech-section ol, .talentech-section h3, .talentech-section h4, .talentech-section h5, .talentech-section h6 {
+	.talentech-section h2,.talentech-section p, .talentech-section .p-rich_text_section, .talentech-section ul, .talentech-section ol, .talentech-section h3, .talentech-section h4, .talentech-section h5, .talentech-section h6 {
 		padding-left: 210px;
 		padding-right: 260px;
 		line-height: 1.6;

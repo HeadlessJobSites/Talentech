@@ -585,6 +585,9 @@ h4 {
   }
 
 @media (max-width: 768px) {
+  .benefit-item {
+  min-width: 250px;
+  }
   .gs-m {
   display: inherit;
   }

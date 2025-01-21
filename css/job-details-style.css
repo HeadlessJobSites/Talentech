@@ -101,6 +101,49 @@
 	color: white;
     	z-index: 2;
 }
+  .gobi-stories-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    z-index: 1000;
+    max-width: 140px;
+  }
+  .gobi-stories-text {
+    color: #ffffff; /* White text color */
+    background-color: #000000; /* Black background for visibility */
+    padding: 5px 12px; /* Some padding around the text */
+    border-radius: 5px; /* Rounded corners for the text box */
+    margin-top: 0px; /* Space between the widget and the text */
+    font-size: 13px; /* Small text size */
+    width: fit-content; /* Adjust width based on content */
+    background-color: #ffcfcd !important;
+    padding: 11px !important;
+    color: #26253e !important;
+    font-weight: 700 !important;
+    border-radius: 10px !imporant;
+	text-align: center;
+  }  
+  .close-btn {
+    z-index: 10000;
+    position: absolute; /* Position it relative to the container */
+    top: 0px; /* At the top */
+    right: 0px; /* At the right */
+    cursor: pointer; /* Change cursor to pointer to indicate it's clickable */
+    padding: 2px 5px; /* Padding around the text */
+    background-color: transparent; /* Light grey background */
+	background: transparent;
+    border: none; /* No border */
+    border-radius: 2px; /* Slightly rounded corners */
+    color: #26253e !important;
+  }
+  .close-btn i{
+    color: #ffcfcd !important;
+    font-size: 20px;
+
+  }
 .job-listing {
 	margin-bottom: 20px;
 }

@@ -256,13 +256,13 @@ $(document).ready(function() {
 <!-- Share section -->
         <div class="container share-container mt-2 mt-sm-0 m-px-0 py-0">
             <span class="d-block d-sm-inline mb-1">
-                <a href="#" id="facebook-share-link" target="_blank" rel="noopener noreferrer">
+                <a href="#" class="facebook-share-link" target="_blank" rel="noopener noreferrer">
                     <img src="https://cdn.jsdelivr.net/npm/simple-icons/icons/facebook.svg" alt="Share on Facebook" width="18" height="18">
                 </a>
-                <a href="#" id="twitter-share-link" target="_blank" rel="noopener noreferrer">
+                <a href="#" class="twitter-share-link" target="_blank" rel="noopener noreferrer">
                     <img src="https://cdn.jsdelivr.net/npm/simple-icons/icons/x.svg" alt="Share on X" width="18" height="18">
                 </a>
-                <a href="#" id="linkedin-share-link" target="_blank" rel="noopener noreferrer">
+                <a href="#" class="linkedin-share-link" target="_blank" rel="noopener noreferrer">
                     <img src="https://cdn.jsdelivr.net/npm/simple-icons/icons/linkedin.svg" alt="Share on LinkedIn" width="18" height="18">
                 </a>
             </span>
@@ -602,15 +602,53 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 
-<section class="bg-light text-dark">
-    <div class="container my-0 py-1 m-py-2">
-        <div class="d-flex align-items-center">
-            <span class="mr-1">Powered by</span>
+
+<div class="container my-0 py-1 m-py-2">
+    <div class="d-flex flex-column flex-sm-row align-items-start align-items-sm-center"><!-- updated flex classes -->
+        <!-- "Powered by" section -->
+        <div>
+            <span class="mr-1">Levert av</span>
             <a style="text-decoration:none; color: inherit;" href="https://talentech.com"><img src="./files/TT-fav.svg" alt="Talentech Logo" style="width: 20px; vertical-align: middle; position: relative; bottom: 1px;"></a>
             <a style="text-decoration:none; color: inherit;" href="https://talentech.com"><span class="ml-1" style="">Talentech</span></a>
         </div>
+
+        <!-- Share section -->
+        <div class="mt-2 mt-sm-0 ml-sm-auto"><!-- updated margin and alignment classes -->
+            <span class="d-block d-sm-inline mb-1"><!-- updated responsive classes -->
+                Del på sosiale medier: 
+                <a href="#" class="facebook-share-link" target="_blank" rel="noopener noreferrer">
+                    <img src="https://cdn.jsdelivr.net/npm/simple-icons/icons/facebook.svg" alt="Share on Facebook" width="16" height="16">
+                </a>
+                <a href="#" class="twitter-share-link" target="_blank" rel="noopener noreferrer">
+                    <img src="https://cdn.jsdelivr.net/npm/simple-icons/icons/x.svg" alt="Share on X" width="16" height="16">
+                </a>
+                <a href="#" class="linkedin-share-link" target="_blank" rel="noopener noreferrer">
+                    <img src="https://cdn.jsdelivr.net/npm/simple-icons/icons/linkedin.svg" alt="Share on LinkedIn" width="16" height="16">
+                </a>
+            </span>
+        </div>
     </div>
-</section>
+</div>
+
+
+	
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    setSocialMediaShareUrls();
+});
+
+function setSocialMediaShareUrls() {
+    var facebookShareLinks = document.querySelectorAll('.facebook-share-link');
+    var twitterShareLinks = document.querySelectorAll('.twitter-share-link');
+    var linkedinShareLinks = document.querySelectorAll('.linkedin-share-link');
+    var currentUrl = encodeURIComponent(window.location.href);
+
+    facebookShareLinks.forEach(link => link.href = 'https://www.facebook.com/sharer/sharer.php?u=' + currentUrl);
+    twitterShareLinks.forEach(link => link.href = 'https://twitter.com/intent/tweet?url=' + currentUrl);
+    linkedinShareLinks.forEach(link => link.href = 'https://www.linkedin.com/shareArticle?url=' + currentUrl);
+}
+</script>
+
 
 
 

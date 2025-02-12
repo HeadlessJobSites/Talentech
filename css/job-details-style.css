@@ -1,17 +1,87 @@
+@font-face {
+	font-family: 'Telegraf';
+	src: url('/fonts/Telegraf-UltraLight.ttf');
+	font-weight: 200;
+	font-style: normal;
+	font-display: swap;
+}
+@font-face {
+	font-family: 'Telegraf';
+	src: url('/fonts/Telegraf-Medium.ttf');
+	font-weight: 500;
+	font-style: normal;
+	font-display: swap;
+}
+@font-face {
+	font-family: 'Telegraf';
+	src: url('/fonts/Telegraf-SemiBold.ttf');
+	font-weight: 600;
+	font-style: normal;
+	font-display: swap;
+}
+@font-face {
+	font-family: 'Telegraf';
+	src: url('/fonts/Telegraf-Regular.ttf');
+	font-weight: normal;
+	font-style: normal;
+	font-display: swap;
+}
+@font-face {
+	font-family: 'Telegraf';
+	src: url('/fonts/Telegraf-UltraBold.ttf');
+	font-weight: 800;
+	font-style: normal;
+	font-display: swap;
+}
+@font-face {
+	font-family: 'Telegraf';
+	src: url('/fonts/Telegraf-Light.ttf');
+	font-weight: 300;
+	font-style: normal;
+	font-display: swap;
+}
+@font-face {
+	font-family: 'Telegraf';
+	src: url('/fonts/Telegraf-Black.ttf');
+	font-weight: 900;
+	font-style: normal;
+	font-display: swap;
+}
+@font-face {
+	font-family: 'Telegraf';
+	src: url('/fonts/Telegraf-UltraBold.ttf');
+	font-weight: bold;
+	font-style: normal;
+	font-display: swap;
+}
 .hero-section {
-	background-color: rgb(0,0,0,0.62);
+	position: relative;
+	height: 100vh;
+	overflow: hidden;
+	/*background-color: rgb(0,0,0,0.62);*/
 }
 .hero-section::before {
-	content: "";
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	background: rgba(0, 0, 0, 0.62);
-	z-index: 1;
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.62); /* Overlay color */
+    z-index: 1;
 }
 .hero-video, .hero-image {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    transform: translate(-50%, -50%);
+    z-index: -1; /* Ensures the background is below the overlay */
+}/*
+.hero-video {
 	position: absolute;
 	top: 50%;
 	left: 50%;
@@ -21,14 +91,142 @@
 	height: auto;
 	transform: translate(-50%, -50%);
 	z-index: -1;
-}
+	background-color: #2b2940;
+}*/
 .hero-content {
+	position: relative;
+	text-align: center;
+	top: 50%;
+	transform: translateY(-50%);
+	color: white;
     	z-index: 2;
+}
+  .gobi-stories-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    z-index: 1000;
+    max-width: 140px;
+  }
+  .gobi-stories-text {
+    color: #ffffff; /* White text color */
+    background-color: #000000; /* Black background for visibility */
+    padding: 5px 12px; /* Some padding around the text */
+    border-radius: 5px; /* Rounded corners for the text box */
+    margin-top: 0px; /* Space between the widget and the text */
+    font-size: 13px; /* Small text size */
+    width: fit-content; /* Adjust width based on content */
+    background-color: #ffcfcd !important;
+    padding: 11px !important;
+    color: #26253e !important;
+    font-weight: 700 !important;
+    border-radius: 10px !imporant;
+	text-align: center;
+  }  
+  .close-btn {
+    z-index: 10000;
+    position: absolute; /* Position it relative to the container */
+    top: 0px; /* At the top */
+    right: 0px; /* At the right */
+    cursor: pointer; /* Change cursor to pointer to indicate it's clickable */
+    padding: 2px 5px; /* Padding around the text */
+    background-color: transparent; /* Light grey background */
+	background: transparent;
+    border: none; /* No border */
+    border-radius: 2px; /* Slightly rounded corners */
+    color: #26253e !important;
+  }
+  .close-btn i{
+    color: #ffcfcd !important;
+    font-size: 20px;
+
+  }
+.job-listing {
+	margin-bottom: 20px;
+}
+.job-header, .job-item {
+	padding: 10px;
+	text-align: center;
+}
+.job-header {
+	font-weight: bold;
+	background-color: #f8f9fa;
+	border-bottom: 2px solid #e9ecef;
+}
+.job-item {
+	word-wrap: break-word;
+}
+body {
+/*	font-family: Telegraf;
+	font-weight:;*/
+}
+h1 {
+	font-family: Telegraf;
+	font-weight: 800;
+	font-size: 4rem;
+	margin-bottom: 2rem;
 }
 #position-title {
     font-family: Telegraf;
     font-weight: 800;
     font-size: 4rem;
+}
+.btn-primary {
+	background-color: #2b293f;
+	border: 0;
+	border-radius: 50px;
+	padding: 0.6rem 1.5rem;
+}
+.btn-primary:hover {
+	background-color: #1a192a;
+	border-color: #1a192a;
+}
+.nav-link {
+	font-size: 1.1rem;
+}
+.rounded-img {
+	width: 100%;
+	border-radius: 15px;
+	margin-top: 20px;
+}
+h2 {
+	font-size: 3rem;
+}
+.background-image {
+	background-size: cover;
+	background-position: center;
+	min-height: 400px;
+	border-radius: 15px;
+}
+.text-padding {
+	padding: 40px;
+}
+.team-member {
+	flex: 0 0 33.333333%;
+	max-width: 33.333333%;
+	text-align: left;
+	padding: 0 15px;
+	box-sizing: border-box;
+}
+.team-member img {
+	border-radius: 10px;
+	margin-bottom: 20px;
+	width: 100%;
+	height: auto;
+}
+.team-member h3 {
+	margin-top: 10px;
+	margin-bottom: 5px;
+}
+.team-member p {
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+.team-member .role {
+	font-weight: bold;
 }
 .carousel-item .d-flex {
 	width: 100%;
@@ -695,4 +893,3 @@ a.nav-link.new-link {
         display: none !important;
     }
 }
-
